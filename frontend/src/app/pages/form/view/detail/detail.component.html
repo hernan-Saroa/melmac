@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <nb-card>
+                    <nb-card-header>
+                        {{ name }}
+                    </nb-card-header>
+
+                    <nb-card-body>
+                        <p class="description-form">{{ description }}</p>
+                        
+                        <nb-card>
+                            <nb-card-header>
+                                {{ btn_title }}
+                            </nb-card-header>
+
+                            <nb-card-body>
+                                <nb-accordion>
+                                    <nb-accordion-item *ngFor="let form of form_list; let i=index;">
+                                        <nb-accordion-item-header>
+                                            {{ i + 1 }} - {{ form.name }}
+                                        </nb-accordion-item-header>
+                                        <nb-accordion-item-body>
+                                            {{ form.description }}
+                                        </nb-accordion-item-body>
+                                    </nb-accordion-item>
+                                </nb-accordion>
+                                <div *ngIf="option_form == 2">
+                                    <pdf-viewer class="pdf_view"
+                                        [src]="src"
+                                        [rotation]="0"
+                                        [original-size]="false"
+                                        [show-all]="true"
+                                        [fit-to-page]="false"
+                                        [zoom]="1"
+                                        [zoom-scale]="'page-width'"
+                                        [stick-to-page]="false"
+                                        [render-text]="true"
+                                        [external-link-target]="'blank'"
+                                        [autoresize]="true"
+                                        [show-borders]="false">
+                                    </pdf-viewer>
+                                </div>
+                                <br>
+                                <button nbButton (click)="onAnswer()" status="primary">Diligenciar</button>
+                                <button nbButton (click)="onBack()" status="basic">Volver</button>
+                            </nb-card-body>
+                        </nb-card>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>
+    </div>
+</div>

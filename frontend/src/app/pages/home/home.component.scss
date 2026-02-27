@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
+.img_card{
+    border: 1px solid;
+    border-radius: 10px;
+}
+span{
+    font-family: Montserrat;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.span_left{
+    padding-left: 20px !important;
+}
+.span_right{
+    padding-right: 50px !important;
+}
+.title{
+    font-family: Montserrat;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.fourth {
+    background: #ffffff;
+    opacity: .3;
+  }
+.fourth:hover {
+background: #ffffff;
+opacity: 1;
+}
+.right{
+    text-align: right !important;
+}
+.center{
+    text-align: center !important;
+}

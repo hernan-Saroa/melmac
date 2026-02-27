@@ -1,0 +1,235 @@
+::ng-deep input[type=checkbox]{
+  width: 15px;
+  margin: auto !important;
+}
+
+// ::ng-deep .dnone{
+//   // display: none !important;
+//   content: "Seleccionar Todo";
+// }
+
+::ng-deep input[type=checkbox]::after {
+  content: "Seleccionar";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+::ng-deep input[type=checkbox]:hover::after {
+  opacity: 1;
+}
+
+::ng-deep .dnone::after {
+  content: "Seleccionar todo" !important;
+  position: absolute;
+  top: -35px !important;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+::ng-deep .dnone:hover::after {
+  opacity: 1;
+}
+
+::ng-deep .nb-theme-dark{
+
+  input[type=checkbox]::after {
+    content: "Seleccionar";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000000;
+    color: rgb(255, 255, 255) !important;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  input[type=checkbox]:hover::after {
+    opacity: 1;
+  }
+
+  .dnone::after {
+    content: "Seleccionar todo" !important;
+    top: -35px !important;
+  }
+
+  .dnone:hover::after {
+    opacity: 1;
+  }
+
+  .container-fluid {
+    margin-top: -4rem;
+    z-index: 1000;
+    background: #222b45;
+    position: fixed;
+    width: 80.5%;
+  }
+
+  .container-col{
+    background: #222b45;
+    padding: 10px;
+  }
+
+  .text{
+    color:#ffffff
+  }
+
+  .icon-process-ex {
+    font-size: 21px !important;
+    color: gray;
+    font-weight: 700;
+  }
+  .error-process-ex {
+    color: darkred !important;
+  }
+}
+
+::ng-deep .nb-theme-default,
+::ng-deep .nb-theme-material-light,
+::ng-deep .nb-theme-corporate {
+  .container-fluid:not(.icon-process-ex) {
+    margin-top:-4rem;
+    z-index: 1000;
+    background: #ffffff;
+    position: fixed;
+    width: 80.5%;
+  }
+
+  .icon-process-ex {
+    font-size: 21px !important;
+    color: gray !important;
+    font-weight: 700;
+  }
+  .error-process-ex {
+    color: darkred !important;
+  }
+}
+
+
+::ng-deep .nb-theme-default .container-col,
+::ng-deep .nb-theme-material-light .container-col,
+::ng-deep .nb-theme-corporate .container-col {
+  background: rgb(255, 255, 255);
+  padding: 10px;
+}
+
+::ng-deep .nb-theme-default .container-col,
+::ng-deep .nb-theme-material-light .container-col,
+::ng-deep .nb-theme-corporate .container-col {
+  .text{
+    color:#000000
+  }
+}
+
+::ng-deep .icon-process_state {
+  font-size: 18px;
+  cursor: pointer;
+  .success {
+    color: #00db00;
+  }
+  .gray {
+    color: gray;
+  }
+}
+
+@media (max-width: 1500px) {
+  .container-fluid {
+    margin-top: -4rem;
+    z-index: 1000;
+    position: absolute;
+    width: 77%;
+  }
+}
+
+@media (max-width: 1350px) {
+  .container-fluid {
+    margin-top: -4rem;
+    z-index: 1000;
+    position: absolute;
+    width: 75%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container-fluid {
+    margin-top: -4rem;
+    z-index: 1000;
+    position: absolute;
+    width: 74%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container-fluid {
+    margin-top: -4rem;
+    z-index: 1000;
+    position: absolute;
+    width: 85%;
+  }
+}
+
+@media (max-width: 993px) {
+  .container-fluid {
+    margin-top: -24px;
+    z-index: 1000;
+    position: absolute;
+    width: 77%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    margin-top: -16px;
+    z-index: 1000;
+    position: absolute;
+    width: 77%;
+  }
+}
+
+@media (max-width: 632px) {
+  .container-fluid {
+    margin-top: -16px;
+    z-index: 1000;
+    background: white;
+    position: absolute;
+    width: 77%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    margin-top: -16px;
+    z-index: 1000;
+    position: absolute;
+    width: 77%;
+  }
+}
+
+::ng-deep .content-dialog-resend {
+  max-width: 720px;
+  margin: 15px;
+}
+
+::ng-deep .form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 0%) !important;
+}

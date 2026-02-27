@@ -1,0 +1,231 @@
+<nb-layout>
+    <nb-layout-header fixed>
+        <a (click)="onBack()">
+            <nb-icon class="icon-header" icon="arrow-back-outline"></nb-icon> <a class="melmac-header">Melmac</a>
+        </a>
+        <a class="step-header"><strong>Paso {{ step }} de 2</strong></a>
+    </nb-layout-header>
+    <nb-layout-column class="signup-column">
+        <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+            <nb-card-body>
+                <!-- Paso #1 -->
+                <div *ngIf="step == 1" class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div style="text-align: center;">
+                            <img class="logo-melmac" src="assets/images/logo_melmac.png" alt="">
+                            <h1 class="title-signup">Mi cuenta</h1>
+                            <p class="desc-signup">
+                                Estás a un paso de crear tu cuenta en Melmac.co ¿Tienes una cuenta?
+                                <strong>Accede</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="step == 1" class="row">
+                    <div class="col-12 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+                        <div class="row">
+                            <div class="content-form col-12 col-sm-12 col-md-4 offset-md-2">
+                                <div class="form-control-group">
+                                    <label class="label" for="input-email">Correo electrónico</label>
+                                    <input nbInput fullWidth [(ngModel)]="email" name="email" id="input-email" pattern=".+@.+\..+"
+                                        #emailmodel="ngModel" placeholder="" fieldSize="large" autocomplete="off" autofocus required="true"
+                                        [status]="emailmodel.touched ? (emailmodel.invalid ? 'danger' : 'basic') : 'basic'">
+                                    <ng-container *ngIf="emailmodel.invalid && emailmodel.touched">
+                                        <p class="caption status-danger" *ngIf="emailmodel.errors?.required">
+                                            ¡El correo electrónico es obligatorio!
+                                        </p>
+                                        <p class="caption status-danger" *ngIf="emailmodel.errors?.pattern">
+                                            ¡No es un correo electrónico!
+                                        </p>
+                                    </ng-container>
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="label" for="input-name">Nombre</label>
+                                    <input nbInput fullWidth [(ngModel)]="name" name="name" id="input-name" placeholder="" pattern="[a-zA-Z ]+"
+                                        #namemodel="ngModel" [status]="namemodel.touched ? (namemodel.invalid ? 'danger' : 'basic') : 'basic'"
+                                        fieldSize="large" autocomplete="off" autofocus required="true">
+                                    <ng-container *ngIf="namemodel.invalid && namemodel.touched">
+                                        <p class="caption status-danger" *ngIf="namemodel.errors?.required">
+                                            ¡El nombre es obligatorio!
+                                        </p>
+                                        <p class="caption status-danger" *ngIf="namemodel.errors?.pattern">
+                                            ¡Solo se permite letras!
+                                        </p>
+                                    </ng-container>
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="label" for="input-last-name">Apellido</label>
+                                    <input nbInput fullWidth [(ngModel)]="last_name" name="last_name" id="input-last-name" placeholder="" pattern="[a-zA-Z ]+"
+                                        #lastnamemodel="ngModel" [status]="lastnamemodel.touched ? (lastnamemodel.invalid ? 'danger' : 'basic') : 'basic'"
+                                        fieldSize="large" autocomplete="off" autofocus required="true">
+                                    <ng-container *ngIf="lastnamemodel.invalid && lastnamemodel.touched">
+                                        <p class="caption status-danger" *ngIf="lastnamemodel.errors?.required">
+                                            ¡El apellido es obligatorio!
+                                        </p>
+                                        <p class="caption status-danger" *ngIf="lastnamemodel.errors?.pattern">
+                                            ¡Solo se permite letras!
+                                        </p>
+                                    </ng-container>
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="label" for="input-document">Documento</label>
+                                    <div class="doc-cc">
+                                        <a class="a-cc">CC</a>
+                                        <input nbInput fullWidth [(ngModel)]="document" name="document" id="input-document" placeholder="" pattern="[0-9]+"
+                                            #documentmodel="ngModel" [status]="documentmodel.touched ? (documentmodel.invalid ? 'danger' : 'basic') : 'basic'"
+                                            minlength="7" maxlength="12" type="text" fieldSize="large" autocomplete="off" autofocus
+                                            required="true">
+                                    </div>
+                                    <ng-container *ngIf="documentmodel.invalid && documentmodel.touched">
+                                        <p class="caption status-danger" *ngIf="documentmodel.errors?.required">
+                                            ¡El documento es obligatorio!
+                                        </p>
+                                        <p class="caption status-danger" *ngIf="documentmodel.errors?.minlength || documentmodel.errors?.maxlength || documentmodel.errors?.pattern">
+                                            ¡Ingresa un documento valido!
+                                        </p>
+                                    </ng-container>
+                                </div>
+                                <div class="form-control-group">
+                                    <label class="label" for="input-phone">Celular</label>
+                                    <input nbInput fullWidth [(ngModel)]="phone" name="phone" id="input-phone" placeholder="" pattern="[0-9]+"
+                                        #phonemodel="ngModel" [status]="phonemodel.touched ? (phonemodel.invalid ? 'danger' : 'basic') : 'basic'"
+                                        minlength="10" maxlength="10" type="text" fieldSize="large" autocomplete="off" autofocus required="true">
+                                    <ng-container *ngIf="phonemodel.invalid && phonemodel.touched">
+                                        <p class="caption status-danger" *ngIf="phonemodel.errors?.required">
+                                            ¡El celular es obligatorio!
+                                        </p>
+                                        <p class="caption status-danger" *ngIf="phonemodel.errors?.minlength || phonemodel.errors?.maxlength || phonemodel.errors?.pattern">
+                                            ¡Ingresa un celular valido!
+                                        </p>
+                                    </ng-container>
+                                </div>
+                                <div class="form-control-group">
+                                    <nb-checkbox (checkedChange)="toggleTerms($event)" status="basic">Al crear una cuenta, aceptas nuestras
+                                        <strong><a class="link_terms" href="/assets/legal/TERMINOS-Y-CONDICIONES.pdf" target="_blank">condiciones de servicio</a></strong>
+                                    </nb-checkbox>
+                                </div>
+                                <div class="">
+                                    <button (click)="onSunmit(emailmodel.invalid, namemodel.invalid, lastnamemodel.invalid, documentmodel.invalid, phonemodel.invalid)" nbButton fullWidth status="primary">Crear tu
+                                        cuenta</button>
+                                </div>
+                            </div>
+                            <div class="line-o" style="border-left: 1px solid #8f9bb3; position: relative;">
+                                <p class="or-sign-up">o</p>
+                            </div>
+                            <div class="content-social col-md-4 col-12">
+                                <p class="content-social-icon" (click)="signInWithGoogle()">
+                                    <img class="img-icon-social" src="assets/images/google.png" alt="Google"> Crear con
+                                    Google
+                                </p>
+                                <p class="content-social-icon" (click)="signInWithFB()">
+                                    <img class="img-icon-social" src="assets/images/facebook.png" alt="Facebook"> Crear
+                                    con Facebook
+                                </p>
+                                <p class="text-social">
+                                    Si continúas con Google o Facebook y aún no tienes ninguna cuenta de Melmac.co,
+                                    crearas una cuenta, lo que significa que aceptas
+                                    <strong><a class="link_terms" href="/assets/legal/TERMINOS-Y-CONDICIONES.pdf" target="_blank">condiciones de servicio</a></strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Paso #2 -->
+                <div *ngIf="step == 2 && (code_sent && !code_valid)" class="row" style="margin-top: 200px;">
+                    <div class="col-md-8 offset-md-2">
+                        <div style="text-align: center;">
+                            <h1 class="title-signup">Notificación de contraseña</h1>
+                            <p class="desc-signup">
+                                Te hemos enviado un token al número de teléfono que tienes regístrado
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="step == 2 && (code_sent && !code_valid)" class="row">
+                    <div class="col-12 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+                        <div class="row">
+                            <div class="content-form col-12 col-sm-12 col-md-6 offset-md-3">
+                                <div class="form-control-group">
+                                    <label class="label" for="code">Token de confirmación</label>
+                                    <code-input id="code" #codeInput *ngIf="code_sent" [isCodeHidden]="false" [codeLength]="6"
+                                        (codeCompleted)="onCodeCompleted($event, codeInput)">
+                                    </code-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nueva Contraseña -->
+                <div *ngIf="step == 2 && (code_sent && code_valid)" class="row" style="margin-top: 40px;">
+                    <div class="col-md-8 offset-md-2">
+                        <div style="text-align: center;">
+                            <nb-icon style="font-size: 80px;" icon="unlock-outline"></nb-icon>
+                            <h1 class="title-signup">Nueva contraseña</h1>
+                            <p class="desc-signup">
+                                Por favor llena los campos para tu nueva contraseña
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="step == 2 && (code_sent && code_valid)" class="row">
+                    <div class="col-12 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+                        <div class="row">
+                            <div class="content-form col-12 col-sm-12 col-md-6 offset-md-3">
+                                <div class="form-group pass-control">
+                                    <label class="label" for="input-password">Contraseña:</label>
+                                    <input nbInput [(ngModel)]="user.password" #password="ngModel" type="password"
+                                        id="input-password" name="password" class="first"
+                                        autofocus fullWidth fieldSize="large"
+                                        [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : 'basic'"
+                                        required
+                                        minlength="8"
+                                        maxlength="20"
+                                        [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+                                    <ng-container *ngIf="password.invalid && password.touched">
+                                        <p class="caption status-danger" *ngIf="password.errors?.required">
+                                            ¡La contraseña es obligatoria!
+                                        </p>
+                                        <p class="caption status-danger"
+                                            *ngIf="password.errors?.minlength || password.errors?.maxlength">
+                                            La contraseña debe ser
+                                            de 8
+                                            a 20
+                                            caracteres
+                                        </p>
+                                    </ng-container>
+                                </div>
+
+                                <div class="form-group pass-control">
+                                    <label class="label" for="input-re-password">Confirma la Contraseña:</label>
+                                    <input nbInput [(ngModel)]="user.confirmPassword" #rePass="ngModel"
+                                        id="input-re-password" name="rePass" type="password" class="last"
+                                        fullWidth fieldSize="large" [status]="rePass.touched
+                                             ? (rePass.invalid || password.value != rePass.value ? 'danger' : 'success')
+                                             : 'basic'"
+                                        required
+                                        [attr.aria-invalid]="rePass.invalid && rePass.touched ? true : null">
+                                    <ng-container *ngIf="rePass.touched">
+                                        <p class="caption status-danger"
+                                            *ngIf="rePass.invalid && rePass.errors?.required">
+                                            ¡La confirmación de la contraseña es obligatoria!
+                                        </p>
+                                        <p class="caption status-danger"
+                                            *ngIf="password.value != rePass.value && !rePass.errors?.required">
+                                            La contraseña no coincide con la confirmación.
+                                        </p>
+                                    </ng-container>
+                                </div>
+                                <button nbButton status="info" fullWidth size="large" type='button'
+                                    (click)="changePassword(password.invalid)">
+                                    <nb-icon icon="lock-outline"></nb-icon>
+                                    Crear Contraseña
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nb-card-body>
+        </nb-card>
+
+    </nb-layout-column>
+</nb-layout>

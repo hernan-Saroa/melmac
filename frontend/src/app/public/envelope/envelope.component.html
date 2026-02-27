@@ -1,0 +1,1170 @@
+<!-- Mensaje de Validación -->
+<div *ngIf="finish == 0 && !validation && !loading" class="row">
+  <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <nb-card>
+          <nb-card-body>
+              <div class="flex-centered">
+                  <h6 class="title">Validación</h6>
+                  <small class="sub-title">{{ token_response.title }}</small>
+                  <!-- <button [disabled]="btn_disabled" nbButton fullWidth (click)="goNew()" type="button"
+                      status="success" class="home-button">
+                      Volver a diligenciar
+                  </button> -->
+                  <small class="message">{{ token_response.text }}</small>
+              </div>
+          </nb-card-body>
+      </nb-card>
+  </div>
+</div>
+
+<!-- Opción de diligenciamiento #1 -->
+<div *ngIf="view_option == 1 && finish == 0 && validation && form && page" class="row"
+  [style]="'margin: 0px; overflow: auto; width:100%;'">
+  <!-- [style]="'margin: 0px; overflow: auto; width:100%; height: ' + form['pages'][page - 1]['height'] + 'px;'"> -->
+
+  <div style="z-index: 2; position: fixed; width: 100%; top: 0; padding: 1rem 1.5rem; border-bottom: 1px solid #edf1f7; border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem; color: #222b45; font-family: Open Sans, sans-serif; font-size: 0.9375rem; font-weight: 600; line-height: 1.5rem;" id="headerT" class="header-pdf">
+    <span *ngIf="logo == ''">{{ title }}</span>
+    <div *ngIf="logo != ''" style="display: flex; justify-content: center; align-items: center;">
+      <div style="width: 100px;">
+        <img style="width: 100%;" class="logo_img" [(src)]="logo" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista 1 -->
+  <div class="col-12 col-md-3" [style]="'padding: 0px; margin-top: ' + offset_height + 'px;'">
+    <nb-card class="actions-card full-size-configure full-size-configure-responsive" status="primary" [style]="'height: calc(100vh - 60.89px - ' + offset_height + 'px);'">
+      <nb-card-body>
+        <div [style]="'display: flex; justify-content: center; align-items: ' + (envelope.length >= 3 ? 'flex-start' : 'center') + '; height: 100%;'">
+          <div class="orientation-list ng-scroll">
+            <div class="list-doc-content" *ngFor="let env of envelope; let e=index;" [nbSpinner]="pdf_loading" nbSpinnerStatus="info" style="margin-bottom: 15px;">
+              <div class="doc-content">
+                <div [class]="'doc-box ' + (env == form ? 'doc-box-active' : '')">
+                  <div class="box-select" (click)="selectEnv(e)">
+                    <pdf-viewer [src]="env['data']" [render-text]="true" [show-all]="false" [original-size]="false"
+                      [fit-to-page]="false" class="pdf-viewer-box"></pdf-viewer>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <br>
+
+            <!-- <div style="max-width: 400px;">
+              <h3 id="contdiv2" style="text-align: center;">{{ name }}</h3>
+              <p *ngIf="description != undefined && description != ''" style="text-align: center;" title="{{ description }}">
+                {{ (description.length > 150)? (description | slice:0:150)+'...':(description) }}
+              </p>
+            </div> -->
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-12 col-md-9 div-pdf-content-main" [style]="'padding: 0px; margin-top: ' + offset_height + 'px;'" >
+    <div class="col-12 col-sm-10 offset-sm-1 col-md-10 offset-md-1 col-lg-8 offset-lg-2 " style="padding: 0px;" #div_size>
+      <nb-card class="actions-card full-size-configure" [style]="'height: calc(100vh - 60.89px - ' + offset_height + 'px) !important;'">
+        <nb-card-body style="padding: 0px;">
+
+          <div class="zoom-pdf-content" [style]="getZoom(div_size)">
+            <form (keydown)="keyDownFunction($event)" #myIdentifier novalidate (ngSubmit)="onSubmit(f)" #f="ngForm" enctype="multipart/form-data">
+              <div *ngIf="option == 1" class="btn-content-validate">
+                <button [nbSpinner]="loading" nbSpinnerStatus="success" nbButton outline
+                  [disabled]="f.invalid || loading" style="display: none;">
+                  <img class="img-btn-action" src="/assets/images/icons/answer/PREVISUALIZAR.png" alt="">
+                </button>
+
+                <button [hidden]="!send_view" *ngIf="!f.invalid" [nbSpinner]="loading" nbSpinnerStatus="success" nbButton outline
+                  [disabled]="f.invalid || loading" type="submit" class="button-img">
+                  <img class="img-btn-action" src="/assets/images/icons/answer/ENVIAR.png">
+                </button>
+
+                <button [hidden]="!send_view" *ngIf="f.invalid" [nbSpinner]="loading" nbSpinnerStatus="success" nbButton outline
+                  (click)="onInvalid()" type="button" class="button-img">
+                  <img class="img-btn-action" src="/assets/images/icons/answer/ENVIAR.png">
+                </button>
+              </div>
+
+              <div *ngIf="table_form">
+                <div *ngFor="let field of fields; let i=index;">
+                  <!-- Tabla -->
+                  <div *ngIf="field.field_type == 17" style="padding: 75px; background: white;">
+                    <h6 style="text-align: center;">{{ field.label }} - Información Anexa.</h6>
+
+                    <input type="text" [ngModel]="field.answer" class="table-input"
+                        name="field_{{ field.field }}" required="{{ field.required }}">
+                    <div class="">
+                      <div class="col-12" *ngFor="let field_l of field.fields">
+
+                        <div class="form-group">
+                          <label for="inputField-{{ field_l.field }}" class="label" style="font-size: 14px;text-transform: uppercase;font-style: italic;margin-top: 25px;margin-bottom: 15px;">
+                            {{ field_l.label }}
+                          </label>
+
+                          <div style="position: relative;">
+                              <input *ngIf="field_l.field_type == 1 || field_l.field_type == 2 || field_l.field_type == 4 || field_l.field_type == 5 || field_l.field_type == 11"
+                                  name="input_{{ field_l.field }}_{{ 0 }}_{{ i }}"
+                                  id="input_{{ field_l.field }}_{{ 0 }}_{{ i }}"
+                                  [type]="typeField(field_l.field_type)" autocomplete="off" fieldSize="small"
+                                  [class]="classField(field_l.field_type, true)"
+                                  [value]="getValueField(field_l.field, 0, i, field_l.field_type)"
+                                  (change)="onChangeValueList($event, field_l.field, 0, i, field_l.field_type)"
+                                  nbInput fullWidth placeholder="{{ field_l.label }}">
+                          </div>
+                          <!-- Selecionable -->
+                          <nb-select *ngIf="field_l.field_type == 3" fullWidth
+                              size="small"
+                              class="select-form" placeholder="Seleccionar"
+                              [selected]="getValueField(field_l.field, 0, i, field_l.field_type)"
+                              (selectedChange)="onChangeValueList($event, field_l.field, 0, i, field_l.field_type)">
+                              <nb-option value="">Seleccionar</nb-option>
+                              <nb-option *ngFor="let option of field_l.values" [value]="option.value">
+                                  {{ option.label }}</nb-option>
+                          </nb-select>
+                          <!-- Firma -->
+                          <div class="firma" #divPad
+                              *ngIf="field_l.field_type == 7">
+                              <signature-pad #signPad fxFlex="1 1 50" class="signature" id="sign_canvas"
+                                  fxFlexAlign.xs="center" [options]="signaturePadOptions"
+                                  (onBeginEvent)="drawStart(signPad, i)"
+                                  (onEndEvent)="drawCompleteList(field_l.field, 0, i, field_l.field_type, signPad, divPad)">
+                              </signature-pad>
+                              <br>
+                              <button style="margin: 10px;" type="button" nbButton status="basic" shape="rectangle"
+                                  size="tiny" ghost (click)="drawClearList(field_l.field, 0, i, field_l.field_type, signPad, divPad)">
+                                  Limpiar
+                              </button>
+                          </div>
+                          <!-- Radio -->
+                          <nb-radio-group *ngIf="field_l.field_type == 12" class="select-form" name="radio_{{ field_l.field }}_{{ 0 }}_{{ i }}"
+                              [value]="getValueField(field_l.field, 0, i, field_l.field_type)"
+                              (valueChange)="onChangeValueList($event, field_l.field, 0, i, field_l.field_type)">
+                              <nb-radio *ngFor="let option of field_l.values"
+                                  [value]="option.value">
+                                  {{ option.label }}</nb-radio>
+                          </nb-radio-group>
+                          <!-- Checkbox -->
+                          <div *ngIf="field_l.field_type == 13" class="checkbox-content">
+                              <input type="text" class="checkbox-input" [value]="getValueField(field_l.field, 0, i, field_l.field_type)">
+                              <nb-checkbox style="margin-bottom: 5px;"
+                                  (checkedChange)="toggleCheckboxList(field_l.field, 0, i, field_l.field_type, $event, option.value)"
+                                  [checked]="onCheckList(field_l.field, 0, i, field_l.field_type, option.value)"
+                                  *ngFor="let option of field_l.values" [value]="option.value">
+                                  {{ option.label }}</nb-checkbox>
+                          </div>
+                          <!-- Ubicación -->
+                          <div class="location" *ngIf="field_l.field_type == 15">
+                              <input type="text" class="location-input"  #location_field_list>
+                              <div class="latitude">
+                                  <label class="label">Latitud</label>
+                                  <input type="number" autocomplete="off"
+                                      [value]="valueLocationList(field_l.field, 0, i, field_l.field_type, 1)"
+                                      nbInput fullWidth placeholder="Latitud" disabled>
+                              </div>
+                              <div class="length">
+                                  <label class="label">Longitud</label>
+                                  <input type="number" autocomplete="off"
+                                      [value]="valueLocationList(field_l.field, 0, i, field_l.field_type, 2)"
+                                      nbInput fullWidth placeholder="Longitud" disabled>
+                              </div>
+                              <button type="button" nbButton style="margin-top: 3px;"
+                                  [status]="basic" class="upload-btn"
+                                  shape="rectangle" size="tiny" outline
+                                  (click)="getLocationList(field_l.field, 0, i, field_l.field_type)">
+                                  Obtener Ubicación
+                              </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="!table_form">
+                <!-- [title]="getTitle(field)" -->
+                <div *ngFor="let field of fields; let i=index;"
+                      class="custom-tooltip"
+                      [style]="setTopLeft(field) +
+                      (field.answer ? 'background: #ffffff00; border: none;' : 'background: ' + setColor(field, 'background') + ';' + (i == field_index ? ' z-index: 2;' : '')) +
+                      getSizeSign(field.field_type, field.size_image_x, field.size_image_y)"
+                      [hidden]="field.page != page || field.form_id != form.id || (!field.isConfig ? field.user.id != user : true)"
+                      [class]="(!['3', '12', '13'].includes(field.field_type+'') ? 'input-box ' : '' + getClass(i)) + getClassAnimate(field)" #element
+                      (click)="selectField(element, field, i)" >
+                    
+                    <span *ngIf="field.required" >
+                      <span style="font-size: 10px">*</span>
+                      <span class="tooltip-text">Obligatorio</span>
+                    </span>
+                    <!-- <div [hidden]="i == field_index || field.answer" *ngIf="field" [style]="'font-family: ' + field.font + -->
+                    <!-- Visualización Campo -->
+                    <div [hidden]="i == field_index && !['10','18','22'].includes(field.field_type+'')" *ngIf="field && !['3', '12', '13', '17'].includes(field.field_type+'')"
+                      [style]="'font-family: ' + field.font +
+                      ';color: ' + setColor(field, 'color') +
+                      (field.answer ? ';color:' + field.color : ';color: white') +
+                      ';font-size: ' + field.size + 'px;' +
+                      getBold(field.bold) + getItalic(field.italic) + getUnderline(field.underline)" class="label-box">
+                      <div [hidden]="field.answer || [8, 9, 10, 18, 22].includes(field.field_type)">
+                        {{ (getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field)) }}
+                      </div>
+                      <div *ngIf="[10, 18, 22].includes(field.field_type)">
+                        <input type="hidden" [ngModel]="field.answer" name="field_{{ field.field }}_{{ field.form_id }}" required="{{ field.required }}"/>
+                        {{field.answer == "" ? "FIRMA AQUÍ" : "FIRMA REGISTRADA"}}
+                      </div>
+                      <div *ngIf="field.user && field.user.id == user" [hidden]="!field.answer">
+                        <div *ngIf="[1,2,4,5,6,16,19,25].includes(field.field_type)">{{ field.answer }}</div>
+                        <!-- <div *ngIf="[8].includes(field.field_type)">Archivo Cargado</div> -->
+                        <div *ngIf="[7].includes(field.field_type)">
+                          <input type="text" class="file-input" [ngModel]="field.answer" name="field_{{ field.field }}_{{ field.form_id }}" required="{{ field.required }}">
+                          <img [src]="field.answer" class="editImg" style="width: 100%;" title="Editar Firma" [hidden]="!field.answer && field.answer == ''" (click)="openWithoutBackdropClick(i)"/>
+                        </div>
+                      </div>
+
+                      <div *ngIf="field.user && field.user.id == user && [8].includes(field.field_type)">
+                        <div>
+                          <input type="file" accept="image/png" class="file-input" (change)="onFileSelected($event, field.field, i)"
+                            [ngModel]="field.answer" id="field_{{ i }}" name="field_{{ field.field }}_{{ field.form_id }}"
+                            required="{{ field.required }}" #fileUploadInput>
+                          <div class="file-upload">
+                            <a style="padding: 7px 4px 7px 4px;"
+                              [status]="fields[i].answer == '' ? 'basic' : 'primary'" class="upload-btn"
+                              shape="rectangle" size="tiny" outline (click)="fileUploadInput.click()">
+                              {{ (getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field)) }} -
+                              <span>{{ fields[i].answer ? 'Archivo Cargado' : 'Subir Archivo' }}</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="field.user && field.user.id == user && [9].includes(field.field_type)">
+                        <div [hidden]="field.answer">
+                          <input type="file" accept="image/png" class="file-input" (change)="onFileSelected($event, field.field, i)"
+                            [ngModel]="field.answer" name="field_{{ field.field }}"
+                            required="{{ field.required }}" #fileUpload>
+
+                          <button type="button" nbButton #brnfile
+                              [status]="fields[i].answer == '' ? 'basic' : 'primary'" class="upload-btn"
+                              shape="rectangle" size="tiny"
+                              [style]="getSizeSign(field.field_type, field.size_image_x, field.size_image_y) + ' padding: 15px; font-size: 9px; box-shadow: 1px 5px 15px -4px #9ca6b7 !important;'"
+                              outline (click)="fileUpload.click()">
+                              {{ fields[i].answer == '' ? 'Subir Archivo' : 'Archivo Cargado' }}
+                          </button>
+                        </div>
+                        <div *ngIf="field.answer" style="background: white;">
+                          <a (click)="fileUpload.click()"><img *ngIf="field.answer" [src]="field.answer" alt="" style="width: 100%;"></a>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!-- Campos Seleccionados -->
+                    <div *ngIf="field.user && field.user.id == user && [1,2,4,5,6,16,19,25].includes(field.field_type)" style="background: white;" [hidden]="i != field_index">
+                      <input id="field_{{ i }}" (keyup.enter)="valNext(element, i)" name="field_{{ field.field }}_{{ field.form_id }}"
+                        [(ngModel)]="field.answer" autocomplete="off" nbInput fieldSize="tiny"
+                        [type]="typeField(field.field_type, field.validate)" minlength="{{ field.validate?.min }}"
+                        maxlength="{{ field.validate?.max }}" min="{{ field.validate?.min }}" max="{{ field.validate?.max }}"
+                        (change)="onChangeValue($event, field.field_type, field.validate, i)"
+                        [class]="classField(field.field_type)" required="{{ field.required }}"/>
+                        <div style="padding-top: 5px; padding-bottom: 5px; color: black; position: absolute; top: 22px; width: 100%; left: 0px; background: white; border: solid 1px #ccc;">
+                          <b>Campo tipo: {{ nameTypeField(field.field_type) }}</b>
+                          <label style="margin-bottom: 0px;" *ngIf="field.validate && field.validate.advanced && field.validate.advanced == 'email'">Validación de Email</label>
+                          <label style="margin-bottom: 0px;" *ngIf="field.validate && field.validate.min">Cantidad mínima de caracteres: {{ field.validate.min }}</label>
+                          <label style="margin-bottom: 0px;" *ngIf="field.validate && field.validate.max">Cantidad máxima de caracteres: {{ field.validate.max }}</label>
+                          <label style="margin-top: 5px; margin-bottom: 0px; padding-top: 5px; border-top: 1px solid black; color: #3366ff;" *ngIf="field.validate && field.validate.max">
+                            {{ field.description }}
+                          </label>
+                        </div>
+                    </div>
+
+                    <div *ngIf="field.user && field.user.id == user && [8].includes(field.field_type)" [hidden]="i != field_index">
+                      {{ (getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field)) }} - Cargando Archivo
+                    </div>
+
+                    <!-- Siempre visibles -->
+
+                    <!-- Campo tipo tabla -->
+                    <div *ngIf="field && field.field_type == '17'">
+                      <input type="text" [ngModel]="field.answer" class="table-input"
+                        name="field_{{ field.field }}" required="{{ field.required }}">
+                      <table class="view-table-drag">
+                        <tr>
+                          <td [style]="'font-family: ' + field.font +
+                            ';color: ' + setColor(field, 'table') +
+                            ';font-size: ' + field.size + 'px;' +
+                            getBold(field.bold) + getItalic(field.italic) + getUnderline(field.underline)"
+                            *ngFor="let ti of field.fields" >
+                            {{ ti.label }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td *ngFor="let field_l of field.fields">
+                            <div style="position: relative;">
+                                <input *ngIf="field_l.field_type == 1 || field_l.field_type == 2 || field_l.field_type == 4 || field_l.field_type == 5 || field_l.field_type == 11"
+                                    name="input_{{ field_l.field }}_0_{{ i }}"
+                                    id="input_{{ field_l.field }}_0_{{ i }}"
+                                    [type]="typeField(field_l.field_type)" autocomplete="off" fieldSize="tiny"
+                                    [class]="classField(field_l.field_type, true)"
+                                    [value]="getValueField(field_l.field, 0, i, field_l.field_type)"
+                                    (change)="onChangeValueList($event, field_l.field, 0, i, field_l.field_type)"
+                                    nbInput fullWidth>
+                            </div>
+                            <!-- Selecionable -->
+                            <nb-select *ngIf="field_l.field_type == 3" fullWidth
+                                size="tiny"
+                                class="select-form" placeholder="Seleccionar"
+                                [selected]="getValueField(field_l.field, 0, i, field_l.field_type)"
+                                (selectedChange)="onChangeValueList($event, field_l.field, 0, i, field_l.field_type)">
+                                <nb-option value="">Seleccionar</nb-option>
+                                <nb-option *ngFor="let option of field_l.values" [value]="option.value">
+                                    {{ option.label }}</nb-option>
+                            </nb-select>
+                            <!-- Firma -->
+                            <div class="firma" #divPad
+                                *ngIf="field_l.field_type == 7">
+                                <signature-pad #signPad fxFlex="1 1 50" class="signature" id="sign_canvas"
+                                    fxFlexAlign.xs="center" [options]="signaturePadOptions"
+                                    (onEndEvent)="drawCompleteList(field_l.field, 0, i, field_l.field_type, signPad, divPad)">
+                                </signature-pad>
+                                <br>
+                                <button style="margin: 10px;" type="button" nbButton status="basic" shape="rectangle"
+                                    size="tiny" ghost (click)="drawClearList(field_l.field, 0, i, field_l.field_type, signPad, divPad)">
+                                    Limpiar
+                                </button>
+                            </div>
+                            <!-- Radio -->
+                            <nb-radio-group *ngIf="field_l.field_type == 12" class="select-form" name="radio_{{ field_l.field }}_0_{{ i }}"
+                                [value]="getValueField(field_l.field, 0, i, field_l.field_type)"
+                                (valueChange)="onChangeValueList($event, field_l.field, 0, i, field_l.field_type)">
+                                <nb-radio *ngFor="let option of field_l.values"
+                                    [value]="option.value">
+                                    {{ option.label }}</nb-radio>
+                            </nb-radio-group>
+                            <!-- Checkbox -->
+                            <div *ngIf="field_l.field_type == 13" class="checkbox-content">
+                                <input type="text" class="checkbox-input" [value]="getValueField(field_l.field, 0, i, field_l.field_type)">
+                                <nb-checkbox style="margin-bottom: 5px;"
+                                    (checkedChange)="toggleCheckboxList(field_l.field, 0, i, field_l.field_type, $event, option.value)"
+                                    [checked]="onCheckList(field_l.field, 0, i, field_l.field_type, option.value)"
+                                    *ngFor="let option of field_l.values" [value]="option.value">
+                                    {{ option.label }}</nb-checkbox>
+                            </div>
+                            <!-- Ubicación -->
+                            <div class="location" *ngIf="field_l.field_type == 15">
+                                <input type="text" class="location-input"  #location_field_list>
+                                <div class="latitude">
+                                    <label class="label">Latitud</label>
+                                    <input type="number" autocomplete="off"
+                                        [value]="valueLocationList(field_l.field, 0, i, field_l.field_type, 1)"
+                                        nbInput fullWidth placeholder="Latitud" disabled>
+                                </div>
+                                <div class="length">
+                                    <label class="label">Longitud</label>
+                                    <input type="number" autocomplete="off"
+                                        [value]="valueLocationList(field_l.field, 0, i, field_l.field_type, 2)"
+                                        nbInput fullWidth placeholder="Longitud" disabled>
+                                </div>
+                                <button type="button" nbButton style="margin-top: 3px;"
+                                    [status]="basic" class="upload-btn"
+                                    shape="rectangle" size="tiny" outline
+                                    (click)="getLocationList(field_l.field, 0, i, field_l.field_type)">
+                                    Obtener Ubicación
+                                </button>
+                            </div>
+                        </td>
+
+                        </tr>
+                      </table>
+                    </div>
+                    <!-- campos lista(field_type=3), unica(field_type=12) y multiple(field_type=13) -->
+                    <div *ngIf="field && field['values'] && ['3', '12', '13'].includes(field.field_type+'')" class="content-field-special">
+                      <div *ngIf="field.field_type == '3'">
+                        <nb-select size="small"
+                          (selectedChange)="field.answer=$event"
+                          [ngModel]="field.answer"
+                          name="field_{{ field.field }}_{{ field.form_id }}"
+                          [style]="'left:' + field.left + 'px; top: ' + field.top + 'px; background: ' + setColor(field, 'background')"
+                          [class]="'select-form option ' + getClassAnimate(field)" placeholder="Seleccionar">
+                          <nb-option value="">Seleccionar</nb-option>
+                          <nb-option *ngFor="let option of field['values']" [value]="option.id">
+                            {{ option.value }}
+                          </nb-option>
+                        </nb-select>
+                      </div>
+                      <div *ngIf="field.field_type == '12'" [ngSwitch]="field.option">
+                        <nb-radio-group *ngSwitchCase="['1','2'].includes(field.option+'') ? field.option : !field.option" (valueChange)="field.answer=$event" [ngModel]="field.answer" name="field_{{ field.field }}_{{ field.form_id }}">
+                          <nb-radio *ngFor="let option of field['values']" [class]="'option ' + getClassAnimate(field)" [checked]="checkked(field,option.id)" [value]="option.id" [style]="'left:' + option.left + 'px; top: ' + option.top + 'px; border: none'">
+                            {{field.option == '1' ? option.value : ''}}
+                          </nb-radio>
+                        </nb-radio-group>
+                        <div *ngSwitchCase="'3'">
+                          <input type="number" hidden [ngModel]="field.answer" name="field_{{ field.field }}_{{ field.form_id }}">
+                          <div *ngFor="let option of field['values']" (click)="optionX(option.id, field)" class="option"
+                            [style]="'width: 12px; height: 12px; cursor: pointer; left:' + option.left + 'px; top: ' + option.top + 'px; color: '+field.user.color">
+                            {{field.answer == option.id ? 'X' : ''}}
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="field.field_type == '13'" [ngSwitch]="field.option">
+                        <div *ngSwitchCase="['1','2'].includes(field.option+'') ? field.option : !field.option">
+                          <input hidden [ngModel]="field.answer" name="field_{{ field.field }}_{{ field.form_id }}">
+                          <nb-checkbox *ngFor="let option of field['values']"
+                            [class]="'option ' + getClassAnimate(field)"
+                            (checkedChange)="changeOptionMultiple($event, option.id, field)"
+                            [style]="'left:' + option.left + 'px; top: ' + option.top + 'px; border: none'">
+                            {{field.option == '1' ? option.value : ''}}
+                          </nb-checkbox>
+                        </div>
+                        <div *ngSwitchCase="'3'">
+                          <input type="number" hidden [ngModel]="field.answer" name="field_{{ field.field }}_{{ field.form_id }}">
+                          <div *ngFor="let option of field['values']" (click)="optionX(option.id, field)" class="option"
+                            [style]="'width: 12px; height: 12px; cursor: pointer; left:' + option.left + 'px; top: ' + option.top + 'px; color: '+field.user.color">
+                            {{field.answer.indexOf(option.id) >= 0 ? 'X' : ''}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- [title]="getTitle(field)" -->
+                <div *ngFor="let field of fields; let i=index;"
+
+                    [style]="'left:' + field.left + 'px;' +
+                        'top: ' + field.top + 'px;' +
+                        'opacity: 0.6; cursor: default;' +
+                        (field.answer ? 'background: #ffffff00; border: none; border-bottom: 1px solid ' + field.user.color + '; box-shadow: none;' : 'background: ' + setColor(field, 'background') + ';') +
+                        getSizeSign(field.field_type, field.size_image_x, field.size_image_y)"
+                    [hidden]="field.page != page || field.form_id != form.id || (!field.isConfig ? field.user.id == user : false)"
+                    [class]="field.isConfig ? 'input-box config ' : 'input-box ' + getClass(i)"  #element>
+
+                    <div *ngIf="field && field.field_type != '17'" [style]="'font-family: ' + field.font +
+                      (field.answer ? ';color:' + field.color : ';color: '+setColor(field, 'color')) +
+                      ';font-size: ' + field.size + 'px;' +
+                      getBold(field.bold) + getItalic(field.italic) + getUnderline(field.underline)" class="label-box">
+
+                      <div [hidden]="field.answer || (field.isConfig && field.field_type == '4')">
+                        {{ field.isConfig ? field.label : ((getLabel(field) && getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field))) }}
+                      </div>
+
+                      <div [hidden]="!field.answer">
+                        <div *ngIf="![8,9].includes(field.field_type)">
+                          {{ field.answer }}
+                        </div>
+
+                        <div *ngIf="[8].includes(field.field_type)">
+                          {{ (getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field)) }} -
+                          <span>Archivo Cargado</span>
+                        </div>
+
+                        <div *ngIf="[9].includes(field.field_type)">
+                          <img *ngIf="field.answer" [src]="URL + field.answer" alt="" style="width: 100%;">
+                        </div>
+                      </div>
+
+                      <div *ngIf="field && field.isConfig && field.field_type == '4'">
+                        <img [src]="field.url_src" class="img-svg-icon" [style]="'width: ' + field.size_image_x + 'px; filter: ' + colorCssFilter(field.color)" />
+                      </div>
+
+                      <div *ngIf="field && field.isConfig && field.field_type == '5'">
+                        <img [src]="field.url_src" class="img-svg-icon" [style]="'width: ' + field.size_image_x + 'px'" />
+                      </div>
+                    </div>
+
+                    <div *ngIf="field && field.field_type == '17' && field.description == '2'">
+                      <table class="view-table-drag">
+                        <tr>
+                          <td [style]="'font-family: ' + field.font +
+                            ';color: ' + setColor(field, 'table') +
+                            ';font-size: ' + field.size + 'px;' +
+                            getBold(field.bold) + getItalic(field.italic) + getUnderline(field.underline)"
+                            *ngFor="let ti of field.fields" >
+                            {{ ti.label }}
+                          </td>
+                        </tr>
+                        <tr *ngFor="let item of [].constructor(field.row); let i_l = index"
+                          class="th_list" >
+                          <td *ngFor="let field_l of field.fields" [style]="'font-family: ' + field.font +
+                            ';color: ' + setColor(field, 'table') +
+                            ';font-size: ' + field.size + 'px;' +
+                            getBold(field.bold) + getItalic(field.italic) + getUnderline(field.underline)">
+                            {{ getValueField(field_l.field, i_l, i, field_l.field_type) }}
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                </div>
+                <!-- Campos clonados -->
+                <div *ngFor="let field of fields let i=index;">
+                  <!-- [title]="getTitle(field)" -->
+                  <div *ngFor="let clone of field.clone; let l=index;"
+
+                      [style]="'left:' + clone.left + 'px;' +
+                        'top: ' + clone.top + 'px;' +
+                        (field.answer ? 'background: #ffffff00; border: none; border-bottom: 1px solid ' + field.user.color + '; box-shadow: none;' : 'background: ' + field.user.color + ';') +
+                        getSizeSign(field.field_type, clone.size_image_x, clone.size_image_y)"
+                      [hidden]="clone.envelope_version_form_id != form.id || clone.page != page"
+                      class="input-box" #element>
+
+                      <div [hidden]="i == field_index" *ngIf="clone"
+                        [style]="'font-family: ' + clone.font +
+                        ';color: white' +
+                        (field.answer ? ';color:' + clone.color : ';color: white') +
+                        ';font-size: ' + clone.size + 'px;' +
+                        getBold(clone.bold) + getItalic(clone.italic) + getUnderline(clone.underline)"
+                        class="label-box">
+
+                        <div [hidden]="field.answer && field.answer != ''">
+                          {{ (getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field)) }}
+                        </div>
+                        <div [hidden]="!field.answer || (field.answer && field.answer == '')">
+                          <div *ngIf="[1,2,5,6,25].includes(field.field_type)">{{ field.answer }}</div>
+                          <div *ngIf="[7].includes(field.field_type)">
+                            <img [src]="field.answer" class="editImg" style="width: 100%;" [hidden]="!field.answer && field.answer == ''"/>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <pdf-viewer class="create_container_pdf" *ngIf="form && !table_form" id="container_pdf" #pdfContainer [style]="getWidth() + getHeight() + 'position: absolute;'"
+              [src]="form['data']"
+              [rotation]="0"
+              [original-size]="false"
+              [show-all]="false"
+              [page]="page"
+              [fit-to-page]="false"
+              [zoom]="1"
+              [zoom-scale]="'page-width'"
+              [stick-to-page]="false"
+              [render-text]="true"
+              [external-link-target]="'blank'"
+              [autoresize]="true"
+              [show-borders]="false"
+              cdkDragBoundary=".example-boundary" (click)="notSelect()">
+            </pdf-viewer>
+
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <button *ngIf="form" type="button" nbButton style="position: absolute; top: 32vh; left: 30px; z-index: 1;"
+      status="info" class="upload-btn"
+      shape="rectangle" size="giant" outline
+      [disabled]="page <= 1"
+      (click)="backPagePreview(div_size)">
+      <nb-icon icon="arrow-circle-left-outline"></nb-icon>
+    </button>
+
+    <button *ngIf="form" type="button" nbButton style="position: absolute; top: 32vh; right: 30px; z-index: 1;"
+      status="info" class="upload-btn"
+      shape="rectangle" size="giant" outline
+      [disabled]="page >= form.pages_count"
+      (click)="nextPagePreview(div_size)">
+      <nb-icon icon="arrow-circle-right-outline"></nb-icon>
+    </button>
+
+  </div>
+  <!-- End -->
+
+</div>
+
+<!-- Opción de diligenciamiento #2 -->
+<div class="pdf_view full_pdf_view show_pdf_view" #full_pdf_view *ngIf="pdf_view">
+  <button type="button" nbButton style="position: absolute; top: 30px; right: 30px;"
+    status="primary" class="upload-btn"
+    shape="rectangle" size="tiny" outline
+    (click)="closePreviewPDF(full_pdf_view)">
+    <nb-icon icon="close-outline"></nb-icon>
+  </button>
+
+  <button *ngIf="form" type="button" nbButton style="position: absolute; top: 50vh; left: 30px; z-index: 1;"
+    status="info" class="upload-btn"
+    shape="rectangle" size="giant" outline
+    [disabled]="page <= 1"
+    (click)="backPagePreview(doc_content)">
+    <nb-icon icon="arrow-circle-left-outline"></nb-icon>
+  </button>
+
+  <button *ngIf="form" type="button" nbButton style="position: absolute; top: 50vh; right: 30px; z-index: 1;"
+    status="info" class="upload-btn"
+    shape="rectangle" size="giant" outline
+    [disabled]="page >= form.pages_count"
+    (click)="nextPagePreview(doc_content)">
+    <nb-icon icon="arrow-circle-right-outline"></nb-icon>
+  </button>
+
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <div #doc_content>
+      <div class="content-pdf-view">
+        <div class="doc-content">
+          <div class="doc-box">
+            <div class="box-select">
+              <pdf-viewer [src]="form['data']" [render-text]="true" [show-all]="false" [original-size]="false"
+                [fit-to-page]="false" [page]="page" class="pdf-viewer-box"></pdf-viewer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="view_option == 2 && finish == 0 && validation" class="row">
+  <div class="col-12 col-md-6" style="padding: 0px;">
+    <nb-card class="actions-card full-size-configure full-size-configure-option-two" status="primary">
+      <nb-card-header id="headerT" class="header-pdf">
+        <span *ngIf="logo == ''">{{ title }}</span>
+        <div *ngIf="logo != ''" style="display: flex; justify-content: center; align-items: center;">
+          <div style="width: 100px;">
+            <img style="width: 100%;" class="logo_img" [(src)]="logo" alt="">
+          </div>
+        </div>
+      </nb-card-header>
+
+      <nb-card-body>
+        <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+
+          <button type="button" nbButton style="position: absolute; left: 35px; z-index: 1;"
+            [hidden]="envelope.length == 1"
+            status="info" class="upload-btn"
+            shape="rectangle" size="giant" ghost
+            (click)="backFormPreview(form_content)">
+            <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+          </button>
+
+          <button type="button" nbButton style="position: absolute; right: 35px; z-index: 1;"
+            [hidden]="envelope.length == 1"
+            status="info" class="upload-btn"
+            shape="rectangle" size="giant" ghost
+            (click)="nextFormPreview(form_content)">
+            <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+          </button>
+
+          <div>
+            <div style="width: 300px; margin: 0 auto;" class="circle-pdf" [nbSpinner]="pdf_loading" nbSpinnerStatus="info">
+              <div class="doc-content">
+                <div *ngIf="form != undefined" class="doc-box">
+                  <div class="box-select" (click)="previewPDF(f)" #form_content>
+                    <pdf-viewer [src]="form['data']" [render-text]="true" [show-all]="false" [original-size]="false"
+                      [fit-to-page]="false" class="pdf-viewer-box"></pdf-viewer>
+                  </div>
+                </div>
+                <img *ngIf="form == undefined" src="./assets/images/landing/Recurso 2-8.png" alt="" style="width: 150px;">
+              </div>
+            </div>
+
+            <br>
+            <div style="max-width: 400px;">
+              <h3 id="contdiv2" style="text-align: center;">{{ name }}</h3>
+              <p *ngIf="description != undefined && description != ''" style="text-align: center;" title="{{ description }}">
+                {{ (description.length > 150)? (description | slice:0:150)+'...':(description) }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-12 col-md-6" style="padding: 0px;">
+    <nb-card class="actions-card full-size-configure full-size-configure-option-two">
+      <nb-card-body style="padding: 10% 10% 0% 10%;">
+
+        <div class="col-12">
+
+          <h6 *ngIf="!countFormValidate()">¡Este documento no tiene campos asignados para ti!</h6>
+
+          <form #myIdentifier novalidate (ngSubmit)="onSubmit(f)" #f="ngForm" enctype="multipart/form-data">
+            <div class="row input-list-content" id="row-manager">
+              <div class="col-12 col-md-12" id="col-manager">
+                <div class="col-12" *ngFor="let field of fields; let i=index;"
+                  [hidden]="(field.form_id != form.id || (!field.isConfig ? field.user.id != user : true)) || (field.field_type == 11 && field.label=='Número de documento a validar biometricamente')"
+                  [style]="(answer_duplicate && !field.duplicate) ? 'cursor: not-allowed;' : ''">
+                  <div class="form-group" *ngIf="(field.field_type != 21 || (field.field_type == 21 && array_ani.includes(field.field))) && !(field.field_type == 11 && field.label=='Número de documento a validar biometricamente') " [style]="(answer_duplicate && !field.duplicate) ? 'pointer-events: none;' : ''">
+                      <label *ngIf="field.field_type != 14 && field.field_type != 24" for="inputField-{{ field.field }}" class="label" style="font-size: 14px;text-transform: uppercase;font-style: italic;">{{ field.label }}<span
+                              *ngIf="field.required">*</span></label>
+
+                      <label *ngIf="field.field_type == 24" for="inputField-{{ field.field }}" class="label" style="font-size: 14px;text-transform: uppercase;font-style: italic;">{{ field.label }}: {{field.answer}}<span
+                            *ngIf="field.required">*</span></label>
+                      <!-- Init Type -->
+                      <button *ngIf="field.validate && field.validate.advanced == 'confirm'" type="button" nbButton status="info" shape="rectangle" (click)="openModal(field, i)">
+                        Confirmación de Valor
+                      </button>
+
+                      <label id="label-fields" [class]="'label label-answer ' + (field.duplicate ? 'label-warning' : '')" [hidden]="!field.answer && field.answer == ''"
+                      *ngIf="(field.field_type == 1 || field.field_type == 2 || field.field_type == 5) && (field.validate && field.validate.advanced == 'confirm')">
+                        {{ field.answer }}</label>
+
+                      <!-- # DIRECCION -->
+                      <label id="label-fields" class="label label-answer" [hidden]="!field.answer && field.answer == ''"
+                      *ngIf="field.field_type == 25">
+                        {{ getAdrress(field.answer)}}</label>
+
+                      <!-- # serie -->
+                      <div class="serial-number" *ngIf="field.field_type == 24">
+                        <input
+                          name="field_{{ field.field }}" id="inputField-{{ field.field }}" [(ngModel)]="field.answer" nbInput fullWidth
+                          [type]="typeField(field.field_type, field.validate)" style="border: 0px;display: none;" readonly/>
+                      </div>
+
+                      <div *ngIf="field.field_type == 1 || field.field_type == 2 || field.field_type == 4 || field.field_type == 5 || field.field_type == 16">
+                        <input
+                          [hidden]="field.validate && field.validate.advanced == 'confirm'"
+                          autocomplete="off" [(ngModel)]="field.answer" nbInput fullWidth
+                          name="field_{{ field.field }}" id="inputField-{{ field.field }}"
+                          [type]="typeField(field.field_type, field.validate)"
+                          [class]="classField(field.field_type)"
+                          required="{{ field.required }}"
+                          (change)="onChangeValue($event, field.field_type, field.validate, i)"/>
+                      </div>
+                      <!-- Selecionable AutoCompletable -->
+                      <input *ngIf="!load_data && field.field_type == 3"
+                        autocomplete="off" nbInput fullWidth
+                        placeholder="Seleccionar" disabled/>
+
+                      <div *ngIf="load_data && field.field_type == 3">
+                        <input
+                          autocomplete="off" [(ngModel)]="field.answer" nbInput fullWidth
+                          name="field_{{ field.field }}" id="inputField-{{ field.field }}"
+                          required="{{ field.required }}" hidden/>
+
+                        <input #autoInput
+                            nbInput fullWidth
+                            [value]="field.answer_name"
+                            type="text"
+                            (input)="onChange(autoInput, i)"
+                            placeholder="Seleccionar"
+                            [nbAutocomplete]="auto" autocomplete="do-not-autofill"/>
+
+                        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event, i)" >
+                            <nb-option *ngFor="let option of field.values_of | async" [value]="option" [hidden]="option.name == field.answer_name">
+                                {{ option.name }}
+                            </nb-option>
+                        </nb-autocomplete>
+                      </div>
+
+                      <!-- Campo de Texto -->
+                      <textarea *ngIf="field.field_type == 6" autocomplete="off" [ngModel]="field.answer" nbInput
+                          fullWidth name="field_{{ field.field }}" minlength="{{ field.validate.min }}"
+                          maxlength="{{ field.validate.max }}" required="{{ field.required }}">
+                      </textarea>
+                      <!-- Firma -->
+                      <div *ngIf="field.field_type == 7">
+                        <input type="text" class="file-input" [ngModel]="field.answer"
+                              name="field_{{ field.field }}" required="{{ field.required }}">
+                        <button type="button" nbButton status="info" shape="rectangle" (click)="openWithoutBackdropClick(i)" [hidden]="field.answer && field.answer != ''" id="btnF_{{i}}">
+                          * Haga clic aquí para asignar la firmar
+                        </button>
+                        <img [src]="field.answer" height="150px" width="400px"  class="editImg" title="Editar Firma" [hidden]="!field.answer && field.answer == ''" (click)="openWithoutBackdropClick(i)"/>
+                      </div>
+                      <!-- Archivo y Captura -->
+                      <div *ngIf="field.field_type == 8 || field.field_type == 9">
+                          <input type="file" accept="image/png" class="file-input" (change)="onFileSelected($event, field.field, i)"
+                              [ngModel]="field.answer" name="field_{{ field.field }}"
+                              required="{{ field.required }}" #fileUpload>
+                          <div class="file-upload">
+                              <button type="button" nbButton
+                                  [status]="fields[i].answer == '' ? 'basic' : 'primary'" class="upload-btn"
+                                  shape="rectangle" size="tiny" style="width: 100%; padding: 15px; font-size: 16px;box-shadow: 1px 5px 15px -4px #9ca6b7 !important;" outline (click)="fileUpload.click()">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="15" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                                  {{ fields[i].answer || 'Subir Archivo' }}
+                              </button>
+                          </div>
+                      </div>
+                      <!-- Radio -->
+                      <nb-radio-group *ngIf="field.field_type == 12" [ngModel]="field.answer" fullWidth
+                          name="field_{{ field.field }}" class="select-form" required="{{ field.required }}">
+                          <nb-radio *ngFor="let option of field.values" [value]="option.value">
+                              {{ option.label }}</nb-radio>
+                      </nb-radio-group>
+                      <!-- Checkbox -->
+                      <div class="checkbox" *ngIf="field.field_type == 13">
+                          <input type="text" class="checkbox-input" [ngModel]="field.answer"
+                              name="field_{{ field.field }}" required="{{ field.required }}" #checkbox_field>
+                          <nb-checkbox style="margin-bottom: 5px;" [checked]="onCheck(field.answer, option.value)" (checkedChange)="toggleCheckbox($event, option.value, checkbox_field, i)"
+                              *ngFor="let option of field.values" [value]="option.value">
+                              {{ option.label }}</nb-checkbox>
+                      </div>
+                      <!-- Información -->
+                      <div class="information">
+                          <p class="info-desc" *ngIf="field.field_type == 14"> {{ field.description }} </p>
+                      </div>
+                      <!-- Ubicación -->
+                      <div class="location" *ngIf="field.field_type == 15">
+                          <input type="text" class="location-input" [ngModel]="field.answer"
+                              name="field_{{ field.field }}" required="{{ field.required }}" #location_field>
+                          <div style="width: 50%; float: left;">
+                              <label class="label" for="input-lat-{{ field.field }}">Latitud</label>
+                              <input id="input-lat-{{ field.field }}" type="number" autocomplete="off"
+                                  [value]="valueLocation(field.answer, 1)" (change)="onLocation($event, 1, i, field.required)"
+                                  nbInput fullWidth placeholder="Latitud" disabled>
+                          </div>
+                          <div style="width: 50%; float: right; padding-left: 5px;">
+                              <label class="label" for="input-lon-{{ field.field }}">Longitud</label>
+                              <input id="input-lon-{{ field.field }}" type="number" autocomplete="off"
+                                  [value]="valueLocation(field.answer, 2)" (change)="onLocation($event, 2, i, field.required)"
+                                  nbInput fullWidth placeholder="Longitud" disabled>
+                          </div>
+                          <button type="button" nbButton style="margin-top: 3px;"
+                              [status]="basic" class="upload-btn"
+                              shape="rectangle" size="tiny" outline
+                              (click)="getLocation(i)">
+                              Obtener Ubicación
+                          </button>
+                      </div>
+                      <!-- Tabla -->
+                      <div class="tabla" *ngIf="field.field_type == 17">
+                          <input type="text" [ngModel]="field.answer" class="table-input"
+                              name="field_{{ field.field }}" required="{{ field.required }}">
+                          <div class="content-table-answer">
+                              <table class="table_list_field">
+                                  <th class="th_list" *ngFor="let field_l of field.fields">
+                                      {{ field_l.label }}
+                                  </th>
+                                  <tr *ngFor="let item of [].constructor(field.row); let i_l = index"
+                                      class="th_list" >
+                                      <ng-container *ngIf="!(getRow(i) < i_l)">
+                                      <td *ngFor="let field_l of field.fields">
+                                          <div style="position: relative;">
+                                              <input *ngIf="field_l.field_type == 1 || field_l.field_type == 2 || field_l.field_type == 4 || field_l.field_type == 5 || field_l.field_type == 11"
+                                                  name="input_{{ field_l.field }}_{{ i_l }}_{{ i }}"
+                                                  id="input_{{ field_l.field }}_{{ i_l }}_{{ i }}"
+                                                  [type]="typeField(field_l.field_type)" autocomplete="off" fieldSize="small"
+                                                  [class]="classField(field_l.field_type, true)"
+                                                  [value]="getValueField(field_l.field, i_l, i, field_l.field_type)"
+                                                  (change)="onChangeValueList($event, field_l.field, i_l, i, field_l.field_type)"
+                                                  nbInput fullWidth placeholder="{{ field_l.label }}">
+                                          </div>
+                                          <!-- Selecionable -->
+                                          <nb-select *ngIf="field_l.field_type == 3" fullWidth
+                                              size="small"
+                                              class="select-form" placeholder="Seleccionar"
+                                              [selected]="getValueField(field_l.field, i_l, i, field_l.field_type)"
+                                              (selectedChange)="onChangeValueList($event, field_l.field, i_l, i, field_l.field_type)">
+                                              <nb-option value="">Seleccionar</nb-option>
+                                              <nb-option *ngFor="let option of field_l.values" [value]="option.value">
+                                                  {{ option.label }}</nb-option>
+                                          </nb-select>
+                                          <!-- Firma -->
+                                          <div class="firma" #divPad
+                                              *ngIf="field_l.field_type == 7">
+                                              <signature-pad #signPad fxFlex="1 1 50" class="signature" id="sign_canvas"
+                                                  fxFlexAlign.xs="center" [options]="signaturePadOptions"
+                                                  (onBeginEvent)="drawStart(signPad, i)"
+                                                  (onEndEvent)="drawCompleteList(field_l.field, i_l, i, field_l.field_type, signPad, divPad)">
+                                              </signature-pad>
+                                              <br>
+                                              <button style="margin: 10px;" type="button" nbButton status="basic" shape="rectangle"
+                                                  size="tiny" ghost (click)="drawClearList(field_l.field, i_l, i, field_l.field_type, signPad, divPad)">
+                                                  Limpiar
+                                              </button>
+                                          </div>
+                                          <!-- Radio -->
+                                          <nb-radio-group *ngIf="field_l.field_type == 12" class="select-form" name="radio_{{ field_l.field }}_{{ i_l }}_{{ i }}"
+                                              [value]="getValueField(field_l.field, i_l, i, field_l.field_type)"
+                                              (valueChange)="onChangeValueList($event, field_l.field, i_l, i, field_l.field_type)">
+                                              <nb-radio *ngFor="let option of field_l.values"
+                                                  [value]="option.value">
+                                                  {{ option.label }}</nb-radio>
+                                          </nb-radio-group>
+                                          <!-- Checkbox -->
+                                          <div *ngIf="field_l.field_type == 13" class="checkbox-content">
+                                              <input type="text" class="checkbox-input" [value]="getValueField(field_l.field, i_l, i, field_l.field_type)">
+                                              <nb-checkbox style="margin-bottom: 5px;"
+                                                  (checkedChange)="toggleCheckboxList(field_l.field, i_l, i, field_l.field_type, $event, option.value)"
+                                                  [checked]="onCheckList(field_l.field, i_l, i, field_l.field_type, option.value)"
+                                                  *ngFor="let option of field_l.values" [value]="option.value">
+                                                  {{ option.label }}</nb-checkbox>
+                                          </div>
+                                          <!-- Ubicación -->
+                                          <div class="location" *ngIf="field_l.field_type == 15">
+                                              <input type="text" class="location-input"  #location_field_list>
+                                              <div class="latitude">
+                                                  <label class="label">Latitud</label>
+                                                  <input type="number" autocomplete="off"
+                                                      [value]="valueLocationList(field_l.field, i_l, i, field_l.field_type, 1)"
+                                                      nbInput fullWidth placeholder="Latitud" disabled>
+                                              </div>
+                                              <div class="length">
+                                                  <label class="label">Longitud</label>
+                                                  <input type="number" autocomplete="off"
+                                                      [value]="valueLocationList(field_l.field, i_l, i, field_l.field_type, 2)"
+                                                      nbInput fullWidth placeholder="Longitud" disabled>
+                                              </div>
+                                              <button type="button" nbButton style="margin-top: 3px;"
+                                                  [status]="basic" class="upload-btn"
+                                                  shape="rectangle" size="tiny" outline
+                                                  (click)="getLocationList(field_l.field, i_l, i, field_l.field_type)">
+                                                  Obtener Ubicación
+                                              </button>
+                                          </div>
+                                      </td></ng-container>
+                                  </tr>
+                              </table>
+                          </div>
+                          <button type="button" nbButton style="margin-top: 3px;"
+                              [disabled]="getRow(i) <= 0"
+                              status="danger" class="upload-btn"
+                              shape="rectangle" size="tiny" outline
+                              (click)="removeRowList(i)">
+                              Fila <nb-icon icon="minus-outline"></nb-icon>
+                          </button>
+                          <button type="button" nbButton style="margin-top: 3px;"
+                              [disabled]="getRow(i) >= field.row - 1"
+                              status="primary" class="upload-btn"
+                              shape="rectangle" size="tiny" outline
+                              (click)="addRowList(i)">
+                              Fila <nb-icon icon="plus-outline"></nb-icon>
+                          </button>
+                      </div>
+                      <!-- Firma Electronica -->
+                      <div *ngIf="field.field_type == 18">
+                        <input class="file-input" nbInput type="text" [ngModel]="field.answer" name="field_{{ field.field }}" required>
+                        <button type="button" nbButton status="info" shape="rectangle" (click)="openDialog(0, i)" [hidden]="field.answer && field.answer != ''">
+                          Firmar
+                        </button>
+                        <button type="button" nbButton status="success" shape="rectangle" disabled [hidden]="!field.answer && field.answer == ''">
+                          Firmado con éxito
+                        </button>
+                      </div>
+                      <!-- Firma Biommetríca Facial -->
+                      <div *ngIf="field.field_type == 10">
+                        <input class="file-input" nbInput type="text" [ngModel]="field.answer" name="field_{{ field.field }}" required>
+                        <button type="button" nbButton status="info" shape="rectangle" (click)="openDialog(1, i)" [hidden]="field.answer && field.answer != ''" id="btnF_{{i}}">
+                          Iniciar proceso
+                        </button>
+                        <button type="button" nbButton status="success" shape="rectangle" disabled [hidden]="!field.answer && field.answer == ''">
+                          firmado con éxito
+                        </button>
+                      </div>
+                      <!-- Numero de Documento  -->
+                      <div *ngIf="field.field_type == 11" class="row">
+                        <input [(ngModel)]="field.answer" nbInput name="field_{{ field.field }}" required="{{ field.required }}" hidden/>
+                        <div class="col-12 col-md-4">
+                          <label class="label" >Tipo de Documento</label>
+                          <nb-select [(ngModel)]="field.type_answer" fullWidth
+                            name="select_{{ field.field }}" class="select-form" required="{{ field.required }}"
+                            placeholder="Seleccionar" (selectedChange)="onChangeTypeDoc($event, i)">
+                            <nb-option value="">Seleccionar</nb-option>
+                            <nb-option *ngFor="let option of type_identification" [value]="option.id">
+                                {{ option.name }}</nb-option>
+                          </nb-select>
+                        </div>
+                        <div class="col-12 col-md-8">
+                          <div class="document-number">
+                              <label class="label" >Número de Documento</label>
+                              <input
+                              autocomplete="off" [(ngModel)]="field.identification_answer" nbInput fullWidth
+                              name="input_{{ field.field }}" id="inputField-{{ field.field }}"
+                              type="number" minlength="{{ field.validate.min }}"
+                              required="{{ field.required }}"
+                              (change)="onChangeDoc($event, i)" (keydown)="onKeyNumber(field.field_type, $event)"/>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- OTP -->
+                      <div *ngIf="field.field_type == 22">
+                          <input class="file-input" nbInput type="text" [ngModel]="field.answer" name="field_{{ field.field }}" required>
+                          <button type="button" nbButton status="info" shape="rectangle" (click)="openOTP(field.validate.advanced, i)" [hidden]="field.answer && field.answer != ''">
+                            Validar
+                          </button>
+                          <button type="button" nbButton status="success" shape="rectangle" disabled [hidden]="!field.answer && field.answer == ''">
+                              {{getDataOTP(field.answer)}} - Confirmado
+                          </button>
+                      </div>
+                      <!-- Hora -->
+                      <div *ngIf="field.field_type == 19">
+                          <div class="time">
+                              <input nbInput type="time" [(ngModel)]="field.answer"
+                                  name="field_{{ field.field }}" fullWidth
+                                  class="input-text-time" autocomplete="off"/>
+                              <button type="button" nbButton style="margin-top: 3px;width: 100%;border: 1px solid #c8cddc;box-shadow: 1px 4px 12px -4px #9ca6b7 !important;"
+                                  [status]="basic" class="upload-btn"
+                                  shape="rectangle" size="tiny" outline
+                                  (click)="getTime(i)">
+                                  Obtener Hora Actual
+                              </button>
+                          </div>
+                      </div>
+                      <!-- NIT -->
+                      <div *ngIf="field.field_type == 20">
+                        <div class="nit">
+                          <input [hidden]="answer && field.answer" [(ngModel)]="field.answer" nbInput fullWidth
+                              name="field_{{ field.field }}"
+                              id="inputField-{{ field.field }}"
+                              type="number"
+                              minlength="9" maxlength="9"
+                              class="number"
+                              placeholder="NIT"
+                              required="{{ field.required }}"
+                              (change)="onChangeValue($event, field.field_type, field.validate, i)"/>
+                        </div>
+                        <div *ngIf="answer && field.answer != ''">
+                          <div class="form-group-doc" *ngFor="let field_doc of getValueNit(field.answer, field.validate.advancedNit, field.label)">
+                            <label class="label">{{ field_doc.label }}</label>
+                            <input autocomplete="off" value="{{ field_doc.answer }}" nbInput fullWidth disabled/>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Oculto/Documento -->
+                      <!-- <div *ngIf="field.field_type == 21 && field.validate.advanced == undefined" [hidden]="onHiddenANI(field.field)"> -->
+                      <div class="ani-descripcion">
+                          <div *ngIf="field.field_type == 21 && (field.validate.advanced == undefined || field.validate.advanced == '')">
+                          <input [(ngModel)]="field.answer" nbInput fullWidth name="field_{{ field.field }}" hidden/>
+                          <input value="" nbInput fullWidth [hidden]="!onHiddenANI(field.field)" disabled/>
+                          <input [(ngModel)]="field.answer" nbInput fullWidth name="input_{{ field.field }}"
+                              [hidden]="onHiddenANI(field.field)"
+                              id="inputField-{{ field.field }}" [disabled]="onDisabledANI(field.field)"/>
+                          <!--
+                              <input [(ngModel)]="field.answer" nbInput fullWidth name="input_{{ field.field }}"
+                              [hidden]="onHiddenANI(field.field)" [type]="typeValidate(field.label)"
+                              id="inputField-{{ field.field }}" [disabled]="onDisabledANI(field.field)"/>
+                          -->
+                          </div>
+
+                          <div *ngIf="field.field_type == 21 && field.validate.advanced == 'confirm_validation'">
+                          <input *ngIf="field.field_type == 21" [(ngModel)]="field.answer" nbInput fullWidth
+                              name="field_{{ field.field }}" required hidden/>
+
+                          <input *ngIf="field.field_type == 21" [(ngModel)]="field.answer_confirm" nbInput fullWidth
+                              [class]="classValidate(field.label)" [type]="typeValidate(field.label)" (change)="onChangeValidateANI($event, i)"/>
+                          </div>
+                      </div>
+                      <!-- País -->
+                      <div class="country" *ngIf="field.field_type == 23">
+                        <div class="row">
+                          <div class="col-12 col-md-4">
+                            <label class="label" for="input-pa-{{ i }}">País</label>
+                            <input *ngIf="!load_data && field.field_type == 23"
+                              autocomplete="off" nbInput fullWidth
+                              placeholder="Seleccionar País" disabled/>
+
+                            <div *ngIf="load_data && field.field_type == 23">
+                              <input
+                                autocomplete="off" [(ngModel)]="field.answer" nbInput fullWidth
+                                name="field_{{ field.field }}" id="inputField-{{ field.field }}"
+                                required="{{ field.required }}" hidden/>
+
+                              <input #autoInputCountry
+                                  nbInput fullWidth
+                                  [value]="field.answer_country"
+                                  type="text"
+                                  (input)="onChangeCountry(autoInputCountry, i)"
+                                  placeholder="Seleccionar País"
+                                  [nbAutocomplete]="autoCountry" autocomplete="do-not-autofill"/>
+
+                              <nb-autocomplete #autoCountry (selectedChange)="onSelectionChangeCountry($event, i)" >
+                                  <nb-option *ngFor="let option of field.countrys_of | async" [value]="option" [hidden]="option.name == field.answer_country">
+                                      {{ option.name }}
+                                  </nb-option>
+                              </nb-autocomplete>
+                            </div>
+                          </div>
+                          <!-- Departamento -->
+                          <div class="col-12 col-md-4" *ngIf="['dep', 'dep_ciu'].includes(field.validate.advanced)">
+                            <label class="label" for="input-dep-{{ i }}">Departamento</label>
+                            <input *ngIf="!load_data && field.field_type == 23"
+                              autocomplete="off" nbInput fullWidth
+                              placeholder="Seleccionar Departamento" disabled/>
+
+                            <div *ngIf="load_data && field.field_type == 23">
+                              <input #autoInputState
+                                  nbInput fullWidth
+                                  [value]="field.answer_state"
+                                  type="text"
+                                  (input)="onChangeState(autoInputState, i)"
+                                  placeholder="Seleccionar Departamento"
+                                  [nbAutocomplete]="autoState" autocomplete="do-not-autofill"/>
+
+                              <nb-autocomplete #autoState (selectedChange)="onSelectionChangeState($event, i)" >
+                                  <nb-option *ngFor="let option of field.states_of | async" [value]="option" [hidden]="option.name == field.answer_state">
+                                      {{ option.name }}
+                                  </nb-option>
+                              </nb-autocomplete>
+                            </div>
+                          </div>
+                          <!-- Ciudad -->
+                          <div class="col-12 col-md-4" *ngIf="['dep_ciu'].includes(field.validate.advanced)">
+                            <label class="label" for="input-ciu-{{ i }}">Ciudad</label>
+                            <input *ngIf="!load_data && field.field_type == 23"
+                              autocomplete="off" nbInput fullWidth
+                              placeholder="Seleccionar Ciudad" disabled/>
+
+                            <div *ngIf="load_data && field.field_type == 23">
+                              <input #autoInputCity
+                                  nbInput fullWidth
+                                  [value]="field.answer_city"
+                                  type="text"
+                                  (input)="onChangeCity(autoInputCity, i)"
+                                  placeholder="Seleccionar Ciudad"
+                                  [nbAutocomplete]="autoCity" autocomplete="do-not-autofill"/>
+
+                              <nb-autocomplete #autoCity (selectedChange)="onSelectionChangeCity($event, i)" >
+                                  <nb-option *ngFor="let option of field.citys_of | async" [value]="option" [hidden]="option.name == field.answer_city">
+                                      {{ option.name }}
+                                  </nb-option>
+                              </nb-autocomplete>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Direccion -->
+                      <div class="address" *ngIf="field.field_type == 25">
+                        <input class="file-input" nbInput type="text" [ngModel]="field.answer" name="field_{{ field.field }}" required>
+                        <button  type="button" nbButton status="info" shape="rectangle" (click)="openAddress(field,i)">
+                          Asignar
+                        </button>
+                      </div>
+                      <!-- End Type -->
+                      <label id="label-fields" *ngIf="field.field_type != 14 && field.field_type != 21 && field.field_type != 24" for="inputField-{{ field.field }}" class="label">
+                        <span class="span-field">{{ field.description }}</span></label>
+                  </div>
+              </div>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-12 col-md-12">
+                    <label class="label">
+                        <span id="color_text_public" class="span-field">Todos los campos con * son obligatorios.</span>
+                    </label>
+                </div>
+
+                <div class="col-12 col-md-12" id="send-button">
+                    <button [nbSpinner]="loading" nbSpinnerStatus="success" nbButton outline id="btnFP" status="primary"
+                        [disabled]="f.invalid || loading" type="submit" class="btn-lg btn-block">Enviar</button>
+                </div>
+
+                <div class="col-12 col-md-12" style="margin-top: 15px;">
+                  <nb-progress-bar [value]="progress_bar" [status]="status_bar" [displayValue]="true" size="tiny"></nb-progress-bar>
+                </div>
+            </div>
+          </form>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<!-- Mensaje de Finalización -->
+<div *ngIf="finish != 0" class="row" style="background-color: #ffffff;">
+  <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 finish-div">
+      <nb-card class="finish-card">
+          <nb-card-body>
+              <div class="flex-centered">
+                <div class="finish-icon">
+                  <img *ngIf="finish == 1" style="width: 97px;" src="/assets/images/icons/answer/APROBADO_EXITOSAMENTE.png" alt="">
+                  <img *ngIf="finish == 2" style="width: 97px;" src="/assets/images/icons/answer/NO_APROBADO_ENVIADO.png" alt="">
+                  <img *ngIf="finish == 3" style="width: 97px;" src="/assets/images/icons/answer/PROCESO_FINALIZADO.png" alt="">
+                </div>
+                <div>
+                  <h5 *ngIf="finish == 1" class="finish-title">Proceso documental APROBADO y enviado exitosamente</h5>
+                  <h5 *ngIf="finish == 2" class="finish-title">Proceso documental NO APROBADO y enviado con anotaciones</h5>
+                  <h5 *ngIf="finish == 3" class="finish-title">Has finalizado tu diligenciamiento</h5>
+                </div>
+              </div>
+          </nb-card-body>
+      </nb-card>
+  </div>
+</div>

@@ -1,0 +1,622 @@
+{% load static %}
+{% load tz %}
+{% localtime on %}
+{% get_media_prefix as MEDIA_URL %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <!-- Custom CSS -->
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        .title {
+            padding: 1rem 1.5rem;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+            color: #222b45;
+            font-family: Open Sans, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.5rem;
+        }
+        .range{
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        .table {
+            font-size: 12px;
+            border: 1px solid #edf1f7;
+        }
+        .table tr {
+            font-family: Open Sans, sans-serif;
+            font-weight: 400;
+            line-height: 1.25rem;
+            color: #222b45;
+
+            background-color: white;
+            padding: 8px;
+        }
+        .table th {
+            font-size: 14px;
+        }
+        .table td {
+            font-size: 13px;
+        }
+
+        /* Template 2 */
+        .table_1 {
+            border: 0.3px solid black;
+        }
+
+        .table_1 tr {
+            font-family: Open Sans, sans-serif;
+            padding: 1px;
+        }
+
+        .title1{
+            font-size: 18px;
+            text-align: center;
+            background: #f1f1f1;
+        }
+        .tab-label{
+            font-size: 14px;
+            text-align: left;
+            background-color: #d6d6d6;
+            color: black;
+            font-weight: bold;
+            text-transform:uppercase;
+        }
+        .tab-content{
+            font-size: 12px;
+            text-align: justify;
+        }
+        .title2{
+            font-size: 14px;
+            color: black;
+            padding: 8px;
+        }
+        .conten{
+            font-size: 12px;
+            color: black;
+            padding: 8px;
+        }
+        .buttno {
+        background-color: #2b80f0;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        padding: 14px;
+        font-size: 12px;
+        margin: 15px;
+        }
+
+        .buttno:hover, .buttno:active {
+        background-color: #2b80f0;
+        }
+
+    </style>
+    {% if data_template.theme == 1 %}
+    <style>
+        .table {
+            border: 1px solid '{{ data_template.color }}';
+        }
+    </style>
+    {% elif data_template.theme == 2 %}
+    <style>
+        .content_title_1 {
+            font-size: 15px;
+            color: '{{ data_template.color }}';
+            border-bottom: 1px solid '{{ data_template.color }}';
+        }
+
+        .content_info_1 {
+            font-size: 13px;
+        }
+
+        .content_answer_1 {
+            font-size: 12px;
+        }
+    </style>
+    {% endif %}
+    <title>Reporte</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        {% if data_template.theme != 0 and data_template.logo != '' %}
+            <img style="width: 150px;" src="{{data_template.logo}}"  alt="">
+        {% else %}
+           <!-- <img style="width: 100px;" src="https://desarrolladorsaroa.github.io/Styles/descarga.jpg"  alt=""> -->
+           <img style="width: 150px;" src="{{logo}}"  alt=""> 
+        {% endif %}
+    </div>
+    <div>
+        {% if type == 'answer' %}
+            {% if data_template.theme == 0 or data_template.theme == 1 %}
+            {% for form in forms %}
+                {% if type_doc != 1 and type_doc != 2 %}
+                <div class="title">
+                    {{ form.name }}
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th>{{ form.user }}</th>
+                            <th>{% if form.source == 1 %}Web{% else %}Movil{% endif %} - {% if form.online %}Online{% else %}Offline{% endif %}</th>
+                            <th>{{ form.creation_date|date:"d M Y" }} {{ form.creation_date|time:"h:i:s A" }}</th>
+                        </tr>
+                    </thead>
+                </table>
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th colspan="3">Respuesta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for field in form.fields %}
+                            <tr class="">
+                                <td>{{ field.name }}</td>
+                                <td colspan="3">
+                                    {% if field.type != 7 and field.type != 8 and field.type != 9 and field.type != 10 and field.type != 17 and field.type != 18 and field.type != 22 %}
+                                        {{ field.answer }}
+                                    {% elif field.type == 11 %}
+                                        {% if field.answer != '' and field.answer %}
+                                            {% for key, value in field.answer.items %}
+                                                <p>{{ key }} : {{ value }}</p>
+                                            {% endfor %}
+                                        {% else %}
+                                            No hay datos.
+                                        {% endif %}
+                                    {% elif field.type == 20 %}
+                                        {% if field.answer != '' and field.answer %}
+                                            {% for key, value in field.answer.items %}
+                                                <p>{{ key }} : {{ value }}</p>
+                                            {% endfor %}
+                                        {% else %}
+                                            No hay datos.
+                                        {% endif %}
+                                    {% elif field.type == 17 %}
+
+                                        {% if field.answer != '' and field.answer %}
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    {% for head in field.answer.head %}
+                                                    <th>{{ head.1 }}</th>
+                                                    {% endfor %}
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {% for body in field.answer.body %}
+                                                <tr>
+                                                    {% for head in field.answer.head %}
+                                                    <td style="overflow-wrap: break-word;">
+                                                        {% for answer in body %}
+                                                            {% if head.0|slugify == answer.field %}
+                                                                {{ answer.answer }}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </td>
+                                                    {% endfor %}
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        {% else %}
+                                            No hay datos.
+                                        {% endif %}
+
+                                    {% else %}
+                                        {% if field.type == 8 %}
+                                            <a href="{{ field.answer }}">{{ field.answer }}</a>
+                                        {% else %}
+                                            {% if field.answer != '' %}
+                                                {% if field.answer.hash %}
+                                                    <b>{{ field.answer.hash }}</b>
+                                                {% endif %}
+                                                <br>
+                                                {% if field.type == 7 or field.type == 8 or field.type == 9 %}
+                                                    <img style="width: 150px;"  src="{{ field.answer }}"/>
+                                                {% else %}
+                                                    <img style="width: 150px;"  src="{{ field.answer.answer }}"/>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% elif type_doc == 2 %}
+                        <hr>
+                            <h1 class="title1">INFORMACIÓN DEL DOCUMENTO </h1>
+                        <hr>
+                        <table style="border: 1px double black;">
+                            <tr>
+                                {% if form.source == 1  and form.online == True %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: WEB - ONLINE</label></td>
+                                {% endif %}
+                                {% if form.source == 2 and form.online == True %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: MOVÍL - ONLINE</label></td>
+                                {% endif %}
+                                {% if form.source == 2 and form.online == False %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: MOVÍL - OFFLINE</label></td>
+                                {% endif %}
+                                {% if form.source == 1 and form.online == False %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: WEB - OFFLINE</label></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                            <th style="padding: 2px;"><strong class="title2">Fecha de creación:</strong></th>
+                            <th style="padding: 2px;"><strong class="title2">Fecha de solicitud del reporte:</strong></th>
+                            <th style="padding: 2px;"><strong class="title2">Ubicación:</strong></th>
+                            </tr>
+                            <tr>
+                            <td style="padding: 2px;"><label class="conten"> {{ form.creation_date }}:00</label></td>
+                            <td style="padding: 2px;"><label class="conten"> {{ form.solicitude_date }}:00</label></td>
+                            <td style="padding: 2px;"><label class="conten"> {{ form.latitude }}, {{ form.longitude }}</label></td>
+                            </tr>
+                        </table><br><br>
+                    {% for field in form.fields %}
+                    <hr>
+                    <h1 class="title1">REPORTE DE DATOS RUES - Registro Unico Empresarial </h1>
+                    <hr>
+                    <table style="border: 1px double black;">
+                        <tr>
+                            <td style="padding: 2px;text-align: center;" colspan="2"><label class="conten"><h5>{{ field.nitC }}</h5></label></td>
+                        </tr>
+                        {% for key, value in field.answer.items %}
+                            {% if key != 'Representante Legal' and key != 'Tipo de identificación del rep. legal' and key != '# Identificación de rep. legal' %}
+                                <tr>
+                                        <td style="padding: 2px;"><label class="conten"> {{key}} :</label></td>
+                                        <td style="padding: 2px;"><label class="conten"> {{value}}</label></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table><br>
+
+                    {% if field.data2 != '' %}
+                        <hr>
+                        <h1 class="title1">INFORMACIÓN DE LAS LISTAS RESTRICTIVAS DE {{ field.nitC }}</h1>
+                        <hr>
+                    {% endif %}
+                    {% for field2 in field.data2 %}
+                        <div class="tab">
+                            <label class="tab-label">{{ field2.name }}</label>
+                            <div class="tab-content">
+                                <br>
+                                {% if field2.more_nfo != 'NA' %}
+                                    {{ field2.offense }}<br>
+                                    {% if field2.name != 'Procuraduría General de la Nación' %}
+                                        {{ field2.more_nfo }} <br>
+                                        <div style="text-align: center;">
+                                            <a href="{{ field2.link }}" class="buttno" target="_blank">
+                                                <button target="_blank" style="padding: 15px;margin: 12px;font-size: 12px;height: 50px;">Ver detalle</button>
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div style="text-align: center;">
+                                            <a href="{{ field.url_form }}" class="buttno" target="_blank">
+                                                <button target="_blank" style="padding: 15px;margin: 12px;font-size: 12px;height: 50px;">Ver detalle</button>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    No se presenta información relacionada a esta lista.
+                                {% endif %}
+                            </div>
+                        </div><br>
+                    {% endfor %}
+
+                    <hr>
+                    <h1 class="title1">INFORMACIÓN DEL REPRESENTANTE LEGAL</h1>
+                    <hr>
+
+                    <table style="border: 1px double black;">
+                        <tr>
+                            <td style="padding: 2px;text-align: center;" colspan="2"><label class="conten"><h5>REPRESENTANTE LEGAL</h5></label></td>
+                        </tr>
+                        {% for key, value in field.answer.items %}
+                            {% if key == 'Representante Legal' or key == 'Tipo de identificación del rep. legal' or key == '# Identificación de rep. legal' %}
+                                <tr>
+                                        <td style="padding: 2px;"><label class="conten"> {{key}} :</label></td>
+                                        <td style="padding: 2px;"><label class="conten"> {{value}}</label></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                    {% if field.data != '' %}
+                        <hr>
+                        <h1 class="title1">INFORMACIÓN DE LAS LISTAS RESTRICTIVAS DEL REPRESENTANTE LEGAL</h1>
+                        <hr>
+                    {% endif %}
+                    {% for field2 in field.data %}
+                        <div class="tab">
+                            <label class="tab-label">{{ field2.name }}</label>
+                            <div class="tab-content">
+                                <br>
+                                {% if field2.more_nfo != 'NA' %}
+                                    {{ field2.offense }}<br>
+                                    {% if field2.name != 'Procuraduría General de la Nación' %}
+                                        {{ field2.more_nfo }} <br>
+                                        <div style="text-align: center;">
+                                            <a href="{{ field2.link }}" class="buttno" target="_blank">
+                                                <button target="_blank" style="padding: 15px;margin: 12px;font-size: 12px;height: 50px;">Ver detalle</button>
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div style="text-align: center;">
+                                            <a href="{{ field.url_form }}" class="buttno" target="_blank">
+                                                <button target="_blank" style="padding: 15px;margin: 12px;font-size: 12px;height: 50px;">Ver detalle</button>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    No se presenta información relacionada a esta lista.
+                                {% endif %}
+                            </div>
+                        </div><br>
+                    {% endfor %}
+
+                    {% endfor %}
+                    <br><br><p>La información del informe de es el resultado de la obtención de datos públicos en su origen. El uso de la información y sus decisiones resultantes son responsabilidad del usuario
+                        final.</p><br><br>
+
+                {% elif type_doc == 1 %}
+                        <hr>
+                            <h1 class="title1">INFORMACIÓN DEL DOCUMENTO </h1>
+                        <hr>
+                        <table style="border: 1px double black;">
+                            <tr>
+                                {% if form.source == 1  and form.online == True %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: WEB - ONLINE</label></td>
+                                {% endif %}
+                                {% if form.source == 2 and form.online == True %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: MOVÍL - ONLINE</label></td>
+                                {% endif %}
+                                {% if form.source == 2 and form.online == False %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: MOVÍL - OFFLINE</label></td>
+                                {% endif %}
+                                {% if form.source == 1 and form.online == False %}
+                                <td style="padding: 2px;text-align: center;" colspan="3"><label class="conten"> DOCUMENTO: {{ form.name }} - DILIGENCIADO DESDE: WEB - OFFLINE</label></td>
+                                {% endif %}
+
+                            </tr>
+                            <tr>
+                            <th style="padding: 2px;"><strong class="title2">Fecha de creación:</strong></th>
+                            <th style="padding: 2px;"><strong class="title2">Fecha de solicitud del reporte:</strong></th>
+                            <th style="padding: 2px;"><strong class="title2">Ubicación:</strong></th>
+                            </tr>
+                            <tr>
+                            <td style="padding: 2px;"><label class="conten"> {{ form.creation_date }}:00</label></td>
+                            <td style="padding: 2px;"><label class="conten"> {{ form.solicitude_date }}:00</label></td>
+                            <td style="padding: 2px;"><label class="conten"> {{ form.latitude }}, {{ form.longitude }}</label></td>
+                            </tr>
+                        </table><br><br>
+                        {% for field in form.fields %}
+                            {% if field.typeDoc == 1 %}
+                            <hr>
+                            <h1 class="title1">REPORTE DE DATOS ANI - Registraduría Nacional del Estado Civil de {{ field.nameP }}</h1>
+                            <hr>
+
+                            {% for field2 in field.answer %}
+
+                            <table style="border: 1px double black;">
+                                <tr>
+                                    <td style="padding: 2px;text-align: center;" colspan="2"><label class="conten"> CÉDULA DE CIUDADANÍA # {{ field2.Documento }}</label></td>
+                                </tr>
+                                <tr>
+                                  <th style="padding: 2px;"><strong class="title2">Primer Nombre:</strong></th>
+                                  <th style="padding: 2px;"><strong class="title2">Segundo Nombre:</strong></th>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 2px;"><label class="conten"> {{ field2.Primer_Nombre }}</label></td>
+                                  <td style="padding: 2px;"><label class="conten"> {{ field2.Segundo_Nombre }}</label></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding: 2px;"><strong class="title2">Primer Apellido:</strong></th>
+                                    <th style="padding: 2px;"><strong class="title2">Segundo Apellido:</strong></th>
+                                  </tr>
+                                <tr>
+                                    <td style="padding: 2px;"><label class="conten"> {{ field2.Primer_apellido }}</label></td>
+                                    <td style="padding: 2px;"><label class="conten"> {{ field2.Segundo_apellido }}</label></td>
+                                </tr>
+                                <tr>
+                                    <th style="padding: 2px;"><strong class="title2">Fecha de expedición del documento:</strong></th>
+                                    <th style="padding: 2px;"><strong class="title2">Estado de la persona:</strong></th>
+                                  </tr>
+                                <tr>
+                                    <td style="padding: 2px;"><label class="conten"> {{ field2.Fecha_Expedicion }}</label></td>
+                                    <td style="padding: 2px;"><label class="conten"> {{ field2.Fecha_de_Defuncion }}</label></td>
+                                </tr>
+
+                              </table>
+                            {% endfor %}
+                            {% else %}
+                            <hr>
+                            <h1 class="title1">INFORMACIÓN DE LAS LISTAS RESTRICTIVAS DE {{field.nameConsUser}}</h1>
+                            <hr>
+                            {% for field2 in field.answer %}
+                                <div class="tab">
+                                    <label class="tab-label">{{ field2.name }}</label>
+                                    <div class="tab-content">
+                                        <br>
+                                        {% if field2.more_nfo != 'NA' %}
+                                            {{ field2.offense }}<br>
+                                            {% if field2.name != 'Procuraduría General de la Nación' %}
+                                                {{ field2.more_nfo }} <br>
+                                                <div style="text-align: center;">
+                                                    <a href="{{ field2.link }}" class="buttno" target="_blank">
+                                                        <button target="_blank" style="padding: 15px;margin: 12px;font-size: 12px;height: 50px;">Ver detalle</button>
+                                                    </a>
+                                                </div>
+                                            {% else %}
+                                                <div style="text-align: center;">
+                                                    <a href="{{ field.url_form }}" class="buttno" target="_blank">
+                                                        <button target="_blank" style="padding: 15px;margin: 12px;font-size: 12px;height: 50px;">Ver detalle</button>
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                        {% else %}
+                                            No se presenta información relacionada a esta lista.
+                                        {% endif %}
+                                    </div>
+                                </div><br>
+                            {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        <br><br><p>La información del informe de es el resultado de la obtención de datos públicos en su origen. El uso de la información y sus decisiones resultantes son responsabilidad del usuario
+                            final.</p><br><br>
+                {% endif %}
+            {% endfor %}
+            {% elif data_template.theme == 2 %}
+            {% for form in forms %}
+                <div class="content_title_1">
+                    {{ form.name }}
+                </div>
+                <br>
+                <div class="content_info_1">
+                    {{ form.user }}
+                    <br>
+                    {% if form.source == 1 %}Web{% else %}Movil{% endif %} - {% if form.online %}Online{% else %}Offline{% endif %}
+                    <br>
+                    {{ form.creation_date|date:"d M Y" }} {{ form.creation_date|time:"h:i:s A" }}
+                </div>
+                <br>
+                <div class="content_answer_1">
+                    {% for field in form.fields %}
+                        <b>{{ field.name }}:</b>
+                        {% if field.type != 7 and field.type != 8 and field.type != 9 and field.type != 10 and field.type != 17 and field.type != 18 and field.type != 22 %}
+                            {{ field.answer }}
+                        {% elif field.type == 17 %}
+                            {% if field.answer != '' and field.answer%}
+                                <table class="table_1">
+                                    <thead>
+                                        <tr>
+                                            {% for head in field.answer.head %}
+                                            <th>{{ head.1 }}</th>
+                                            {% endfor %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for body in field.answer.body %}
+                                        <tr>
+                                            {% for head in field.answer.head %}
+                                            <td style="overflow-wrap: break-word;">
+                                                {% for answer in body %}
+                                                    {% if head.0|slugify == answer.field %}
+                                                        {{ answer.answer }}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                No hay datos.
+                            {% endif %}
+                        {% else %}
+                            {% if field.type == 8 %}
+                                <a href="{{ field.answer }}">{{ field.answer }}</a>
+                            {% else %}
+                                {% if field.answer != '' %}
+                                    <img style="width: 150px;"  src="{{ field.answer }}"/>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                        <br>
+                    {% endfor %}
+                </div>
+                <br>
+            {% endfor %}
+            {% endif %}
+        {% elif type == 'enroll' %}
+            <div style="text-align: center;">
+                <img style="width: 150px;" src="{{logo}}"  alt="">
+            </div>
+            <div class="title" style="text-align: center;">
+                Autenticación Cédula {{ enroll.identification }}
+            </div>
+            <table class="table">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>{{ enroll.name }}</th>
+                        <th>{{ enroll.type_identification }} {{ enroll.identification }}</th>
+                        <th>{{ enroll.creation_date|date:"d M Y" }} {{ enroll.creation_date|time:"h:i:s A" }}</th>
+                    </tr>
+                    <!-- <tr style="text-align: center;">
+                        <th>Quien lo Enrolo</th>
+                        <td colspan="2">
+                            {{ enroll.user_name }} <br><br>
+                            {{ enroll.user_identification }} <br><br>
+                            {{ enroll.user_email }}
+                        </td>
+                    </tr> -->
+                </thead>
+                <tbody>
+                    <tr>
+                        <th colspan="3">Documento</th>
+                    </tr>
+                    {% for file in enroll.files %}
+                    <tr>
+                        <td colspan="3" style="text-align: center;">
+                            <a href="{{ file.url }}">{{ file.url }}</a> <br>
+                            <img style="width: 580px; height: 350px;" src="{{ file.image }}"  alt="">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
+                        <th colspan="3">Trazabilidad</th>
+                    </tr>
+                    {% for traceability in enroll.traceability %}
+                    <tr>
+                        <td colspan="2">
+                            {{ traceability.description }}
+                        </td>
+                        <td>
+                            {{ traceability.creation_date|date:"d M Y" }} {{ traceability.creation_date|time:"h:i:s A" }}
+                        </td>
+                    </tr>
+                    {% endfor %} -->
+                    <!-- <tr>
+                        <th colspan="3"><b>Listas restrictivas</b></th>
+                    </tr>
+                    {% if enroll.restrictive_lists_type == enroll.class_str %}
+                    <tr>
+                        <td colspan="3">
+                            {{ enroll.restrictive_lists }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    {% for rest_list in enroll.restrictive_lists %}
+                    <tr>
+                        <th colspan="3">{{rest_list.parameters.name}}</th>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            {{ rest_list.parameters.more_nfo | safe }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %} -->
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
+{% endlocaltime %}

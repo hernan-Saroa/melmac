@@ -1,0 +1,18 @@
+::ng-deep .custom_icon_action {
+  font-size: 19px;
+  // color: #a8acb2 !important
+}
+//css para centar los botones de las acciones
+::ng-deep ng2-smart-table > table > tbody > tr > td.ng2-smart-actions{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2.3rem 0.5rem !important;
+
+  a.ng2-smart-action {
+    top: 0 !important;
+  }
+
+  ng2-st-tbody-edit-delete {
+    height: auto !important;
+  }
+}

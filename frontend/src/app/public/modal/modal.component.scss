@@ -1,0 +1,159 @@
+.modal-card {
+  width: 550px;
+  border-radius: 5%;
+}
+
+.modal-card-body {
+  overflow: hidden;
+  padding: 2rem 2rem;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.content {
+  margin-bottom: 15px;
+}
+
+.scroll-form {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.scroll-form::-webkit-scrollbar {
+  width: 0.3125rem;
+  height: 0.5125rem;
+}
+
+.scroll-form::-webkit-scrollbar-thumb {
+  background: #8f9bb3;
+  cursor: pointer;
+  border-radius: 0.15625rem;
+}
+
+.scroll-form::-webkit-scrollbar-track {
+  background: #f7f9fc;
+}
+
+.btn-explain-option {
+  text-align: center;
+}
+
+.form-approve, .form-verified {
+  display: inline-flex;
+  margin-bottom: 5px;
+}
+
+.btn-content {
+  width: 100%;
+}
+
+.btn-img-w {
+  width: 104px;
+}
+
+.btn-img {
+  width: 104px;
+  height: 104px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.label-title {
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.label-primary {
+  color: blue;
+}
+
+.label-danger {
+  color: red;
+}
+
+.label-info {
+  color: #41A178;
+}
+
+.footer-option {
+  text-align: center;
+}
+
+.modal-btn {
+  border-radius: 10px !important;
+  background: #e0e0e0;
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 5px #ffffff !important;
+  font-size: 0.8rem !important;
+  font-weight: 300 !important;
+  padding: 0.8125rem 2.125rem !important;
+}
+
+.modal-btn-primary {
+  background-color: #412378 !important;
+  border-color: #412378 !important;
+  color: #ffffff !important;
+}
+
+.btn-disabled {
+  background-color: rgba(143, 155, 179, 0.24) !important;
+  border-color: rgba(143, 155, 179, 0.24) !important;
+  color: rgba(143, 155, 179, 0.48) !important;
+}
+
+.mr-15 {
+  margin-right: 15px !important;
+}
+
+.modal-btn-default {
+  font-weight: 600 !important;
+  background-color: #ffffff !important;
+  border-color: #412378 !important;
+  color: #412378 !important;
+}
+
+@media (max-width: 776px) {
+  .modal-card {
+    width: 90vw;
+  }
+  .modal-card-body {
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-btn {
+    margin-bottom: 15px;
+  }
+}
+
+::ng-deep .select2 {
+  width:100% !important;
+}
+
+@mixin select2-height(){
+  height:3.2rem !important;
+  line-height: 3.2rem !important;
+}
+
+::ng-deep .iti {
+  @include select2-height();
+  width:100% !important;
+  min-width: 1.5rem !important;
+  // text-indent: 0 !important;
+  font-size: 0.9375rem !important;
+  font-weight: 400 !important;
+  input {
+    @include select2-height();
+    text-indent: 2rem;
+  }
+}
+
+::ng-deep .iti__country-list{
+  max-height: 115px;
+  position: absolute;
+  top: 0;
+}

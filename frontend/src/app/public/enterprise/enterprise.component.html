@@ -1,0 +1,133 @@
+<div class="row">
+  <div class="col-8 offset-2 text-center">
+    <h2>Configura lo que quieres compartir<br>
+      ¡Fácil, rápido y seguro!</h2>
+  </div>
+</div>
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-xl-10 col-lg-10 col-md-8 col-12">
+        <p>Enlace general:</p>
+      </div>
+      <div class="col-xl-10 col-lg-10 col-md-8 col-12">
+          <div class="form-group">
+              <input type="text" placeholder="Enlace" [ngModel]="url_token_link"
+                  class="form-control link-copy" readonly fullWidth>
+          </div>
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-4 col-12">
+          <div class="form-group">
+              <button [cdkCopyToClipboard]="url_token_link" (click)="copy_message()" ghost fullWidth nbButton status="primary" style="text-decoration: underline;text-transform: math-auto;"><img src="assets/icons/COPIAR_ENLACE.png"/> Copiar enlace</button>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+          <div class="form-group">
+              <label for="input-send" class="label">Selecciona el documento a compartir:</label>
+              <nb-select fullWidth placeholder="Documentos" [(selected)]="selectedItem" (selectedChange)="setValueDocument($event)">
+                <nb-option *ngFor="let forms_data of forms;"
+                    [value]="forms_data.id+'_'+forms_data.token">{{ forms_data.name }}</nb-option>
+              </nb-select>
+          </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+            <label for="input-send" class="label">Asigna fecha de vencimiento:</label>
+          <div class="form-group" style="display: flex;">
+              <img src="assets/icons/ASIGNAR_FECHA.png" style="padding-right: 10px;width: 37px;height: 30px;"/><input id="input-send" type="date" class="form-control">
+          </div>
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-2 col-12">
+          <div class="form-group">
+              <label for="input-send" class="label">Máximo de envíos:</label>
+              <input id="input-send" type="number" min="0" class="form-control">
+          </div>
+      </div>
+  </div>
+  </nb-card-body>
+</nb-card>
+
+<div class="row">
+  <div class="col-8 offset-2 text-center">
+    <h3>Y asigna los medios digitales para compartir</h3>
+  </div>
+</div>
+
+<nb-card>
+  <nb-card-body>
+    <div class="row" style="margin: 15px !important;">
+      <div class="col-xl-10 col-lg-10 col-md-8 col-12">
+        <p>Seleciona los medios para compartir:</p>
+      </div>
+
+        <div class="col-md-6 ">
+          <div class="row">
+            <div class=".col-6 .col-sm-4 d-flex">
+              <mel-radio (change)="toggleMsgType(0, $event)" [checked]="whatsapp">
+                <img [hidden]="whatsapp" src="assets/icons/WATHSAPP_DESMARCADO.png" style="width: 42px !important;padding: 5px;margin-left: -2px;">
+                <img [hidden]="!whatsapp" src="assets/icons/SELECCION_WATHSAPP.png" style="width: 42px !important;padding: 5px;margin-left: -2px;">
+              </mel-radio>
+              <mel-radio iconClass="radio-image" (change)="toggleMsgType(1, $event)" [checked]="sms">
+                <img [hidden]="sms" src="assets/icons/SMS_DESMARCADO.png" style="width: 42px !important;padding: 5px;margin: 2px;margin-left: 10px;">
+                <img [hidden]="!sms" src="assets/icons/SMS_SELECCIONADO.png" style="width: 42px !important;padding: 5px;margin: 2px;margin-left: 10px;">
+              </mel-radio>
+            </div>
+
+            <div class="col-md-7 d-flex">
+              <nb-form-field style="padding-bottom: 2px;">
+                <nb-icon nbPrefix icon="phone" pack="eva"></nb-icon>
+                <input type="number" nbTagInput placeholder="XXX XXX XXXX" (keydown.enter)="onTagAdd(numTel, 2)"
+                  [(ngModel)]="numTel" nbInput required [disabled]="dnumTel">
+              </nb-form-field>
+              <div class="left-content-box pt-1">
+                <div [class]="'left-drag add-user-option' + (!dnumTel ? ' tab-enable' : '')" (click)="onTagAdd(numTel,2)">
+                  <img src="assets/icons/ANADIR.png" style="width: 13px;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 offset-md-4">
+              <nb-tag-list (tagRemove)="onTagRemove($event, 2)">
+                <nb-tag *ngFor="let tree of phones" [text]="tree" [status]="onValidate(tree, 2)" [removable]="true" ></nb-tag>
+                <input type="text" fullWidth readonly  [disabled]="dnumTel">
+              </nb-tag-list>
+          </div>
+        </div>
+
+        <div class="col-6 ">
+          <div class="row " style="justify-content: flex-end">
+            <div class=".col-6 .col-sm-2 d-flex">
+              <mel-radio iconClass="radio-image" (change)="toggleMsgType(2, $event)" [checked]="email">
+                <img [hidden]="email" src="assets/icons/CORREO_DESMARCADO.png" style="width: 55px !important;padding: 4px;margin: 9px;margin-left: 4px;">
+                <img [hidden]="!email" src="assets/icons/SELECCION_CORREO.png" style="width: 55px !important;padding: 4px;margin: 9px;margin-left: 4px;">
+              </mel-radio>
+
+            </div>
+            <div class="col-md-7" style="display: flex;">
+              <nb-form-field style="padding-bottom: 2px;">
+                <input type="email" placeholder="correo@ejemplo.com" (keydown.enter)="onTagAdd(emailsID,1)" [(ngModel)]="emailsID" nbInput [disabled]="demailsID">
+              </nb-form-field>
+              <div class="left-content-box pt-1">
+                <div [class]="'left-drag add-user-option' + (!demailsID ? ' tab-enable' : '')" (click)="onTagAdd(emailsID,1)">
+                  <img src="assets/icons/ANADIR.png" style="width: 13px;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-7 offset-md-5" >
+            <nb-tag-list (tagRemove)="onTagRemove($event, 1)">
+              <nb-tag class="text-low" *ngFor="let tree of emails" [text]="tree" [status]="onValidate(tree, 1)" [removable]="true"  style="float: right;"></nb-tag>
+              <input type="text" fullWidth  readonly [disabled]="demailsID">
+            </nb-tag-list>
+          </div>
+        </div>
+
+        <div class="row " style="padding-top: 1px; width: 100%; justify-content: center !important;">
+          <button class="tab-sec-btn" nbButton status="primary" size="large" [disabled]="dBtnCompartir || (emails.length == 0 && phones.length == 0)" (click)="btnCompartir()"> Compartir </button>
+        </div>
+    </div>
+  </nb-card-body>
+</nb-card>

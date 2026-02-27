@@ -1,0 +1,68 @@
+::ng-deep .select-form{
+    margin-bottom: 15px;
+}
+
+::ng-deep .content-role-permit {
+    width: 365px;
+}
+
+::ng-deep .content-share {
+    width: 800px;
+}
+
+::ng-deep .img-qr {
+    width: 100%;
+}
+
+// Colocar responsive
+
+button{
+    margin-right: 5px;
+}
+
+::ng-deep .cdk-global-scrollblock {
+    overflow-y: hidden !important;
+    top: 0px !important;
+}
+
+::ng-deep .link-copy {
+    text-overflow: ellipsis;
+}
+
+::ng-deep nb-tag {
+    text-transform:lowercase !important;
+}
+
+::ng-deep .div-dialog {
+    margin-bottom: 10px;
+}
+
+.btn-copy-link {
+    padding: 8px;
+    border-radius: 24px;
+    background-color: #eae6f1; 
+    color: #5725e5; 
+    cursor: pointer;
+}
+
+::ng-deep nb-accordion.aditional-option {
+    box-shadow: none;
+}
+
+::ng-deep nb-accordion.aditional-option > nb-accordion-item > nb-accordion-item-header {
+    border-bottom-width: 0px;
+    max-width: 212px;
+}
+
+::ng-deep nb-accordion.aditional-option > nb-accordion-item > nb-accordion-item-body .item-body {
+    padding-top: 0px;
+    // padding-right: 0px;
+}
+
+::ng-deep nb-accordion.aditional-option > nb-accordion-item > nb-accordion-item-header > nb-icon {
+    left: 172px;
+}
+
+::ng-deep nb-accordion.aditional-option nb-checkbox .text {
+    line-height: 1rem;
+}

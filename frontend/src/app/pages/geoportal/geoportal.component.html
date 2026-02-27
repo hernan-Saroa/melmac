@@ -1,0 +1,487 @@
+<div class="row">
+  <div [class]="'geo-col ' + getClass(0)">
+    <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerMessage="Esto puede tomar un momento..." nbSpinnerSize="giant" class="geo-card" size="giant">
+      <nb-card-body class="body-geo-map">
+        <div class="map-size" leaflet
+          [leafletOptions]="options"
+          (leafletMapReady)="onMapReady($event)"
+          [leafletLayers]="group ? [] : markerData"
+          [leafletMarkerCluster]="group ? markerData : []"
+          [leafletMarkerClusterOptions]="markerClusterOptions"
+          (leafletMarkerClusterReady)="markerClusterReady($event)"
+          (leafletMapZoomEnd)="invalidMap()">
+
+          <div id="timeline_layers" *ngIf="markers.timeline.length > 0">
+            <div *ngFor="let timeline of markers.timeline">
+              <div [leafletLayer]="timeline.path"></div>
+              <div [leafletLayer]="timeline.arrows"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-size">
+          <div class="content-btn-first content-btn">
+            <button nbTooltip="Puntos Fijos" nbTooltipStatus="primary" nbTooltipPlacement="left" shape="round"
+              (click)="changeOption(0)" outline nbButton [status]="option == 0 ? 'primary' : 'basic'">
+              <nb-icon icon="map"></nb-icon>
+            </button>
+          </div>
+          <div class="content-btn">
+            <button nbTooltip="Documentos diligenciados" nbTooltipStatus="primary" nbTooltipPlacement="left" shape="round"
+              (click)="changeOption(1)" outline nbButton [status]="option == 1 ? 'primary' : 'basic'">
+              <nb-icon icon="edit-2"></nb-icon>
+            </button>
+          </div>
+          <div class="content-btn">
+            <button nbTooltip="Línea de Tiempo" nbTooltipStatus="primary" nbTooltipPlacement="left" shape="round"
+              (click)="changeOption(2)" outline nbButton [status]="option == 2 ? 'primary' : 'basic'">
+              <nb-icon icon="people-outline"></nb-icon>
+            </button>
+          </div>
+          <div class="content-btn">
+            <button nbTooltip="Dispositivos Externos" nbTooltipStatus="primary" nbTooltipPlacement="left" shape="round"
+              (click)="changeOption(3)" outline nbButton [status]="option == 3 ? 'primary' : 'basic'">
+              <nb-icon icon="monitor-outline"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div [class]="'geo-col action-col ' + getClass(1)">
+    <div class="menu-content-out">
+      <nb-card class="geo-card" size="giant" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+        <button (click)="closeMenu()" class="btn-close" nbButton ghost status="basic">
+          <nb-icon icon="close"></nb-icon>
+        </button>
+        <!-- option 0 -->
+        <h6 class="content-title" [hidden]="option != 0">Puntos Fijos</h6>
+        <label class="content-title" [hidden]="option != 0" >Grupo(s): {{this.tot_count_point}}</label>
+
+        <!-- option 1 -->
+        <h6 class="content-title" [hidden]="option != 1">Documentos diligenciados</h6>
+        <!-- option 2 -->
+        <h6 class="content-title" [hidden]="option != 2">Seguimiento</h6>
+        <!-- option 3 -->
+        <h6 class="content-title" [hidden]="option != 3">Dispositivos Externos</h6>
+        <button [hidden]="![1,2].includes(option)" (click)="onDropdown()" class="btn-dropdown-option mb-2" nbButton status="basic" shape="rectangle">
+          <nb-icon *ngIf="!option_board" icon="arrow-down-outline"></nb-icon>
+          <nb-icon *ngIf="option_board" icon="arrow-up-outline"></nb-icon>
+        </button>
+        <div style="margin-left:5%;">
+          <nb-toggle labelPosition="right" [(checked)]="group" (checkedChange)="toggleVisibility($event)"> Visualización: {{group ? 'Agrupado' : 'Individual'}}</nb-toggle>
+        </div>
+        <div style="border-bottom: 2px #8f9bb3 solid;">
+          <div [class]="'option-board ' + getClassDropdown()" class="option-board">
+            <div [hidden]="!option_board">
+              <div [hidden]="option != 0">
+                <!-- Filtros puntos fijos -->
+              </div>
+              <div [hidden]="option != 1">
+                <label style="margin: 5px 15px; font-size:12px;">Para seleccionar uno o varios formularios, desmarca la opción <b>Todos</b>.</label>
+                <nb-select #docSelect class="select-document" style="padding: 0 15px 10px 15px;"
+                  placeholder="Seleccionar Documento" size="tiny" fullWidth multiple [title]="doc_title"
+                  (selectedChange)="setValueFilter($event)">
+                  <nb-option value="0">
+                    Todos
+                  </nb-option>
+                  <nb-option *ngFor = "let document of select_document" value="{{document.value}}" [disabled]="filter_options.doc == null">
+                    {{document.title}}
+                  </nb-option>
+                </nb-select>
+
+                <label style="margin: 5px 15px; font-size:12px;">Rol</label>
+                <nb-select #rolSelect class="select-document" style="padding: 0 15px 10px 15px;"
+                  placeholder="Seleccionar Rol" size="tiny" fullWidth [(ngModel)]="role_select" (ngModelChange)="onChangeOptionRol()">
+                  <nb-option value="0">
+                    Todos
+                  </nb-option>
+                  <nb-option *ngFor = "let role of list_role" value="{{role.id}}">
+                    {{role.name}}
+                  </nb-option>
+                </nb-select>
+
+                <label style="margin: 5px 15px; font-size:12px;">Usuario(s)</label>
+                <nb-select class="select-document" style="padding: 0 15px 10px 15px;" size="tiny" fullWidth multiple placeholder="Usuario(s)" [(ngModel)]="list_user_select">
+                  <nb-option *ngFor="let user of list_user" [value]="user.id"> {{user.first_name}}{{ user.middle_name ? ' ' + user.middle_name :''}} {{user.first_last_name}} {{ user.second_last_name ? ' ' + user.second_last_name :''}} </nb-option>
+                </nb-select>
+
+                <div style="padding: 0 15px 5px 15px;">
+                  <label for="date_ini" style="margin-bottom:0px; font-size:11px;">Fecha Inicial</label>
+                  <input name="date_ini" autocomplete="off" [value]="filter_options.date_ini" (change)="setDateFilter($event)" placeholder="Fecha Inicio" nbInput type="date" fieldSize="tiny" max="{{ filter_options.date_fin != null ? filter_options.date_fin : (user_date | date:'yyyy-MM-dd') }}" fullWidth/>
+                </div>
+                <div style="padding: 0 15px 5px 15px;">
+                  <label for="date_fin" style="margin-bottom:0px; font-size:11px">Fecha Final</label>
+                  <input name="date_fin" autocomplete="off" [value]="filter_options.date_fin" (change)="setDateFilter($event, false)" placeholder="Fecha Fin" nbInput type="date" fieldSize="tiny" min="{{filter_options.date_ini}}" max="{{user_date | date:'yyyy-MM-dd'}}" fullWidth/>
+                </div>
+
+                <label style="margin-left: 15px;" class="link" (click)="filter_options.date_ini=null; filter_options.date_fin=null;">Limpiar Fechas</label>
+                <button (click)="setFilterAnswers()" nbButton status="info" style="margin-right: 15px; margin-bottom:5px; float:right" size="tiny"> Filtrar </button>
+
+              </div>
+
+              <div [hidden]="option != 2">
+                <div *ngIf="false">
+                  <!-- <label>
+                    Prueba
+                  </label>
+                  <nb-autocomplete #follow_role [(ngModel)]="follow_role_select" field="name" (search)="filterOptions($event)">
+                    <nb-option *nbAutocompleteOption="let option" [value]="option">{{ option.name }}</nb-option>
+                  </nb-autocomplete>
+                  <nb-autocomplete [formControl]="follow_role" #follow_role [(ngModel)]="follow_role_select" field="name" (search)="filterOptions($event)">
+                    <nb-option *ngFor="let option of filteredOptions.follow.role" [value]="option.id">{{ option.name }}</nb-option>
+                  </nb-autocomplete>
+
+                  <input nbInput placeholder="Rol" [(ngModel)]="option_select.follow.role">
+                  <label style="margin: 5px 15px; font-size:12px;">Rol</label>
+                  <nb-select #rolSelect class="select-document" style="padding: 0 15px 10px 15px;"
+                    placeholder="Seleccionar Rol" size="tiny" fullWidth [(ngModel)]="follow_role_select" (ngModelChange)="onChangeFollowRol()">
+                    <nb-option value="0" selected>
+                      Todos
+                    </nb-option>
+                    <nb-option *ngFor = "let role of list_follow_role" value="{{role.id}}">
+                      {{role.name}}
+                    </nb-option>
+                  </nb-select>
+
+                  <input #autoInput [ngModel]="option_select.follow.role" nbInput fullWidth type="text" (input)="onChange()"
+                    placeholder="Seleccionar Documento" [nbAutocomplete]="auto" />
+
+                  <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+                    <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+                      {{ option.name }}
+                    </nb-option>
+                  </nb-autocomplete> -->
+                </div>
+
+                <label style="margin: 5px 15px; font-size:12px;">Role(s)</label>
+                <nb-select #folRolSelect name="page" class="select-document" style="padding: 0 15px 10px 15px;"
+                  placeholder="Seleccionar Rol" size="tiny" fullWidth multiple [title]="follow_title"
+                  (selectedChange)="onChangeFollowRol($event)">
+                  <nb-option value="0" selected>
+                    Todos
+                  </nb-option>
+                  <nb-option *ngFor = "let role of list_follow_role" value="{{role.id}}" [disabled]="follow_options.role == null"
+                  [selected]="follow_options.role && follow_options.role.includes(role.id)">
+                    {{ role.name }}
+                  </nb-option>
+                </nb-select>
+
+                <label style="margin: 5px 15px; font-size:12px;">Usuario(s)</label> <span style="margin: 5px 15px; float:right; font-size:12px;"> Total: {{tot_count}} </span>
+                <nb-select #userSelect name="page" class="select-document" style="padding: 0 15px 10px 15px;"
+                  placeholder="Seleccionar Usuario" size="tiny" fullWidth multiple [title]="follow_title"
+                  (selectedChange)="setValueFilter($event, false)">
+                  <nb-option value="0" selected>
+                    Todos
+                  </nb-option>
+                  <nb-option *ngFor = "let user of user_data_sel" value="{{user.id}}" [disabled]="follow_options.users == null" [selected]="follow_options.users && follow_options.users.includes(user.id)">
+                    {{user.first_name}}{{ user.middle_name ? ' ' + user.middle_name :''}} {{user.first_last_name}} {{ user.second_last_name ? ' ' + user.second_last_name :''}}
+                  </nb-option>
+                </nb-select>
+
+                <div style="padding: 0 15px 5px 15px;">
+                  <label for="date_ini" style="margin-bottom:0px; font-size:11px;">Fecha Inicial</label>
+                  <input name="date_ini" autocomplete="off" [value]="follow_options.date_ini" (change)="setDateFilter($event, true, true)" placeholder="Fecha Inicio" nbInput type="date" fieldSize="tiny" max="{{ follow_options.date_fin != null ? follow_options.date_fin : (user_date | date:'yyyy-MM-dd') }}" fullWidth/>
+                </div>
+                <div style="padding: 0 15px 5px 15px;">
+                  <label for="date_fin" style="margin-bottom:0px; font-size:11px">Fecha Final</label>
+                  <input name="date_fin" autocomplete="off" [value]="follow_options.date_fin" (change)="setDateFilter($event, false, true)" placeholder="Fecha Fin" nbInput type="date" fieldSize="tiny" min="{{follow_options.date_ini}}" max="{{user_date | date:'yyyy-MM-dd'}}" fullWidth/>
+                </div>
+
+                <label style="margin-left: 15px;" class="link" (click)="follow_options.date_ini=null; follow_options.date_fin=null;">Limpiar Fechas</label>
+                <button (click)="setFilterFollow()" nbButton status="info" style="margin-right: 15px; margin-bottom:5px; float:right" size="tiny"> Filtrar </button>
+
+              </div>
+
+              <div [hidden]="option != 3">
+                <label style="margin: 5px 15px; font-size:12px;">Para seleccionar uno o varios dispositivos, desmarca la opción <b>Todos</b>.</label>
+                <nb-select #devSelect name="page" class="select-document" style="padding: 0 15px 10px 15px;"
+                  placeholder="Seleccionar Dispositivo" size="tiny" fullWidth multiple [title]="device_title"
+                  (selectedChange)="setValueFilter($event)">
+                  <nb-option value="0">
+                    Todos
+                  </nb-option>
+                  <nb-option *ngFor = "let device of list_device" value="{{device.serial}}" [disabled]="filter_options.doc == null">
+                    {{document.title}}
+                  </nb-option>
+                </nb-select>
+
+                <input autocomplete="off" hidden [value]="filter_options.date_ini" (change)="setDateFilter($event)" placeholder="Fecha Inicio" nbInput type="date" fieldSize="tiny" style="margin-left: 15px; margin-right: 10px" max="{{ filter_options.date_fin != null ? filter_options.date_fin : (user_date | date:'yyyy-MM-dd') }}"/>
+
+                <div *ngIf="false">
+                  - <input autocomplete="off" [value]="filter_options.date_fin" (change)="setDateFilter($event, false)" placeholder="Fecha Fin" nbInput type="date" fieldSize="tiny" style="margin-left: 10px; margin-right: 15px" min="{{filter_options.date_ini}}" max="{{user_date | date:'yyyy-MM-dd'}}" hidden/>
+                </div>
+                <label hidden class="link" (click)="filter_options.date_ini=null; filter_options.date_fin=null;">Limpiar Fecha</label>
+                <button (click)="setFilterAnswers()" nbButton status="info" style="margin-right: 15px; float:right" size="small"> Filtrar </button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <nb-list class="content-list" [hidden]="option != 0">
+          <nb-list-item *ngFor="let point of point_data; let i=index;">
+            <div style="width: 100%;">
+              <nb-checkbox style="margin-bottom: 5px;" fullWidth (checkedChange)="toggleCheckbox($event, point.id, true)"
+                [value]="point.id" [checked]="childrenChecked(point.id, point['json_path'].length )">
+                {{ point.name }}</nb-checkbox>
+              <label class="label">
+                {{ point.description }}
+              </label>
+              <label class="label">
+                <b>Direcciones cargadas: </b>{{ point.massive_file__success }}
+              </label>
+              <label class="label">
+                <b>Fecha de carga: </b>
+                <nb-icon icon="calendar-outline"></nb-icon>
+                {{ point.massive_file__date | date:'dd/MM/y, HH:mm:ss ' }}
+              </label>
+              <button size="tiny" *ngIf="project_open != point.id" (click)="setOpenList(point.id)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                Mostrar Todo
+              </button>
+              <button size="tiny" *ngIf="project_open == point.id" (click)="setOpenList(-1)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                Ocultar Todo
+              </button>
+              <nb-list class="content-list internal-list" nbInfiniteList [threshold]="30" (topThreshold)="loadPrevious()"
+                (bottomThreshold)="loadNext()" *ngIf="option == 0 && project_open == point.id">
+                <nb-list-item *ngFor="let project of point['json_path'].slice(init_data_pro, end_data_pro); let j=index;">
+                  <div style="width: 100%;">
+                    <nb-checkbox style="margin-bottom: 5px;" (checkedChange)="toggleCheckbox($event, point.id + '-' + j)"
+                      [value]="point.id + '-' + j" [checked]="point_select.includes(point.id + '-' + j)">
+                      {{ project.name }}</nb-checkbox>
+                      <label *ngIf="point_select.includes(point.id + '-' + j)" (click)="goToCoordinates(point.id + '-' + j, project)" style="cursor: pointer; margin-left:10px;">
+                        <nb-icon icon="undo-outline"></nb-icon>
+                      </label>
+                      <label class="label">
+                        {{ project.address }}
+                      </label>
+                      <label class="label">
+                        <nb-icon icon="pin-outline"></nb-icon>
+                        {{ project.lat }} , {{ project.lon }}
+                      </label>
+                  </div>
+                </nb-list-item>
+              </nb-list>
+            </div>
+          </nb-list-item>
+        </nb-list>
+
+        <nb-list class="content-list" [hidden]="option != 1">
+          <nb-list-item *ngFor="let user_item of answer_data | keyvalue">
+            <div style="width: 100%;" *ngIf="dict_user[user_item.key == '-1'?'null':user_item.key] as user">
+              <b>{{user.first_name}}{{ user.middle_name ? ' ' + user.middle_name :''}} {{user.first_last_name}} {{ user.second_last_name ? ' ' + user.second_last_name :''}}</b>
+              <div class="mobile_info">
+                <div>
+                  <label class="label">
+                    <b>Correo: </b>{{user.email}}
+                  </label>
+                  <label class="label">
+                    <b>Respuestas: </b>{{user.count ? user.count : 0}}
+                  </label>
+                </div>
+              </div>
+              <button size="tiny" *ngIf="ans_open != user.id" (click)="setOpenListAnswer(user.id)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                Ver Fechas
+              </button>
+              <button size="tiny" *ngIf="ans_open == user.id" (click)="setOpenListAnswer(0)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                Ocultar Fechas
+              </button>
+              <nb-list class="content-list internal-list" nbInfiniteList *ngIf="option == 1 && ans_open == user.id" style="padding-right:0">
+                <nb-list-item *ngFor="let date_item of user_item.value | keyvalue" style="padding-right: 0;">
+                  <div class="row" style="width: 100%;" *ngIf="date_item.key as date">
+                    <div class="col-md-10 col-sm-11" style="margin-bottom: 5px;">
+                      <nb-checkbox [checked]="ans_count[user.id][date]['checked']"
+                      (checkedChange)="toggleCheckbox($event, user.id + '&' + date)"
+                      [value]="user.id + '&' + date">
+                      {{ date }} </nb-checkbox>
+                    </div>
+                    <button size="tiny" *ngIf="ans_date_open != user.id + '&' + date" (click)="setOpenListAnswer(user.id, date)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                      Ver Formularios
+                    </button>
+                    <button size="tiny" *ngIf="ans_date_open == user.id + '&' + date" (click)="setOpenListAnswer(user.id, 0)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                      Ocultar Formularios
+                    </button>
+                    <nb-list class="content-list internal-list" nbInfiniteList [threshold]="10" *ngIf="option == 1 && ans_date_open == user.id + '&' + date" style="margin-top:5px">
+                      <nb-list-item style="padding-bottom:0px;" *ngFor="let form_item of date_item.value | keyvalue">
+                        <div style="width: 100%;" *ngIf="dict_doc[form_item.key] as form">
+                          <div class="col-md-10 col-sm-11" style="margin-bottom: 5px;">
+                            <nb-checkbox [checked]="ans_count[user.id][date][form.id]['checked']"
+                            (checkedChange)="toggleCheckbox($event, user.id + '&' + date + '&' + form.id)"
+                            [value]="user.id + '&' + date + '&' + form.id">
+                            {{ form.name }} </nb-checkbox>
+                          </div>
+                          <button size="tiny" *ngIf="ans_date_form_open != user.id + '&' + date + '&' + form.id" (click)="setOpenListAnswer(user.id, date, form.id)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                            Ver Respuestas
+                          </button>
+                          <button size="tiny" *ngIf="ans_date_form_open == user.id + '&' + date + '&' + form.id" (click)="setOpenListAnswer(user.id, date, 0)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                            Ocultar Respuestas
+                          </button>
+
+                          <nb-list class="content-list internal-list" nbInfiniteList [threshold]="50" *ngIf="option == 1 && ans_date_form_open == user.id + '&' + date + '&' + form.id" style="margin-top:5px">
+                            <nb-list-item *ngFor="let answer of form_item.value.data">
+                              <div style="width: 100%;">
+                                <nb-checkbox style="margin-bottom: 5px;" (checkedChange)="toggleCheckbox($event, user.id + '&' + date + '&' + form.id + '&' + answer.id)"
+                                  [value]="user.id + '&' + date + '&' + form.id + '&' + answer.id" [checked]="answer_select.includes(user.id + '&' + date + '&' + form.id + '&' + answer.id)" [disabled]="!answer.latitude || !answer.longitude">
+                                  #{{ answer.id }}</nb-checkbox>
+                                <label *ngIf="answer_select.includes(user.id + '&' + date + '&' + form.id + '&' + answer.id)" (click)="goToCoordinates(answer, user.id + '&' + date + '&' + form.id)" style="cursor: pointer; margin-left:10px;">
+                                  <nb-icon icon="undo-outline"></nb-icon>
+                                </label>
+                                <label class="label">
+                                  {{ answer.creation_date | date:'HH:mm:ss' }}
+                                </label>
+                              </div>
+                            </nb-list-item>
+                          </nb-list>
+                        </div>
+                      </nb-list-item>
+                    </nb-list>
+                  </div>
+                </nb-list-item>
+              </nb-list>
+            </div>
+          </nb-list-item>
+        </nb-list>
+
+        <div [hidden]="option != 1">
+          <label [hidden]="answer_data != {} || loading" class="label" style="width: 100%; padding: 15px;">
+            No tienes respuestas para esta fecha con estos documentos.
+          </label>
+        </div>
+
+        <nb-list class="content-list" [hidden]="option != 2">
+          <nb-list-item *ngFor="let user of user_data; let i=index;">
+            <div style="width: 100%;">
+                <b>{{user.first_name}}{{ user.middle_name ? ' ' + user.middle_name :''}} {{user.first_last_name}} {{ user.second_last_name ? ' ' + user.second_last_name :''}}</b>
+                  <label [hidden]="!user.mobile" (click)="goToCoordinates('foll-'+user.id)" style="cursor: pointer; margin-left:10px; margin-bottom: 0px;">
+                    <nb-icon icon="undo-outline"></nb-icon>
+                  </label><br>
+                <i>{{ user.email }}</i>
+              <div class="mobile_info">
+                <div *ngIf="user.mobile">
+                  <label class="label flex">
+                    <b>Modelo: </b>
+                    {{ user.mobile.model && user.mobile.brand ? user.mobile.brand + ' ' + user.mobile.model + ' Android ' + user.mobile.version : 'N/A' | uppercase }}
+                  </label>
+                  <label class="label">
+                    <b>Bateria </b> <span class="{{user.mobile.battery > 70 ? 'success' : user.mobile.battery > 30 ? 'warning' : 'danger'}}"> {{user.mobile.battery}}%</span>
+                  </label>
+                  <label class="label">
+                    <b>Versión Melmac: </b>
+                    {{ user.mobile.version_app ? user.mobile.version_app : 'N/A' }}
+                    <b>GPS:</b> <span class="{{user.mobile.version_app && user.mobile.gps ? 'success' : 'danger'}}">
+                      {{user.mobile.version_app && user.mobile.gps ? 'Activo'  : 'Inactivo'}} </span>
+                  </label>
+                  <label class="label">
+                    <b>Ultima Conexión: </b>
+                    {{ user.mobile.last_conection | date:'dd/MM/y, HH:mm:ss' }}
+                  </label>
+                  <label class="label space-down">
+                    <b>Ultima Interacción: </b>
+                    {{ user.mobile.last_update | date:'dd/MM/y, HH:mm:ss' }}
+                  </label>
+                </div>
+                <div *ngIf="!user.mobile">
+                  <label class="label">
+                    <b>El usuario No se ha Logeado desde el aplicativo móvil</b>
+                  </label>
+                  <!--
+                  <label class="label">
+                    <b>Modelo: </b>N/A
+                  </label>
+                  <label class="label">
+                    <b>Versión Melmac: </b>N/A  <b>GPS:</b> N/A
+                  </label>
+                  <label class="label space-down">
+                    <b>Ultima Conexión: </b> N/A
+                  </label>
+                  -->
+                </div>
+              </div>
+              <button size="tiny" *ngIf="user_open != user.id" (click)="setOpenList(user.id, true)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                Ver Fechas
+              </button>
+              <button size="tiny" *ngIf="user_open == user.id" (click)="setOpenList(-1, true)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                Ocultar Fechas
+              </button>
+              <nb-list class="content-list" nbInfiniteList *ngIf="option == 2 && user_open == user.id" style="padding-right:0">
+                <nb-list-item *ngFor="let follow of user.dates; let j=index;"     style="padding-right: 0;">
+                  <div class="row" style="width: 100%;">
+                    <div class="col-md-10 col-sm-11" style="margin-bottom: 5px;">
+                      <nb-checkbox [checked]="user_select.includes(user.id + '&' + follow)" (checkedChange)="toggleCheckbox($event, user.id + '&' + follow)"
+                      [value]="user.id + '-' + follow">
+                      {{ follow }} </nb-checkbox>
+                    </div>
+                    <div class="col-md-2 col-sm-1">
+                      <input type="color" [disabled]="true" class="color-path" *ngIf="user_select.includes(user.id + '&' + follow)" [value]="getColorPath(user.id, follow)">
+                    </div>
+
+                    <button size="tiny" *ngIf="user_tl_open != user.id + '&' + follow" (click)="setOpenList(user.id + '&' + follow, true, true)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                      Ver Linea de Tiempo
+                    </button>
+                    <button size="tiny" *ngIf="user_tl_open == user.id + '&' + follow" (click)="setOpenList(-1, true, true)" ghost fullWidth class="btn-dropdown-option" nbButton status="primary" shape="rectangle">
+                      Ocultar Linea de Tiempo
+                    </button>
+                    <nb-list class="content-list internal-list" nbInfiniteList [threshold]="30" (topThreshold)="loadPrevious()"
+                      (bottomThreshold)="loadNext()" *ngIf="option == 2 && user_open == user.id && user_tl_open == user.id + '&' + follow && !loading" style="margin-top:5px">
+                      <nb-list-item style="padding-bottom:0px;" *ngFor="let trace of follow_data[user.id][follow]['logs']; let k=index;">
+                        <div style="width: 100%;">
+                          <b> {{trace.title}} </b>
+                          <label class="label" style="font-size: 12px;">
+                            <nb-icon icon="calendar-outline"></nb-icon>
+                            {{ trace.creation_date | date:'h:mm:ss a' }}
+
+                          </label>
+                          <label class="label" style="font-size: 12px;">
+                            <span [outerHTML]="trace.description"></span>
+                          </label>
+
+                        </div>
+                      </nb-list-item>
+                    </nb-list>
+                  </div>
+                </nb-list-item>
+                <nb-list-item [hidden]="user.dates.length != 0">
+                  <label class="label">
+                    No hay datos cargados para el filtro aplicado
+                  </label>
+                </nb-list-item>
+              </nb-list>
+            </div>
+          </nb-list-item>
+        </nb-list>
+
+        <div [hidden]="option != 3">
+          <label [hidden]="answer_device.length != 0 || loading" class="label" style="width: 100%; padding: 15px;">
+            No tienes registro de dispositivos.
+          </label>
+        </div>
+
+        <nb-list class="content-list" [hidden]="option != 3">
+          <nb-list-item *ngFor="let device of answer_device; let i=index;">
+            <div style="width: 100%;">
+              <nb-checkbox style="margin-bottom: 5px;" fullWidth (checkedChange)="toggleCheckbox($event, device.serial)"
+                [value]="device.serial" [checked]="select_device.includes(device.serial)">
+                {{ device.name ? device.name : "Dispositivo " + (i+1)}}</nb-checkbox>
+                <label *ngIf="select_device.includes(device.serial)" (click)="goToCoordinates(device)" style="cursor: pointer; margin-left:10px;">
+                  <nb-icon icon="undo-outline"></nb-icon>
+                </label>
+              <br><button size="tiny" nbButton fullWidth ghost status="info" (click)="setDeviceInfo(device.serial, device)">{{ show_info_device != device.serial ? "Más Información" : "Ocultar"}}</button>
+              <div [hidden]="show_info_device != device.serial">
+                <label class="label"><b>Procesador:</b> {{device.cpu_model}}</label>
+                <label class="label"><b>Nucleos Fisicos:</b> {{device.max_core}}</label>
+                <label class="label"><b>RAM:</b> {{device.ram}}GB</label>
+                <label class="label"><b>Almacenamiento:</b> {{device.disks.total ? device.disks.total+" GB" : "N/A"}}</label>
+                <label class="label"><b>Serial:</b> {{device.serial}}</label>
+                <label class="label"><b>Última captura: </b>
+                  <nb-icon icon="calendar-outline"></nb-icon>
+                  {{ device.time | date:'dd/MM/y, HH:mm:ss ' }}
+                </label>
+              </div>
+            </div>
+          </nb-list-item>
+        </nb-list>
+
+      </nb-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,692 @@
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-dark, ::ng-deep body.nb-theme-corporate {
+    .span-field{
+        color: #4e7aff;
+        font-weight: 500;
+    }
+}
+
+::ng-deep body.nb-theme-cosmic {
+    .span-field{
+        color: #a16eff;
+        font-weight: 500;
+    }
+}
+
+:host ::ng-deep body > span.span-field {
+    color: #4e7aff;
+    font-weight: 500;
+}
+
+.label-answer {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  border: 1px solid #e4e9f2;
+  border-radius: 0.25rem;
+  padding: 5px;
+}
+
+.label-warning {
+  border-color: #ffaa00 !important;
+}
+
+.span-field {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.info-desc {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+input.ng-dirty.ng-invalid, textarea.ng-dirty.ng-invalid {
+    border: 1px solid red !important;
+}
+
+input.ng-pristine.ng-invalid, textarea.ng-pristine.ng-invalid {
+    border: 1px solid #f7f9fc !important;
+}
+
+button {
+    margin-right: 5px;
+    overflow: hidden;    /* Oculta el desbordamiento */
+}
+
+.file-input {
+    display: none;
+}
+
+.checkbox-input {
+    display: none;
+}
+
+.location-input {
+    display: none;
+}
+
+.table-input {
+    display: none;
+}
+
+.pdf_view {
+    width: 100%;
+    height: 800px;
+    position: relative;
+}
+
+.input-text-date::-webkit-calendar-picker-indicator, .input-text-time::-webkit-calendar-picker-indicator {
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    height: 40%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    bottom: 0;
+    width: auto;
+}
+
+.input-list-date::-webkit-calendar-picker-indicator {
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: auto;
+}
+
+::ng-deep.table_list_field {
+    border-radius: 0.25rem;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+::ng-deep .th_list {
+    min-width: 100px;
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+
+::ng-deep .content-table-answer {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+::ng-deep .checkbox-content {
+    text-align: initial;
+    float: left;
+    margin-left: 5px;
+    display: grid;
+}
+
+::ng-deep body.nb-theme-material-light {
+  .label-answer {
+    border: 1px solid rgba(0, 0, 0, 0.42);
+  }
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #e4e9f2;
+    }
+
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #e4e9f2;
+    }
+}
+
+::ng-deep body.nb-theme-dark {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #101426;
+    }
+
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #101426;
+    }
+
+    .label-answer {
+      border: 1px solid #101426;
+    }
+}
+
+::ng-deep body.nb-theme-cosmic {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #13132b;
+    }
+
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #13132b;
+    }
+
+    .label-asnwer {
+      border: 1px solid #13132b;
+    }
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+
+    ::ng-deep .content-table-answer::-webkit-scrollbar {
+      width: 0.3125rem;
+      height: 0.5125rem;
+    }
+
+    ::ng-deep .content-table-answer::-webkit-scrollbar-thumb {
+      background: #8f9bb3;
+      cursor: pointer;
+      border-radius: 0.15625rem;
+    }
+
+    ::ng-deep .content-table-answer::-webkit-scrollbar-track {
+      background: #f7f9fc;
+    }
+
+  }
+
+  ::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+    ::ng-deep .content-table-answer::-webkit-scrollbar {
+      width: 0.3125rem;
+      height: 0.3125rem;
+    }
+
+    ::ng-deep .content-table-answer::-webkit-scrollbar-thumb {
+      background: #b4b4db;
+      cursor: pointer;
+      border-radius: 0.15625rem;
+    }
+
+    ::ng-deep .content-table-answer::-webkit-scrollbar-track {
+      background: #252547;
+    }
+}
+
+::ng-deep nb-dialog-container {
+    overflow-y: auto;
+}
+
+::ng-deep nb-dialog-container::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.3125rem;
+}
+
+@media (max-width: 540px) {
+    ::ng-deep ngx-public {
+        .colored-column-basic {
+            padding: 5px 5px 0 !important;
+        }
+    }
+    ::ng-deep ngx-pages ngx-form {
+        margin: -10px -10px 0px -10px;
+    }
+
+    .form-answer-view {
+        padding: 1rem 0px !important;
+    }
+
+    .form-answer-tab {
+        padding: 1rem 10px !important;
+    }
+}
+
+@media (max-width: 768px){
+    .document-number{
+        margin-top: 15px;
+    }
+    .ani-descripcion{
+        margin-top: 10px;
+    }
+}
+
+.form-group-doc {
+  margin-top: 1rem;
+}
+
+.editImg{
+  background: #ffffff !important;
+  border-bottom: 1px solid #d7d7d7;
+  display: block;
+}
+
+.editImg:hover{
+  background: #ffffff !important;
+  cursor: pointer;
+  border: 2px solid #e1dada;
+  box-shadow: 7px 7px 5px 0px rgba(173,173,173,0.52);
+-webkit-box-shadow: 7px 7px 5px 0px rgba(173,173,173,0.52);
+-moz-box-shadow: 7px 7px 5px 0px rgba(173,173,173,0.52);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] { -moz-appearance:textfield; }
+
+.text-center{
+  text-decoration: underline;
+  text-decoration-style: double;
+}
+
+#row-manager{
+  justify-content: space-between;
+}
+
+#col-manager{
+  display: contents;
+}
+
+#label-fields{
+  width: 100%;margin-bottom: 0px;
+}
+
+.serial-number{
+  margin-top: 5px;
+  padding-right: 5px;
+}
+
+.checkbox{
+  display: grid;
+}
+
+.information{
+  width: 100%;
+}
+
+.location{
+  margin-top: 5px;
+  padding-right: 5px;
+}
+
+.length{
+  width: 50%;
+  float: left;
+}
+
+.latitude{
+  width: 50%;
+  float: right;
+  padding-left: 5px;
+}
+
+.tabla{
+  margin-top: 5px;
+  padding-right: 5px;
+}
+
+.firma{
+  width: 360px;
+  border: 0.8px solid #e4e9f2;
+  border-radius: 5px;
+}
+
+.time{
+  width: 100%;
+  float: left;
+}
+
+.nit{
+  width: 100%;
+  float: left;
+}
+
+.country{
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.address{
+  margin-top: 5px;
+  padding-right: 5px;
+}
+
+#send-button{
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.contFormPrinc{
+  border: 2px solid #d7d3d3d6;
+  height: 625px;
+  margin-top: 40px;
+  border-radius: 18px;
+  overflow-y: auto;
+  box-shadow: 0px 5px 8px 3px #9ca6b7 !important;
+  padding: 22px 65px;
+}
+
+::ng-deep .nb-theme-default [nbInput].status-basic:disabled {
+  background-color: #f7f9fc;
+  border-color: #e4e9f2;
+  color: #626469;
+}
+
+::ng-deep .nb-theme-material-light [nbInput].status-basic:disabled {
+  background-color: transparent;
+  border-color: rgba(0, 0, 0, 0.42);
+  color: #626469;
+}
+
+::ng-deep .nb-theme-dark [nbInput].status-basic:disabled {
+  background-color: #192038;
+  border-color: #101426;
+  color: #dadadb;
+}
+// Previsual
+.full_pdf_view {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background: #00000059 !important;
+}
+
+::ng-deep .doc-content {
+  display: inline-block;
+  // margin-right: 15px;
+  // margin-bottom: 15px;
+}
+
+::ng-deep .doc-box {
+  padding: 1px;
+  width: 150px;
+  height: 200px;
+  border: 1px solid #3f3f3f;
+  border-radius: 3%;
+}
+
+::ng-deep .pdf-viewer-box {
+  width: 146px;
+  height: 190px;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+::ng-deep .doc-box {
+  ::ng-deep .ng2-pdf-viewer-container{
+    overflow: hidden;
+  }
+}
+::ng-deep .picker-dialog {
+  z-index: 1080 !important;
+}
+
+.box-select {
+  cursor: pointer;
+}
+
+::ng-deep .doc-box {
+  transition: transform .5s ease;
+}
+
+.doc-box:hover {
+  transform: scale(1.05);
+  border: 1.5px solid #412378;
+  .expand-icon {
+    padding: 1px;
+    color: #412378;
+    background: #e3d4ff;
+    border-color: #412378;
+  }
+}
+
+.expand-icon {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border-radius: 0.9rem;
+  font-size: 1.8rem;
+  color: black;
+  padding: 3px;
+  right: -13px;
+  top: -13px;
+  cursor: pointer;
+  border: 1px solid #3f3f3f;
+}
+
+// Preview
+@keyframes show {
+  0%   {
+    opacity: 0;
+    transform: translate3d(0,-50px,0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes hide {
+  0%   {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0,-50px,0);
+  }
+}
+
+@keyframes shows {
+  0%   {
+    transform: translate3d(0,-100px,0);
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+
+@keyframes next {
+  0%   {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  25% {
+    transform: translate3d(200px,0,0);
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+
+@keyframes back {
+  0%   {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  25% {
+    transform: translate3d(-200px,0,0);
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+
+/* The element to apply the animation to */
+.show_pdf_view {
+  animation-name: show;
+  animation-duration: 1s;
+}
+
+.hide_pdf_view {
+  animation-name: hide;
+  animation-duration: 1s;
+}
+
+.next_show_go {
+  animation-name: next;
+  animation-duration: 1s;
+}
+
+.back_show_go {
+  animation-name: back;
+  animation-duration: 1s;
+}
+
+.content-pdf-view {
+  border: 1px solid #e4e9f2;
+  border-radius: 2%;
+  padding: 40px;
+  background: #f7f9fc;
+  animation-name: shows;
+  animation-duration: 1s;
+}
+
+::ng-deep .pdf_view {
+  ::ng-deep .doc-box {
+    width: 60vw;
+    min-width: 300px;
+    height: 80vh;
+    border: none;
+  }
+
+  ::ng-deep .pdf-viewer-box {
+    width: 60vw;
+    min-width: 300px;
+    height: 80vh;
+  }
+
+  .doc-box:hover {
+    transform: none;
+    border: none;
+  }
+
+  ::ng-deep .doc-box {
+    ::ng-deep .ng2-pdf-viewer-container{
+      overflow: scroll;
+      pointer-events: initial;
+    }
+  }
+}
+
+.circle-pdf {
+  border: 1px solid #e4e9f2;
+  border-radius: 50%;
+  padding: 50px 75px 50px 75px;
+  background: #f7f9fc;
+}
+
+//
+// ::ng-deep .header-pdf {
+//   background: #412378 !important;
+// }
+
+// ::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+
+// }
+
+::ng-deep body.nb-theme-dark {
+  .full_pdf_view {
+    background: #151a30;
+  }
+
+  .circle-pdf {
+    border: 1px solid #101426;
+    background: #192038;
+  }
+
+  .content-pdf-view {
+    border: 1px solid #101426;
+    background: #192038;
+  }
+}
+
+// Nuevas cosas.
+.div-configure {
+  padding: 0px !important;
+}
+
+.full-size-configure {
+  height: calc(100vh - 60.89px) !important;
+  margin-bottom: 0px;
+}
+
+::ng-deep html {
+  overflow: hidden !important;
+}
+
+.input-list-content {
+  height: calc(70vh - 90px);
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+::ng-deep .code-input-verify {
+  color: #050505;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+  ::ng-deep .input-list-content::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.5125rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-track {
+    background: #f7f9fc;
+  }
+}
+
+::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+  ::ng-deep .input-list-content::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.3125rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-thumb {
+    background: #b4b4db;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-track {
+    background: #252547;
+  }
+
+  ::ng-deep .code-input-verify {
+    color: white;
+  }
+}
+
+.body-answer-form {
+  padding: 10% 10% 0% 10%;
+}
+
+@media (max-width: 768px){
+  ::ng-deep html {
+    overflow: auto !important;
+  }
+
+  .body-answer-form {
+    padding: 10% 3% 10% 3%;
+  }
+}
+
+::ng-deep ngx-answer {
+  margin-top: -15px;
+}

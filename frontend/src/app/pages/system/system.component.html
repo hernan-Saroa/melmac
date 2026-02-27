@@ -1,0 +1,73 @@
+<div>
+  <div class="filter">
+    <nb-card status="primary" class="filter-card">
+      <nb-card-header>
+        Logs del Sistema
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-3 col-sm-3 report_input">
+            <input nbInput fullWidth placeholder="Fecha Inicial" [nbDatepicker]="init"
+                [(ngModel)]="date_init">
+            <nb-datepicker #init></nb-datepicker>
+          </div>
+          <div class="col-3 col-sm-3 report_input">
+              <input nbInput fullWidth placeholder="Fecha Final" [nbDatepicker]="end" [(ngModel)]="date_end">
+              <nb-datepicker #end></nb-datepicker>
+          </div>
+          <div class="col-3 col-sm-3 report_input">
+            <nb-select fullWidth placeholder="Plataforma" [(ngModel)]="selectedItemNgModel">
+              <nb-option value="1">Plataforma</nb-option>
+              <nb-option value="2">Móvil</nb-option>
+            </nb-select>
+          </div>
+          <div class="col-3 col-sm-3 report_input">
+            <nb-select fullWidth placeholder="Tipo error" [(ngModel)]="selectedItemNgModel2">
+              <nb-option value="1">trace</nb-option>
+              <nb-option value="2">debug</nb-option>
+              <nb-option value="3">info</nb-option>
+              <nb-option value="4">warn</nb-option>
+              <nb-option value="5">error</nb-option>
+              <nb-option value="6">fatal</nb-option>
+            </nb-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-sm-2 report_input">
+              <button type="button" nbButton shape="rectangle" status="primary" (click)="filter()">
+                Filtrar
+              </button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="row">
+    <div class="col-xl-2 col-3">
+      <nb-card status="default" accent="info">
+        <nb-card-header><nb-icon style="margin-right:5px" icon="flag"></nb-icon>Niveles</nb-card-header>
+        <nb-card-body class="less-pad">
+          <nb-list>
+            <nb-list-item class="type-filter" *ngFor="let status of status_list" (click)="filterByType(status.id)">
+              <nb-alert class="type-alert" [status]="status.status">
+                <div class="type-text">
+                    <nb-icon [icon]="status.icon"></nb-icon>
+                    <span>{{status.name}}</span>
+                    <nb-badge class="type-badge" [text]=" status.quantity <= 99 ? status.quantity : '+99'"></nb-badge>
+                </div>
+              </nb-alert>
+            </nb-list-item>
+          </nb-list>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-xl-10 col-9">
+      <nb-card>
+        <nb-card-body class="less-pad" [nbSpinner]="loading" nbSpinnerStatus="success">
+          <ng2-smart-table class="log-table" [settings]="settings" [source]="filtered_data"></ng2-smart-table>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+  </div>
+</div>

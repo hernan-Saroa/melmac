@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12" style="width: 1000px;">
+    <div class="col-md-12 mx-auto container">
+      <nb-card size="small">
+        <nb-tabset (changeTab)="onChangeTab($event)">
+          <nb-tab tabTitle="Escribir" class="pdb">
+                <input class="file-input inputSignHand" nbInput type="text" placeholder="Escriba aquí su nombre" [(ngModel)]="name_text" required>
+          </nb-tab>
+          <nb-tab class="text-center" tabTitle="Dibujar">
+            <div class="col-md-12" [style]="'border: 0.8px solid #e4e9f2; border-radius: 5px;background: white;'">
+              <signature-pad #signPad fxFlex="1 1 50" class="signature" [options]="signaturePadOptions1" id="sign_canvas" fxFlexAlign.xs="center" (onEndEvent)="drawComplete(signPad)">
+              </signature-pad>
+              <button style="margin: 10px;" type="button" nbButton status="basic" shape="rectangle" size="tiny" ghost (click)="drawClear(signPad)">Limpiar</button>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="Subir imagen">
+            <div class="row">
+                <input type="file" accept="image/*" style="display: none;" (change)="onFileSelected($event)" #fileUpload>
+              <div class="col-md-5 offset-md-3 text-center" style="display: grid;cursor: pointer;" (click)="fileUpload.click()">
+                  <img [src]="base64A" height="176px" width="350px" style="background: rgb(175, 175, 176);"/>
+                  <button type="button" nbButton class="upload-btn"
+                        shape="rectangle" size="tiny" outline>
+                        {{ 'Subir Firma' }}
+                        <nb-icon icon="cloud-upload"></nb-icon>
+                    </button>
+              </div>
+            </div>
+
+          </nb-tab>
+        </nb-tabset>
+        <nb-card-footer class="modal-footer-SignHand">
+          <button nbButton status="primary" (click)="onSingHand(indexField)">Aceptar</button>
+          <button nbButton class="mr-25" (click)="closeSingHand()">Cancelar</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>

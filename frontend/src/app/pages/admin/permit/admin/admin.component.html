@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-header>
+    Lista de Permisos
+  </nb-card-header>
+  <nb-card-body style="max-height:450px">
+    <nb-accordion *ngIf="permitsList">
+      <nb-accordion-item *ngFor="let item of permitsList | keyvalue">
+        <nb-accordion-item-header> {{item.key}} <nb-checkbox [checked]='isChildChecked(item.key)' (checkedChange)="toggleParent(item.key, $event)" class="header-check"></nb-checkbox> </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <div *ngFor="let item of item.value">
+            <permit-item [id]='item.id' [name]='item.name' [desc]='item.description' [status]='item.status' (receive)="onEvent($event)"></permit-item>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton style="float: right;" (click)="update()" status="success">Guardar</button>
+  </nb-card-footer>
+</nb-card>

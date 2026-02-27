@@ -1,0 +1,188 @@
+<div *ngIf="!validation && !loading" class="row" style="margin: 0px;">
+  <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <nb-card>
+          <nb-card-body>
+              <div class="flex-centered">
+                  <h6 class="title">Validación</h6>
+                  <small class="sub-title">{{ token_response.title }}</small>
+                  <small class="message">{{ token_response.text }}</small>
+              </div>
+          </nb-card-body>
+      </nb-card>
+  </div>
+</div>
+
+<div *ngIf="option == 3 && finish == 0 && checker_td == 1 && validation" class="col-12" [nbSpinner]="loading" nbSpinnerStatus="success">
+  <div class="col-12 col-md-10 offset-md-1 div-verifed">
+    <div class="verifed-header">
+      <h5 style="margin-bottom: 0px;">Ingresa los siguientes datos para continuar tu proceso de verificación:</h5>
+      <label>Todos los campos marcados con * son obligatorios</label>
+    </div>
+    <div class="row verifed-body">
+      <div class="col-12 col-sm-4 form-group">
+        <label for="">Nombre completo*</label>
+        <input [(ngModel)]="name" name="name" fullWidth autocomplete="off" nbInput type="text" disabled/>
+      </div>
+      <div class="col-12 col-sm-4 form-group">
+        <label for="">Correo electrónico*</label>
+        <input [(ngModel)]="email" name="email" fullWidth autocomplete="off" nbInput type="text" disabled/>
+      </div>
+      <div class="col-12 col-sm-4 form-group">
+        <label for="">Celular*</label>
+        <input type="tel" class="form-control" ng2TelInput nbInput fullWidth [(ngModel)]="phone" name="phone"
+        [ng2TelInputOptions]="{preferredCountries: ['co']}" autocomplete="off" disabled
+        (intlTelInputObject)="telInputObject($event, i)">
+      </div>
+      <div class="col-12 col-sm-6 form-group">
+        <label for="">Tipo de documento*</label>
+        <nb-select [(ngModel)]="type" fullWidth
+          name="type" class="select-form" required
+          placeholder="Seleccionar">
+          <nb-option value="">Seleccionar</nb-option>
+          <nb-option *ngFor="let option of type_identification" [value]="option.id">
+              {{ option.name }}</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-12 col-sm-6 form-group">
+        <label for="">Número de documento*</label>
+        <input [(ngModel)]="doc" name="doc" fullWidth autocomplete="off" nbInput type="number" required/>
+      </div>
+
+      <div class="col-12" style="margin-top: 30px; margin-bottom: 30px; text-align: center;">
+        <h6>ARRASTRA O SUBE TU DOCUMENTO DE IDENTIDAD*</h6>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-10 col-md-9 col-lg-7 col-xl-6" style="float: right;">
+          <label style="width: 100%; text-align: center;" for="">FRONTAL</label>
+          <div style="position: relative;" id="doc_front">
+            <img draggable="true" ngClass="{{ drag_front_class }}" style="width: 100%; pointer-events: none;" [src]="src_front" alt="">
+            <label class="center-msg">O arrastra un archivo aquí</label>
+          </div>
+          <div style="width: 100%; text-align: center; margin-top: 15px; margin-bottom: 15px;">
+            <button class="modal-btn" nbButton status="primary"
+              ngClass="{{ check_front ? 'modal-btn-default':'modal-btn-primary' }}" (click)="file_front.click()">
+              <nb-icon icon="cloud-upload-outline"></nb-icon> SUBIR FOTO
+            </button>
+          </div>
+          <input #file_front [multiple]="false" class="form-control" type="file" id="upload-doc" accept="image/png, image/jpeg" style="display: none;" (change)="uploadFile($event, 1)">
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-10 col-md-9 col-lg-7 col-xl-6" style="float: left;">
+          <label style="width: 100%; text-align: center;" for="">TRASERA</label>
+          <div style="position: relative;" id="doc_back">
+            <img draggable="true" ngClass="{{ drag_back_class }}" style="width: 100%; pointer-events: none;" [src]="src_back" alt="">
+            <label class="center-msg">O arrastra un archivo aquí</label>
+          </div>
+          <div style="width: 100%; text-align: center; margin-top: 15px; margin-bottom: 15px;">
+            <button class="modal-btn modal-btn-primary" nbButton status="primary"
+              ngClass="{{ check_back ? 'modal-btn-default':'modal-btn-primary' }}" (click)="file_back.click()">
+              <nb-icon icon="cloud-upload-outline"></nb-icon> SUBIR FOTO
+            </button>
+          </div>
+          <input #file_back [multiple]="false" class="form-control" type="file" id="upload-doc" accept="image/png, image/jpeg" style="display: none;" (change)="uploadFile($event, 2)">
+        </div>
+      </div>
+
+      <div class="col-12" style="text-align: center;">
+        <button class="modal-btn" nbButton status="primary"
+          ngClass="{{ onValidate() ? 'modal-btn-default':'modal-btn-primary' }}"
+          (click)="onVerifed()" [disabled]="onValidate()">
+          ENVIAR PARA VERIFICACIÓN
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="option == 4 && finish == 0 && validation" class="col-12 content-main-checker" [nbSpinner]="loading" nbSpinnerStatus="success">
+  <div class="row">
+    <div class="col-12 col-sm-6" [nbSpinner]="loading_data_user" nbSpinnerStatus="info">
+      <div class="col-12 list-pdf">
+        <div class="file-option" *ngFor="let file of file_pdf_list" (click)="viewFile(file)">
+          <img style="width: 100%; cursor: pointer;" src="/assets/images/icons/folder/PDF.png" alt="">
+          <label for="">{{ getLabelCheck(file) }}</label>
+        </div>
+      </div>
+
+      <div class="col-12 show-identification">
+        <div *ngIf="!loading_data_user && user_select && user_select.verified != null" class="row" style="width: 100%; position: absolute; height: 100%; z-index: 1;">
+          <div class="message-verified" style="width: 100%; background: #c6c6c629;">
+            <div style="width: 100%;">
+              <div style="width: 100%; text-align: center; margin-bottom: 15px;">
+                <img *ngIf="user_select.verified" style="width: 97px; cursor: pointer;" src="/assets/images/icons/folder/USER_VERIFICADO.png" alt="">
+                <img *ngIf="!user_select.verified" style="width: 97px; cursor: pointer;" src="/assets/images/icons/folder/USER_NO_VERIFICADO.png" alt="">
+              </div>
+              <div style="width: 100%;">
+                <h6 *ngIf="user_select.verified" style="text-align: center;">
+                  Participante VERIFICADO<br>exitosamente
+                </h6>
+                <h6 *ngIf="!user_select.verified" style="text-align: center;">
+                  Participante NO CUMPLE REQUISITOS con<br>anotaciones enviadas al autor
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6" style="margin-top: 15px; margin-bottom: 15px;">
+            <img style="width: 100%; pointer-events: none;" [src]="src_front" alt="">
+          </div>
+          <div class="col-12 col-md-6" style="margin-top: 15px; margin-bottom: 15px;">
+            <img style="width: 100%; pointer-events: none;" [src]="src_back" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 button-process" [nbSpinner]="!buttons_active" nbSpinnerStatus="info">
+        <img style="width: 97px; cursor: pointer;" src="/assets/images/icons/folder/VERIFICADO.png" alt="" (click)="onApprove()">
+        <img style="width: 97px; cursor: pointer;" src="/assets/images/icons/folder/NO_VERIFICADO.png" alt=""  (click)="onDisapprove()">
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <div class="row">
+        <div class="col-12" style="margin-top: 15px;">
+          Resumen de asignaciones y procesos por tipo de verificación para COMPLETAR o DEJAR ANOTACIONES
+        </div>
+      </div>
+      <div class="row user-checked">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-5 checked-content" *ngFor="let user of user_list">
+          <nb-card size="tiny" style="margin-bottom: 15px;" (click)="selectUser(user)" style="cursor: pointer;">
+            <nb-card-header [class]="'checked-header ' + getClassUser(user)">
+              <b style="margin-top: 5px; margin-bottom: 5px;">{{ user.name }}</b>
+              <img *ngIf="user.verified != null && user.verified" style="width: 40px; float: right;" src="/assets/images/icons/folder/CASILLA_VERIFICADO.png" alt="">
+              <img *ngIf="user.verified != null && !user.verified" style="width: 40px; float: right;" src="/assets/images/icons/folder/CASILLA_NO_VERIFICADO.png" alt="">
+            </nb-card-header>
+            <nb-card-body style="padding: 0.5rem 1.5rem;">
+              <label *ngFor="let check of user.checker" style="width: 100%"> - {{ getLabelCheck(check) }}</label>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="finish != 0" class="row" style="background-color: #ffffff; margin: 0px;">
+  <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 finish-div">
+      <nb-card class="finish-card">
+          <nb-card-body>
+              <div class="flex-centered">
+                <div class="finish-icon">
+                  <img *ngIf="finish == 1" style="width: 97px;" src="/assets/images/icons/answer/APROBADO_EXITOSAMENTE.png" alt="">
+                  <img *ngIf="finish == 2" style="width: 97px;" src="/assets/images/icons/answer/NO_APROBADO_ENVIADO.png" alt="">
+                  <img *ngIf="finish == 3" style="width: 97px;" src="/assets/images/icons/folder/COMPLETED_PROCESS.png" alt="">
+                  <img *ngIf="finish == 4" style="width: 97px;" src="/assets/images/icons/folder/NO_COMPLETED_PROCESS.png" alt="">
+                </div>
+                <div>
+                  <h5 *ngIf="finish == 1" class="finish-title">Proceso documental """""" y enviado exitosamente</h5>
+                  <h5 *ngIf="finish == 2" class="finish-title">Proceso documental """""" y enviado con anotaciones</h5>
+                  <h5 *ngIf="finish == 3" class="finish-title">Participantes VERIFICADOS y notificados con éxito</h5>
+                  <h5 *ngIf="finish == 4" class="finish-title">Participantes VERIFICADOS con incumplimiento de requisitos y notificados con éxito</h5>
+                </div>
+              </div>
+          </nb-card-body>
+      </nb-card>
+  </div>
+</div>

@@ -1,0 +1,208 @@
+:host ::ng-deep nb-stepper .step-content {
+  text-align: center;
+
+  button {
+    cursor: pointer;
+    margin: 0.5rem;
+  }
+}
+
+nb-card-body {
+.content-data {
+    margin-bottom: 1rem;
+}
+
+.content-data > * {
+  margin-top: 1rem;
+}
+}
+
+.address-card{
+  width: 100% !important;
+}
+
+.mt-15{
+margin-top: 15px;
+}
+
+.mb-15{
+margin-bottom: 15px;
+}
+
+.select-form{
+min-width: 100%;
+}
+
+.table-field {
+width: 100%;
+}
+
+// .nb-theme-default > .mat-table {
+//     background: #ffffff !important;
+// }
+
+// Ejemplo
+.example-container {
+// margin: 0 25px 25px 0;
+display: inline-block;
+vertical-align: top;
+}
+
+.example-list {
+border: solid 1px #ccc;
+min-height: 50px;
+background: white;
+border-radius: 4px;
+overflow: hidden;
+display: block;
+}
+
+.example-box {
+padding: 15px 10px;
+border-bottom: solid 1px #ccc;
+color: rgba(0, 0, 0, 0.87);
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+box-sizing: border-box;
+cursor: move;
+background: white;
+font-size: 14px;
+}
+
+.cdk-drag-preview {
+box-sizing: border-box;
+border-radius: 4px;
+box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+            0 8px 10px 1px rgba(0, 0, 0, 0.14),
+            0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+opacity: 0;
+}
+
+.cdk-drag-animating {
+transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+::ng-deep .file-input {
+  display: none;
+}
+::ng-deep .end-float{
+  float: right;
+}
+
+::ng-deep .pt-0{
+  padding-top: 0px;
+}
+::ng-deep .pb-0{
+  padding-bottom: 0px;
+}
+
+::ng-deep .progress-bar-back{
+  background-color: rgb(192, 192, 192);
+  width: 80%;
+  border-radius: 15px;
+  height:20px;
+}
+
+::ng-deep .progress-bar-front{
+  background-color: rgb(116, 194, 92);
+  color: white;
+  padding: 1%;
+  text-align: right;
+  font-size: 20px;
+  border-radius: 15px;
+  height:20px;
+}
+
+::ng-deep .prog-bar-0{
+  width:0%;
+  display:none;
+}
+
+::ng-deep .prog-bar-10{
+  width:10%;
+}
+
+::ng-deep .prog-bar-20{
+  width:20%;
+}
+
+::ng-deep .prog-bar-30{
+  width:30%;
+}
+
+::ng-deep .prog-bar-40{
+  width:40%;
+}
+
+::ng-deep .prog-bar-50{
+  width:50%;
+}
+
+::ng-deep .prog-bar-60{
+  width:60%;
+}
+
+::ng-deep .prog-bar-70{
+  width:70%;
+}
+
+::ng-deep .prog-bar-80{
+  width:80%;
+}
+
+::ng-deep .prog-bar-90{
+  width:90%;
+}
+
+::ng-deep .prog-bar-100{
+  width:100%;
+}
+
+::ng-deep .danger:hover{
+  color: red;
+}
+
+// ::ng-deep .progress{
+//   height:100%;
+// }
+
+:host ::ng-deep .ng2-smart-th .progress .ng-star-inserted {
+  display: inline-flex;
+}
+
+:host ::ng-deep .ng2-smart-th .progress .ng-star-inserted {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+::ng-deep .leaflet-bar > a {
+  text-decoration: none !important;
+}
+
+img{
+  max-width:100%;
+  max-height:100%;
+}
+
+.map-container {
+  width: 100% !important;
+}
+
+:host ::ng-deep #summary-table > table > tbody > tr:nth-child(3) > td:nth-child(3){
+  display: none;
+}

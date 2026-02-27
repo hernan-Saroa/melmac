@@ -1,0 +1,70 @@
+::ng-deep .type-filter {
+  padding: 0.25rem !important;
+  cursor: pointer;
+}
+
+::ng-deep .type-alert {
+  margin-bottom: 0 !important;
+  padding: 0.25rem !important;
+  width:100%;
+  border:1px;
+  box-shadow: 2px 2px lightgrey !important;
+}
+::ng-deep .type-table {
+  margin-bottom: 0 !important;
+  padding: 0.2rem !important;
+  width:100px;
+  border:1px;
+  // box-shadow: 2px 2px lightgrey !important;
+}
+
+
+::ng-deep .type-text{
+  font-size: 0.9rem;
+}
+
+::ng-deep .type-text > span {
+  margin-left: 10px;
+}
+
+::ng-deep .type-badge{
+  top:0.35rem !important;
+  right:5% !important;
+}
+
+::ng-deep .filter-card{
+  margin-bottom:0.5rem !important;
+}
+
+::ng-deep .log-table {
+  ::ng-deep i[itemprop]:hover::after {
+      z-index: 1;
+      padding: 5px;
+      font-size: 14px;
+      content: attr(itemprop);
+      position: absolute;
+      border-radius: 0px 5px 5px 5px;
+      border: 1px solid;
+      bottom: -15px;
+      margin-left: -0.4em;
+  }
+}
+
+::ng-deep nb-layout .layout .layout-container .content .columns nb-layout-column{
+  padding: 0.75rem !important;
+}
+
+::ng-deep .less-pad{
+  padding: 0.25rem !important;
+}
+
+::ng-deep ng2-smart-table > table > tbody > tr > td{
+  word-break: break-word;
+  padding: 0.5rem 0.5rem;
+  min-width:100px;
+}
+
+// ::ng-deep ng2-smart-table > table > tbody > tr {
+//   max-height: 100px;
+// }
+

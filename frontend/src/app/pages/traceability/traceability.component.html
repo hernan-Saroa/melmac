@@ -1,0 +1,40 @@
+<nb-card [nbSpinner]="loading">
+    <nb-card-header>
+        Trazabilidad
+        <button *ngIf="!filter_enterprise" shape="round" class="end-float pt-0 pb-0" nbTooltip="Descargar Registro"
+            nbTooltipStatus="success" (click)="getTXT()" nbButton status="success">
+            <nb-icon icon="cloud-download-outline"></nb-icon>
+        </button>
+    </nb-card-header>
+
+    <nb-card-body>
+        <nb-accordion *ngIf="filter_enterprise">
+            <nb-accordion-item #item expanded="true">
+                <nb-accordion-item-header>
+                    Filtro
+                </nb-accordion-item-header>
+                <nb-accordion-item-body>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label class="label">Empresa</label><br>
+                                <nb-select [(ngModel)]="user" (selectedChange)="onChangeUser($event)" name="user" class="select-form"
+                                    placeholder="Seleccionar Empresa">
+                                    <nb-option *ngFor="let admin of admin_list; let i=index;" [value]="admin.id">{{
+                                        admin.first_name }} {{ admin.first_last_name }}</nb-option>
+                                </nb-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button nbButton status="info" size="small" (click)="filter()"> Filtrar </button>
+                        <button style="margin-left: 15px;" nbButton status="success" size="small" (click)="getTXT()">
+                            Descargar </button>
+                    </div>
+                </nb-accordion-item-body>
+            </nb-accordion-item>
+        </nb-accordion>
+
+        <ng2-smart-table [settings]="settings" [source]="trace_send"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>

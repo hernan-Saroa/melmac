@@ -1,0 +1,21 @@
+.description-form {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+button {
+    margin-right: 5px;
+}
+
+
+.pdf_view {
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .pdf_view {
+        height: 500px;
+    }
+}

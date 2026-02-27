@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="upload col-xxl-12">
+      <nb-card>
+        <nb-card-header>
+          Proceso de Carga de Puntos Geoportal <button class="end-float pt-0 pb-0" nbButton ghost status="info" (click)="DownloadSheets()">Descargar Plantilla Aquí<nb-icon icon="more-vertical"></nb-icon></button>  
+        </nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="firstForm">
+            <p class="lorem">
+              Para iniciar el proceso, importa el archivo Excel que contiene los puntos que deseas cargar en el mapa. Puedes descargar la plantilla desde el menú <nb-icon icon="more-vertical"></nb-icon>
+            </p>
+            <div class="content-data">
+              <div class="col-md-12 col-xs-12">
+                <label class="label">Nombre del Proyecto</label>
+                <br>
+                <input nbInput name="projectName" [(ngModel)]="name" formControlName="name">
+              </div>
+              <div class="col-md-12 col-xs-12">
+                <label class="label">Descripción</label>
+                <br>
+                <textarea class="textarea" nbInput name="projectDescription" [(ngModel)]="description" formControlName="description"></textarea>
+              </div>
+              <input type="file" class="file-input"
+                (change)="onFileSelected($event)" name="fileName" #fileUpload>
+              <div class="file-upload">
+                  <button nbButton status="primary" class="upload-btn" shape="round"
+                    (click)="fileUpload.click()"
+                    [nbSpinner]="loading"
+                    [disabled]="!firstForm.valid">
+                    Subir Archivo
+                    <nb-icon icon="cloud-upload"></nb-icon>
+                  </button>
+                  {{fileName}}
+              </div>
+            </div>
+            <div *ngIf="loading">
+              <p>
+                Su archivo se esta procesando, esto puede tomar unos minutos, recuerde que si sale de esta pagina el proceso continuara automaticamente y podra ver el progreso en la tabla inferior.
+              </p>
+              <nb-progress-bar [value]="progress_value" status="primary" [displayValue]="true"></nb-progress-bar>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-xxl-12">
+      <nb-card>
+        <nb-card-header>
+          {{ title_component_table }}
+        </nb-card-header>
+        <nb-card-body>
+          <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+

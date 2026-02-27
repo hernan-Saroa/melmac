@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12" style="width: 1000px;">
+    <div class="col-md-12 mx-auto container">
+      <nb-card>
+        <nb-card-header><h2 class="text-center">Generar programación</h2></nb-card-header>
+        <nb-card-body class="example-items-rows text-center">
+
+          <div class="card-row">
+            <div class="card-col">
+              <nb-card status="success" size="tiny" (click)="clickProgramming(1)">
+                <nb-card-header>PROGRAMACIÓN MANUAL</nb-card-header>
+                <nb-card-body>
+                  Realizara la asignación de las tareas 1 a 1 segun la lista que se encuentre en tareas por asignar o en la lista de tareas por reasignar.
+                </nb-card-body>
+              </nb-card>
+            </div>
+            <div class="card-col">
+              <nb-card status="info" size="tiny" (click)="clickProgramming(2)">
+                <nb-card-header>PROGRAMACIÓN AUTOMATICA</nb-card-header>
+                <nb-card-body>
+                  El sistema ayudara asignando tareas automaticamente donde el usuario solo debe validarlas en la lista de tareas asignadas y asignar manualmente las que no se pudieron programar.
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </div>
+
+
+
+
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+          <button nbButton shape="rectangle" status="danger" (click)="closeModal()">Cancelar</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>

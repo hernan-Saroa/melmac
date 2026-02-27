@@ -1,0 +1,77 @@
+.title-trace {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.content-sign {
+    margin: 15px;
+}
+
+::ng-deep.table_list_field {
+    border-radius: 0.25rem;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+::ng-deep .th_list {
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+
+::ng-deep .table_list_field td {
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+
+::ng-deep body.nb-theme-default,
+::ng-deep body.nb-theme-corporate {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #e4e9f2;
+    }
+
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #e4e9f2;
+    }
+
+    ::ng-deep .table_list_field td {
+        border: 0.0625rem solid #e4e9f2;
+    }
+}
+
+::ng-deep body.nb-theme-dark {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #101426;
+    }
+
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #101426;
+    }
+
+    ::ng-deep .table_list_field td {
+        border: 0.0625rem solid #101426;
+    }
+}
+
+::ng-deep body.nb-theme-cosmic {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #13132b;
+    }
+
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #13132b;
+    }
+
+    ::ng-deep .table_list_field td {
+        border: 0.0625rem solid #13132b;
+    }
+}
+
+.hash-container{
+  text-align: center;
+  border: #e4e9f2 1px solid;
+}
+
+.hash{
+  font-weight: 900;
+}

@@ -1,0 +1,45 @@
+<nb-card>
+  <nb-card-header>
+    <h1>{{title}}</h1>
+  </nb-card-header>
+  <nb-card-body style="overflow-y:auto">
+    <label class="label" for="input-name">Nombre Categoría</label>
+    <input id="input-name" type="text" nbInput fullWidth shape="semi-round" placeholder="Nombre de la Categoría" [(ngModel)]="inputName" style="margin: 10px 0;">
+    <label class="label" for="input-desc">Descripción</label>
+    <textarea id="input-desc" type="text" nbInput placeholder="Descripción de la Categoría" [(ngModel)]="textDescription" style="width:100%; max-width:100%"></textarea>
+    <div class="col-xxl-12">
+      <div class="row">
+          <div class="col-12 col-md-6">
+            <label class="label" for="select-icon">Icono</label>
+            <br>
+            <nb-select placeholder="Selecciona el icono" id="select-icon" hero (selectedChange)="onChangeIcon($event)" [ngModel]="iconSelectedValue">
+              <nb-option [value]="icon.key" *ngFor="let icon of icons | keyvalue">
+                {{icon.value.name}}
+              </nb-option>
+            </nb-select>
+            <br>
+            <label class="label" for="select-icon">Color</label>
+            <br>
+            <nb-select placeholder="Selecciona el icono" id="select-icon" hero (selectedChange)="onChangeColor($event)" [ngModel]="colorSelected">
+              <nb-option [value]="color.key" *ngFor="let color of colors | keyvalue">
+                {{color.value}}
+              </nb-option>
+            </nb-select>
+          </div>
+          <div class="col-12 col-md-6">
+            <div [hidden]="urlIconSelected==''">
+              <label class="label" for="icon-preview"> Vista Previa </label>
+              <br>
+              <img [src]="urlIconSelected" height="50" width="50"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br>
+    <nb-toggle labelPosition="start" [(ngModel)]="stateToggle" [hidden]="!showToggle">Estado</nb-toggle>
+  </nb-card-body>
+  <nb-card-footer>
+    <button style="margin-right: 5px;" nbButton (click)="close()">Cancelar</button>
+    <button [nbSpinner]="loading" nbSpinnerStatus="success" [disabled]="loading" nbButton status="primary" (click)="onAccept($event)">Aceptar</button>
+  </nb-card-footer>
+</nb-card>

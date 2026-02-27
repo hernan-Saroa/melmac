@@ -1,0 +1,16 @@
+.modal-title{
+  text-align: center;
+  color: #412378;
+}
+
+.btn-style{
+  color: white !important;
+  background: #412378 !important;
+  border-radius: 12px !important;
+  padding: 15px 45px !important;
+  &:disabled {
+    background: gray !important;
+    cursor: no-drop;
+  }
+}
+

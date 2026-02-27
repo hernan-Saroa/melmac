@@ -1,0 +1,230 @@
+<nb-card class="modal-card" [style]="'height: ' + size">
+  <nb-card-body class="modal-card-body">
+
+    <h5 class="modal-title">{{ title }}<br>{{ sub_title }}</h5>
+
+    <div *ngIf="data.type == 1" class="row content">
+      <div class="col-md-6 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/answer/NO_APROBRADO.png" alt="">
+        </div>
+        <label class="label-title label-primary">APROBADO</label>
+        <label>Aprueba y envía el documento</label>
+      </div>
+      <div class="col-md-6 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/answer/NO_APROBRADO.png" alt="">
+        </div>
+        <label class="label-title label-danger">NO APROBADO</label>
+        <label>Desaprueba y deja anotaciones</label>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 2" class="row content">
+      <div class="col-md-6 offset-md-3 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/answer/GENERAR_APROBADO.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 3" class="row content scroll-form">
+      <div *ngFor="let text of disapprove; let i=index;" class="col-md-12 col-12 form-approve">
+        <div style="margin-right: 5px;">
+          <img class="icon-img" style="width: 46px;" src="/assets/images/icons/answer/RAZONES_NO_APROBADO.png" alt="">
+          <div *ngIf="disapprove.length > 1" style="padding: 10px 13px 10px 13px; border: 1px solid #8f8f8f; width: 46px; margin-top: 5px; cursor: pointer;"
+            (click)="RemoveDisapprove(i)">
+            <img class="icon-img"  src="/assets/images/icons/answer/ELIMINAR_RAZON.png" alt="">
+          </div>
+        </div>
+        <textarea [(ngModel)]="text.value" id="" style="width: 90%;" rows="6">{{ text.value }}</textarea>
+      </div>
+
+      <div class="col-md-12 col-12 form-approve" *ngIf="disapprove.length <= 2">
+        <div style="margin-right: 5px;">
+          <img class="icon-img" style="width: 45px; cursor: pointer;" (click)="AddDisapprove()"
+            src="/assets/images/icons/answer/AGREGAR_RAZONES.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 4" class="row content">
+      <div class="col-md-6 offset-md-3 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/answer/TRATAMIENTO DE DATOS.png" alt="">
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <label class="label-title label-info">¿AUTORIZAS EL TRATAMIENTO DE TUS DATOS PERSONALES?</label>
+        <label>Según la Ley 1581 de 2012</label>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 5" class="row content">
+      <div class="col-md-6 offset-md-3 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/answer/DILIGENCIAMIENTO_FINALIZADO.png" alt="">
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <label class="label-title">REVISA TU CORREO ELECTRÓNICO</label>
+        <label>Allí encontrarás tu notificación y copia sobre este procedimiento de verificación</label>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 6" class="row content">
+      <div style="text-align: center;">
+        <code-input class="token" #codeInput id="code" [isCodeHidden]="false"
+          [codeLength]="6" (codeCompleted)="saveToken($event)" style="color: #909eba" >
+        </code-input>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 7" class="row content">
+      <div class="col-md-6 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/folder/VERIFICADO.png" alt="">
+        </div>
+        <label class="label-title label-primary">VERIFICADO</label>
+        <label>Verificación completada con éxito</label>
+      </div>
+      <div class="col-md-6 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/folder/NO_VERIFICADO.png" alt="">
+        </div>
+        <label class="label-title label-danger">NO CUMPLE REQUISITOS</label>
+        <label>Deja las anotaciones necesarias</label>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 8" class="row content scroll-form">
+      <div *ngFor="let text of disapprove; let i=index;" class="col-md-12 col-12 form-approve">
+        <div style="margin-right: 5px;">
+          <img class="icon-img" style="width: 46px;" src="/assets/images/icons/answer/RAZONES_NO_APROBADO.png" alt="">
+          <div *ngIf="disapprove.length > 1" style="padding: 10px 13px 10px 13px; border: 1px solid #8f8f8f; width: 46px; margin-top: 5px; cursor: pointer;"
+            (click)="RemoveDisapprove(i)">
+            <img class="icon-img"  src="/assets/images/icons/answer/ELIMINAR_RAZON.png" alt="">
+          </div>
+        </div>
+        <textarea [(ngModel)]="text.value" id="" style="width: 90%;" rows="6">{{ text.value }}</textarea>
+      </div>
+
+      <div class="col-md-12 col-12 form-approve" *ngIf="disapprove.length <= 2">
+        <div style="margin-right: 5px;">
+          <img class="icon-img" style="width: 45px; cursor: pointer;" (click)="AddDisapprove()"
+            src="/assets/images/icons/answer/AGREGAR_RAZONES.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 9" class="row content">
+      <div class="col-md-6 offset-md-3 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img-w" src="/assets/images/icons/folder/COMPLETED_PROCESS.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 10" class="row content">
+      <div class="col-md-6 offset-md-3 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img" src="/assets/images/icons/answer/TRATAMIENTO DE DATOS.png" alt="">
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <label class="label-title label-info">¿AUTORIZAS EL TRATAMIENTO DE TUS DATOS PERSONALES?</label>
+        <label>Según la Ley 1581 de 2012</label>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 11" class="row content">
+      <div class="col-md-6 offset-md-3 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img mb-15" src="/assets/images/icons/answer/DILIGENCIAMIENTO_FINALIZADO.png" alt="">
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <label class="label-title">REVISA TU CORREO ELECTRÓNICO</label>
+        <label>Allí encontrarás tu notificación y copia sobre este proceso documental</label>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 12" class="row content">
+      <div class="col-md-6 offset-md-3 col-12 btn-explain-option">
+        <div class="btn-content">
+          <img class="btn-img mb-15" src="/assets/images/icons/answer/HOUSTON.png" alt="">
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <label class="label-title">DEBES COMPLETAR LOS CAMPOS ASIGNADOS PARA CONTINUAR</label>
+        <label>Por favor, revisa con detenimiento y completa todos los campos asignados</label>
+      </div>
+    </div>
+
+    <div *ngIf="data.type == 13" class="row content">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="" class="label">Nombre Completo*</label>
+          <input
+            [(ngModel)]="contact_name"
+            autocomplete="off" nbInput fullWidth
+            placeholder="Ingresa tus nombres y apellidos"/>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="" class="label">Email*</label>
+          <input
+            [(ngModel)]="contact_email"
+            autocomplete="off" nbInput fullWidth
+            placeholder="Ingresa tu correo electrónico"/>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="" class="label">Teléfono*</label>
+          <input type="number" ng2TelInput nbInput fullWidth autocomplete="off"
+            class="form-control"
+            [(ngModel)]="contact_phone.phoneNumber"
+            [ng2TelInputOptions]="telOptions"
+            (blur)="onBlur($event)"
+            (intlTelInputObject)="telInputObject($event)">
+        </div>
+      </div>
+    </div>
+
+    <div class="row content" style="justify-content: center;" >
+      <!-- Diligenciador -->
+      <button *ngIf="data.type == 1" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">Entendido</button>
+      <button *ngIf="data.type == 10" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">Acepto</button>
+      <button *ngIf="data.type == 11" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">Entendido</button>
+      <button *ngIf="data.type == 12" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">Entendido</button>
+      <!-- Aprobador -->
+      <button *ngIf="data.type == 2 || data.type == 3 || data.type == 8 || data.type == 9" class="modal-btn modal-btn-default mr-15" nbButton status="default" (click)="close()">Revisar nuevamente</button>
+      <button *ngIf="data.type == 2" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">Si, Aprobado</button>
+      <button *ngIf="data.type == 3" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)" [disabled]="onValidate()">Enviar anotaciones</button>
+      <!-- Verificado Acepta -->
+      <button *ngIf="data.type == 4" class="modal-btn modal-btn-default mr-15" nbButton status="default" (click)="close()">No Autorizo</button>
+      <button *ngIf="data.type == 4" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">Acepto</button>
+      <button *ngIf="data.type == 5" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="close()">Entendido</button>
+      <!-- Verificador/Checker -->
+      <button *ngIf="data.type == 6" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)" [disabled]="token_checker == ''">Aplicar</button>
+      <button *ngIf="data.type == 7" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="close()">Entendido</button>
+      <button *ngIf="data.type == 8" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)" [disabled]="onValidate()">ENVIAR ANOTACIONES</button>
+      <button *ngIf="data.type == 9" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">ENVIAR VERIFICACIÓN</button>
+      <!-- Público / Formulario Contacto -->
+      <button *ngIf="data.type == 13" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)" [disabled]="onValidateContact()">Continuar</button>
+    </div>
+    <div>
+
+    </div>
+    <div class="footer-option">
+      <label *ngIf="data.type == 1">Encuentra estas opciones a la derecha de tu pantalla</label>
+      <label *ngIf="data.type == 7">
+        En el momento en que indicas que un participante NO CUMPLE REQUISITOS de acuerdo con tu VERIFICACIÓN, el autor
+        y participante recibirán la notificación con las anotaciones que argumentes.
+      </label>
+    </div>
+
+  </nb-card-body>
+</nb-card>

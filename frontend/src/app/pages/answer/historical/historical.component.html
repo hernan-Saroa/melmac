@@ -1,0 +1,118 @@
+<nb-card *ngIf="type_user == 2">
+    <nb-card-header>
+      Histórico de documentos por usuario
+      <button type="button" nbButton status="basic" shape="rectangle"
+        class="btn_eraser" (click)="onAnswer()"
+        nbTooltip="Volver" nbTooltipStatus="default" size="small">
+        <nb-icon icon="corner-up-left-outline"></nb-icon>
+    </button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="col-12 col-sm-12 col-md-12 pl-0" style="text-align: left;">
+          <span>Por favor seleccione el usuario en la lista: </span>
+            <input #autoInput
+                [ngModel]="id_option"
+                nbInput
+                type="text"
+                (input)="onChange()"
+                placeholder="Seleccionar Usuario"
+                [nbAutocomplete]="auto" />
+
+            <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+                <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+                    {{ option.name }}
+                </nb-option>
+            </nb-autocomplete>
+        </div>
+    </nb-card-body>
+  </nb-card>
+<nb-card *ngIf="loading">
+    <nb-card-body>
+        <div class="col-xxl-12">
+            <div class="row">
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Nombres
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.first_name }} {{ user_data.middle_name }} </label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Apellidos
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.first_last_name  }} {{ user_data.second_last_name }}</label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Ultima conexión
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.last_login | date:'medium' }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Documento
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.type_identification }} : {{ user_data.identification }} </label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Celular
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.phone  }}</label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Correo
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.email  }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Rol
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.role_enterprise }} </label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Plataforma de Registro
+                    </label>
+                    <br>
+                    <label *ngIf="user_data.register_platform == 0" class="label">Web</label>
+                    <label *ngIf="user_data.register_platform == 1" class="label">Móvil</label>
+                    <label *ngIf="user_data.register_platform == 2" class="label">Facebook</label>
+                    <label *ngIf="user_data.register_platform == 3" class="label">Número teléfonico</label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">
+                        Fecha de Creación
+                    </label>
+                    <br>
+                    <label class="label">{{ user_data.creation_date | date:'medium' }}</label>
+                </div>
+            </div>
+        </div><br>
+    </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="loading">
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-body>
+      <button nbButton (click)="onBack()" status="basic">Volver</button>
+  </nb-card-body>
+</nb-card>
+

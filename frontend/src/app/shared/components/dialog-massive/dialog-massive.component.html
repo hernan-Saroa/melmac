@@ -1,0 +1,50 @@
+<nb-card class="rounded p-2" style="max-width: 720px; min-height: 517px;">
+    <nb-card-header class="d-flex align-items-center justify-content-between mt-2" style="background-color: white;">
+        <div class="d-flex align-items-center">
+            <nb-icon *ngIf="inputData.icon != ''" [icon]="inputData.icon" status="primary" style="font-size: 2rem;"></nb-icon>
+            <h1 *ngIf="inputData.data.length == 0">{{inputData.title}}</h1>
+            <h5 *ngIf="inputData.data.length > 0">{{inputData.title}}</h5>
+        </div>
+        <nb-icon class="ml-4" icon="close-outline" (click)="close(false)" style="font-size: 1.8rem;"></nb-icon>
+    </nb-card-header>
+    <nb-card-body *ngIf="inputData.data.length == 0" style="margin-left: 2rem;">
+        <div class="row">
+            1. Descarga la plantilla que te permitir&aacute; subir en el sistema los {{inputData.listName}} guardados en el archivo de formato Excel:.
+        </div>
+        <div class="row mt-4">
+            <button nbButton (click)="downloadPlantilla()" status="primary">
+                <nb-icon icon="download-outline" status="control" style="font-size: 1.5rem;"></nb-icon>
+                Descargar Plantilla {{inputData.descriptionButton}}
+            </button>
+        </div>
+        <div class="row mt-4">
+            2. Sube el archivo en Excel con la informaci&oacute;n diligenciada.
+        </div>
+        <div class="row mt-2">
+            <input type="file" (change)="onFileSelected($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+        </div>
+    </nb-card-body>
+    <nb-card-body *ngIf="inputData.data.length > 0" style="margin-left: 2rem;">
+        <div class="row">
+            <div *ngFor="let list of dataList" class="col-xl-4 col-lg-4 col-md-4 col-12 mb-3">
+                <div class="row justify-content-around">
+                    <div>
+                        <b>{{list.index}}</b>
+                    </div>
+                    <div>{{list.value}}</div>
+                    <div></div>
+                    <!-- <nb-icon icon="edit-outline" status="primary"></nb-icon> -->
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3" *ngIf="pageTotal > 1" >
+            <nb-icon class="mr-2" icon="arrow-ios-back-outline" (click)="changePage(false)"></nb-icon>
+            <b>{{page}} de {{pageTotal}}</b>
+            <nb-icon class="ml-2" icon="arrow-ios-forward-outline" (click)="changePage(true)"></nb-icon>
+        </div>
+    </nb-card-body>
+    <nb-card-footer *ngIf="inputData.data.length == 0" class="d-flex justify-content-center">
+        <!-- <button nbButton (click)="close(false)">Cancelar</button> -->
+        <button nbButton (click)="close(true)" [disabled]="excelData.length == 0" status="primary">Aceptar</button>
+    </nb-card-footer>
+</nb-card>

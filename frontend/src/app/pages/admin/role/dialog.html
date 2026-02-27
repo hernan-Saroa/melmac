@@ -1,0 +1,67 @@
+<nb-card>
+  <nb-card-header>
+    <h1>{{data.title}}</h1>
+  </nb-card-header>
+  <nb-card-body class="content-role-permit">
+    <label class="label" for="input-name">Nombre Rol</label>
+    <input id="input-name" type="text" nbInput fullWidth shape="semi-round" placeholder="Nombre del Rol" [(ngModel)]="inputNameNgModel" style="margin: 10px 0;">
+    <label class="label" for="input-desc">Descripción</label>
+    <textarea id="input-desc" type="text" nbInput placeholder="Descripción del Rol" [(ngModel)]="descriptionNgModel" style="width:100%; max-width:100%"></textarea>
+
+    <label class="label">Horario</label>
+    <div style="text-align: center; display: flex;">      
+      <div class="permit-container">
+        <label class="label" for="input-init">Inicio </label>
+        <input nbInput type="time"
+        name="timepickerInicio" 
+        class="input-text-time" autocomplete="off"
+        [(ngModel)]="timeInit"
+        />
+          <nb-timepicker #timepickerInicio></nb-timepicker>
+      </div>
+      <div class="permit-container">
+        <label class="label" for="input-end">Fin </label>
+        <input nbInput type="time"
+        name="timepickerInicio" 
+        class="input-text-time" autocomplete="off"
+        [(ngModel)]="timeEnd"
+        />
+          <nb-timepicker #timepickerFin></nb-timepicker>
+      </div>
+    </div>
+
+    <div class="content-check">
+      <div class="fl">
+        <nb-checkbox hidden [(ngModel)]="isAdminNgModel" [checked]="isAdminNgModel" title="El usuario es administrador?" (checkedChange)="toggleAdmin($event)">Es Administrador?</nb-checkbox>
+        <nb-checkbox [(ngModel)]="allNgModel" [checked]="allNgModel" (checkedChange)="toggleAll($event)"
+          nbTooltip="Seleccionar todos los permisos" nbTooltipStatus="basic">
+          Todos los permisos
+        </nb-checkbox>
+      </div>
+      <div class="fr">
+        <nb-checkbox [(ngModel)]="viewAllNgModel" [checked]="viewAllNgModel" (checkedChange)="toggleViewAll($event)"
+          nbTooltip="El usuario podrá ver los datos de los demás usuarios" nbTooltipStatus="basic">
+          Ver todo
+        </nb-checkbox>
+      </div>
+    </div>
+    <br>
+    <label class="label" for="input-permit">Permisos</label>
+    <div class="permit-container">
+      <nb-accordion id="input-permit">
+        <nb-accordion-item *ngFor="let group of permissions | keyvalue">
+          <nb-accordion-item-header> {{group.key}} </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="md-3" *ngFor="let permission of group.value">
+              <nb-checkbox [value]="permission.id" [(ngModel)]="assigned[permission.id]" (checkedChange)="toggle($event, permission.id)">{{permission.description}}</nb-checkbox>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close()">Cancelar</button>
+    <button [nbSpinner]="loading" nbSpinnerStatus="success" [disabled]="loading" nbButton status="primary" (click)="onAccept($event)">Aceptar</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,72 @@
+::ng-deep .nb-theme-default{
+  .titleLabel{
+    color: #424242;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 600;
+  }
+}
+
+::ng-deep .nb-theme-material-light {
+  .titleLabel{
+    color: #424242;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 600;
+  }
+}
+
+::ng-deep .nb-theme-dark {
+  .titleLabel{
+    color: #ffffff;
+    font-size: 14px !important;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 600;
+  }
+}
+
+::ng-deep .ngModleHour{
+  max-width: 12rem !important;
+}
+
+p{
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  border-top-style: ridge;
+  border-bottom-style: ridge;
+  padding: 10px;
+}
+
+nb-card-body.example-items-rows {
+  align-items: center;
+  padding-left: 0px;
+}
+
+nb-checkbox:not(:only-child) {
+  margin-right: 1.5rem;
+}
+
+::ng-deep .nb-theme-default .nb-timepicker-container {
+  width: 20rem;
+  height: 21.1875rem;
+}
+
+::ng-deep .nb-theme-dark .nb-timepicker-container {
+  width: 20rem;
+  height: 21.1875rem;
+}
+
+::ng-deep .nb-theme-material-light .nb-timepicker-container {
+  width: 20rem;
+  height: 21.1875rem;
+}
+
+.mount-words {
+  float: right;
+  font-family: ui-monospace;
+  font-size: small;
+}

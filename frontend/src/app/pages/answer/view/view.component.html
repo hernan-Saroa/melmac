@@ -1,0 +1,79 @@
+<nb-card class="actions-card" *ngIf="consecutive">
+    <nb-card-header>
+        {{ name }}
+        <button nbTooltip="Ver PDF" nbTooltipStatus="success" (click)="getPDF()" class="end-float" nbButton status="success"><i class="far fa-file-pdf"></i></button>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-actions fullWidth>
+        <nb-action *ngFor="let form of form_list; let i=index;">
+            <button [title]="form_check.includes(form.id) ? 'Diligenciado' : 'No diligenciado'" fullWidth nbButton [status]="form_check.includes(form.id) ? 'success' : 'basic'">{{ form.name }}</button>
+        </nb-action>
+      </nb-actions>
+    </nb-card-body>
+</nb-card>
+
+<nb-card *ngFor="let form of list_form; let i=index;" >
+    <nb-card-header id="{{ form.id }}">
+        Documento: {{ form.name }}
+        <button *ngIf="!consecutive" nbTooltip="Ver PDF" nbTooltipStatus="success" (click)="getPDF()" class="end-float" nbButton status="success"><i class="far fa-file-pdf"></i></button>
+        <button *ngIf="ani" nbTooltip="Ver PDF - Documento Identidad" nbTooltipStatus="info" (click)="getPdfDocument(1)" class="end-float" nbButton status="info" style="margin-right: 20px;"><i class="far fa-file-pdf"></i></button>
+        <button *ngIf="nit" nbTooltip="Ver PDF - Documento Nit" nbTooltipStatus="info" (click)="getPdfDocument(2)" class="end-float" nbButton status="info" style="margin-right: 20px;"><i class="far fa-file-pdf"></i></button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="col-xxl-12">
+            <div class="row">
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">{{ form.user }}</label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">{{ form.source == 1 ? 'Web' : 'Móvil' }} - {{ form.online ? 'Online' : 'Offline' }}</label>
+                </div>
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="label">{{ form.creation_date | date:'medium' }}</label>
+                </div>
+            </div>
+        </div><br>
+        <div class="col-xxl-12">
+            <div class="row">
+                <div *ngFor="let field of form.fields; let i=index;" class="col-12 col-md-6" [hidden]="field.type == 14">
+                    <nb-card >
+                        <nb-card-header>{{ i + 1 }}) {{ field.name }}</nb-card-header>
+                        <nb-card-body *ngIf="(field.type != 7 && field.type != 8 && field.type != 9 && field.type != 10 && field.type != 17 && field.type != 18 && field.type != 20 && field.type != 23)">
+                            {{ field.answer }}
+                        </nb-card-body>
+                        <nb-card-body *ngIf="(field.type == 7 || field.type == 8 || field.type == 9 || field.type == 10 || field.type == 18) || ((field.type == 10 || field.type == 18) && form.online == false)">
+                            <a *ngIf="field.answer != '' && field.type == 8" target="_blank" href="{{ field.answer }}">Ver archivo</a>
+                            <div *ngIf="field.answer != '' && (field.type == 10 || field.type == 18)"> Comprobante de firma<br><br></div>
+                            <img *ngIf="field.answer != '' && field.type != 8" src="{{ field.answer }}" style="width: 150px !important;">
+                        </nb-card-body>
+                        <nb-card-body *ngIf="field.type == 17">
+                            <table class="table_list_field">
+                                <th class="th_list" *ngFor="let head of field.answer.head">
+                                    {{ head[1] }}
+                                </th>
+                                <tr *ngFor="let body of field.answer.body"
+                                    class="th_list" >
+                                    <td class="th_list" *ngFor="let head of field.answer.head">
+                                        <img *ngIf="getTableData(head[0], body) != '' && head[2] == 7" src="{{ getTableData(head[0], body) }}" style="width: 150px !important;">
+                                        <p *ngIf="head[2] != 7">{{ getTableData(head[0], body) }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </nb-card-body>
+                        <nb-card-body *ngIf="field.type == 20">
+                            {{ field.answer }}
+                        </nb-card-body>
+                        <nb-card-body *ngIf="field.type == 23">
+                          {{ field.answer }}
+                      </nb-card-body>
+                    </nb-card>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<nb-card>
+    <nb-card-body>
+        <button nbButton (click)="onBack()" status="basic">Volver</button>
+    </nb-card-body>
+</nb-card>

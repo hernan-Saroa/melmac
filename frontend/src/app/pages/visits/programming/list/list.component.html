@@ -1,0 +1,10 @@
+<nb-card>
+  <nb-card-header>
+    Programaciones del sub proyecto: {{nameSubProyect}}
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)" (create)="onCustom($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+

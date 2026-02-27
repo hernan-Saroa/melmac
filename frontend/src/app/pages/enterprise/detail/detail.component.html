@@ -1,0 +1,360 @@
+<h3 class="colorTitle">Configura los datos de tu empresa</h3>
+<nb-card class="pt-3 pb-3 sombraNbcard">
+  <div class="row">
+    <div class="col-12 d-flex">
+      <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-12 d-flex">
+            <div class="col-md-6">
+              <label class="label" for="inputName">Nombre Empresa*</label>
+              <input id="inputName" type="text" nbInput fullWidth shape="semi-round" autocomplete="off" placeholder="Nombre Empresa" [ngModel]="name" (change)="changeValue(0,$event)" maxlength="40" required>
+            </div>
+            <div class="col-md-6">
+              <label class="label" for="inputNit">Nit</label>
+              <input id="inputNit" type="text" nbInput fullWidth shape="semi-round" autocomplete="off" placeholder="Ingresa el Nit de tu empresa." pattern="^[0-9]{9}[\-]?[0-9]?$" [ngModel]="nit" (change)="changeValue(1,$event)" (keydown)="onKeyDownEvent(0, $event)" maxlength="11">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex">
+            <div class="col-md-6">
+              <label class="label" for="inputWeb">Página web de la empresa</label>
+              <input id="inputWeb" type="text" nbInput fullWidth shape="semi-round" autocomplete="off" placeholder="Ej. melmac.co, www.melmac.co, https://www.melmac.co" [ngModel]="website" (change)="changeValue(2,$event)" maxlength="50">
+            </div>
+            <div class="col-md-6">
+              <label class="label" for="inputNameMain">Título menú general de la pagína</label>
+              <input id="inputNameMain" type="text" nbInput fullWidth shape="semi-round" autocomplete="off" placeholder="Título menú general" [ngModel]="main_name" (change)="changeValue(10,$event)" maxlength="40" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex mt-1">
+            <div class="col-md-9">
+              <label class="label" for="inputAcronym">Abreviatura e imagen para tu url dentro de melmac</label>
+              <div class="d-flex"><span class="pt-3">{{getUrl('2')}}</span><input id="inputAcronym" type="text" nbInput fullWidth shape="semi-round" autocomplete="off" placeholder="Acronimo" style="margin:0px" pattern='^[^ !@#$%^&*(),.?":{}|<>]*$' [ngModel]="acronym" (change)="changeValue(3,$event)" (keydown)="onKeyDownEvent(1, $event)" maxlength="20"></div>
+            </div>
+            <div class="col-md-3 cont-abre">
+              <input type="file" class="hidden" accept="image/*"
+                    (change)="onFileSelected($event,2)" [ngModel]="fileName2" #imageUpload2>
+              <button type="button" nbButton class="upload-btn" shape="rectangle" status="primary"
+                      style="width: 94%" (click)="imageUpload2.click()">
+                  {{ fileName3 || 'Subir Imagen' }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex mt-1">
+            <div class="col-md-9">
+              <label class="label" for="input-doc">Tu dirección web en melmac para copiar y compartir</label>
+              <input type="text" nbInput fullWidth shape="semi-round" autocomplete="off" value="{{getUrl('1')}}">
+            </div>
+            <div class="col-md-3" style="padding-top: 40px;text-align: right;">
+              <div><a href="javascript:void(0);" (click) ="getUrl('3')" style="color: #412378;"><nb-icon icon="link-2-outline"></nb-icon> Copiar enlace</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex mt-1">
+            <div class="col-md-9">
+              <label class="label" for="input-doc">¿Desea mostrar el pie de página en la plataforma?</label>
+              <div class="d-flex">
+                <nb-toggle [(ngModel)]="toggleNgModel7" fullWidth (checkedChange)="toggleClick($event,6)" labelPosition="right"></nb-toggle>
+                <div style="padding: 15px;font-size: 20px;">{{ nameFooter }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <!-- LOGO DE LA Empresa -->
+
+        <label class="label" for="input-doc">Logo o Imagen</label>
+        <div *ngIf="image != ''" class="content_logo mb-0" 
+          style="border:1px solid #e4e9f2;;height: 220px;">
+          <img class="logo" [(src)]="image" alt="" (click)="imageUpload.click()">
+          <!-- <button [hidden]="image" 
+            style="height: -webkit-fill-available;width: -webkit-fill-available;" 
+            (click)="imageUpload.click()" nbButton ghost status="primary">
+            <nb-icon class="textIcon textIconTop" icon="log-in-outline"></nb-icon>
+          </button> -->
+        </div>
+        <div class="text-center">
+          <button *ngIf="image != ''" (click)="imageUpload.click()" nbButton ghost status="primary" 
+            style="font-weight: 400;color: #412378; margin-top: 10px;"><nb-icon icon="log-in-outline" class="textIconTop mr-1">
+            </nb-icon>Cargar imagen
+          </button>
+        </div>
+
+        <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 col-xl-2 offset-xl-5">
+          <input type="file" class="hidden" accept="image/*"
+          (change)="onFileSelected($event,1)" [ngModel]="fileName" #imageUpload>
+          <!-- <div class="col-xs-6">
+            <img [(src)]="image" class="logo-enterprise"/>
+          </div> -->
+        </div>
+        
+        <div class="upload-btn">
+          <button *ngIf="image == ''" nbButton status="primary" shape="round"
+            (click)="imageUpload.click()">
+            Subir Imagen
+            <nb-icon icon="camera"></nb-icon>
+          </button>
+        </div>
+
+        <!-- LOGO DE LA WHATSAAP -->
+
+        <label class="label" for="input-doc">Logo o Imagen de WhatsApp</label>
+        <div *ngIf="image_wh != ''" class="content_logo mb-0" 
+          style="border:1px solid #e4e9f2;;height: 220px;">
+          <img class="logo" [(src)]="image_wh" alt="" (click)="imageWhUpload.click()">
+          <!-- <button [hidden]="imagebtn_wh" 
+            style="height: -webkit-fill-available;width: -webkit-fill-available;" 
+            (click)="imageWhUpload.click()" nbButton ghost status="primary">
+            <nb-icon class="textIcon textIconTop" icon="log-in-outline"></nb-icon>
+          </button> -->
+        </div>
+        <div class="text-center">
+          <button *ngIf="image_wh != ''" (click)="imageWhUpload.click()" nbButton ghost status="primary" 
+            style="font-weight: 400;color: #412378; margin-top: 10px;"><nb-icon icon="log-in-outline" class="textIconTop mr-1">
+            </nb-icon>Cargar imagen
+          </button>
+        </div>
+        <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 col-xl-2 offset-xl-5">
+          <input type="file" class="hidden" accept="image/*"
+          (change)="onFileSelected($event,3)" [ngModel]="fileNameWh" #imageWhUpload>
+        </div>
+        <div class="upload-btn">
+          <button *ngIf="image_wh == ''" nbButton status="primary" shape="round"
+            (click)="imageWhUpload.click()">
+            Subir Imagen
+            <nb-icon icon="camera"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nb-card>
+
+<h3 class="colorTitle">Configura y autentica la identidad del remitente de tus correos</h3>
+<nb-card class="pt-3 pb-3 sombraNbcard">
+  <div class="col-12 d-flex">
+    <div class="col-md-5">
+        <label class="label" for="nameEnt">Nombre que aparecerá como remitente </label>
+        <div class="col-xs-12 col-sm-12 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-12 pl-0" style="padding-right: 5px !important;">
+            <input type="text" id="nameEnt" nbInput fullWidth shape="semi-round" autocomplete="off" [(ngModel)]="nameEnt">
+          </div>
+        </div>
+        <label class="label" for="remEnt">Dirección de correo que aparecerá como "responder a" </label>
+        <div class="col-xs-12 col-sm-12 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-12 pl-0" style="padding-right: 5px !important;">
+            <input type="text" nbInput fullWidth id="remEnt" shape="semi-round" autocomplete="off" [(ngModel)]="remEnt">
+          </div>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+      <label class="label" for="inputPublic">Asi se verán tus datos de remitente</label>
+        <div class="col-md-12">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4 p-0 m-0" style="height:225px;"><img src="./assets/images/gmailV.png" style="width:100%;height: 100%;"/></div>
+              <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-12 p-0 m-0" style="height:45px;"><img src="./assets/images/gmailH.png" style="width:100%;height: 100%;"/></div>
+                    <div class="col-md-12 p-0 m-0" style="background: #f2f6fc;height:180px;">
+                      <table class="table">
+                        <tbody>
+                          <tr class="pr-0 mr-0">
+                            <td style="width: 20px;"><img src="./assets/images/gmailI.png" width="60"/></td>
+                            <th scope="row" style="font-size: 10px !important;">{{ nameEnt }}</th>
+                            <td style="font-size: 10px;">Compartido desde ...</td>
+                          </tr>
+                          <tr>
+                            <td style="width: 20px;"><img src="./assets/images/gmailI.png" width="60"/></td>
+                            <th scope="row" style="font-size: 10px !important;">{{ nameEnt }}</th>
+                            <td style="font-size: 10px;">Compartido desde ...</td>
+                          </tr>
+                          <tr>
+                            <td style="width: 20px;"><img src="./assets/images/gmailI.png" width="60"/></td>
+                            <th scope="row" style="font-size: 10px !important;">{{ nameEnt }}</th>
+                            <td style="font-size: 10px;">Compartido desde ...</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+  </div>
+</nb-card>
+
+<div class="col-12">
+  <div style="display: flex;justify-content: center;">
+    <div class="text-center">
+      <button type="button" id="btnV1" class="sombraBtn" (click)="openAddress(1)" style="padding: 20px 30px;-moz-border-radius: 7px;-webkit-border-radius: 10px;margin: 2px 7px;"><img src="./assets/images/recursosmoduloempresa_melmac-12.png" width="90" style="margin-bottom: 15px;" /><br><span style="color: white;font-weight: 700;font-size: 18px;">AUTENTICAR DOMINIO</span></button>
+      <button type="button" id="btnV2" class="sombraBtn" (click)="openAddress(2)" style="padding: 25px 30px;-moz-border-radius: 7px;-webkit-border-radius: 10px;margin: 2px 7px;"><img src="./assets/images/recursosmoduloempresa_melmac-13.png" width="119" style="margin-bottom: 15px;" /><br><span style="color: white;font-weight: 700;font-size: 18px;">VERIFICAR REMITENTE</span></button>
+      <button type="button" id="btnV3" class="sombraBtn" style="padding: 25px 53px;-moz-border-radius: 7px;-webkit-border-radius: 10px;margin: 2px 7px;"><img src="./assets/images/recursosmoduloempresa_melmac-14.png" width="90" style="margin-bottom: 15px;" /><br><span style="color: white;font-weight: 700;font-size: 18px;">ENLAZAR MARCA</span></button>
+    </div>
+  </div>
+</div>
+
+<h3 class="colorTitle mt-3">Personaliza tu presentación al público</h3>
+<nb-card class="pt-3 pb-3 sombraNbcard">
+  <div class="col-12 d-flex">
+    <div class="col-md-5">
+        <label class="label" for="inputPublic">Color de la cabecera y pie de página (Revisa que sea acorde con tu logo) </label>
+        <div class="col-xs-12 col-sm-6 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-4 pl-0" style="padding-right: 5px !important;">
+            <input id="inputPublic" type="color" nbInput fullWidth shape="semi-round" autocomplete="off" style="height: 46px; padding: 0px;border: 0px;margin: 0px;" [ngModel]="colorB" (change)="changeValue(4,$event)">
+          </div>
+          <div class="col-md-5 pl-0 pt-1 pr-0">
+            <input type="text" style="height: 38px !important;" nbInput fullWidth autocomplete="off" [ngModel]="inputCB">
+          </div>
+          <div class="col-md-3 pr-0" style="padding-left: 5px;text-align: right;">
+            <nb-toggle [(ngModel)]="toggleNgModel" fullWidth (checkedChange)="toggleClick($event,0)" labelPosition="right"></nb-toggle>
+          </div>
+        </div>
+        <label class="label" for="inputPublic">Color de la caja de previsualización del documento </label>
+        <div class="col-xs-12 col-sm-6 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-4 pl-0" style="padding-right: 5px !important;">
+            <input id="inputPublicFooter" type="color" nbInput fullWidth shape="semi-round" autocomplete="off" style="height: 46px; padding: 0px;border: 0px;margin: 0px;" [ngModel]="colorBTPH" (change)="changeValue(9,$event)">
+          </div>
+          <div class="col-md-5 pl-0 pt-1 pr-0">
+            <input type="text" style="height: 38px !important;" nbInput fullWidth autocomplete="off" value="#000000" [ngModel]="inputBTPH">
+          </div>
+          <div class="col-md-3 pr-0" style="padding-left: 5px;text-align: right;">
+            <nb-toggle [(ngModel)]="toggleNgModel6" fullWidth (checkedChange)="toggleClick($event,5)" labelPosition="right"></nb-toggle>
+          </div>
+        </div>
+        <!-- Color de los texto titulo -->
+        <label class="label" for="inputPublic">Color del texto titulo del documento </label>
+        <div class="col-xs-12 col-sm-6 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-4 pl-0" style="padding-right: 5px !important;">
+            <input id="inputPublicTextFooter" type="color" nbInput fullWidth shape="semi-round" autocomplete="off" 
+            style="height: 46px; padding: 0px;border: 0px;margin: 0px;" 
+            [ngModel]="colorBFT" (change)="changeValue(8,$event)">
+          </div>
+          <div class="col-md-5 pl-0 pt-1 pr-0">
+            <input type="text" style="height: 38px !important;" 
+            nbInput fullWidth autocomplete="off" value="#000000" [ngModel]="inputBFT">
+          </div>
+          <div class="col-md-3 pr-0" style="padding-left: 5px;text-align: right;">
+            <nb-toggle [(ngModel)]="toggleNgModel5" fullWidth (checkedChange)="toggleClick($event,4)" labelPosition="right"></nb-toggle>
+          </div>
+        </div>
+
+        <!-- Color de los texto Descripcion  -->
+        <label class="label" for="inputPublic">Color del texto descripcion del documento</label>
+        <div class="col-xs-12 col-sm-6 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-4 pl-0" style="padding-right: 5px !important;">
+            <input id="inputPublicTextFooter" type="color" nbInput fullWidth shape="semi-round" autocomplete="off" 
+            style="height: 46px; padding: 0px;border: 0px;margin: 0px;" 
+            [ngModel]="colorBFD" (change)="changeValue(11,$event)">
+          </div>
+          <div class="col-md-5 pl-0 pt-1 pr-0">
+            <input type="text" style="height: 38px !important;" 
+            nbInput fullWidth autocomplete="off" value="#000000" [ngModel]="inputBFD">
+          </div>
+          <div class="col-md-3 pr-0" style="padding-left: 5px;text-align: right;">
+            <nb-toggle [(ngModel)]="toggleNgModel8" fullWidth (checkedChange)="toggleClick($event,7)" labelPosition="right"></nb-toggle>
+          </div>
+        </div>
+        <!-- Color de los texto pied¿ de pagina  -->
+        <label class="label" for="inputPublic">Color del texto pie de página del documento </label>
+        <div class="col-xs-12 col-sm-6 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-4 pl-0" style="padding-right: 5px !important;">
+            <input id="inputPublicTextFooter" type="color" nbInput fullWidth shape="semi-round" autocomplete="off" 
+            style="height: 46px; padding: 0px;border: 0px;margin: 0px;" 
+            [ngModel]="colorBFF" (change)="changeValue(12,$event)">
+          </div>
+          <div class="col-md-5 pl-0 pt-1 pr-0">
+            <input type="text" style="height: 38px !important;" 
+            nbInput fullWidth autocomplete="off" value="#000000" [ngModel]="inputBFF">
+          </div>
+          <div class="col-md-3 pr-0" style="padding-left: 5px;text-align: right;">
+            <nb-toggle [(ngModel)]="toggleNgModel9" fullWidth (checkedChange)="toggleClick($event,8)" labelPosition="right"></nb-toggle>
+          </div>
+        </div>
+        <!-- Color del Boton  -->
+        <label class="label" for="inputPublic">Color de los botones </label>
+        <div class="col-xs-12 col-sm-6 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-4 pl-0" style="padding-right: 5px !important;">
+            <input id="inputPublicText" type="color" nbInput fullWidth shape="semi-round" 
+            autocomplete="off" style="height: 46px; padding: 0px;border: 0px;margin: 0px;" 
+            [ngModel]="colorBPB" (change)="changeValue(13,$event)">
+          </div>
+          <div class="col-md-5 pl-0 pt-1 pr-0">
+            <input type="text" style="height: 38px !important;" 
+            nbInput fullWidth autocomplete="off" value="#3366ff" [ngModel]="inputBPB">
+          </div>
+          <div class="col-md-3 pr-0" style="padding-left: 5px;text-align: right;">
+            <nb-toggle [(ngModel)]="toggleNgModel10" fullWidth (checkedChange)="toggleClick($event,9)" 
+            labelPosition="right"></nb-toggle>
+          </div>
+        </div>
+        <!-- Color texto de los botones -->
+        <label class="label" for="inputPublic">Color texto de los botones </label>
+        <div class="col-xs-12 col-sm-6 col-md-12 d-flex pl-0 pr-0">
+          <div class="col-md-4 pl-0" style="padding-right: 5px !important;">
+            <input id="inputPublicText" type="color" nbInput fullWidth shape="semi-round" 
+            autocomplete="off" style="height: 46px; padding: 0px;border: 0px;margin: 0px;" 
+            [ngModel]="colorBPT" (change)="changeValue(14,$event)">
+          </div>
+          <div class="col-md-5 pl-0 pt-1 pr-0">
+            <input type="text" style="height: 38px !important;" 
+            nbInput fullWidth autocomplete="off" value="#ffffff" [ngModel]="inputBPT">
+          </div>
+          <div class="col-md-3 pr-0" style="padding-left: 5px;text-align: right;">
+            <nb-toggle [(ngModel)]="toggleNgModel11" fullWidth (checkedChange)="toggleClick($event,10)" 
+            labelPosition="right"></nb-toggle>
+          </div>
+        </div>
+        <button type="submit" [disabled]="checkForm()" nbButton status="primary" class="pull-right" (click)="onAccept($event)">Guardar y aplicar</button>
+    </div>
+
+    <div class="col-md-7">
+      <label class="label" for="inputPublic">Asi se verá tu personalización</label>
+        <div class="col-md-12 d-flex">
+          <div class="col-md-6 p-0" id="titlePre" style="background: #412378">
+            <div class="col-md-12 d-flex">
+              <!-- <div style="width: 250px;"></div> -->
+              <div class="col-md-12 text-left"><img class="logo_img" src="./assets/images/imagen_encabezado_base.png" alt="" width="150"></div>
+              <!-- <div style="text-align: end;padding-top: 10px;width: 250px;">
+                <button type="button" id="btn-external1" style="background: blue;padding: 0px;" class="mb-1"><img src="./assets/images/previsualizar_18.png" width="80"/></button><br>
+                <button type="button" id="btn-external2" style="background: gray;padding: 0px;"><img src="./assets/images/diligenciar_19.png" width="80" /></button>
+              </div> -->
+            </div>
+            <div class="col-md-12" id="titleBackPre" style="background: #ffffff;height: 226px;padding-top: 25px">
+              <div class="circle"></div>
+              <div class="text-center">
+                <span style="color: rgb(0, 0, 0);" id="titlePre2">TÍTULO DEL DOCUMENTO</span><br>
+                <span style="color: rgb(0, 0, 0);text-align: center;" id="titleDesc">Descripción del documento</span>
+              </div>
+
+            </div>
+          </div>
+          <!-- PREVIZUALIZACION BOTON -->
+          <div class="col-md-6 p-0">
+            <div class="col-md-12" id="buttonBackPre" style="height: 285px;box-shadow: 0px 1px 4px 0px #9ca6b7 !important;">
+              <div class="text-center">
+                <span style="color: rgb(0, 0, 0);" id="titlePreB">Previsualizacion de la personalización de botones.</span><br>
+                <button type="submit" nbButton id="buttonPre" style="background: #3366ff; align-items: center; margin-top: 115px;">
+                  <span style="color: white;" id="textButton">color del Boton</span><br>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-left: 15px !important;margin-right: 15px !important;">
+          <div class="col-md-12" style="background: #412378;text-align: center;font-family: Open Sans, sans-serif;font-weight: 400;line-height: 1.25rem;" id="titlePre4">
+            <span style="color: white;" id="titleFooter">PIE DE PÁGINA</span></div>
+        </div>
+    </div>
+  </div>
+</nb-card>

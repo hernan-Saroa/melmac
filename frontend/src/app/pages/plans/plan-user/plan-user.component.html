@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="row landing-background"
+    style="display: flex;
+    background-image: url(./assets/images/landing/FONDO.png) !important;
+    flex-direction: row;
+    justify-content: center;">
+    <div class="col-md-12 tittle-seccion-2">
+      <h2>TENEMOS LOS MEJORES <b>PLANES</b></h2>
+    </div>
+    <div *ngFor="let plan of data; let i=index;">
+      <div class="card" *ngIf ="plan.state">
+        <div class="top-card"  [style]="'background-color: ' +  plan.color ">
+          <div class="icon">
+            <img class="image" [src]="url + plan.image" alt="">
+          </div><!--/icon-->
+          <div class="title mb-5">{{plan.name}}</div>
+        </div>
+        <br>
+        <div class="title3 mt-2"><b>${{plan.price}} COP </b></div>
+        <div>POR MES</div>
+        <div class="features basic-feature">
+          <ul *ngFor="let item of plan.items; let i=index;">
+            <li class="d-flex" [style]="'color: ' +  plan.color ">
+              <div class="pt-1 ml-2">
+                <span style="color: black;">{{item.service__cant}} {{item.service__service}}</span>
+              </div>
+            </li>
+          </ul>
+        </div><!--/features-->
+        <a href="#" class="btn" [style]="'background-color: ' +  plan.color ">COMPRAR <br>PLAN {{plan.name}}</a>
+      </div><!--/card-->
+    </div>
+
+  </div>
+</div>

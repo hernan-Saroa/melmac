@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header>
+    <h1>{{data.title}}</h1>
+  </nb-card-header>
+  <nb-card-body>
+    {{data.content}}
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close(false)">Cancelar</button>
+    <button nbButton status="danger" (click)="close(true)" cdkFocusInitial color="warn">Aceptar</button>
+  </nb-card-footer>
+</nb-card>

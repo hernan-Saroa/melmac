@@ -1,0 +1,98 @@
+::ng-deep .file-input {
+  display: none;
+}
+::ng-deep .end-float{
+  float: right;
+}
+
+::ng-deep .pt-0{
+  padding-top: 0px;
+}
+::ng-deep .pb-0{
+  padding-bottom: 0px;
+}
+
+::ng-deep .progress-bar-back{
+  background-color: rgb(192, 192, 192);
+  width: 80%;
+  border-radius: 15px;
+  height:20px;
+}
+
+::ng-deep .progress-bar-front{
+  background-color: rgb(116, 194, 92);
+  color: white;
+  padding: 1%;
+  text-align: right;
+  font-size: 20px;
+  border-radius: 15px;
+  height:20px;
+}
+
+::ng-deep .prog-bar-0{
+  width:0%;
+  display:none;
+}
+
+::ng-deep .prog-bar-10{
+  width:10%;
+}
+
+::ng-deep .prog-bar-20{
+  width:20%;
+}
+
+::ng-deep .prog-bar-30{
+  width:30%;
+}
+
+::ng-deep .prog-bar-40{
+  width:40%;
+}
+
+::ng-deep .prog-bar-50{
+  width:50%;
+}
+
+::ng-deep .prog-bar-60{
+  width:60%;
+}
+
+::ng-deep .prog-bar-70{
+  width:70%;
+}
+
+::ng-deep .prog-bar-80{
+  width:80%;
+}
+
+::ng-deep .prog-bar-90{
+  width:90%;
+}
+
+::ng-deep .prog-bar-100{
+  width:100%;
+}
+
+::ng-deep .danger:hover{
+  color: red;
+}
+
+// ::ng-deep .progress{
+//   height:100%;
+// }
+
+::ng-deep .ng2-smart-th .progress .ng-star-inserted {
+  display: inline-flex;
+}
+
+::ng-deep .ng2-smart-th .progress .ng-star-inserted {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+// ::ng-deep .cdk-overlay-pane {
+//   width: 70% !important;
+// }

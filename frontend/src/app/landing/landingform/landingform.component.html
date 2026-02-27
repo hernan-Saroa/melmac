@@ -1,0 +1,87 @@
+
+<nb-card class="modal-card" style="height: 42.875rem">
+  <nb-card-body class="modal-card-body">
+    <!--  Modal -->
+    <div class="col-sm-12">      
+      <div style="text-align:right">
+        <button size="tiny" style="font-size: 1.0rem; background-color: black;border-color:black; color:white;" nbButton status="default" (click)="close()">X</button>
+      </div>   
+      <div class="row">
+        <!--  Cotizacion -->
+        <div class="col-sm-7 imagen-one" style="margin-right:40px;">       
+          <br><br><br>
+              <img src="././assets/images/landing/landingform/modal_01.png"
+              alt="" height="380" width="660"/>  
+          <br>          
+          <div style="text-align: center;">
+            <br><br>
+            <button class="modal-btn modal-btn-primary" nbButton status="primary"><a style="text-decoration: none; color:white;" 
+              href="https://api.whatsapp.com/send?phone=573153800988&text=Hola+agente+espacial+%F0%9F%A7%91%F0%9F%8F%BB%E2%80%8D%F0%9F%9A%80%F0%9F%9A%80%0A%0A%C2%A1Estoy+listo+para+liberarme+del+papeleo%21+%F0%9F%92%BC%0A%0A%C2%BFMe+podr%C3%ADas+brindar+informaci%C3%B3n+acerca+de+los+planes%C2%A0de%C2%A0MELMAC%3F" target="_blank">COTIZAR PLANES</a>
+            </button>
+          </div>
+          <div>
+          </div>
+        </div>
+
+        <!--  Formulario -->
+        <div class="col-sm-4 "style="background-image: url('././assets/images/landing/landingform/Recurso8.png');"  height="180" width="160" >
+          <div class="col-12"> 
+            <br><br><br>
+            <div class="row">
+              <div class="col-6">
+                <label><b>Nombre</b></label>
+                <input [(ngModel)]="name" autocomplete="off" (keydown)="onKeyWord($event)" style="background-color: transparent; border:none; border-bottom:0.5px solid;" fullWidth nbInput minlength="2" maxlength="60" type="text"/>
+              </div>          
+              <div class="col-6">
+                <label><b>Apellido</b></label>
+                <input [(ngModel)]="lastname" autocomplete="off" (keydown)="onKeyWord($event)" style="background-color: transparent; border:none; border-bottom:0.5px solid;" fullWidth nbInput minlength="2" maxlength="60" type="text"/>
+              </div>
+              <div class="col-12">
+                <label><b>Empresa U Organización</b></label>
+                <input [(ngModel)]="corporate" autocomplete="off" style="background-color: transparent; border:none; border-bottom:0.5px solid;" fullWidth nbInput type="text"/>
+              </div>
+              <div class="col-12">
+                <label><b>Email</b></label>
+                <input [(ngModel)]="email" autocomplete="off" style="background-color: transparent; border:none; border-bottom:0.5px solid;" fullWidth nbInput  minlength="2" maxlength="60" type="text"/>
+              </div>
+              <div class="col-12">
+                <label><b>Celular</b></label>
+                <input [(ngModel)]="phone" autocomplete="off" minlength="0" maxlength="10" (keydown)="onKeyNumber($event)" style="background-color: transparent; border:none; border-bottom:0.5px solid;" fullWidth nbInput type="phone"/>
+              </div>
+              <div class="col-12">
+                <label for="field_disabled"><b>Ciudad</b></label>
+                <nb-select placeholder="Ciudad" autocomplete="off" class="city-select" fullWidth 
+                [(ngModel)]="main_city" [(selected)]="main_city">
+                  <nb-option *ngFor="let city_form of city " [value]="city_form.id"> {{city_form.name}} </nb-option>
+                </nb-select>
+              </div>
+              <div class="col-12">
+                <br>
+                  <nb-checkbox class="custom-checkbox" (checkedChange)="toggleTerms($event)" name="Politicas"><a style="text-decoration: none; color:black;" href="././legal" target="_blank">Política de privacidad</a></nb-checkbox>
+                </div>
+              <div class="col-12">
+                  <nb-checkbox class="custom-checkbox" (checkedChange)="toggleNews($event)">Recibir Newsletter</nb-checkbox>
+              </div>
+              <div class="col-12" style="text-align: center">
+                <br>
+                <button class="modal-btn modal-btn-secundary" (click)="onSunmit(name, lastname, corporate, email, phone, city)" nbButton status="primary">ENVIAR</button>
+                <br><br><br>
+              </div>
+            </div> 
+          </div>       
+        </div>
+        <div class="col-sm-7 imagen-two" style="text-align: center;"> 
+          <br>
+          <img src="././assets/images/landing/landingform/modal_02.png"
+          alt="" width="370"/>          
+          <div>
+            <br> 
+            <button class="modal-btn modal-btn-primary" nbButton status="primary"><a style="text-decoration: none; color:white;" 
+              href="https://api.whatsapp.com/send?phone=573153800988&text=Hola+agente+espacial+%F0%9F%A7%91%F0%9F%8F%BB%E2%80%8D%F0%9F%9A%80%F0%9F%9A%80%0A%0A%C2%A1Estoy+listo+para+liberarme+del+papeleo%21+%F0%9F%92%BC%0A%0A%C2%BFMe+podr%C3%ADas+brindar+informaci%C3%B3n+acerca+de+los+planes%C2%A0de%C2%A0MELMAC%3F" target="_blank">COTIZAR PLANES</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

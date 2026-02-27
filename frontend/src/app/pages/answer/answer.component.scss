@@ -1,0 +1,347 @@
+
+::ng-deep .table-answer {
+  ::ng-deep i[itemprop]:hover::after {
+      z-index: 1;
+      padding: 5px;
+      font-size: 14px;
+      content: attr(itemprop);
+      position: absolute;
+      border-radius: 0px 5px 5px 5px;
+      border: 1px solid;
+      bottom: -15px;
+      margin-left: -0.4em;
+  }
+}
+
+
+/* Estilo predeterminado para todas las filas */
+/* Estilo para filas con source igual a 1 (azul) */
+::ng-deep tr.row-orange {
+  background-color: #ffde90 !important; /* Color anaranjado para filas con source igual a 1 */
+  td {
+    border-left: 0px !important;
+    border-right: 0px !important;
+  }
+}
+
+::ng-deep .ng2-smart-row.selected.row-orange  {
+  background-color: #ffde90 !important;
+}
+
+::ng-deep .nb-theme-default ng2-smart-table tbody tr.row-orange:hover {
+  background-color: #fcc649 !important;
+}
+
+/* Estilo para filas con source igual a 2 (rojo) */
+::ng-deep tr.row-red {
+  background-color: #ff9191 !important; /* Color rojo para filas con status_sign igual a 2 */
+  td {
+    border-left: 0px !important;
+    border-right: 0px !important;
+  }
+}
+::ng-deep .nb-theme-default ng2-smart-table tbody tr.row-red:hover {
+  background-color: #ff6666 !important;
+}
+
+::ng-deep .ng2-smart-row.selected.row-red  {
+  background-color: #ff9191 !important;
+}
+
+/* Estilo para filas con source por defecto */
+::ng-deep .nb-theme-default ng2-smart-table tbody tr > td {
+  border-left: 0px !important;
+  border-right: 0px !important;
+}
+
+::ng-deep .nb-theme-default ng2-smart-table tbody tr:hover {
+  background: #d6dce4 !important;
+}
+
+::ng-deep .icon-fill-out {
+  font-size: 36px;
+  cursor: pointer;
+  .warning {
+    color: orange;
+  }
+  .success {
+    color: #00db00;
+  }
+  .error {
+    color: red;
+  }
+  .purple {
+    color: #412379
+  }
+  .gray {
+    color: gray;
+  }
+}
+
+// ::ng-deep .nb-theme-default ng2-smart-table tbody , .nb-theme-default ng2-smart-table tbody  {
+//   background: #b91010 !important;
+// }
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+  ::ng-deep .table-answer {
+      ::ng-deep i[itemprop]:hover::after {
+          background-color: #edf1f7;
+          color: #3366ff;
+      }
+  }
+}
+
+::ng-deep body.nb-theme-cosmic {
+  ::ng-deep .table-answer {
+      ::ng-deep i[itemprop]:hover::after {
+          background-color: #323259;
+          color: #a16eff;
+      }
+  }
+}
+
+::ng-deep body.nb-theme-dark {
+  ::ng-deep .table-answer {
+      ::ng-deep i[itemprop]:hover::after {
+          background-color: #222b45;
+          color: #3366ff;
+      }
+  }
+}
+
+.btn_eraser {
+    float: right;
+}
+
+::ng-deep .table-answer {
+  tr {
+    cursor: pointer;
+  }
+}
+
+// Resumen
+::ng-deep.table_list_field {
+  border-radius: 0.25rem;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+::ng-deep.table_list_data {
+  margin-bottom: 15px;
+}
+
+::ng-deep .th_list {
+  padding: 5px;
+  border-radius: 0.25rem;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+  ::ng-deep.table_list_field {
+      border: 0.0625rem solid #e4e9f2;
+  }
+
+  ::ng-deep .th_list {
+      border: 0.0625rem solid #e4e9f2;
+  }
+}
+
+::ng-deep body.nb-theme-dark {
+  ::ng-deep.table_list_field {
+      border: 0.0625rem solid #101426;
+  }
+
+  ::ng-deep .th_list {
+      border: 0.0625rem solid #101426;
+  }
+}
+
+::ng-deep body.nb-theme-cosmic {
+  ::ng-deep.table_list_field {
+      border: 0.0625rem solid #13132b;
+  }
+
+  ::ng-deep .th_list {
+      border: 0.0625rem solid #13132b;
+  }
+}
+
+::ng-deep .end-float{
+  float: right;
+}
+
+.form_value, .enroll_data {
+  padding: 5px;
+  border: 0.0625rem solid #e4e9f2;
+}
+
+.modal-btn-primary {
+  float: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-info-danger{
+  font-weight: 700;
+  text-align: center;
+  font-size: 16px;
+}
+
+.text-title-info-danger{
+  color: red;
+  font-size: 28px;
+}
+
+.size-img{
+  margin-top: 20px;
+  width: 200px;
+  height: 200px;
+}
+
+.modal-title-card-header {
+  text-align: center;
+  font-size: 20px;
+}
+
+::ng-deep .full_pdf_view {
+  //position: absolute;
+  top: 0px;
+  z-index: 2000;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #323639 !important;
+}
+
+::ng-deep .content_pdf_iframe{
+  background: #323639 !important;
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep nb-card.size-giant {
+  height: 55.5625rem !important;
+  background-color: #323639 !important;
+}
+
+// ::ng-deep .btn_actions_pdf{
+//   justify-content: space-between;
+//   height: 65px;
+//   position: absolute;
+//   background: #323639 !important;
+//   //width: 100%;
+//   padding: 0px 12px;
+//   float: right;
+// }
+
+// ::ng-deep .btn_actions{
+//   justify-content: space-between;
+//   height: 60px;
+//   position: absolute;
+//   background: #323639 !important;
+//   //width: 100%;
+//   //padding: 0px 12px;
+// }
+
+::ng-deep .btn_actions_pdf {
+  height: 60px;
+  background: #323639 !important;
+  padding-left: 8%;
+  margin-right: 15px;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+}
+
+@media (max-width: 600px) {
+  ::ng-deep .btn_actions_pdf {
+    height: 45px;
+    background: #323639 !important;
+    padding-left: 66%;
+    margin-right: 0px;
+    position: absolute;
+    // right: 0px;
+    // top: 0px;
+  }
+}
+
+::ng-deep .nb-theme-corporate {
+  ::ng-deep .btn_actions_pdf {
+    nb-icon {
+      color: #b5b5b5 !important;
+    }
+  }
+}
+
+::ng-deep .nb-theme-default {
+  ::ng-deep .btn_actions_pdf {
+    nb-icon {
+      color: #ffffff !important;
+    }
+  }
+}
+
+::ng-deep .carousel-control-prev {
+  background-color: transparent !important;
+  width: 6%;
+}
+
+::ng-deep .carousel-control-next {
+  background-color: transparent !important;;
+  width: 6%;
+}
+
+ngb-carousel {
+  max-width: 100%;
+}
+
+ngb-carousel {
+  width: -webkit-fill-available;
+  height: inherit;
+}
+
+.carousel-inner {
+  overflow: visible;
+}
+
+.carousel-item {
+  display: flex !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease-in-out, visibility 1.2s;
+  z-index: -1;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+// Puntos carosuel inferior
+.flex-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  // align-items: center;
+  justify-content: space-around;
+}
+
+.circulo-carousel {
+  width: 15rem;
+  height: 13rem;
+  margin-bottom: 9px;
+}
+
+.size-img-init{
+  margin-top: 20%;
+  margin-right: -20%;
+  float: right; /* 50px de margen superior + 5px de espacio adicional */
+  width: 152px;
+  height: 166px;
+}

@@ -1,0 +1,764 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
+
+nb-layout-header {
+  background-color: #412378;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+#right {
+  position: relative;
+  margin: 0 auto;
+  width: 14px;
+  text-align: right;
+  color: white;
+  font-family: Montserrat;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+#right img {
+  padding: 10px;
+}
+
+#left {
+  position: relative;
+  margin: 0 auto;
+  width: 200px;
+}
+
+#center {
+  position: relative;
+  margin: 0 auto;
+  width: 200px;
+}
+
+// Puntos del carrusel
+::ng-deep .carousel-indicators li {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+}
+
+::ng-deep .carousel-indicators li {
+  width: 15px !important;
+  background-color: darkgrey;
+  height: 15px !important;
+  border-radius: 50% !important;
+}
+
+::ng-deep .carousel-indicators .active {
+  width: 15px !important;
+  background-color: white;
+  height: 15px !important;
+  border-radius: 50% !important;
+}
+
+::ng-deep .carousel-control-prev {
+  background-color: gainsboro;
+  width: 8%;
+}
+
+::ng-deep .carousel-control-next {
+  background-color: gainsboro;
+  width: 8%;
+}
+
+ngb-carousel {
+  max-width: 100%;
+}
+
+ngb-carousel img {
+  width: 100%;
+  outline: none;
+}
+
+ngb-carousel {
+  width: -webkit-fill-available;
+  height: inherit;
+}
+
+.carousel-inner {
+  overflow: visible;
+}
+
+.carousel-item {
+  display: flex !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.2s ease-in-out, visibility 1.2s;
+  z-index: -1;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.carousel-control-prev {
+  z-index: 20;
+}
+
+.carousel-control-next {
+  z-index: 20;
+}
+
+.carousel-indicators {
+  z-index: 20;
+}
+
+.carousel-caption1 p {
+  position: absolute;
+  width: 664px;
+  font-family: Montserrat;
+  bottom: 33.333%;
+  left: 15%;
+  z-index: 10;
+  padding-top: 60px;
+  padding-bottom: 50px;
+  color: #fff !important;
+  font-size: 40px;
+  line-height: 36px;
+  text-align: left;
+}
+
+.carousel-caption1 button {
+  position: absolute;
+  height: 58.6993px;
+  width: 289.1209px;
+  font-family: Montserrat;
+  bottom: 30%;
+  left: 15%;
+  z-index: 10;
+  color: #fff !important;
+  font-size: 15px;
+  line-height: 36px;
+  background-color: transparent;
+  border-color: #fff;
+  border-radius: 15px;
+  border-width: 3px;
+}
+
+// Puntos carosuel inferior
+.flex-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 10px 0px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.circulo-carousel {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 9px;
+}
+
+::ng-deep .center {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+::ng-deep ngx-landing nb-layout-column .center {
+  padding: 0px !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.tittle-seccion-2 {
+  font-family: Montserrat;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.tittle-seccion-2 h2 {
+  font-family: Montserrat;
+}
+
+.center .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  align-content: stretch;
+  justify-content: space-around;
+}
+
+.contents {
+  display: contents;
+}
+
+.circulo {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.desc-seccion-2 {
+  font-family: Montserrat;
+  font-size: 20px;
+  color: #444444;
+}
+
+.button-seccion-2 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.button-seccion-2 button {
+  height: 58.6993px;
+  width: 289.1209px;
+  font-family: Montserrat;
+  border-color: #412378;
+  border-width: 3px;
+  border-radius: 15px;
+  background-color: transparent;
+  box-shadow: inset 11px 5px 9px #d7d7d9, inset -35px -35px 9px #e9e9e9;
+}
+
+.seccion3 {
+  background-color: #412378;
+  padding-top: 25px;
+}
+
+.seccion3 .contenedor2 {
+  display: contents;
+  background-color: #412378;
+  width: 100%;
+  margin: 0% !important;
+  padding-top: 20px;
+}
+
+.seccion3 .contenedor2 .left-section {
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10% !important;
+}
+
+.seccion3 .contenedor2 .left-section-item {
+  display: flex;
+}
+
+.seccion3 .contenedor2 .left-section-item h2 {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.seccion3 .contenedor2 .left-section-item p {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.seccion3 .contenedor2 .right-section {
+  width: 66.66%;
+  display: flex;
+  margin: 0% !important;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.right-section {
+  height: 779px !important;
+}
+
+// seccion4
+.contenedor {
+  display: flex;
+}
+
+.izquierda {
+  position: relative;
+  width: 33%;
+  transform: rotate(270deg);
+  transform-origin: top left;
+  margin-top: 33%;
+}
+
+.izquierda h3 {
+  font-size: 410px;
+}
+
+.izquierda p {
+  font-size: 52px;
+}
+
+.derecha {
+  width: 66%;
+}
+
+.video-responsive {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.button-seccion-5 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 1%;
+}
+
+.contenedor5 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 663.0743px;
+}
+
+.button-seccion-5 button {
+  height: 58.6993px;
+  width: 289.1209px;
+  font-family: Montserrat;
+  border-color: #412378;
+  border-width: 3px;
+  border-radius: 15px;
+  background-color: transparent;
+  box-shadow: inset 11px 5px 9px #d7d7d9, inset -35px -35px 9px #e9e9e9;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.description {
+  color: #444444;
+  font-family: Montserrat;
+  size: 20px;
+  text-align: left;
+  padding-top: 60px;
+}
+
+.contenedor8_1 {
+  height: 702px;
+}
+
+.div-superior {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.div-superior img {
+  width: 100%;
+}
+
+.div-izquierda {
+  width: 33.333%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.div-izquierda img {
+  // width: 100%; /* Ocupa el ancho del div */
+  height: auto;
+  /* Ajusta la altura automáticamente */
+  object-fit: contain;
+  /* Ajusta la imagen al tamaño del div */
+}
+
+.div-derecha {
+  width: 66.666%;
+  /* Dos tercios del ancho del div inferior */
+  float: right;
+  display: flex;
+  /* Alinear el texto en el div */
+  align-items: center;
+  /* Centrar el texto en el div */
+  justify-content: flex-start;
+  /* Alinear el texto a la izquierda */
+}
+
+.text2 p {
+  font-size: 35px;
+  /*Tamaño de la fuente */
+  margin: 0;
+  /*Margen de la descripcion */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  /* Padding de la descripcion */
+  text-align: left;
+  /* Alinear texto a la izquierda */
+  color: #444444;
+  line-height: 1;
+}
+
+.div-derecha b {
+  font-weight: bold;
+  /* Negrita */
+}
+
+.contenedor8 {
+  display: flex;
+  background-color: #412378;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.text p {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 18px;
+  text-align: left;
+  padding-left: 90px;
+  padding-top: 5px;
+}
+
+.div1,
+.div2 {
+  flex: 1;
+}
+
+.div1 p,
+.div2 p {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 18px;
+  text-align: left;
+}
+
+.div1 p {
+  margin-left: 50%;
+  padding-right: 10px;
+}
+
+.div2 p {
+  padding-left: 16%;
+}
+
+.div_image2 {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 7%;
+}
+
+.div_image {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 7%;
+}
+
+.div2 p {
+  padding-right: 10px;
+}
+
+.button-seccion-8 {
+  padding-left: 90px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.button-seccion-8 button {
+  font-family: Montserrat;
+  border-color: #ffffff;
+  color: #ffffff;
+  border-width: 3px;
+  border-radius: 15px;
+  background-color: transparent;
+  padding: 15px;
+}
+
+.landing-background {
+  // background-image: url('./assets/images/landing/FONDO.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#contenedor-video {
+  width: -webkit-fill-available;
+}
+
+@media screen and (max-width: 600px) {
+  #contenedor-video {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .contenedor2 {
+    flex-direction: column;
+  }
+
+  .left-section,
+  .right-section {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .imgDG {
+    max-height: 115px;
+  }
+  #left {
+    width: 0px;
+    margin: 0px;
+  }
+  #right {
+    width: 0px;
+    padding-right: 145px;
+  }
+  #center {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .imgDG {
+    max-height: 82px;
+  }
+  .float-right {
+    max-height: 85px;
+  }
+
+  .top-card {
+    max-height: 258px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .imgPC {
+    display: none;
+  }
+
+  .left,
+  .middle,
+  .right .carousel-caption1 {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .izquierda {
+    width: 100%;
+  }
+
+  .derecha {
+    width: 100%;
+  }
+}
+
+// Colors
+$color-one: #ffffff;
+$color-two: #383a3f;
+$color-three: #f68657;
+$color-four: #f6b352;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+// body {
+//   background: $color-two;
+//   font-family: "Varela Round", sans-serif;
+// }
+
+// Estilos planes
+.card {
+  font-family: Montserrat;
+  background: $color-one;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  margin: 50px 20px 20px 20px;
+  width: 280px; /* 1/3 minus the margins (20+20) */
+  padding: 20px;
+  text-align: center;
+  color: #444444;
+  float: left;
+  border-radius: 40px;
+  @media (max-width: 768px) {
+    margin: 10px 20px;
+    width: calc(100% - 40px);
+    &:first-child {
+      margin-top: 20px;
+    }
+  }
+  &:nth-child(3) {
+    margin: 20px 0px -6px;
+    width: 330px;
+    padding: 50px 20px;
+    @media (max-width: 768px) {
+      margin: 10px 20px;
+      width: calc(100% - 40px);
+    }
+  }
+  .title {
+    font-size: 30px;
+    font-family: Montserrat;
+    color: white;
+  }
+  .title3 {
+    font-size: 25px;
+    font-family: Montserrat;
+    padding: 5px;
+  }
+  // .icon {
+  //   margin: 50px 0;
+  //   img {
+  //   //   width: 100px;
+  //   //   height: 100px;
+  //   }
+  // }
+  .features {
+    ul {
+      padding: 0;
+      margin: 10px 0% 15px 0;
+      text-align: left;
+      list-style-type: none;
+      li {
+        font-family: Montserrat;
+        margin: 10px 0;
+        font-size: 20px;
+        // span {
+        //   // border-bottom: 2px dotted $color-four;
+        // }
+      }
+    }
+  }
+  .btn {
+    display: block;
+    color: white;
+    height: 50px;
+    width: 192px;
+    margin: 20px 0;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.9);
+    transition: all 200ms ease-in-out;
+    text-decoration: none;
+    margin: auto;
+    &:hover {
+      background: $color-three;
+    }
+  }
+
+  .premimum-feature {
+    ul li::before {
+      content: "\2022";
+      color: #412378;
+      display: inline-block;
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      font-size: 65px;
+    }
+  }
+
+  .bussines-feature {
+    ul li::before {
+      content: "\2022";
+      color: #82cab5;
+      display: inline-block;
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      font-size: 65px;
+    }
+  }
+
+  .basic-feature {
+    ul li::before {
+      content: "\2022";
+      color: #ecb752;
+      display: inline-block;
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      font-size: 65px;
+    }
+  }
+
+  .top-card {
+    border-start-end-radius: 40px;
+    border-start-start-radius: 40px;
+    margin: -21px;
+    overflow: unset;
+    max-height: 235px;
+  }
+
+  .images {
+    object-fit: cover;
+    width: 90%;
+    height: 100%;
+    border-bottom: 5px solid white;
+  }
+}
+
+.seccionAlien {
+  width: 100%;
+  margin-top: 65vh;
+  width: fit-content;
+}
+
+.alienText {
+  padding: 10px 45px 0px 40px;
+  font-size: clamp(4em, 5vw, 8em);
+  width: fit-content;
+}
+
+.alienText p {
+  font-size: calc(1.2vw + 0.2em);
+  font-family: Montserrat;
+  color: white;
+  align-items: flex-end;
+}
+
+.button-seccion-alien {
+  padding: 0px 0px 23px;
+}
+
+.button-seccion-alien button {
+  height: 58px;
+  width: 230px;
+  font-family: Montserrat;
+  border-width: 3px;
+  border-radius: 15px;
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}

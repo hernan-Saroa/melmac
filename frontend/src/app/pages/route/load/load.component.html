@@ -1,0 +1,190 @@
+<div class="row">
+  <div class="col-xxl-12">
+      <nb-card>
+          <nb-card-header>
+              {{ title_component }}
+          </nb-card-header>
+          <nb-card-body>
+              <nb-stepper #stepper disableStepNavigation>
+                  <nb-step [stepControl]="firstForm" label="Primer paso">
+                      <form [formGroup]="firstForm" class="step-container">
+                          <p class="lorem">
+                            Carga el archivo excel para empezar el proceso de generado de rutas, puedes encontrar la plantilla <a href="/assets/templates/PlantillaDireccion.xlsx" target="__blank">Aqui</a>
+                          </p>
+                          <div class="content-data">
+                            <input type="file" class="file-input"
+                              (change)="onFileSelected($event)" name="fileName" formControlName="fileName" #fileUpload>
+                            <div class="file-upload">
+                                <button nbButton status="primary" class="upload-btn" shape="round"
+                                  (click)="fileUpload.click()">
+                                  <nb-icon icon="cloud-upload"></nb-icon>
+                                </button>
+                                {{fileName}}
+                            </div>
+                          </div>
+                          <div *ngIf="loading">
+                            <p>
+                              Su archivo se esta procesando, esto puede tomar unos minutos, recuerde que si sale de esta pagina el proceso continuara automaticamente y podra ver el estado de esta subida en el listado de Enrutamiento > Carga.
+                            </p>
+                            <nb-progress-bar [value]="progress_value" status="primary" [displayValue]="true"></nb-progress-bar>
+                          </div>
+                          <button [nbSpinner]="loading" nbSpinnerStatus="info" nbButton (click)="onFirstSubmit(next_first)" [disabled]="!firstForm.valid || loading">Siguiente</button>
+                          <button nbButton nbStepperNext hidden [disabled]="!firstForm.valid" #next_first >Siguiente</button>
+                      </form>
+                  </nb-step>
+                  <nb-step [stepControl]="secondForm" label="Segundo paso">
+                      <div [formGroup]="secondForm" class="step-container">
+                          <p class="lorem">
+                            Aqui puedes evidenciar el balance de la carga realizada.
+                          </p>
+                          <div class="row">
+                            <div class="col-xxxl-4 col-md-4 col-sm-6">
+                              <nb-card status="info" accent="primary">
+                                <nb-card-header>
+                                  Resumen
+                                </nb-card-header>
+                                <nb-card-body>
+                                  <ng2-smart-table id="summary-table" [settings]="settingsSummary" [source]="sourceSummary" (edit)="getElementFile($event)"></ng2-smart-table>
+                                </nb-card-body>
+                              </nb-card>
+
+                              <div class="inputGroup">
+                                <label class="label" for="inputMessagers">Número de rutas</label>
+                                <input id="inputMessagers" type="number" nbInput fullWidth shape="semi-round" placeholder="Cantidad rutas" [(ngModel)]="inputMessagersModel" formControlName="inputMessagers">
+                              </div>
+
+                              <div class="inputGroup">
+                                <label class="label" for="inputMessagers">Punto de inicio</label>
+                                <nb-select shape="semi-round" placeholder="Selecciona el punto de inicio" (selectedChange)="setIniPoint($event)" formControlName="selectStartPoint" [(ngModel)]="start_point" style="width: 100%; margin: 10px 0">
+                                  <nb-option *ngFor="let addr of addresses_enterprise" [value]="addr.id" (selected)="addr.is_default">{{addr.name}} - {{addr.address}}</nb-option>
+                                </nb-select>
+                              </div>
+                            </div>
+
+                            <div class="col-xxxl-8 col-md-8 col-sm-6">
+                              <nb-card class="address-card" status="info" accent="primary" size="medium">
+                                <nb-card-header>
+                                  Direcciones
+                                </nb-card-header>
+                                <nb-card-body>
+                                  <nb-accordion>
+                                    <nb-accordion-item *ngFor="let city_address of addresses | keyvalue">
+                                     <nb-accordion-item-header>{{city_address.key | uppercase}}</nb-accordion-item-header>
+                                     <nb-accordion-item-body>
+                                      <div *ngFor="let locality_address of city_address.value | keyvalue">
+                                        <nb-list>
+                                          <nb-list-item *ngFor="let address of locality_address.value">
+                                            <button nbButton status="info" title="Ver detalle" type="button" (click)="openAddressInfoDialog(address)" outline style="margin-right:10px">
+                                              <nb-icon icon="book-open"></nb-icon>
+                                            </button>
+                                            <label *ngIf="address.address_normalize[0].address != ''">
+                                              {{ address.address_normalize[0].address }}
+                                            </label>
+                                            <label *ngIf="address.address_normalize[0].address == ''">
+                                              {{ address.address_normalize[1].address }}
+                                            </label>
+                                          </nb-list-item>
+                                        </nb-list>
+                                      </div>
+                                     </nb-accordion-item-body>
+                                    </nb-accordion-item>
+                                   </nb-accordion>
+                                </nb-card-body>
+                              </nb-card>
+                            </div>
+                          </div>
+
+                          <div class="mt-15">
+                            <button [nbSpinner]="loading" nbSpinnerStatus="info" nbButton (click)="onSecondSubmit(next_second)" [disabled]="!secondForm.valid || loading">Siguiente</button>
+                            <button nbButton nbStepperNext hidden [disabled]="!secondForm.valid" #next_second>Siguiente</button>
+                          </div>
+                        </div>
+                  </nb-step>
+                  <nb-step label="Tercer paso">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <nb-card status="info" accent="primary">
+                            <nb-card-header>
+                              Lista de Rutas
+                            </nb-card-header>
+                            <nb-card-body style="max-height:500px;">
+                              <nb-accordion>
+                                <nb-accordion-item *ngFor="let row of dataTreeGrid">
+                                  <nb-accordion-item-header>{{row.data.name}}</nb-accordion-item-header>
+                                  <nb-accordion-item-body>
+                                    <nb-list>
+                                      <nb-list-item *ngFor="let item of row.children; index as i;">
+                                        <div class="row" *ngIf="i==0">
+                                          <div class="col-sm-12">
+                                            <div style="border: 2px solid lightgrey; width: 100%; height: 20px; background-color: {{item.data.color}};"></div>
+                                          </div>
+                                          <div class="col-sm-12">
+                                            <b>Cantidad: </b> {{row.children.length - 1}} Direcciones
+                                          </div>
+                                          <div class="col-sm-12">
+                                            <b>Distancia Total: </b> {{item.data.distance}} KM
+                                          </div>
+                                          <div class="col-sm-12">
+                                            <b>Tiempo Total: </b> {{item.data.time}} Mins
+                                          </div>
+                                        </div>
+                                        <div *ngIf="i!=0" title="lat: {{item.lat}} - lon: {{item.lon}}">
+                                          <button nbButton (click)="openAddressRouteDialog(item.data)" style="margin:0 10px 0 0"> <nb-icon icon="edit-2"></nb-icon></button> {{item.name}}
+                                        </div>
+                                      </nb-list-item>
+                                    </nb-list>
+                                </nb-accordion-item-body>
+                                </nb-accordion-item>
+                              </nb-accordion>
+                            </nb-card-body>
+                          </nb-card>
+                        </div>
+                        <div class="col-md-8">
+                          <nb-card status="info" accent="primary">
+                            <nb-card-header>
+                              Mapa
+                            </nb-card-header>
+                            <nb-card-body style="width: 100%; height: 450px;">
+                              <div style="height: 450px; position:relative"
+                                leaflet
+                                [leafletOptions]="options"
+                                (leafletMapReady)="onMapReady($event)">
+                                <div [leafletLayers]="markers.position"></div>
+                                <div [leafletLayers]="markers.paths"></div>
+                              </div>
+                            </nb-card-body>
+                          </nb-card>
+                        </div>
+                      </div>
+
+                      <div [formGroup]="thirdForm" class="step-container">
+                        <input nbInput type="text" formControlName="thirdCtrl" value="hehe" style="display: none;">
+                        <button nbButton nbStepperNext (click)="onThirdSubmit()" [disabled]="!thirdForm.valid || loading">Siguiente</button>
+                      </div>
+                  </nb-step>
+                  <nb-step label="Cuarto paso">
+                    <div class="step-container">
+                      <form  class="step-container">
+                        <div class="row">
+                          <div *ngFor="let row of dataTreeGrid; let i=index" class="col-sm-6 col-md-4 col-lg-3">
+                            <label class="label" for="select-route{{i}}">{{row.data.name}}</label>
+                            <br>
+                            <nb-select placeholder="Selecciona el agente para la ruta" id="select-route{{i}}" hero (selectedChange)="onAgentSelected($event, row.data.data.id)">
+                              <nb-option [value]="0" selected>
+                                Libre
+                              </nb-option>
+                              <nb-option [value]="messager.id" *ngFor="let messager of messagers" [disabled]="checkSelected(messager.id, row.data.data.id)">
+                                {{messager.first_name}} {{messager.last_name}}
+                              </nb-option>
+                            </nb-select>
+                          </div>
+                        </div>
+                        <button nbButton type="button" (click)="onFinishStep()" [disabled]="loading||messengerSel<inputMessagersModel">Finalizar</button>
+                      </form>
+                    </div>
+                  </nb-step>
+              </nb-stepper>
+          </nb-card-body>
+      </nb-card>
+  </div>
+</div>

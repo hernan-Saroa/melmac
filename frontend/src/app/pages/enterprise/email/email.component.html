@@ -1,0 +1,106 @@
+<nb-card class="modal-card" style="width: 60rem">
+  <nb-card-body class="modal-card-body">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="modal-title"><span>{{ title }}</span><span class="float-right" (click)="close()">X</span> </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex" *ngIf="state == 0">
+        <div class="col-md-6">
+          <div class="form-group subject-container">
+            <label for="dns">¿Qué servidor de nombre de dominio (DNS) utilizas?<span style="color: red;"> * </span>
+              <span nbTooltip="Su servidor DNS suele ser, aunque no siempre, el mismo lugar donde aloja su sitio web." nbTooltipPlacement="top" nbButton>
+                <img src="./assets/images/recursosmoduloempresa_melmac-05.png"/>
+              </span>
+            </label>
+            <nb-select placeholder="Selecciona tu servidor" fullWidth [(selected)]="selectedItem">
+              <nb-option value="123 Reg">123 Reg</nb-option>
+              <nb-option value="Alibaba cloud">Alibaba cloud</nb-option>
+              <nb-option value="Amazon Route 53">Amazon Route 53</nb-option>
+              <nb-option value="Cloudflare">Cloudflare</nb-option>
+              <nb-option value="CloudDNS">CloudDNS</nb-option>
+              <nb-option value="CSC Corporate Domains">CSC Corporate Domains</nb-option>
+              <nb-option value="DNS Made Easy">DNS Made Easy</nb-option>
+              <nb-option value="DNSimple">DNSimple</nb-option>
+              <nb-option value="DNSPod">DNSPod</nb-option>
+              <nb-option value="Dyn">Dyn</nb-option>
+              <nb-option value="easyDNS">easyDNS</nb-option>
+              <nb-option value="GoDaddy">GoDaddy</nb-option>
+              <nb-option value="Google Cloud">Google Cloud</nb-option>
+              <nb-option value="Jimbo">Jimbo</nb-option>
+              <nb-option value="Namecheap">Namecheap</nb-option>
+              <nb-option value="NS1">NS1</nb-option>
+              <nb-option value="Rackspace Cloud">Rackspace Cloud</nb-option>
+              <nb-option value="REG.RU">REG.RU</nb-option>
+              <nb-option value="RU-CENTER">RU-CENTER</nb-option>
+              <nb-option value="TransIP">TransIP</nb-option>
+              <nb-option value="Im Not Sure">I´m Not Sure</nb-option>
+              <nb-option value="1">Otro host(no listado)</nb-option>
+            </nb-select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group subject-container">
+            <label for="dominio">Ingresa tu dominio desde el que envías tus correos<span style="color: red;"> *</span></label>
+            <input id="dominio" [(ngModel)]="dominio" type="text" nbInput fullWidth fieldSize="small" placeholder="dominio.co" required>
+          </div>
+          <div class="form-group subject-container">
+            <label for="emailNext">Ingresa la dirección de correo electrónico de tu compañero<span style="color: red;"> * </span>
+              <span nbTooltip="Le enviaremos todo lo que necesita para instalar los registros DNS." nbTooltipPlacement="top" nbButton>
+                 <img src="./assets/images/recursosmoduloempresa_melmac-05.png"/>
+              </span>
+            </label>
+            <input id="emailNext" [(ngModel)]="emailNext" type="email" nbInput fullWidth fieldSize="small" placeholder="correo" required>
+          </div>
+          <div class="form-group subject-container">
+            <label for="textInfo">Escribe un mensaje para informarle de qué se trata.</label>
+            <textarea id="textInfo" [(ngModel)]="textInfo" nbInput fullWidth placeholder="Buen día, solicitamos su colaboración para autenticar el dominio de la empresa..."></textarea>
+          </div>
+          <button type="submit" class="float-right btn-style" nbButton (click)="onAccept('1')" [disabled]="checkForm('1')" [nbSpinner]="loading" nbSpinnerStatus="warning">Enviar</button>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="state == 3">
+        <div class="row">
+          <span class="text-center">Debes incluir tu información de contacto, incluida una dirección postal y física, dentro de cada correo electrónico promocional que envies para dar cumplimiento a las leyes antispam como CAN-SPAM-CASL</span>
+        </div><br>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group subject-container">
+              <label for="name1">Nombre que aparecerá como remitente<span style="color: red;"> * </span></label>
+              <input id="name1" [(ngModel)]="name1" type="text" nbInput fullWidth fieldSize="small" required>
+            </div>
+            <div class="form-group subject-container">
+              <label for="emailR">Dirección de correo que aparecerá como remitente<span style="color: red;"> * </span></label>
+              <input id="emailR" [(ngModel)]="emailR" type="text" nbInput fullWidth fieldSize="small" required>
+            </div>
+            <div class="form-group subject-container">
+              <label for="emailR2">Dirección de correo que aparecerá como "responder a"<span style="color: red;"> * </span></label>
+              <input id="emailR2" [(ngModel)]="emailR2" type="text" nbInput fullWidth fieldSize="small" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group subject-container">
+              <label for="address">Dirección de la empresa<span style="color: red;"> *</span></label>
+              <input id="address" [(ngModel)]="address" type="text" nbInput fullWidth fieldSize="small" required>
+            </div>
+            <div class="form-group subject-container">
+              <label for="address2">Dirección de la empresa (Linea 2)<span style="color: red;"> * </span></label>
+              <input id="address2" [(ngModel)]="address2" type="email" nbInput fullWidth fieldSize="small" required>
+            </div>
+            <div class="form-group subject-container">
+              <label for="alias">Apodo<span style="color: red;"> * </span></label>
+              <input id="alias" [(ngModel)]="alias" type="text" nbInput fullWidth fieldSize="small" required>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-center">
+          <button type="submit" class="btn-style" nbButton (click)="onAccept('2')" [disabled]="checkForm('2')" [nbSpinner]="loading" nbSpinnerStatus="warning">Enviar</button>
+        </div>
+      </div>
+      <div class="col-12 d-flex text-center" *ngIf="state != 0 && state != 3">
+        <h3>{{ textoEnviado }}</h3>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

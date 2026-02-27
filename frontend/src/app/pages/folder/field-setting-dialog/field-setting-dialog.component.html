@@ -1,0 +1,461 @@
+<nb-card>
+  <nb-card-header [ngSwitch]="caseDialog">
+    <h6 *ngSwitchCase="const.usual_fields">Configuración - {{ nameField(data.field_type) }}</h6>
+    <h6 *ngSwitchCase="const.general_config_fields">CONFIGURACIÓN GENERAL - Campo no diligenciable por participantes </h6>
+    <h6 *ngSwitchCase="const.special_fields">CAMPOS ESPECIALES - Campo habilitado para diligenciamiento de participantes</h6>
+  </nb-card-header>
+  <nb-card-body [ngSwitch]="caseDialog" class="content-location-permit">
+    <!-- Configuración de campos usuales para el diligenciamiento de los participantes -->
+    <nb-tabset *ngSwitchCase="const.usual_fields">
+      <nb-tab tabTitle="Mostrar">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label" for="input-label">Nombre *</label>
+              <input id="input-label" [(ngModel)]="label" type="text" autocomplete="off" nbInput fullWidth
+                maxlength="50" placeholder="Nombre del Campo" style="margin: 5px 0;" required>
+            </div>
+            <div class="col-sm-12" [hidden]="data.approver">
+              <label class="label" for="input-description">Descripción <span *ngIf="data.field_type == '14'">*</span></label>
+              <textarea id="input-description" [(ngModel)]="description" autocomplete="off" nbInput fullWidth
+                name="description" rows="4" [maxlength]="data.field_type == '14' ? 5000 : 200" >
+              </textarea>
+            </div>
+            <div class="col-sm-12">
+              <nb-checkbox [checked]="required" (checkedChange)="toggleRequired($event)" [hidden]="data.approver">Requerido</nb-checkbox>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab
+        *ngIf="data.field_type == '1' || data.field_type == '2' || data.field_type == '5' || data.field_type == '6' || data.field_type == '11'"
+        tabTitle="Validación">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div *ngIf="data.field_type != '11'" class="col-sm-12">
+              <label class="label" for="input-min">Longitud mínima</label>
+              <input id="input-min" [(ngModel)]="min" type="number" autocomplete="off" nbInput fullWidth maxlength="50"
+                placeholder="Longitud mínima" style="margin: 5px 0;">
+            </div>
+            <div *ngIf="data.field_type != '11'" class="col-sm-12">
+              <label class="label" for="input-max">Longitud máxima</label>
+              <input id="input-max" [(ngModel)]="max" type="number" autocomplete="off" nbInput fullWidth maxlength="50"
+                placeholder="Longitud máxima" style="margin: 5px 0;">
+            </div>
+            <div class="col-sm-12" *ngIf="data.field_type == '1'">
+              <!-- Radio -->
+              <label class="label">Avanzada</label>
+              <nb-radio-group [(ngModel)]="validation">
+                <nb-radio
+                  value="">
+                  Ninguna
+                </nb-radio>
+                <nb-radio
+                  *ngFor="let val of validations"
+                  [hidden]="val.field_type != data.field_type"
+                  [value]="val.value">
+                  {{ val.label }}
+                </nb-radio>
+              </nb-radio-group>
+            </div>
+            <div class="col-sm-12 content-validation" *ngIf="data.field_type == '11'">
+              <!-- Checkbox -->
+              <label class="label">Avanzada</label>
+              <input type="text" class="checkbox-validation" [ngModel]="validation" #checkbox_validation>
+              <nb-checkbox style="margin-bottom: 5px;" [checked]="onCheck(validation, val.value)" (checkedChange)="toggleCheckbox($event, val.value, checkbox_validation)"
+                  *ngFor="let val of validations" [value]="val.value" [hidden]="val.field_type != data.field_type">
+                  {{ val.label }}</nb-checkbox>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab
+        *ngIf="data.field_type == '20'"
+        tabTitle="Validación">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12 content-validation">
+              <!-- Checkbox -->
+              <label class="label">Avanzada</label>
+              <input type="text" class="checkbox-validation" [ngModel]="validation3" #nit_validation>
+              <nb-checkbox style="margin-bottom: 5px;" [checked]="onCheck3(validation3, val.value)" (checkedChange)="toggleCheckbox3($event, val.value, nit_validation)"
+                  *ngFor="let val of validations" [value]="val.value" [hidden]="val.field_type != data.field_type">
+                  {{ val.label }}</nb-checkbox>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab *ngIf="validation_regis" tabTitle="Campos">
+          <div class="col-sm-12 content-validation" [hidden]="!validation_regis">
+            <label class="label">Avanzado Registraduria</label>
+            <input type="text" class="checkbox-validation" [ngModel]="validation2" #checkbox_validation2>
+            <nb-checkbox style="margin-bottom: 5px;"
+            [checked]="onCheck2(validation2, valu.value)" (checkedChange)="toggleCheckbox2($event, valu.value, checkbox_validation2)"
+            *ngFor="let valu of validations_regis" [value]="valu.value" [hidden]="valu.field_type != data.field_type">
+            {{ valu.label }}</nb-checkbox>
+          </div>
+      </nb-tab>
+      <nb-tab *ngIf="data.field_type == '3' || data.field_type == '12' || data.field_type == '13'" tabTitle="Datos">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label">Lista de Valores *</label>
+              <div cdkDropList class="selected-list" (cdkDropListDropped)="dropSelect($event)">
+                <div class="select-item" cdkDragBoundary=".selected-list" *ngFor="let option of options; let i=index;"
+                  cdkDrag>
+                  <div class="select-custom-placeholder" *cdkDragPlaceholder></div>
+                  <!-- <div> -->
+                  <span cdkDragHandle class="select-span">
+                    <nb-icon icon="move"></nb-icon>
+                  </span>
+                  <!-- {{ option }} -->
+                  <input #inputS id="index-option-{{ i }}"
+                    (change)="onChangeOption($event.target.value, i, inputS)" [value]="options[i].label"
+                    class="input-select" type="text" autocomplete="off" nbInput fullWidth maxlength="40"
+                    placeholder="Opción" required>
+                  <button [disabled]="options.length == 1" nbButton ghost status="danger" (click)="onDeleteOption(i)">
+                    <nb-icon icon="close-circle-outline"></nb-icon>
+                  </button>
+                  <!-- </div> -->
+                </div>
+              </div>
+
+
+              <button nbButton status="primary" (click)="onAddOption()">Agregar <nb-icon icon="plus-outline"></nb-icon>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab *ngIf="data.field_type == '17'" tabTitle="Datos">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label" for="input-num-list">Numero de Filas</label>
+              <!-- <input id="input-num-list" [(ngModel)]="num_list" (ngModelChange)="onChangeNum($event)" type="number" autocomplete="off" nbInput fullWidth min="2" max="10"
+                placeholder="Filas" style="margin: 5px 0;"> -->
+              <nb-select id="input-num-list" fullWidth placeholder="Filas" style="margin: 5px 0;"
+                [(ngModel)]="num_list">
+                <nb-option  [value]="i + 2" *ngFor="let item of [].constructor(19); let i = index">{{ i + 2 }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label">Columnas *</label>
+              <div cdkDropList class="selected-list" (cdkDropListDropped)="dropField($event)">
+                <div class="select-item" cdkDragBoundary=".selected-list" *ngFor="let field of list_fields; let i=index;"
+                  cdkDrag>
+                  <div class="select-custom-placeholder" *cdkDragPlaceholder></div>
+                  <span cdkDragHandle class="select-span">
+                    <nb-icon icon="move"></nb-icon>
+                  </span>
+                  <!-- {{ option }} -->
+                  <input id="index-option-{{ i }}"
+                    (change)="onChangeField($event.target.value, i)" [value]="list_fields[i].label"
+                    class="input-select" type="text" autocomplete="off" nbInput fullWidth maxlength="50"
+                    placeholder="Nombre" required>
+                  <nb-select [disabled]="field.field != ''" #select_type fullWidth placeholder="Tipo" [ngModel]="field.field_type" (ngModelChange)="onChangeFieldType($event, i, select_type)">
+                    <nb-option value="1">Alfanumérico</nb-option>
+                    <nb-option value="4">Fecha</nb-option>
+                    <nb-option value="7">Firma digitalizada</nb-option>
+                    <nb-option value="3">Lista</nb-option>
+                    <nb-option value="13">Múltiple</nb-option>
+                    <nb-option value="2">Numérico</nb-option>
+                    <nb-option value="11">Número de documento</nb-option>
+                    <nb-option value="5">Solo letras</nb-option>
+                    <nb-option value="15">Ubicación</nb-option>
+                    <nb-option value="12">Única</nb-option>
+                  </nb-select>
+                  <button [hidden]="field.field_type != 3 && field.field_type != 12 && field.field_type != 13"
+                    [status]="onValidateOptionTable(i)" nbButton ghost
+                    (click)="openOption(i)">
+                    <nb-icon icon="list-outline"></nb-icon>
+                  </button>
+                  <button [disabled]="list_fields.length <= 2" nbButton ghost status="danger" (click)="onDeleteField(i)">
+                    <nb-icon icon="close-circle-outline"></nb-icon>
+                  </button>
+                </div>
+              </div>
+
+              <button [disabled]="list_fields.length >= 20" nbButton status="primary" (click)="onAddField()">Agregar <nb-icon icon="plus-outline"></nb-icon>
+              </button>
+
+            </div>
+            <div class="col-sm-12">
+              <div [nbPopover]="tabs" [nbPopoverPlacement]="position" nbPopoverTrigger="noop"></div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+    <!-- Configuración de campos generales -->
+    <nb-tabset *ngSwitchCase="const.general_config_fields">
+      <nb-tab [tabTitle]="nameField(data.field_type)">
+        <!-- Título, Línea de texto y Párrafo -->
+        <div *ngIf="data.config.field_type == 'input'" style="max-width: 600px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label" for="input-label">Define el texto que quieres se visualice en esta creación como {{ setLowerCase(nameField(data.field_type)) }}</label>
+              <input *ngIf="data.field_type != '3'" id="input-label" [(ngModel)]="label" type="text" autocomplete="off" nbInput fullWidth
+                [maxlength]="setLimit(data.field_type)" [placeholder]="nameField(data.field_type)" style="margin: 5px 0;" autofocus required>
+              <textarea *ngIf="data.field_type == '3'" id="texrarea-label" [(ngModel)]="label" type="text" autocomplete="off" nbInput fullWidth
+                [maxlength]="setLimit(data.field_type)" [placeholder]="nameField(data.field_type)" style="margin: 5px 0;" autofocus required></textarea>
+                <p class="ml-2" style="margin-top: -0.4rem; text-align: end; font-size: 12px;">
+                  {{label.length}}/{{setLimit(data.field_type)}} caractéres
+                </p>
+            </div>
+          </div>
+          <div class="row col-12 mt-1 px-0">
+            <div class="col-3 d-flex viewer-pdf justify-content-center" [ngClass]="data.field_type != '1' ? 'align-items-center' : ''">
+              <h6 *ngIf="data.field_type == '1'" class="mt-2 text-center">{{data.config.info}}</h6>
+              <p *ngIf="data.field_type != '1'" class="mt-2 text-left" style="font-size: 11px; line-height: 14px;">{{data.config.info}}</p>
+            </div>
+            <div class="col-9 px-0">
+              <div class="row col-12 justify-content-center align-items-center pr-0">
+                <div class="col-2">
+                  <div class="d-flex justify-content-center align-items-center circle-config"><strong>1,2,3...</strong></div>
+                </div>
+                <div class="col-10 px-0" style="font-size: 12px; line-height: 14px;">
+                  Cuando creas más de un campo {{ setLowerCase(nameField(data.field_type)) }}, automáticamente los enumeraremos en orden ascendente.
+                </div>
+              </div>
+              <div class="row col-12 justify-content-center align-items-center pr-0 mt-2">
+                <div class="col-2 d-flex justify-content-center px-1">
+                  <div class="d-flex justify-content-center align-items-end chart-config">
+                    <div>
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-10 px-0" style="font-size: 12px; line-height: 14px;">
+                  Recuerda que en cualquier momento puedes editar este campo desde el área derecha inferior.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Elemetos gráficos -->
+        <div *ngIf="data.config.field_type == 'icon'" class="col-12">
+          <div class="d-flex">
+            <div *ngFor="let icon of graphicElements_1" class="m-2">
+              <div class="d-flex justify-content-center align-items-center p-2" (click)="selectedIcon(icon, 1)" [style]="icon.selected ? 'border: 1px solid #422379' : 'border: 1px solid #aeaeae'" style="cursor: pointer;">
+                <img [src]="icon.name" style="width: 70px;" />
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <div *ngFor="let icon of graphicElements_2" class="m-2">
+              <div class="d-flex justify-content-center align-items-center p-2" (click)="selectedIcon(icon, 2)" [style]="icon.selected ? 'border: 1px solid #422379' : 'border: 1px solid #aeaeae'" style="cursor: pointer;">
+                <img [src]="icon.name" style="width: 70px;" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Logo o imagen -->
+        <div *ngIf="data.config.field_type == 'img'" style="max-width: 600px;">
+          <div style="display: grid; align-items: center; max-width: 600px; height: 300px;">
+            <div class="row">
+              <div class="file-upload" style="width: 100%; text-align: center;">
+                <div draggable="true" ngClass="{{ drag_class }}">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <div>
+                        <label for="upload-doc">
+                          <img class="upload-nube-img" src="./assets/images/icons/folder/cargar_documento_nube.png">
+                        </label>
+                      </div>
+                      <div>
+                        <button (click)="file.click()" nbButton status="primary" [nbSpinner]="loading">Examinar</button>
+                      </div>
+                      <div>
+                        <label for="upload-doc">o arrastra un archivo aquí</label>
+                      </div>
+                      <input #file [multiple]="false" class="form-control" type="file" id="upload-doc" accept="image/*" style="display: none;" (change)="uploadFile($event)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+    <!-- Configuración de campos especiales -->
+    <nb-tabset *ngSwitchCase="const.special_fields">
+      <nb-tab class="content-special-fields" [tabTitle]="nameField(data.field_type)">
+        <div class="row col-sm-12">
+          <span>Asigna un enunciado que comunique lo que debe hacer quien digencia</span>
+        </div>
+        <div class="row">
+          <div class="col-sm-7">
+            <input id="input-label" [(ngModel)]="label" type="text" autocomplete="off" nbInput fullWidth
+              [placeholder]="nameField(data.field_type)" style="margin: 5px 0;" autofocus required>
+          </div>
+          <div class="col-sm-5">
+            <p class="d-flex align-items-center" style="font-size: 12px; margin: 0px; height: 100%">
+              {{label.length}}/50 caractéres
+            </p>
+          </div>
+        </div>
+        <div *ngIf="data.field_type != '3'" class="row">
+          <div class="row col-sm-12 mt-2">
+            <span>Elige el formato en que quieres que aparezca esta lista</span>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="data.field_type != '3'" class="col-sm-7 d-flex mt-1">
+            <div *ngFor="let item of createRange(4); let j = index" (click)="onSelectedList(j)" class="content-list-sel">
+              <div *ngIf="data.field_type != '3'" class="contt" [style]="selectedList == (j+1) ? 'border: 1px solid #412379; box-shadow: 0px 0px 5px #412379;' : 'border: 1px solid darkgray'">
+                <div *ngFor="let item of createRange(4); let i = index" [style]="addStyle(i, j)" class="my-1 d-flex align-items-center" [class]="j > 1 ? 'justify-content-center' : ''" style="height: 20px">
+                  <div *ngIf="j == 1 && i == 1" class="list-sel-sel" style="margin-left: 3px;"></div>
+                  <div *ngIf="j > 1" class="list-sel" [style]="j == 2 ? 'border-radius: 8px':''">
+                    <div *ngIf="j == 2 && i == 1" class="list-sel-sel"></div>
+                    <div *ngIf="j == 3 && i == 2" style="font-weight: 600;">X</div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="data.field_type != '3'" style="font-size: 12px; text-align: center" [style]="selectedList == (j+1) ? 'color: #412379':''">
+                <span>{{(j+1)}}. {{arrayTextList[j]}}</span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="data.field_type == '3'" class="col-sm-7 mt-2">
+            <div class="col-sm-12" style="padding: 15px; border: 1px solid darkgray;">
+              <div *ngIf="selectedList == 1" class="mb-1 d-flex justify-content-between align-items-center" style="border: 1px solid darkgray; padding: 7px 5px; background-color: black; color: white">{{label}}</div>
+              <div *ngFor="let item of dataFieldSpecialOptions; let i = index" class="mb-1 d-flex justify-content-between align-items-center" style="border: 1px solid darkgray; padding: 0px 5px">
+                <div style="display: contents;">
+                  <div *ngIf="selectedList == 2" class="list-sel mr-1" style="border-radius: 8px"></div>
+                  <span *ngIf="!item.edit" style="width: 100%;">{{item.value}}</span>
+                  <input *ngIf="item.edit" [(ngModel)]="item.value" type="text" style="width: 100%;">
+                </div>
+                <div class="d-flex">
+                  <a [nbTooltip]="item.edit ? 'Guardar':'Editar'" nbTooltipPlacement="top">
+                    <button (click)="editOption(i, true)" nbButton size="tiny" style="border: 1px solid #412379;">
+                        <nb-icon *ngIf="!item.edit" icon="edit-2-outline"></nb-icon>
+                        <nb-icon *ngIf="item.edit" icon="save-outline"></nb-icon>
+                    </button>
+                  </a>
+                  <a *ngIf="i > 1" nbTooltip="Eliminar" nbTooltipPlacement="top">
+                    <button (click)="editOption(i, false)" class="btn_eraser" nbButton size="tiny" style="border: 1px solid #412379;">
+                        <nb-icon icon="trash-2-outline"></nb-icon>
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-center">
+              <button nbButton (click)="addOption()" [disabled]="dataFieldSpecialOptions.length == fieldSpecialRows" status="primary">Agregar</button>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div>
+              <div><span>¿Quieres marcar este campo como requerido?</span></div>
+              <div>
+                <nb-radio-group [(ngModel)]="fieldSpecialRequired" class="d-flex">
+                  <nb-radio value="YES"> Si</nb-radio>
+                  <nb-radio value="NO"> No</nb-radio>
+                </nb-radio-group>
+              </div>
+              <div class="mt-1"><span>¿Cuántos espacios requieres para tu listado de selección?</span></div>
+              <div class="d-flex mt-1">
+                <div class="mr-1" style="font-size: 11px;"><div style="height: 14px;">Mínimo 2</div><div>Máximo 10</div></div>
+                <input [(ngModel)]="fieldSpecialRows" (change)="fieldSpecialRowsChange()" type="number" [min]="minOption" max="10">
+              </div>
+              <div class="mt-2">
+                <nb-checkbox [(ngModel)]="assign_name_pdf">
+                  Asignar campo de respuesta al sobre
+                </nb-checkbox>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="data.field_type != '3'" class="row">
+          <div class="col-sm-7" style="color: #412379;">
+            <div *ngIf="selectedList == 0">OPCIONES</div>
+            <div *ngIf="selectedList > 0" class="mb-2">
+              <div>OPCIÓN {{selectedList}} - {{arrayTextList[selectedList-1]}}</div>
+              <div style="color: black; font-size: 12px">{{selectedList <= 2 ? 'Escribe las opciones sobre las cuales el/la participante podrá elegir.' : 'Selecciona ACEPTAR y en el documento puedes arrastrar las opciones sin texto según tu interés de forma independiente.'}}</div>
+            </div>
+          </div>
+          <div *ngIf="selectedList == 0 || selectedList > 2" class="col-sm-7" style="background-color: lightgray; width: 100%; height: 162px"></div>
+          <div *ngIf="selectedList == 1 || selectedList == 2" class="col-sm-7">
+            <div class="col-sm-12" style="padding: 15px; border: 1px solid darkgray;">
+              <div *ngIf="selectedList == 1" class="mb-1 d-flex justify-content-between align-items-center" style="border: 1px solid darkgray; padding: 7px 5px; background-color: black; color: white">{{label}}</div>
+              <div *ngFor="let item of dataFieldSpecialOptions; let i = index" class="mb-1 d-flex justify-content-between align-items-center" style="border: 1px solid darkgray; padding: 0px 5px">
+                <div style="display: contents;">
+                  <div *ngIf="selectedList == 2" class="list-sel mr-1" style="border-radius: 8px"></div>
+                  <!-- <div *ngIf="selectedList == 3" class="list-sel mr-1" style="border-radius: 8px"></div>
+                  <div *ngIf="selectedList == 4" class="list-sel mr-1"></div> -->
+                  <span *ngIf="!item.edit" style="width: 100%;">{{item.value}}</span>
+                  <input *ngIf="item.edit" [(ngModel)]="item.value" type="text" style="width: 100%;">
+                </div>
+                <div class="d-flex">
+                  <a [nbTooltip]="item.edit ? 'Guardar':'Editar'" nbTooltipPlacement="top">
+                    <button (click)="editOption(i, true)" nbButton size="tiny" style="border: 1px solid #412379;">
+                        <nb-icon *ngIf="!item.edit" icon="edit-2-outline"></nb-icon>
+                        <nb-icon *ngIf="item.edit" icon="save-outline"></nb-icon>
+                    </button>
+                  </a>
+                  <a *ngIf="i > 1" nbTooltip="Eliminar" nbTooltipPlacement="top">
+                    <button (click)="editOption(i, false)" class="btn_eraser" nbButton size="tiny" style="border: 1px solid #412379;">
+                        <nb-icon icon="trash-2-outline"></nb-icon>
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 d-flex justify-content-center">
+              <button nbButton (click)="addOption()" [disabled]="dataFieldSpecialOptions.length == fieldSpecialRows" status="primary">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close()">Cancelar</button>
+    <button *ngIf="activeBtn()" [nbSpinner]="loading" nbSpinnerStatus="success" [disabled]="loading" nbButton status="primary"
+      (click)="onAccept($event)" [disabled]="onValidate()">Aceptar</button>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #tabs>
+  <nb-card class="margin-bottom-0">
+    <nb-card-header>
+      Opciones
+      <button style="float: right;" nbButton ghost status="danger" (click)="onCloseOption()"><nb-icon icon="close-outline"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div style="height: 200px;">
+        <label class="label">Lista de Valores *</label>
+        <div cdkDropList class="selected-list" (cdkDropListDropped)="dropSelect($event)">
+          <div class="select-item" cdkDragBoundary=".selected-list" *ngFor="let option of options; let i=index;"
+            cdkDrag>
+            <div class="select-custom-placeholder" *cdkDragPlaceholder></div>
+            <!-- <div> -->
+            <span cdkDragHandle class="select-span">
+              <nb-icon icon="move"></nb-icon>
+            </span>
+            <!-- {{ option }} -->
+            <input #inputS id="index-option-{{ i }}"
+              (change)="onChangeOption($event.target.value, i, inputS)" [value]="options[i].label"
+              class="input-select" type="text" autocomplete="off" nbInput fullWidth maxlength="40"
+              placeholder="Opción" required>
+            <button [disabled]="options.length == 1" nbButton ghost status="danger" (click)="onDeleteOption(i)">
+              <nb-icon icon="close-circle-outline"></nb-icon>
+            </button>
+            <!-- </div> -->
+          </div>
+        </div>
+
+        <button nbButton status="primary" (click)="onAddOption()">Agregar <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

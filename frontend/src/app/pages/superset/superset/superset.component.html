@@ -1,0 +1,8 @@
+<!-- <p> Superset Works! </p> -->
+<div class="superset-dashboard">
+    <div *ngIf="loading" class="d-flex justify-content-center">
+        <div class="spinner-grow text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <div *ngIf="!loading && error != ''" style="font-style: italic">{{error}}</div>
+    <div id="dashboard" [style]="displayDashboard"></div>
+</div>

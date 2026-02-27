@@ -1,0 +1,132 @@
+.inputSignHand{
+  max-width: 100% !important;
+  width: 100%;
+  height: 130px;
+  margin-top: 20px;
+  border: 0px;
+  border-bottom: 5px solid #5f5e5e;
+  font-size: 35px !important;
+  text-align: center;
+  padding-top: 80px !important;
+  font-family:serif;
+  text-transform: capitalize;
+}
+.inputSignHand::-webkit-input-placeholder {
+  text-align: center;
+  line-height: 100px;/* Centrado vertical */
+  font-size: 35px !important;
+  font-style: italic;
+  text-transform:uppercase;
+}
+.modal-footer-SignHand{
+  text-align: left !important;
+  margin-top: 0px !important;
+  padding: 6px;
+  margin-left: 22px;
+}
+.mr-25{
+  margin-right: 25px !important;
+}
+
+.pdb{
+  padding-bottom: 66px;
+}
+
+#img_sign {
+  width: 350px;
+  height: 176px;
+}
+
+
+::ng-deep:root {
+  --my-var: #e1dfdf;
+  --my-var6: #ffffff;
+  --my-var10: #3366ff;
+  --my-var11: #8f9bb33d;
+  --my-var12: #8f9bb33d;
+  --my-var13: #8f9bb3;
+  --my-var7: #412378;
+
+}
+
+::ng-deep .appearance-filled {
+  background-color: var(--my-var) !important;
+  border-color: var(--my-var) !important;
+}
+
+::ng-deep .appearance-filledN {
+  background-color: var(--my-var10) !important;
+  border-color: var(--my-var10) !important;
+}
+
+::ng-deep .appearance-filled-disable {
+  background-color: var(--my-var11) !important;
+  border-color: var(--my-var12) !important;
+}
+
+::ng-deep .appearance-filled-disableN {
+  background-color: var(--my-var11) !important;
+  border-color: var(--my-var12) !important;
+ //color: #8f9bb37a
+}
+
+::ng-deep .buttonText{
+  color: var(--my-var) !important;
+}
+
+::ng-deep .buttonTextN{
+  color: var(--my-var6) !important;
+}
+
+::ng-deep .tabLink{
+  color: var(--my-var) !important;
+}
+
+::ng-deep .tabLinkN{
+  color: var(--my-var) !important;
+}
+
+::ng-deep .text{
+  color: var(--my-var13) !important;
+}
+
+::ng-deep .textN{
+  color: var(--my-var13) !important;
+}
+
+
+@media (max-width: 768px){
+  ::ng-deep #tab_sign_modal {
+    .tab-link {
+      padding: 1rem 1rem;
+    }
+
+    #img_sign {
+      width: 100% !important;
+      height: initial;
+      max-height: 176px;
+    }
+  }
+
+  ::ng-deep .data_btn_sign {
+    .col-md-12 {
+      padding-right: 0px;
+
+      button {
+        padding: 10px !important;
+      }
+    }
+  }
+}
+
+::ng-deep #tab_sign_modal{
+  ul{
+    display: flex !important;
+  }
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

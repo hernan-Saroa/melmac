@@ -1,0 +1,111 @@
+<nb-card>
+  <nb-card-header>
+    Empieza por elegir cómo quieres cargar tu documento
+    <nb-icon class="close-tab" style="cursor: pointer; float: right;" (click)="close()" icon="close"></nb-icon>
+  </nb-card-header>
+  <nb-card-body class="content-location-permit">
+    <nb-tabset [nbSpinner]="loading">
+      <nb-tab tabTitle="SUBIR">
+        <div style="display: grid; align-items: center; max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="file-upload" style="width: 100%; text-align: center;">
+              <div draggable="true" ngClass="{{ drag_class }}">
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <div>
+                      <label for="upload-doc">
+                        <img class="upload-nube-img" src="./assets/images/icons/folder/cargar_documento_nube.png">
+                      </label>
+                    </div>
+                    <div>
+                      <button (click)="file.click()" nbButton status="primary" [nbSpinner]="loading">Examinar</button>
+                    </div>
+                    <div>
+                      <label for="upload-doc">o arrastra un archivo aquí</label>
+                    </div>
+                    <input #file [multiple]="false" class="form-control" type="file" id="upload-doc" accept=".pdf" style="display: none;" (change)="uploadFile($event)">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="GOOGLE DRIVE">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="drive-container col-12">
+              <label class="col-12 label">
+                Cargar archivo desde Google Drive
+              </label>
+              <button class="drive-btn" fullWidth nbButton (click)="uploadFromDrive()" status="primary" size="giant" ghost>
+                <i class="fab fa-google-drive"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="PLANTILLA">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="row tab-content-upload doc-select ng-scroll">
+              <!-- Contenido -->
+              <div class="doc-content" *ngFor="let doc of template_list; let i=index;">
+                <div class="doc-box">
+                  <div style="cursor: pointer;" (click)="selectTemplate(i)">
+                    <pdf-viewer [src]="doc.file" [render-text]="true" [show-all]="false" [original-size]="false"
+                      [fit-to-page]="false" class="pdf-viewer-box"></pdf-viewer>
+                  </div>
+                </div>
+                <div class="doc-info">
+                  <span [title]="doc.name">{{ doc.name }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="HOJA EN BLANCO">
+        <div style="display: grid; align-items: center; max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <label for="input-num-page" class="label">Número de Páginas<span>*</span></label>
+                <nb-select [(ngModel)]="page_num" fullWidth id="input-num-page"
+                  name="field_page_num" class="select-form" required
+                  placeholder="Seleccionar">
+                    <nb-option [value]="i + 1" *ngFor="let item of [].constructor(10); let i = index">
+                      {{ i + 1 }}
+                    </nb-option>
+                </nb-select>
+              </div>
+              <div class="form-group">
+                <label for="input-format-page" class="label">Formato<span>*</span></label>
+                <nb-select [(ngModel)]="page_format" fullWidth id="input-format-page"
+                  name="field_page_num" class="select-form" required
+                  placeholder="Seleccionar" (ngModelChange)="formatChange($event)">
+                    <nb-option [value]="format.value" *ngFor="let format of formats;">
+                      {{ format.label }}
+                    </nb-option>
+                </nb-select>
+              </div>
+              <div class="form-group">
+                <button nbButton status="primary" fullWidth (click)="createDocWhite()">Aceptar</button>
+              </div>
+            </div>
+            <div class="white-page-container col-12 col-sm-6">
+              <div [ngClass]="'preview-doc-white ' + (format_select.orientation == 'v' ? 'preview-doc-white-v' : 'preview-doc-white-h')">
+                <label class="label-top">{{ format_select.x }}</label>
+                <label class="label-left">{{ format_select.y }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

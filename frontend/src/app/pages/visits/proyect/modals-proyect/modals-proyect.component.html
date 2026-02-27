@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12" style="width: 1000px;">
+    <div class="col-md-12 mx-auto container">
+      <nb-card>
+        <nb-card-header><h2 class="text-center">{{titleModal}} proyecto</h2></nb-card-header>
+        <nb-card-body>
+              <div class="form-group">
+                <nb-toggle [(ngModel)]="toggleNgModelState" labelPosition="start" class="titleLabel" (checkedChange)="toggleClick($event)">Proyecto {{titleState}}</nb-toggle>
+              </div>
+              <div class="form-group">
+                <label for="inputName" class="titleLabel"> Nombre del proyecto </label>
+                <input type="text" nbInput fullWidth fieldSize="small" shape="semi-round" placeholder="Ingrese nombre del proyecto" [(ngModel)]="inputItemNgModelName" id="inputName">
+              </div>
+              <div class="form-group">
+                <label for="inputDescription" class="titleLabel"> Descripción del proyecto </label>
+                <textarea nbInput fullWidth placeholder="Ingrese una descripción para el proyecto" shape="semi-round" [(ngModel)]="textareaItemNgModel" id="inputDescription"></textarea>
+              </div>
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+          <button nbButton shape="rectangle" status="primary" (click)="sendDataModal()" class="mr-3" [nbSpinner]="btnLoadingModal" nbSpinnerStatus="warning" [disabled]="btnDisabledModal">{{btnModal}} proyecto</button>
+          <button nbButton shape="rectangle" style="float: left;" status="danger" (click)="closeModal('1')">Cancelar</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>
+

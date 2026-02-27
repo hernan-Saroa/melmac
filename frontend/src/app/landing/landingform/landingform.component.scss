@@ -1,0 +1,178 @@
+.modal-card {
+    width: 1240px;
+    border-radius: 1%;
+    border-color: #000000;
+    background-color: #000000;
+    opacity: 0.95;
+  }
+  
+  ::ng-deep .cdk-global-scrollblock {
+    overflow-y: hidden !important;
+    top: -500px !important;
+  }
+  
+  .modal-card-body {
+    overflow: hidden;
+  }
+  .report_input{
+    width: 10px;
+    display: flex;
+    gap: 20px; /* Espacio entre los elementos */
+  }
+
+  .col-sm-4{
+    text-align: left; 
+    background-repeat: no-repeat;
+    // background-size: 50% 50%;
+    background-color:white;  
+    box-shadow: 10px 10px 5px rgb(65, 35, 120) ;
+    border-radius: 2%;
+    opacity: none;
+  }
+  
+  .modal-title {
+    text-align: center;
+  }
+  
+  .content {
+    margin-bottom: 15px;
+  }
+  
+  .scroll-form {
+    overflow-y: auto;
+    height: 200px;
+  }
+  
+  .scroll-form::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.5125rem;
+  }
+  
+  .scroll-form::-webkit-scrollbar-thumb {
+    background: #000000;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+  }
+  
+  .scroll-form::-webkit-scrollbar-track {
+    background: #000000;
+  }
+  
+  .btn-explain-option {
+    text-align: center;
+  }
+  
+  .form-approve, .form-verified {
+    display: inline-flex;
+    margin-bottom: 5px;
+  }
+  
+  .btn-content {
+    width: 100%;
+  }
+  
+  .btn-img {
+    width: 104px;
+    height: 104px;
+  }
+  
+  .label-title {
+    margin-bottom: 0px;
+    width: 100%;
+  }
+  
+  .label-primary {
+    color: blue;
+  }
+  
+  .label-danger {
+    color: red;
+  }
+  
+  .label-info {
+    color: #41A178;
+  }
+  .flex-container {
+    display: flex;
+    gap: 180px; /* Espacio entre los elementos */
+  }
+  .footer-option {
+    text-align: center;
+  }
+  .form-group {
+    margin-top: 40px;
+  }
+  
+  .modal-btn {
+    border-radius: 17px !important;
+    font-size: 1.2rem !important;
+    font-weight: 300 !important;
+    //padding: 0.8125rem 4.125rem !important;
+  }
+  
+  .modal-btn-primary {
+    background-color: #412378 !important;
+    border-color: rgb(65, 35, 120) !important;
+    color: #ffffff !important;
+    padding: 0.8125rem 2.125rem !important;
+    text-align: center;
+  }
+
+  .modal-btn-secundary {
+    border-radius: 17%;
+    background-color: #412378 !important;
+    border-color: rgb(65, 35, 120) !important;
+    color: #ffffff !important;
+    padding: 0.8125rem 4.125rem !important;
+    text-align: center;
+  }
+  
+  .modal-btn-default {
+    font-weight: 10 !important;
+    background-color: #412378 !important;
+    color:  #ffffff !important;
+    margin-right: 5px !important;
+  }
+  
+  .imagen-one{
+    display: initial;
+  }
+
+  .imagen-two{
+    display: none;
+  }
+
+  @media (max-width: 573px) {
+    .imagen-one{
+      display: none;
+    }
+    .imagen-two{
+      display: initial;     
+    }
+    .modal-card {
+      width: 90vw;
+    }
+    .modal-card-body {
+      overflow-y: auto;
+      
+    }
+  }
+
+  @media only screen and (max-width: 573px) {
+    img {
+      width: 100%;
+    }
+  }
+
+  ::ng-deep .custom-checkbox{
+    border-radius: 19px !important;
+  }
+
+  .city-select{
+    background-color: transparent;
+    border:none; 
+    border-bottom:0.5px solid;
+  }
+
+
+

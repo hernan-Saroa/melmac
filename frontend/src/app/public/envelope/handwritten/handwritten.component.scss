@@ -1,0 +1,42 @@
+.inputSignHand{
+  max-width: 100% !important;
+  width: 100%;
+  height: 130px;
+  margin-top: 20px;
+  border: 0px;
+  border-bottom: 5px solid #5f5e5e;
+  font-size: 35px !important;
+  text-align: center;
+  padding-top: 80px !important;
+  font-family:serif;
+  text-transform: capitalize;
+}
+.inputSignHand::-webkit-input-placeholder {
+  text-align: center;
+  line-height: 100px;/* Centrado vertical */
+  font-size: 35px !important;
+  font-style: italic;
+  text-transform:uppercase;
+}
+.modal-footer-SignHand{
+  text-align: left !important;
+  margin-top: 0px !important;
+  padding: 6px;
+  margin-left: 22px;
+}
+.mr-25{
+  margin-right: 25px !important;
+}
+
+.pdb{
+  padding-bottom: 50px;
+}
+
+.container::-webkit-scrollbar-thumb:active {
+  background-color: #000000;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 4px;
+}

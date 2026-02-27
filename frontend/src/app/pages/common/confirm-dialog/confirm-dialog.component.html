@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-header>
+    {{data.title}}
+  </nb-card-header>
+  <nb-card-body>
+    {{data.msg}}
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="confirm-btn" nbButton status="success" (click)="onClick(true)"> {{yesMsg}} </button>
+    <button class="cancel-btn" nbButton (click)="onClick(false)"> {{noMsg}} </button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,15 @@
+<nb-card style="max-width:80%; margin-left:10%" class="error-modal">
+  <nb-card-header>
+    <h1>Errores del archivo</h1>
+  </nb-card-header>
+  <nb-card-body style="overflow:auto">
+    <ng2-smart-table *ngIf="data_errors.length > 0" class="table-modal" [settings]="settings" [source]="source"></ng2-smart-table>
+    <p *ngIf="data_errors.length == 0">
+      Este archivo no presento errores.
+    </p>
+    <button style="float:right" nbButton (click)="close()">Cerrar</button>
+  </nb-card-body>
+  <!--nb-card-footer>
+    <button style="float:right" nbButton (click)="close()">Cerrar</button>
+  </nb-card-footer-->
+</nb-card>

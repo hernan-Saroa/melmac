@@ -1,0 +1,170 @@
+{% load static %}
+{% load tz %}
+{% localtime on %}
+{% get_media_prefix as MEDIA_URL %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <!-- Custom CSS -->
+    <style>
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        .title {
+            padding: 1rem 1.5rem;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+            color: #222b45;
+            font-family: Open Sans, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.5rem;
+        }
+        .range{
+            text-align: center;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        .table {
+            font-size: 12px;
+            border: 1px solid #edf1f7;
+        }
+        .table tr {
+            font-family: Open Sans, sans-serif;
+            font-weight: 400;
+            line-height: 1.25rem;
+            color: #222b45;
+
+            background-color: white;
+            padding: 8px;
+        }
+        .table th {
+            font-size: 14px;
+        }
+        .table td {
+            font-size: 13px;
+        }
+
+        /* Template 2 */
+        .table_1 {
+            border: 0.3px solid black;
+        }
+
+        .table_1 tr {
+            font-family: Open Sans, sans-serif;
+            padding: 1px;
+        }
+
+        .title1{
+            font-size: 18px;
+            text-align: center;
+            background: #f1f1f1;
+        }
+        .tab-label{
+            font-size: 14px;
+            text-align: left;
+            background-color: #d6d6d6;
+            color: black;
+            font-weight: bold;
+            text-transform:uppercase;
+        }
+        .tab-content{
+            font-size: 12px;
+            text-align: justify;
+        }
+        .title2{
+            font-size: 14px;
+            color: black;
+            padding: 8px;
+        }
+        .conten{
+            font-size: 12px;
+            color: black;
+            padding: 8px;
+        }
+        .buttno {
+        background-color: #2b80f0;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        padding: 14px;
+        font-size: 12px;
+        margin: 15px;
+        }
+
+        .buttno:hover, .buttno:active {
+        background-color: #2b80f0;
+        }
+    </style>
+    <title>Reporte</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <img style="width: 150px;" src="{{logo}}"  alt="">
+    </div>
+    <div>
+        <hr>
+            <h1 class="title1">INFORMACIÓN DEL DOCUMENTO </h1>
+        <hr>
+        <table style="border: 1px double black;">
+            <tr>
+                <td style="padding: 2px;text-align: center;" colspan="3">
+                    <label class="conten"> SOBRE: {{ info.envelope }}</label>
+                </td>
+            </tr>
+            <tr>
+                <th style="padding: 2px;"><strong class="title2">Fecha de creación:</strong></th>
+                <th style="padding: 2px;"><strong class="title2">Fecha de solicitud del reporte:</strong></th>
+            </tr>
+            <tr>
+                <td style="padding: 2px;"><label class="conten"> {{ info.creation_date }}:00</label></td>
+                <td style="padding: 2px;"><label class="conten"> {{ info.solicitude_date }}:00</label></td>
+            </tr>
+        </table><br><br>
+        <hr><h1 class="title1">REPORTE DE DATOS ANI - Registraduría Nacional del Estado Civil de 
+            {{ info.data_verified.pName }} {{ info.data_verified.sName }}  {{ info.data_verified.pLastname }} {{ info.data_verified.sLastname }}
+        </h1><hr>
+
+        <table style="border: 1px double black;">
+            <tr>
+                <td style="padding: 2px;text-align: center;" colspan="2">
+                    <label class="conten"> CÉDULA DE CIUDADANÍA # {{ info.data_verified.document }}</label>
+                </td>
+            </tr>
+            <tr>
+                <th style="padding: 2px;"><strong class="title2">Primer Nombre:</strong></th>
+                <th style="padding: 2px;"><strong class="title2">Segundo Nombre:</strong></th>
+            </tr>
+            <tr>
+                <td style="padding: 2px;"><label class="conten"> {{ info.data_verified.pName }}</label></td>
+                <td style="padding: 2px;"><label class="conten"> {{ info.data_verified.sName }}</label></td>
+            </tr>
+            <tr>
+                <th style="padding: 2px;"><strong class="title2">Primer Apellido:</strong></th>
+                <th style="padding: 2px;"><strong class="title2">Segundo Apellido:</strong></th>
+                </tr>
+            <tr>
+                <td style="padding: 2px;"><label class="conten"> {{ info.data_verified.pLastname }}</label></td>
+                <td style="padding: 2px;"><label class="conten"> {{ info.data_verified.sLastname }}</label></td>
+            </tr>
+            <tr>
+                <th style="padding: 2px;"><strong class="title2">Fecha de expedición del documento:</strong></th>
+                <th style="padding: 2px;"><strong class="title2">Estado de la persona:</strong></th>
+                </tr>
+            <tr>
+                <td style="padding: 2px;"><label class="conten"> {{ info.data_verified.fexpedicion }}</label></td>
+                <td style="padding: 2px;"><label class="conten"> {{ info.data_verified.fdefuncion }}</label></td>
+            </tr>
+        </table>
+        <br><br>
+        <p>La información del informe de es el resultado de la obtención de datos públicos en su origen. 
+            El uso de la información y sus decisiones resultantes son responsabilidad del usuario final.
+        </p>
+        <br><br>
+    </div>
+</body>
+</html>
+{% endlocaltime %}

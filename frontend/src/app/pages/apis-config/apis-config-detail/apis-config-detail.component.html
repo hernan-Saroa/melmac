@@ -1,0 +1,115 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+    <nb-card-header>
+        <nb-actions size="small" style="float: left;">
+            <nb-action (click)="onBack()" nbTooltip="Volver" icon="arrow-back-outline"
+                style="padding-left: 0px;"></nb-action>
+        </nb-actions>
+        {{dataSelected.service_type_name}} - {{ dataSelected.name }}
+        <span *ngIf="viewCode"> / ver código</span>
+        <nb-actions *ngIf="!viewCode && form_selected_id != undefined" size="small" style="float: right;">
+            <nb-action (click)="viewCodeClick()" nbTooltip="Ver código" icon="code-outline"
+                style="padding-left: 0px;"></nb-action>
+        </nb-actions>
+    </nb-card-header>
+    <!-- Componente para la documentación del servicio como Api Rest -->
+    <nb-card-body *ngIf="dataSelected.service_type == 1">
+        <div [ngStyle]="{'display': viewCode ? 'none' : 'block'}">
+            <div class="row col-12 col-md-12 inputForm" [ngStyle]="{'display': isAdmin ? 'none' : 'flex'}">
+                <div class="col-md-6">
+                    <h6>Seleccione el formulario que desea configurar:</h6>
+                </div>
+                <div class="col-md-6">
+                    <input #autoInputForm
+                        style="width: 100%; max-width: none;"
+                        [ngModel]="inputAutocomplete"
+                        nbInput
+                        type="text"
+                        (input)="onChange()"
+                        placeholder="Selecciona el formulario"
+                        [nbAutocomplete]="autoSelectForm"/>
+    
+                    <nb-autocomplete #autoSelectForm (selectedChange)="onSelectionChange($event)">
+                        <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+                            {{ option.name }}
+                        </nb-option>
+                    </nb-autocomplete>
+                </div>
+                <hr>
+            </div>
+            <div *ngIf="form_selected_id && !viewCode">
+                <h5 class="colorTitle">Formulario: {{form_selected_name}}</h5>
+                <h6>Para configurar la {{ dataSelected.name }}, se debe seguir los siguientes pasos:</h6>
+                <p>El Endpoint es <b>{{domain}}{{ dataSelected.url }}</b></p>
+                <p><b>Nota: </b>Si el formulario <b>{{form_selected_name}}</b> tiene más de un firma, el servicio retonará el valor de <b>answer_hash</b> el cual para la próxima firma debe ser pasado como parámetro en el form-data.</p>
+                <ol>
+                    <li><b>Request Headers</b></li>
+                    <ul>
+                        <br>
+                        <li>Authorization: Token {{dataSelected.token}}</li>
+                    </ul>
+                    <br>
+                    <li><b>Body form-data</b></li>
+                    <br>
+                    <ng2-smart-table 
+                        id="table-data-params"
+                        [settings]="settings" 
+                        [source]="dataParams" 
+                        (createConfirm)="onCreateConfirm($event, 1)"
+                        (editConfirm)="onEditConfirm($event)">
+                    </ng2-smart-table>
+                    <br>
+                    <li><b>Posible respuesta del servicio</b></li>
+                    <br>
+                    <ng2-smart-table 
+                        id="table-data-response"
+                        [settings]="settings" 
+                        [source]="dataResponse" 
+                        (createConfirm)="onCreateConfirm($event, 2)"
+                        (editConfirm)="onEditConfirm($event)">
+                    </ng2-smart-table>
+                </ol>
+            </div>
+        </div>
+        <div *ngIf="viewCode">
+            <div style="background: #282923; padding: 25px; border-radius: 10px">
+                <nb-actions size="small" style="float: right;">
+                    <nb-action (click)="copyCode()" [cdkCopyToClipboard]="codeString" nbTooltip="Copiar código" icon="copy-outline"
+                        style="padding-left: 0px;"></nb-action>
+                </nb-actions>
+                <pre id="code-api-request" style="color: #c9bf67;">{{codePre | json}}</pre>
+            </div>
+        </div>
+    </nb-card-body>
+    <!-- Componente para la documentación del servicio como iframe -->
+    <nb-card-body *ngIf="dataSelected.service_type == 2">
+        <div *ngIf="!viewCode">
+            <h5>Para configurar {{ dataSelected.name }}, se debe seguir los siguientes pasos:</h5>
+            <p>Para obtener el hash de la firma, se debe usar el siguiente token de autenticación</p>
+            <ul>
+                <li>Authorization: <b>Token</b> {{dataSelected.token}}</li>
+            </ul>
+            <p>Consumir el EndPoint de tipo <b>GET: {{domain}}api/v2/auth/get_hash/{{dataSelected.service}}</b> el cual nos devuelve el <b>hash</b> de la firma.</p>
+            <ul>
+                <li>El <b>token</b> y el <b>hash</b> se debe enviar como parámetro como se muestra en el siguiente ejemplo y es la URL para el iFrame</li>
+            </ul>
+            <p><b>{{domain}}public/servicies/sign/{{getService(dataSelected.service)}}/_token_/_hash_</b></p>
+            <div style="padding: 1% 20%">
+                <div class="i-frame-ejemplo">
+                    <div style="text-align: center;">
+                        <h2>iFrame</h2>
+                        <p>{{domain}}public/servicies/sign/{{getService(dataSelected.service)}}/_token_/_hash_</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="viewCode">
+            <div style="background: #282923; padding: 25px; border-radius: 10px">
+                <nb-actions size="small" style="float: right;">
+                    <nb-action (click)="copyCode()" [cdkCopyToClipboard]="codeString" nbTooltip="Copiar código" icon="copy-outline"
+                        style="padding-left: 0px;"></nb-action>
+                </nb-actions>
+                <pre id="code-api-request" style="color: #c9bf67; padding: 20px">{{codePre}}</pre>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

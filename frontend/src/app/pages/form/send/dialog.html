@@ -1,0 +1,34 @@
+<nb-card>
+    <nb-card-header>
+        <h5>Confirmar</h5>
+      </nb-card-header>
+      <nb-card-body class="content-dialog-resend">
+        <div class="mb-2">Vas a reenviar los siguientes documentos a:</div>
+        <div class="ng-scroll" style="max-height: 370px; overflow-y: auto; overflow-x: hidden;">
+
+          <nb-list style="min-width: 370px;">
+            <nb-list-item *ngFor="let item of list">
+              <div style="width: 100%;">
+                <div style="width: 100%; display: flex; justify-content: space-between;">
+                  <b>{{item['shared_to']}}</b><i style="text-transform: capitalize;">{{item['shared_media']}}</i>
+                </div>
+                {{item['form_enterprise_id__name']}}
+              </div>
+            </nb-list-item>
+          </nb-list>
+
+        </div>
+        <div *ngIf="!view && list_send.length > 5" class="mt-1" style="display:flex;justify-content:center">
+            <a href="javascript:void(0);" (click)="viewAll(true)">y {{ list_send.length-5 }} más (click para ver)</a>
+        </div>
+        <div *ngIf="view && list_send.length > 5" class="mt-1" style="display:flex;justify-content:center">
+            <a href="javascript:void(0);" (click)="viewAll(false)" style="text-decoration: none;">
+                <i class="nb-arrow-up" style="font-size: 2rem"></i>
+            </a>
+        </div>
+      </nb-card-body>
+      <nb-card-footer style="text-align: end;">
+        <button nbButton (click)="close()">Cancelar</button>
+        <button nbButton status="primary" (click)="onAccept()">Reenviar</button>
+      </nb-card-footer>
+</nb-card>

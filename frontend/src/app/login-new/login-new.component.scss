@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
+
+.desc {
+    text-transform: uppercase;
+    font-family: Montserrat;
+    font-size: 46px;
+    color: #412378;
+    line-height: 1;
+
+}
+
+.desc2 {
+    font-size: 35px;
+    color: #412378;
+    font-family: Montserrat;
+    line-height: 1;
+
+}
+
+.description {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: flex-end;
+    flex-direction: row;
+}
+
+.left-footer {
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 12px;
+}
+
+.right-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 12px;
+
+}
+
+::ng-deep ngx-login-new nb-layout-footer nav {
+    background-color: #412378 !important;
+}
+
+// .left-footer{
+//     justify-content: flex-start;
+// }
+
+
+.contenedor-login {
+    position: relative;
+    height: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    padding-top: 10%;
+}
+
+.overlay {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.text-login h2 {
+    font-family: Montserrat;
+    color: #412378;
+    font-size: 34px;
+}
+
+.text-login h3 {
+    font-family: Montserrat;
+    color: #412378;
+    font-size: 34px;
+}
+
+.text-login p {
+    font-family: Montserrat;
+    color: #412378;
+    font-size: 14px;
+}
+
+
+.input-email {
+    background: none !important;
+    margin-bottom: 10px !important;
+    line-height: 2.4em !important;
+    color: #666666 !important;
+    font-family: Montserrat !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.02rem !important;
+    font-size: 14px !important;
+    border: none !important;
+    border-bottom: 1px solid #412378 !important;
+    outline: none !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+}
+
+.token {
+  --item-border: 1px solid #000000;
+  --item-border-bottom: 1px solid #000000;
+  --item-border-has-value: 1px solid #000000;
+  --item-border-bottom-has-value: 1px solid #000000;
+  --item-border-focused: 1px solid #000000;
+  --item-border-bottom-focused: 1px solid #000000;
+}
+
+.eye{
+  width: 90% !important;
+}
+
+::ng-deep .item-input {
+    // display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.item-input label {
+    color: #666666
+}
+
+::placeholder {
+    color: #000000;
+}
+
+.external {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    color: #666666;
+    text-decoration: none;
+}
+
+.item-button{
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.login-button{
+    background-color: #412378;
+    padding: 3%;
+    color: white;
+    border: 10px;
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px
+}
+
+.forgot{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.in-with{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.with{
+    display: flex;
+    justify-content: center;
+}
+
+.row2{
+    display: flex;
+}
+/*----------------------------------------------------------------------*/
+
+nb-layout-header {
+  background-color: #412378;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+::ng-deep ngx-login-new nb-layout-column {
+  padding: 0px !important;
+  margin: 0px !important;
+
+}
+
+#right {
+  position: relative;
+  margin: 0 auto;
+  width: 14px;
+  text-align: right;
+  color: white;
+  font-family: Montserrat;
+  // font-weight: bold;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+#right img {
+  padding: 10px;
+}
+
+#left {
+  position: relative;
+  margin: 0 auto;
+  width: 200px;
+}
+
+#center {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_background {
+  // background-image: url('./assets/images/landing/FONDO.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.imgC{
+  object-fit: cover;
+  width:100%;
+  height:100%;
+}
+
+.label{
+  margin-bottom: 0px;
+}
+
+input::placeholder {
+  font-weight: bold !important;
+  color: rgb(0, 0, 0) !important;
+  font-size: 12px !important;
+}
+
+@media screen and (max-width: 860px) {
+  #container-1{
+    display: none;
+  }
+  #container-2{
+    display: contents;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  #left{
+    width: 0px;
+    margin: 0px;
+    padding: 0px;
+  }
+  #right{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+  }
+  #center{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .eye{
+    width: 80% !important;
+  }
+}

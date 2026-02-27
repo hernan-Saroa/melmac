@@ -1,0 +1,116 @@
+<div class="row">
+  <div class="col-md-12" style="width: 1000px;">
+    <div class="col-md-12 mx-auto container">
+      <nb-card size="small">
+        <nb-tabset (changeTab)="onChangeTab($event, signPad)" id="tab_sign_modal">
+          <nb-tab class="text-center" tabTitle="Dibujar">
+            <div class="col-md-12" [style]="'border: 0.8px solid #e4e9f2; margin-top: 20px; border-radius: 5px;background: white;'">
+              <signature-pad #signPad fxFlex="1 1 50" class="signature" [options]="signaturePadOptions1" id="sign_canvas" fxFlexAlign.xs="center" (onEndEvent)="drawComplete(signPad)">
+              </signature-pad>
+
+            </div>
+            <button style="margin-top: 20px;" type="button" nbButton status="basic" shape="rectangle" size="small" ghost (click)="drawClear(signPad)">Limpiar</button>
+          </nb-tab>
+          <nb-tab tabTitle="Escribir" class="pdb">
+            <input class="file-input inputSignHand" nbInput type="text" placeholder="Escriba aquí su nombre" [(ngModel)]="name_text" required>
+          </nb-tab>
+          <nb-tab tabTitle="Insertar Firma">
+            <div class="row">
+                <input type="file" accept="image/png" style="display: none;" [(ngModel)]="file_sign" (change)="onFileSelected($event)" #fileUpload>
+              <div class="col-md-5 offset-md-3 text-center" style="display: grid;cursor: pointer;" (click)="fileUpload.click()">
+                  <img [src]="base64A" id="img_sign" style="background: rgb(175, 175, 176);"/>
+                  <button type="button" nbButton class="upload-btn"
+                        shape="rectangle" size="tiny" outline>
+                        {{ 'Subir Firma' }}
+                        <nb-icon icon="cloud-upload"></nb-icon>
+                    </button>
+              </div>
+            </div>
+          </nb-tab>
+        </nb-tabset>
+      </nb-card>
+
+      <nb-card *ngIf="opt_process">
+        <nb-card-body>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-12" style="padding: 25px;">
+              <div class="form-group" *ngIf="!validate_process" >
+                <label for="email_field" class="label">Validación OTP <span>*</span></label>
+                <nb-form-field>
+                  <input type="number" ng2TelInput nbInput fullWidth [(ngModel)]="phone"
+                    autocomplete="off" #phoneInput name="phone" id="phone_field" (keydown)="pulsar($event)"
+                    [ng2TelInputOptions]="{preferredCountries: ['co'], separateDialCode: true}"
+                    (intlTelInputObject)="telInputObject($event)"
+                    pattern="^[\s0-9]*$"
+                    required [status]="checkValue(3)" [ngModelOptions]="{standalone: true}" style="padding: 0.4375rem 3rem;" />
+                    <button nbButton (click)="sendOTP()">Enviar</button>
+                </nb-form-field>
+              </div>
+
+              <!-- Verificación -->
+              <div class="col-12" *ngIf="validate_process">
+                <div class="row content-body" style="justify-content: center;">
+                  <b style="margin: 10px; text-align: center;">Ingresa el código OTP de 6 dígitos que <br>enviamos a tu {{type_sign == 2 ? 'correo' : 'celular'}}<br>{{type_sign == 2 ? email : '(' + phone_ind +  ') ' + phone}}</b>
+                </div>
+
+                <div class="row justify-content-md-center" *ngIf="!code_valid">
+                  <div>
+                    <code-input class="token" #codeInput id="code"
+                    [codeLength]="6" (codeCompleted)="verifyToken($event)" class="code-input-verify">
+                    </code-input>
+                  </div>
+                  <div class="time-countdown mt-2">
+                    <label>Este código OTP expira en
+                      <b style="color: #412378;">{{minutes > 0 ? (minutes < 10 ? '0'+minutes+':' : minutes+':'):''}}{{seconds < 10 ? '0'+seconds : seconds}}</b>{{minutes > 0 ? ' minutos' : ' segundos'}}
+                    </label> <br>
+                  </div>
+                </div>
+
+                <!-- Check -->
+                <div class="row justify-content-md-center" *ngIf="code_valid">
+                  <img src="./assets/images/icons/answer/APROBADO_EXITOSAMENTE.png" style="width: 80px;"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-12 col-md-12 col-lg-12"  style="padding: 25px;">
+              <div class="form-group">
+                <label for="email_field" class="label">Ingrese el correo electrónico de la persona <span>*</span></label>
+                <input autocomplete="off" [(ngModel)]="inputItemNgModelEmail" nbInput fullWidth [ngModelOptions]="{standalone: true}"
+                placeholder="Correo electrónico"
+                name="email" id="email_field" type="text" [status]="checkValue(2)" maxlength="50"/>
+              </div>
+              <div class="form-group data_btn_sign">
+                <div class="col-md-12 pl-0 mb-2">
+                  <nb-checkbox (checkedChange)="toggle($event)"  name="check_id" [disabled]="authorization">He leído y autorizo el tratamiento de datos personales <a href="/authorization" target="_blank">Tratamiento de Datos Personales</a></nb-checkbox>
+                </div>
+                <div class="col-md-12 pl-0">
+                  <button nbButton class="upload-btna" (click)="closeSingHand()">Cancelar</button>
+                  <button
+                    [ngClass]="{'upload-btn-file': checkSign() || checkOTP() || this.termSign, 'upload-btna': !(checkSign() || this.termSign)}"
+                    [nbTooltip]="checkSign() ? 'Su firma no puede estar vacía' : (this.termSign ? 'Completa los datos' : (checkOTP() ? 'Falta validación OTP' : 'Continuar'))" nbTooltipPlacement="bottom"
+                    [nbTooltipStatus]="(checkSign() || checkOTP() || this.termSign) ? 'basic' : 'primary'"
+                    style="float: right;" nbButton  [disabled]="checkSign() || checkOTP() || this.termSign" (click)="onSingHand(indexField)"><span id="colorButtonText">Aceptar y Firmar</span>
+                  </button>
+
+                  <!-- <button  class="upload-btn-file" style="float: right;" nbButton
+                    [hidden]="checkSign() || this.termSign"
+                    (click)="onSingHand(indexField)"><span id="colorButtonText">Aceptar y Firmar</span>
+                  </button> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
+

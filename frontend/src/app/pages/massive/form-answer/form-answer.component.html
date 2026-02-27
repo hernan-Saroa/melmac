@@ -1,0 +1,37 @@
+<nb-card>
+    <nb-card-header>
+        Subida de Archivo Excel
+    </nb-card-header>
+
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+        <p>
+            Para iniciar el proceso debes subir un archivo .xlsx con las preguntas y respuestas.
+        </p>
+        <div class="content-data">
+            <nb-select [(ngModel)]="user" name="user" (ngModelChange)="onSelect($event)" class="select-form"
+                placeholder="Seleccionar Empresa">
+                <nb-option *ngFor="let admin of admin_list; let i=index;"
+                    [value]="admin.id">{{ admin.first_name }} {{ admin.first_last_name }}</nb-option>
+            </nb-select>
+            <input type="text" name="form_set" (ngModelChange)="onInput($event)" class="form-control"
+                [ngModel]="form_name" placeholder="Título del documento" maxlength="100">
+            <input type="file" class="file-input" (change)="onFileSelected($event)" [ngModel]="file_name" #fileUpload>
+            <div class="file-upload">
+                <button nbButton status="primary" class="upload-btn" shape="round" (click)="fileUpload.click()">
+                    Subir Archivo y Guardar
+                    <nb-icon icon="cloud-upload"></nb-icon>
+                </button>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-card-header>
+        Procesos
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>

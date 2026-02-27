@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-header style="position: relative;">
+    <button nbButton ghost status="primary" (click)="onBack()">
+      <nb-icon class="icon-header" icon="arrow-back-outline"></nb-icon>
+    </button>
+    Tareas
+    <button nbButton shape="rectangle"  [status]="status" position="top right" class="badgeC" (click)="btnTicket()">Tickets ({{infoTicket}})</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)" (create)="onCustom($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

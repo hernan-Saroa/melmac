@@ -1,0 +1,60 @@
+<div class="info-address-modal">
+  <nb-card>
+    <nb-card-header>
+      <h1>{{data.title}}</h1>
+    </nb-card-header>
+    <nb-card-body class="content-role-permit">
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <label class="label">Dirección</label>
+          <input type="text" nbInput fullWidth shape="semi-round" [(ngModel)]="data.address.address_normalize[0].address" disabled placeholder="Dirección" [title]="data.address.address_normalize[0].comment ? data.address.address_normalize[0].comment : ''">
+        </div>
+
+        <div class="col-md-3 col-xs-6">
+          <label class="label">Latitud</label>
+          <input type="text" nbInput fullWidth shape="semi-round" [(ngModel)]="data.address.lat" disabled placeholder="Latitud">
+        </div>
+
+        <div class="col-md-3 col-xs-6">
+          <label class="label">Longitud</label>
+          <input type="text" nbInput fullWidth shape="semi-round" [(ngModel)]="data.address.lon" disabled placeholder="Longitud">
+        </div>
+
+        <div *ngIf = "!data.points">
+          <div class="col-md-6 col-xs-12">
+            <label class="label">Nombre Destinatario</label>
+            <input type="text" nbInput fullWidth shape="semi-round" [(ngModel)]="data.address.addressee" disabled placeholder="Destinatario">
+          </div>
+
+          <div class="col-md-6 col-XS-12">
+            <label class="label">Identificación</label>
+            <input type="text" nbInput fullWidth shape="semi-round" [(ngModel)]="data.address.id_number" disabled placeholder="Número Celular">
+          </div>
+
+          <div class="col-md-6 col-XS-12">
+            <label class="label">Celular</label>
+            <input type="text" nbInput fullWidth shape="semi-round" [(ngModel)]="data.address.phone" disabled placeholder="Número Celular">
+          </div>
+
+          <div class="col-md-6 col-xs-12">
+            <label class="label">Correo</label>
+            <input type="text" nbInput fullWidth shape="semi-round" [(ngModel)]="data.address.email" disabled placeholder="Correo Electrónico">
+          </div>
+        </div>
+
+        <!--
+          <div class="col-md-12">
+            <span class="label" style="margin-right:5px">Validación: </span>
+
+            <span class="success-val" status="success" *ngIf="data.address.review == 0">Exitosa</span>
+            <span class="danger-val" status="danger" *ngIf="data.address.review != 0">Fallida</span>
+
+        </div> -->
+
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="close()">Cerrar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

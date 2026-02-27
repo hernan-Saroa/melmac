@@ -1,0 +1,245 @@
+<nb-card class="actions-card">
+    <nb-accordion>
+        <nb-accordion-item [expanded]="card">
+            <nb-accordion-item-header>
+                <h6>Compartir con usuarios y roles - {{ name }}</h6>
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div class="col-12">
+                    <nb-card>
+                        <nb-card-header>
+                            Acceso por Rol
+                            <button *ngIf="btn_agregar" [disabled]="source_load != 2" nbButton (click)="onCreate(1)"
+                                status="primary" class="float-right"><i class="nb-plus"></i></button>
+                        </nb-card-header>
+
+                        <nb-card-body>
+                            <ng2-smart-table [settings]="settings_rol" [source]="source_rol"
+                                (delete)="onDeleteRol($event)">
+                            </ng2-smart-table>
+                        </nb-card-body>
+                    </nb-card>
+                    <nb-card>
+                        <nb-card-header>
+                            Acceso por Usuario
+                            <button *ngIf="btn_agregar" [disabled]="source_load != 2" nbButton (click)="onCreate(1)"
+                                status="primary" class="float-right"><i class="nb-plus"></i></button>
+                        </nb-card-header>
+
+                        <nb-card-body>
+                            <ng2-smart-table [settings]="settings_user" [source]="source_user"
+                                (delete)="onDeleteUser($event)">
+                            </ng2-smart-table>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+
+<nb-card>
+    <nb-accordion>
+        <nb-accordion-item [expanded]="!card">
+            <nb-accordion-item-header>
+                <h6>Obtener enlace</h6>
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div class="text-center pt-3 pb-3">
+                    <p style="margin: auto;">
+                        Se ha identificado que este documento es para <b>diligenciamiento</b>, por defecto es un documento <b>privado</b>.
+                    </p>
+                    <p>
+                        (puedes convertirlo en documento p&uacute;blico en opciones adicionales).
+                    </p>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-xl-10 col-lg-10 col-md-9 col-12">
+                        <div class="form-group">
+                            <div style="border: 2px solid #eaecef; padding: 12px; border-radius: 24px;">
+                                {{token_link}}
+                            </div>
+                            <!-- <input type="text" [ngModel]="token_link" placeholder="Enlace"
+                                class="form-control link-copy" readonly fullWidth> -->
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-3 col-12">
+                        <div class="form-group text-center">
+                            <div class="btn-copy-link "
+                                [cdkCopyToClipboard]="token_link" (click)="copy_message()" status="primary">
+                                <nb-icon icon="copy-outline"></nb-icon>
+                                Copiar enlace
+                            </div>
+                            <!-- <button nbTooltip="Copiar enlace" nbTooltipStatus="primary" size="tiny" nbButton
+                                outline status="primary" fullWidth class="download-qr" (click)="copy_message()"
+                                [cdkCopyToClipboard]="token_link">
+                                <nb-icon icon="download"></nb-icon>
+                                Copiar enlace
+                            </button> -->
+                            <!-- <button [cdkCopyToClipboard]="token_link" (click)="copy_message()" ghost fullWidth nbButton status="primary">Copiar enlace</button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-10 col-lg-10 col-md-9 col-12 text-center">
+                        <p><b>Ingresa los datos correspondientes de la(s) persona(s) a quien quieres compartirle(s) el enlace.</b></p>
+                        <div class="row">
+                            <div *ngFor="let inputShareDocumentData of inputShareDocumentDataList" class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 pr-0">
+                                 <ng-input-share-document 
+                                    [inputShareSelected]="inputShareSelected" 
+                                    [inputData]="inputShareDocumentData"
+                                    [returnDataInputs]="returnDataInputs"
+                                    (eventChangeList)="onChangeList($event)"
+                                    (eventListData)="onListData($event)">
+                                </ng-input-share-document>
+                            </div>
+                            <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4" style="border: 1px solid #eaecef; border-radius: 10px; padding: 12px 0px;">
+                                HILI 2
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4" style="border: 1px solid #eaecef; border-radius: 10px; padding: 12px 0px;">
+                                HILI 3
+                            </div> -->
+                        </div>
+
+                        <div class="row">
+                            <nb-accordion class="aditional-option" style="width: 100%;">
+                                <nb-accordion-item>
+                                    <nb-accordion-item-header>Opciones Adicionales</nb-accordion-item-header>
+                                    <nb-accordion-item-body>
+                                        <div class="row align-items-center">
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-12">
+                                                <nb-checkbox [(checked)]="publicLink" (checkedChange)="onChangePublicLink($event)">Activar enlace p&uacute;blico</nb-checkbox>
+                                            </div>
+                                            <div class="col-xl-5 col-lg-5 col-md-5 col-12">
+                                                <div class="row align-items-center">
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-12 pr-0">
+                                                        <nb-checkbox [(checked)]="date_state" [disabled]="!publicLink">Asignar fecha de vencimiento</nb-checkbox>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-12 pl-0">
+                                                        <input id="input-send" type="date" [(ngModel)]="max_date" class="form-control" [disabled]="!date_state">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-5 col-lg-5 col-md-5 col-12">
+                                                <div class="row align-items-center">
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-12 pr-0">
+                                                        <nb-checkbox [(ngModel)]="send_state" [disabled]="!publicLink">Asignar m&aacute;ximo de env&iacute;os</nb-checkbox>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-12 pl-0">
+                                                        <input id="input-send" type="number" [(ngModel)]="max_send" min="0" class="form-control"[disabled]="!send_state">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </nb-accordion-item-body>
+                                </nb-accordion-item>
+                            </nb-accordion>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-3 col-12 text-center">
+                        <div>
+                            <img [src]="url_qr" class="img-qr" alt="" style="max-width: 138px;">
+                        </div>
+                        <div>
+                            <button nbTooltip="Descargar QR" nbTooltipStatus="primary" size="tiny" nbButton
+                                outline status="primary" class="download-qr" (click)="download_qr()">
+                                <nb-icon icon="download"></nb-icon>Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center pt-4 pb-4">
+                    <button nbButton (click)="onShareNew()" status="primary" [nbSpinner]="loading" [disabled]="!validateShare() || loading">
+                        Compartir
+                    </button>
+                </div>
+                <!-- TODO: Vista anterior -->
+                <!-- <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-4 col-12">
+                        <div class="form-group">
+                            <label for="input-send" class="label">Acceso Enlace</label>
+                            <nb-select [(ngModel)]="access" fullWidth class="select-form">
+                                <nb-option value="0">
+                                    Público
+                                </nb-option>
+                                <nb-option value="1">
+                                    Restringido a usuarios
+                                </nb-option>
+                            </nb-select>
+                            <ng-container *ngIf="access == '1'">
+                                <p class="caption status-info">
+                                    Este documento solo puede ser diligenciado por usuarios previamente vinculados.
+                                </p>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-4 col-12"></div>
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 offset-sm-4 offset-md-0 col-8 offset-2">
+                        <button nbTooltip="Descargar QR" nbTooltipStatus="primary" size="tiny" nbButton
+                            outline status="primary" fullWidth class="download-qr" (click)="download_qr()">
+                            <nb-icon icon="download"></nb-icon>
+                        </button>
+                        <img [src]="url_qr" class="img-qr" alt="">
+                    </div>
+                </div>
+                <div class="row" *ngIf="access == '0'">
+                    <div class="col-xl-5 col-lg-5 col-md-4 col-12">
+                        <div class="form-group">
+                            <label for="input-send" class="label">Máximo de envíos</label>
+                            <input id="input-send" type="number" [(ngModel)]="max_send" min="0" class="form-control"
+                                [disabled]="!send_state">
+                            <nb-checkbox style="margin-bottom: 5px;" [(checked)]="send_state">
+                                <span *ngIf="!send_state">Activar</span><span *ngIf="send_state">Desactivar</span></nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-4 col-12">
+                        <div class="form-group">
+                            <label for="input-send" class="label">Fecha de vencimiento</label>
+                            <input id="input-send" type="date" [(ngModel)]="max_date" class="form-control"
+                                [disabled]="!date_state">
+                            <nb-checkbox style="margin-bottom: 5px;" [(checked)]="date_state">
+                                <span *ngIf="!date_state">Activar</span><span *ngIf="date_state">Desactivar</span></nb-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                        <button nbButton (click)="onCreate(3)" status="success" size="small">
+                            Guardar
+                        </button>
+                        <button nbButton (click)="onCreate(2)" status="primary" size="small" class="float-right">
+                            Compartir
+                            <nb-icon icon="share-outline"></nb-icon>
+                        </button>
+                    </div>
+                </div> -->
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+
+<nb-card>
+  <nb-accordion>
+      <nb-accordion-item [expanded]="!card && cardH">
+          <nb-accordion-item-header>
+              <h6>Historial enlaces compartidos</h6>
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+              <div class="row">
+                <nb-card-body>
+                  <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)" (create)="onCustom($event)"></ng2-smart-table>
+                </nb-card-body>
+              </div>
+          </nb-accordion-item-body>
+      </nb-accordion-item>
+  </nb-accordion>
+</nb-card>
+
+<button nbButton (click)="onBack()" status="basic" size="small">
+    Volver
+    <nb-icon icon="corner-up-left-outline"></nb-icon>
+</button>
+<br>
+<br>

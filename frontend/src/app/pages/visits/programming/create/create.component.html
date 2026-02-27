@@ -1,0 +1,116 @@
+<!-- Esta seccion se utiliza para realizar el crud de programación. -->
+<div class="row" [nbSpinner]="loading" nbSpinnerMessage="Cargando programación..." nbSpinnerSize="giant" nbSpinnerStatus="info">
+
+  <div class="col-md-4">
+    <h6>
+      <button nbButton ghost status="primary" (click)="onBack()">
+        <nb-icon class="icon-header" icon="arrow-back-outline"></nb-icon>
+      </button>
+      SUBPROYECTO: {{ this.nameSubProyectfinal }}</h6>
+    <nb-card>
+      <nb-card-body>
+          <h5>Hoy: {{ date | date }}</h5>
+          <nb-calendar [(date)]="date" [min]="min" [max]="max" (dateChange)="dateF($event)"></nb-calendar>
+      </nb-card-body>
+    </nb-card>
+
+        <nb-accordion>
+          <nb-accordion-item #item>
+            <nb-accordion-item-header style="background: #ff00001f;">
+              TAREAS POR ASIGNAR ({{TaskTotal}})
+              <nb-card-body class="text-right pt-0 pl-0 pb-0">
+                <button nbButton status="basic" [hidden]="true" id="btnoculto2" class="mr-1 btnMenu" (click)="borrar()" nbTooltip="Añadir tarea a la lista" nbTooltipPlacement="bottom" nbTooltipStatus="info" nbButton status="info"><nb-icon icon="plus"></nb-icon></button>
+                <!-- <button nbButton status="basic" class="mr-1 btnMenu" nbTooltip="Añadir tarea a la lista" nbTooltipPlacement="bottom" nbTooltipStatus="info" nbButton status="info"><nb-icon icon="plus"></nb-icon></button> -->
+                <!-- <button nbButton status="basic" class="mr-1 btnMenu" (click)="viewTable(1)" nbTooltip="Ver tabla de disponibles" nbTooltipPlacement="bottom" nbTooltipStatus="info" nbButton status="info"><nb-icon icon="eye"></nb-icon></button> -->
+              </nb-card-body>
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <nb-card>
+                <nb-card-body>
+                  <p class="subtitle">Tarea seleccionada: {{ ngModelRadioName }}</p>
+                  <nb-radio-group [(ngModel)]="ngModelValue" name="ng-model-group" *ngFor="let task of Tasks; let i=index;">
+                    <nb-radio value="{{ i }}" (click)="viewTask(i)">{{ task.name }} - <span nbTooltip="FT = Fecha tentativa" nbTooltipPlacement="bottom" nbTooltipStatus="info" nbButton status="info"> FT: </span> {{ task.initial_date }} - <span nbTooltip="HRT = Hora tentativa" nbTooltipPlacement="bottom" nbTooltipStatus="info" nbButton status="info"> HRT: </span> {{ task.initial_hour }} <nb-icon icon="info" class="ml-3" status="primary" nbTooltip="Información de la tarea" (click)="infoTask(i,1)" nbTooltipPlacement="bottom" nbTooltipStatus="info" nbButton status="info"></nb-icon></nb-radio>
+                  </nb-radio-group>
+                </nb-card-body>
+              </nb-card>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+          <!-- <nb-accordion-item>
+            <nb-accordion-item-header style="background: #4eef3e54;">
+              TAREAS ASIGNADAS (100)
+              <nb-card-body class="text-right pt-0 pl-0 pb-0">
+                <button nbButton status="basic" class="mr-1 btnMenu" (click)="viewTable(2)" nbTooltip="Ver tabla de tarea asignadas" nbTooltipPlacement="bottom" nbTooltipStatus="info" nbButton status="info"><nb-icon icon="eye"></nb-icon></button>
+              </nb-card-body>
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+              Originally, nebula was a name for any diffuse astronomical object,
+              including galaxies beyond the Milky Way.
+            </nb-accordion-item-body>
+          </nb-accordion-item> -->
+        </nb-accordion>
+
+  </div>
+
+  <div class="col-md-8">
+
+    <h6 class="text-center">{{ titleTable }} - SEMANA DEL: <ins>{{ Finicial }}</ins> AL <ins>{{ Ffinal }}</ins></h6>
+    <table mat-table [dataSource]="datos" class="mat-elevation-z8" #tabla1>
+
+      <ng-container matColumnDef="hora">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let articulo" class="columns_1"> {{articulo.hora}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="domingo">
+        <th mat-header-cell *matHeaderCellDef> Domingo </th>
+        <td mat-cell *matCellDef="let articulo;let j = index;" id="domingo_{{j}}" class="columns_disp" (click)="celdaDisponibles('domingo',articulo.hora,j)" > {{articulo.domingo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lunes">
+        <th mat-header-cell *matHeaderCellDef> Lunes </th>
+        <td mat-cell *matCellDef="let articulo;let j = index;" id="lunes_{{j}}" class="columns_disp" (click)="celdaDisponibles('lunes',articulo.hora,j)"> {{articulo.lunes}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="martes">
+        <th mat-header-cell *matHeaderCellDef> Martes </th>
+        <td mat-cell *matCellDef="let articulo;let j = index;" id="martes_{{j}}" class="columns_disp" (click)="celdaDisponibles('martes',articulo.hora,j)"> {{articulo.martes}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="miercoles">
+        <th mat-header-cell *matHeaderCellDef> Miercoles </th>
+        <td mat-cell *matCellDef="let articulo;let j = index;" id="miercoles_{{j}}" class="columns_disp" (click)="celdaDisponibles('miercoles',articulo.hora,j)"> {{articulo.miercoles}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="jueves">
+        <th mat-header-cell *matHeaderCellDef> Jueves </th>
+        <td mat-cell *matCellDef="let articulo;let j = index;" id="jueves_{{j}}" class="columns_disp" (click)="celdaDisponibles('jueves',articulo.hora,j)"> {{articulo.jueves}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="viernes">
+        <th mat-header-cell *matHeaderCellDef> Viernes </th>
+        <td mat-cell *matCellDef="let articulo;let j = index;" id="viernes_{{j}}" class="columns_disp" (click)="celdaDisponibles('viernes',articulo.hora,j)"> {{articulo.viernes}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sabado">
+        <th mat-header-cell *matHeaderCellDef> Sabado </th>
+        <td mat-cell *matCellDef="let articulo;let j = index;" id="sabado_{{j}}" class="columns_disp" (click)="celdaDisponibles('sabado',articulo.hora,j)"> {{articulo.sabado}} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas;let j = index;" id="register_{{ j }}"></tr>
+    </table>
+    <nb-card>
+      <nb-card-body class="text-center">
+        <button nbButton status="primary" class="mr-3" [hidden]="true"><nb-icon icon="done-all-outline"></nb-icon>Finalizar programación</button>
+        <button nbButton status="danger" [hidden]="true"><nb-icon icon="close"></nb-icon>Cancelar programación</button>
+        <button nbButton status="danger" id="btnoculto" [hidden]="true"><nb-icon></nb-icon>Oculto</button>
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+
+</div>
+

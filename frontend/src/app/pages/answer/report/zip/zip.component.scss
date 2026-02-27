@@ -1,0 +1,45 @@
+::ng-deep .table_list_field {
+    border-radius: 0.25rem;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+::ng-deep .th_list {
+    min-width: 125px;
+    max-width: 125px;
+    padding: 5px;
+    border-radius: 0.25rem;
+    text-align: center;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+::ng-deep .th_list:first-child {
+    min-width: initial;
+    max-width: initial;
+}
+
+::ng-deep .td_list {
+    min-width: 100px;
+    max-width: 100px;
+    padding: 5px;
+    border-radius: 0.25rem;
+    text-align: center;
+}
+
+::ng-deep .td_list:first-child {
+    min-width: initial;
+    max-width: initial;
+    text-align: center;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #e4e9f2;
+    }
+
+    ::ng-deep .th_list, ::ng-deep .td_list {
+        border: 0.0625rem solid #e4e9f2;
+    }
+}

@@ -1,0 +1,430 @@
+<!--  STEPERS-->
+
+<!--  SIGN
+  type 1= Cedula
+  type 2= Biometrica
+  type 3= OTP
+-->
+
+
+<div [hidden]="isHidden"
+  [class]="'col-12' + ((step_now == 1 && type_sign != 3) || step_now == 2 ? 'col-12' : (step_now == 3 && ((type_sign == 3 && !code_valid) || type_sign != 3)) ? 'col-12' : (step_now == 4 ? 'col-12' : (step_now == 5 ? 'col-12' : 'col-lg-12')))">
+  <nb-card>
+    <nb-card-body>
+      <nb-stepper #stepper disableStepNavigation orientation="horizontal">
+        <nb-step label="Primer Paso">
+          <button nbButton nbStepperNext #next>next</button>
+          <button nbButton nbStepperPrevious #prev>prev</button>
+        </nb-step>
+        <nb-step label="Segundo Paso">
+        </nb-step>
+        <nb-step *ngIf="type_sign != 3 && type_sign != 4" label="Tercer Paso">
+        </nb-step>
+        <nb-step *ngIf="type_sign == 2" label="Cuarto Paso">
+        </nb-step>
+      </nb-stepper>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<!-- <div [class]="'col-12' + ((step_now == 1 && type_sign != 3) || step_now == 2 ? 'col-12' : (step_now == 3 && ((type_sign == 3 && !code_valid) || type_sign != 3)) ? 'col-12' : (step_now == 4 ? 'col-12' : (step_now == 5 ? 'col-12' : (step_now == 6 ? 'col-12' : 'col-lg-12'))))"> -->
+  <nb-card [nbSpinner]="loading" class="contNbCard" id="contPrincnbCard" nbSpinnerStatus="primary" [(hidden)]="ContPrinc1">
+    <!-- <nb-card> -->
+    <nb-card-body>
+      <!-- FILA DE CIERRE MODAL -->
+      <div class="row" *ngIf="step_now != 7">
+        <div class="col-12">
+          <h6><button class="modal-btn-default" nbButton status="default" (click)="close()">X</button></h6>
+        </div>
+      </div>
+      <!-- FIN FILA DE CIERRE MODAL -->
+      <!-- INICIO CENTRO DEL MODAL -->
+      <div class="row">
+        <div class="col-12">
+          <!-- INICIO PASO 1 -->
+          <div [hidden]="step_now != 1">
+            <div class="text-center mt-0 mb-0">
+              <span *ngIf="type_sign == 1" style="font-size: 28px;line-height: 25px;"><b>Para iniciar el proceso de firma ingresa tu número de
+                  identificación <br> y correo donde llegara el documento firmado</b></span>
+              <span *ngIf="type_sign == 2" style="font-size: 28px;line-height: 25px;"><b>Para iniciar el proceso de firma biofacial elige e
+                ingresa tu número de identificación</b></span>
+              <span *ngIf="type_sign == 3" style="font-size: 28px;line-height: 25px;"><b>Para iniciar el proceso de firma con OTP, por favor, completa tu dirección de correo electrónico.</b></span>
+              <span *ngIf="type_sign == 4" style="font-size: 28px;line-height: 25px;"><b>Para iniciar el proceso de firma con OTP, por favor, ingresa tu número telefónico.</b></span>
+            </div>
+            <div class="col-10 mt-3 mb-3 offset-1">
+              <div class="form-group" *ngIf="type_sign != 3 && type_sign != 4">
+                  <!-- <label for="number_id_field" class="label">Ingres el Numero de identificación de la persona<span>*</span></label> -->
+                  <!-- <div>
+                      <nb-select fullWidth class="cardinal-select" placeholder="Tipo de identificación"  [(ngModel)]="identification"
+                        [(selected)]="identification"> -.
+                        <nb-option *ngFor="let type of type_identification" [value]="type.id"> {{type.name}} </nb-option>
+                      </nb-select>
+                    </div>
+                    <br> -->
+                  <div>
+                    <input autocomplete="off" [(ngModel)]="number_id" nbInput fullWidth
+                      [ngModelOptions]="{standalone: true}" placeholder="Número de identificación" name="number_id" onwheel="this.blur()"
+                      id="number_id_field" type="number" minlength="5" maxlength="13" required [status]="checkValue(1)" />
+                  </div>
+              </div>
+              <div class="form-group" *ngIf="type_sign != 4">
+                <!-- <label for="email_field" class="label">Ingrese el correo electrónico de la persona <span>*</span></label> -->
+                <input autocomplete="off" [(ngModel)]="email" nbInput fullWidth [ngModelOptions]="{standalone: true}"
+                placeholder="Ingresa el correo electrónico"
+                name="email" id="email_field" type="text" [status]="checkValue(2)" maxlength="50" required/>
+              </div>
+              <div class="form-group" *ngIf="type_sign == 4">
+                <!-- <label for="phone_field" class="label">Ingrese el teléfono de la persona<span>*</span></label> -->
+                <nb-form-field>
+                  <input #phoneInput autocomplete="off" [disabled]="code_valid" [(ngModel)]="phone" nbInput fullWidth
+                    name="phone" id="phone_field" type="number" placeholder="Ingresa tu número celular" (keydown)="pulsar($event)" minlength="1"
+                    [ngModelOptions]="{standalone: true}" maxlength="10" pattern="/^3[0-9]{9}$/" required
+                    [status]="checkValue(3)" />
+                </nb-form-field>
+              </div>
+            </div>
+          </div>
+          <!-- FIN PASO 1 -->
+          <!-- INICIO PASO 2 -->
+          <div [hidden]="step_now != 2">
+            <div class="text-center mt-0 mb-0">
+              <span style="font-size: 28px;line-height: 25px;"><b>SELECCIONA EL LADO DEL DOCUMENTO QUE QUIERES SUBIR</b></span>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-auto col-md-6 mt-2 mb-1">
+                <div class="text-center">
+                  FRONTAL
+                </div>
+                <div style="display: flex; justify-content: center" >
+                  <img src="./assets/images/biofacial/ELIMINAR_FOTO_CEDULA.png" title="Eliminar imagen" style="position: absolute;cursor: pointer;width: 30%;" [hidden]="elimination1" (click)="EliminarImagen(1)">
+                  <img [(src)]="imagePrincVideo1" style="cursor: pointer;margin: 0px; width: auto; max-height: 250px !important; min-width: 290px;" [hidden]="cont_reg_video_docu == 2" (click)="fileUpload.click()">
+                </div>
+                <div class="row">
+                  <div class="col-md-auto col-md-6 mt-2 mb-1 text-center">
+                    <button class="modal-btn-primary m-0" fullWidth name="doc_file"  [hidden]="!video_recording_visible_docu"
+                        nbButton type="button" status="info" shape="rectangle"
+                        (click)="stardCaptureDocument(1,next,1)">
+                        <nb-icon icon="camera-outline"></nb-icon>TOMAR FOTO
+                    </button>
+                  </div>
+                  <div class="col-md-auto col-md-6 mt-2 mb-1 text-center">
+                    <input type="file" class="file-input m-0" (change)="onFileSelected($event)"
+                          name="doc_file" #fileUpload accept="image/*">
+                    <button type="button" fullWidth nbButton class="modal-btn-primary m-0" [hidden]="!video_recording_visible_docu"
+                          [status]="doc_file == '' ? 'basic' : 'primary'" style="padding: 10px 27px;"
+                          shape="rectangle" outline (click)="fileUpload.click()">
+                          <nb-icon icon="cloud-upload-outline"></nb-icon>{{ doc_file == '' ? 'SUBIR FOTO' : 'CARGADO' }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-auto col-md-6 mt-2 mb-1">
+                <div class="text-center">
+                  TRASERA
+                </div>
+                <div style="display: flex; justify-content: center" >
+                  <img src="./assets/images/biofacial/ELIMINAR_FOTO_CEDULA.png" title="Eliminar imagen" style="position: absolute;cursor: pointer;width: 30%;" [hidden]="elimination2" (click)="EliminarImagen(2)">
+                  <img [(src)]="imagePrincVideo2" style="cursor: pointer;margin: 0px; width: auto; max-height: 250px !important; min-width: 290px;" [hidden]="cont_reg_video_docu_back == 2" (click)="backUpload.click()">
+                </div>
+                <div class="row">
+                  <div class="col-md-auto col-md-6 mt-2 mb-1 text-center">
+                    <button class="modal-btn-primary m-0" name="doc_file" [hidden]="!video_recording_visible_docu_back"
+                        nbButton type="button" fullWidth status="info" shape="rectangle"
+                        (click)="stardCaptureDocument(2,next,0)">
+                        <nb-icon icon="camera-outline"></nb-icon>
+                        TOMAR FOTO
+                    </button>
+                  </div>
+                  <div class="col-md-auto col-md-6 mt-2 mb-1 text-center">
+                    <input type="file" #backUpload class="file-input m-0" (change)="onFileSelected($event,1)"
+                    name="doc_file" accept="image/*">
+                    <button type="button" fullWidth nbButton class="modal-btn-primary m-0" [hidden]="!video_recording_visible_docu_back"
+                        [status]="doc_file_back == '' ? 'basic' : 'primary'"  style="padding: 10px 27px;"
+                        shape="rectangle" outline (click)="backUpload.click()">
+                        <nb-icon icon="cloud-upload-outline"></nb-icon>
+                        {{ doc_file_back == '' ? 'SUBIR FOTO' : 'CARGADO' }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- FIN PASO 2 -->
+
+          <!-- Tercer Paso -->
+
+          <div *ngIf="step_now == 3">
+            <div *ngIf="type_sign != 3 || type_sign != 4">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 mb-3" style="text-align: center;font-size: 25px;">
+                      <b>Para continuar enviaremos un
+                      código
+                      <span nbTooltip="Es un tipo de autenticacíon en donde se envía un código de 6 dígitos de un solo uso y temporal." nbTooltipPlacement="top" nbButton>
+                        <img src="./assets/images/recursosmoduloempresa_melmac-05.png"/>
+                      </span> <br> OTP por medio de WhatsApp y SMS:</b>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12" >
+                <div class="text-center">
+                  <nb-form-field class="mb-2">
+                    <input type="tel" class="form-group" ng2TelInput nbInput fullWidth [(ngModel)]="phone"
+                    autocomplete="off" #phoneInput name="phone" id="phone_field" (keydown)="pulsar($event)"
+                    [disabled]="code_valid" [ng2TelInputOptions]="{preferredCountries:  ['co']}"
+                    placeholder="Ingresa tu número celular"
+                    required [status]="checkValue(3)" [ngModelOptions]="{standalone: true}" style="padding: 0.4375rem 3rem;"
+                      />
+                  </nb-form-field>
+                  <div class="col-12">
+                    <span>ENVIAREMOS EL CÓDIGO AL NÚMERO QUE NOS INDIQUES</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <!-- Cuarto Paso -->
+
+          <div *ngIf="step_now == 4">
+            <div>
+              <div class="form-group mb-3" style="text-align: center;font-size: 25px;line-height: 25px;" *ngIf="type_sign == 3">
+                <b>Ingresa el código OTP de 6 dígitos que <br>enviamos a tu correo</b>
+              </div>
+              <div class="form-group mb-3" style="text-align: center;font-size: 25px;line-height: 25px;" *ngIf="type_sign == 2 || type_sign == 1 || type_sign == 4">
+                <b>Ingresa el código OTP de 6 dígitos que <br>enviamos a tu celular</b>
+              </div>
+            </div>
+            <div class="row justify-content-md-center">
+              <div>
+                <code-input class="token" #codeInput id="code"
+                [codeLength]="6" (codeCompleted)="verifyToken($event, next)" style="color: #050505" >
+                </code-input>
+              </div>
+              <div class="time-countdown mt-2" *ngIf="type_sign == 2 || type_sign == 3 || type_sign == 4">
+                <label>Este código OTP expira en {{minutes}}:{{seconds}}</label> <br>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quinto Paso -->
+
+          <div *ngIf="step_now == 5">
+              <div class="row">
+                <div class="col-12" style="text-align: center;font-size: 35px;padding-left: 45px;">
+                  <b>Vamos con la firma Biofacial
+                    <span nbTooltip="Identificamos el documento con inteligencia artificial, lo consultamos en las entidades correspondientes, lo comparamos con una prueba
+                    de vida del firmante, la desfragmentacion en 276 caracteristicas faciales claves, con un puntaje de confianza de alta fidelidad y comparamos
+                    con la imagen de tu documento." nbTooltipPlacement="top" nbButton>
+                      <img src="./assets/images/recursosmoduloempresa_melmac-05.png"/>
+                    </span></b>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12" style="padding-left: 220px;padding-right: 220px;">
+                  <label class="label">Iniciaremos un reconocimiento de vida el cual te solicitara que hagas alguno de los siguientes gestos</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 d-flex">
+                  <div class="col-3 text-center">
+                    <img src="./assets/images/biofacial/gire_derecha.png"> <br>
+                    <label class="label"> Gira a la Derecha </label>
+                  </div>
+                  <div class="col-3 text-center">
+                    <img src="./assets/images/biofacial/mueva_boca.png"> <br>
+                    <label class="label"> Mueve la Boca </label>
+                  </div>
+                  <div class="col-3 text-center">
+                    <img src="./assets/images/biofacial/gire_izquierda.png"> <br>
+                    <label class="label"> Gira a la Izquierda </label>
+                  </div>
+                  <div class="col-3 text-center">
+                    <img src="./assets/images/biofacial/asentir_cabeza.png"> <br>
+                    <label class="label"> Asentir la Cabeza </label>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <!-- Sexto Paso -->
+
+          <div class="col-12" *ngIf="step_now == 6" style="height: 27.875rem; width: 520px; border-radius: 5%;">
+            <div class="row justify-content-md-center">
+              <div class="col-12">
+                <div class="form-group">
+
+                  <div class="row justify-content-md-center" style="text-align: center;" *ngIf="cont_video == 1">
+                    <div class="col-12" *ngIf="cont_reg_video == 1">
+                      <label style="color: #412378;font-size: 15px;"><nb-icon icon="shake-outline"></nb-icon> Por favor prepárese, el video iniciará en ...</label>
+                      <div class="contentReg parpadea" >
+                        <label for="">{{ reg_video }}</label>
+                      </div>
+                    </div>
+                    <div class="col-11" *ngIf="cont_reg_video == 2">
+                      <div class="row justify-content-md-center">
+                        <!-- <span style="color: red;font-size: 10px;" *ngIf="redBtn == 1" class="parpadea"><nb-icon icon="radio-button-on-outline"></nb-icon> Grabando</span><br> -->
+                        <video class="video-biometrics" #videoFacial  *ngIf="video_recording_visible" autoplay="" muted="" playsinline="">
+                            <source  src="./assets/images/biofacial/gire_derecha.png" type="video/mp4">
+                        </video>
+                        <div class="image-container" *ngIf="rndInt == 1">
+                          <img class="image"src="./assets/images/biofacial/gire_izquierda_inv.png">
+                          <img class="image"src="./assets/images/biofacial/gire_izquierda_verde.png">
+                        </div>
+                        <div class="image-container" *ngIf="rndInt == 2">
+                          <img class="image" src="./assets/images/biofacial/gire_derecha_inv.png">
+                          <img class="image" src="./assets/images/biofacial/gire_derecha_verde.png">
+                        </div>
+                        <div class="image-container" *ngIf="rndInt == 3">
+                          <img class="image"src="./assets/images/biofacial/asentir_cabeza_inv.png">
+                          <img class="image"src="./assets/images/biofacial/asentir_cabeza_verde.png">
+                        </div>
+                        <div class="image-container" *ngIf="rndInt == 4">
+                          <img class="image"src="./assets/images/biofacial/mueva_boca_inv.png">
+                          <img class="image"src="./assets/images/biofacial/mueva_boca_verde.png">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-11">
+                      <div class="row justify-content-md-center">
+                        <video class="video-biometrics" *ngIf="!video_recording_visible" #recording controls muted>
+
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row justify-content-md-center">
+                    <div class="col-12">
+                      <nb-alert status="warning" [hidden]="cont_reg_video != 2"
+                      style="text-align: center;font-size: 20px;background-color: #412378; padding: 10px;">
+                      {{ action }}</nb-alert>
+                    </div>
+                  </div>
+
+                  <div class="row" style="text-align: center" *ngIf="cont_video == 2">
+                    <input type="file" class="file-input"
+                    name="vid_file" #fileUploadVideo accept="video/mp4,video/mkv, video/x-m4v,video/*" (change)="onFileSelectedVideo($event,next)">
+                    <span style="color: red;font-size: 14px;text-align: justify;margin-bottom: 15px;" [hidden]="btn_video_2"><nb-icon icon="alert-circle"></nb-icon> El peso del video cargado es de {{ tamanoVideoIos }} MB, está por encima de lo permitido (8 MB), por favor subir otro video. Le recomendamos que el peso no sea superior a 8 MB, el tiempo de grabación del video no sea superior a 4 segundos y sea grabado con una resolución normal o baja.</span>
+                    <button type="button" fullWidth nbButton class="upload-btn"
+                      [status]="vid_file == '' ? 'basic' : 'primary'"
+                      shape="rectangle" outline (click)="fileUploadVideo.click()">{{ vid_file == 1 ? 'Realizar o cargar video' : 'video cargado' }}<nb-icon icon="camera-outline"></nb-icon>
+                    </button>
+                  </div>
+
+                  <div class="col-12 text-center">
+
+                    <!-- <div class="col-12" >
+                      <span style="color: rgb(0, 17, 255);font-size: 15px;" [hidden]="text_validation" class="parpadea"><nb-icon icon="loader-outline"></nb-icon> Realizando la validación, gracias por la espera...</span>
+                    </div>   -->
+                    <div class="col-12" >
+                      <button class="modal-btn-secundary" [hidden]="btn_video" nbButton type="button" status="info" shape="rectangle" id="btnBio" (click)="startRecord(next)">Volver a grabar</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Septimo Paso -->
+
+          <div *ngIf="step_now == 7">
+              <img class="m-0 tamImgStep7" src="./assets/images/biofacial/VECTOR_DE_VERIFICAR.gif" alt="">
+          </div>
+        </div>
+      </div>
+      <!-- FIN CENTRO DEL MODAL -->
+      <br>
+      <!-- CONTENEDOR TODOS LOS BTN MODAL -->
+      <div class="form-group mt-0" *ngIf="step_now != 7">
+        <div class="row">
+          <div class="col-12">
+            <div class="text-center">
+              <!-- Primer Paso -->
+              <div class="row">
+                <div class="col-md-12" [hidden]="authorization || step_now != 1">
+                  <nb-checkbox (checkedChange)="toggle($event)" name="check_id">He leído y autorizo el tratamiento de datos personales <a href="/authorization" target="_blank">Tratamiento de Datos Personales</a></nb-checkbox>
+                </div>
+              </div>
+              <button class="mt-1" nbButton type="button" status="info" shape="rectangle"
+              (click)="onSubmit(next, prev, stepper)" [disabled]="!validFirstForm()" [hidden]="step_now != 1">INGRESAR
+              </button>
+              <!-- Segundo Paso -->
+              <div [hidden]="!validSecondForm()">
+                <button nbButton type="button" status="info" shape="rectangle"
+                  (click)="onSubmitOCR(next)" [disabled]="loading || !validSecondForm()" [hidden]="step_now != 2">INGRESAR
+                </button>
+              </div>
+              <!-- Tercer Paso -->
+              <div *ngIf="step_now == 3">
+                  <button class="modal-btn-three mt-0" nbSuffix nbButton type="button" status="info" shape="rectangle" (click)="requestToken()"
+                  [disabled]="code_sent || !validForm(true)"> ENVIAR </button>
+              </div>
+              <!-- Cuarto Paso -->
+              <div *ngIf="step_now == 4">
+                <button nbSuffix nbButton type="button" status="info" shape="rectangle" (click)="onBackFirstStep(prev, stepper)"> NO RECIBÍ MI CÓDIGO</button>
+              </div>
+              <!-- Quinto Paso -->
+              <div *ngIf="step_now == 5">
+                <button  class="modal-btn-primary btnStep5" nbButton type="button" status="info" shape="rectangle" (click)="onSubmitOTP(next)"
+                      [hidden]="step_now != 5">Iniciar</button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card [nbSpinner]="loading" id="idContVideo1" nbSpinnerStatus="primary" class="styleContVideo1"
+    [(hidden)]="ContVideo1">
+    <nb-card-body style="margin: 0 auto;">
+      <div class="row">
+        <div class="col-12 text-center" style="color: white;font-size: 26px;margin-bottom: 20px;line-height: 35px;">
+          <span *ngIf="!video_recording_visible_docu">Comprueba que la foto es legible y está bien enfocada</span>
+        </div>
+      </div>
+      <div class="row">
+        <div id="divContImage1" class="col-md-12 styleContImage1">
+          <img class="image m-0" [(src)]="imageGeneral" style="border-radius: 25px;width: 100%;" [(hidden)]="countImage1">
+          <div class="styleContCount1" [(hidden)]="countTextImage1">
+            <span [(hidden)]="spanImage1" class="parpadea"
+              style="font-size: 150px;color: white;text-shadow: 2px 4px 8px #412378;position: fixed;padding-top: 200px;">{{ textCountImage1 }}</span>
+            <!-- Video frontal -->
+            <video class="video-biometrics" #videoFacial *ngIf="video_recording_visible_docu" autoplay="" muted=""
+              playsinline="" style="width: 56  0px;border-radius: 35px;height: 100%;"></video>
+            <video class="video-biometrics" [hidden]="true" #recording controls muted></video>
+            <img [(src)]="imageVideo1" style="width: 100%;height: 100%;margin: 0px;border-radius: 30px;" alt=""
+              *ngIf="!video_recording_visible_docu">
+          </div>
+        </div>
+      </div>
+      <div class="row" [(hidden)]="textImage1">
+        <div class="col-12 text-center">
+          <div style="background: #412378;color: white;font-size: 30px;padding: 15px 40px;font-weight: bold;line-height: 35px;"> Encaje la
+            parte {{textGeneral}} </div>
+        </div>
+      </div>
+      <div class="row" [(hidden)]="btnImage1End">
+        <div class="col-12 text-center">
+          <button nbButton type="button" status="info" shape="rectangle" class="btnImage1"
+            (click)="repetitionStardCaptureDocument(1,next,1)">QUIERO REPETIR</button>
+          <button nbButton type="button" status="info" shape="rectangle" class="btnImage1"
+            (click)="stardCaptureDocument(3,0,0)">CONTINUAR</button>
+        </div>
+      </div>
+      <div class="row" [(hidden)]="btnImage2End">
+        <div class="col-12 text-center">
+          <button nbButton type="button" status="info" shape="rectangle" class="btnImage1"
+            (click)="repetitionStardCaptureDocument(2,next,0)">QUIERO REPETIR</button>
+          <button nbButton type="button" status="info" shape="rectangle" class="btnImage1"
+            (click)="stardCaptureDocument(4,0,0)">CONTINUAR</button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+

@@ -1,0 +1,8 @@
+<div class="col-12 {{class}}" (click)="click()">
+  <input #check class="radio-input" type="checkbox" [checked]="checked">
+  <div class="radio-input-visual {{check.checked ? 'active' : ''}} {{extra && extra.radioClass ? extra.radioClass : ''}} {{extra && extra.size ? extra.size : ''}}"></div>
+  <div [class]="iconClass">
+    <ng-content>
+    </ng-content>
+  </div>
+</div>

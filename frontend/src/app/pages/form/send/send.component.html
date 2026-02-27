@@ -1,0 +1,76 @@
+<div *ngIf="validate_check" class="container container-fluid" style="border: 1px solid #d7d7d7;border-radius: 5px;box-shadow: 3px 3px 3px darkgray;">
+  <div class="row">
+    <div class="col-12" style="display: flex;">
+      <div  class="col-6 container-col" style="display: flex; align-items: center;">
+        <div>
+          <button type="button" nbButton shape="rectangle"
+              class="btn_eraser mr-2" (click)="outCheckCount()"
+              nbTooltip="Desmarcar todos" nbTooltipStatus="default" size="tiny" style="float: left;">
+              <nb-icon icon="close-square-outline"></nb-icon>
+          </button>
+        </div>
+        <span class="text"> <span> {{ items }} </span> Seleccionados</span>
+      </div>
+      <div  class="col-6 container-col">
+        <!-- <span style="float: right;padding-top: 5px;color: black;"><nb-icon icon="more-vertical-outline"></nb-icon></span> -->
+        <button type="button" nbButton status="primary" shape="rectangle"
+            class="btn_eraser mr-2" (click)="resendDate()"
+            nbTooltip="Reenviar" nbTooltipStatus="default" size="small" style="float: right;">
+            <nb-icon icon="swap-outline"></nb-icon>
+        </button>
+        <button type="button" nbButton [hidden]="openCheck || isAllSelected" status="primary" shape="rectangle"
+            class="btn_eraser mr-2" (click)="checkAll()"
+            nbTooltip="Marcar todos (Página Actual)" nbTooltipStatus="default" size="small" style="float: right;">
+            <nb-icon icon="checkmark-square-2-outline"></nb-icon>
+        </button>
+        <!-- <button type="button" nbButton [hidden]="closeCheck" status="primary" shape="rectangle"
+            class="btn_eraser mr-2" (click)="outCheckAll()"
+            nbTooltip="Desmarcar todos (Página Actual)" nbTooltipStatus="default" size="small" style="float: right;">
+            <nb-icon icon="close-square-outline"></nb-icon>
+        </button> -->
+        <button type="button" nbButton [hidden]="!isAllSelected" status="primary" shape="rectangle"
+            class="btn_eraser mr-2" (click)="outCheckAll()"
+            nbTooltip="Desmarcar todos (Página Actual)" nbTooltipStatus="default" size="small" style="float: right;">
+            <nb-icon icon="close-square-outline"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="content-chart" class="row">
+  <div class="col-xs-12 col-md-4" *ngFor="let chartData of totalChart">
+    <ngx-solar [chartData]="chartData"></ngx-solar>
+  </div>
+</div>
+<nb-card>
+  <nb-card-header *ngIf="!validate_check" class="container" >
+    <div class="row">
+      <div class="col-12" style="display: flex;">
+        <div  class="col-sm-6" style="float: left;">
+            <span class="text"> Documentos Enviados: {{ count_init }} - {{ count }} de {{ totCount }}</span>
+        </div>
+        <div  class="col-sm-6" style="float: right;">
+          <button type="button" nbButton status="primary" shape="rectangle"
+            class="btn_eraser" (click)="download()"
+            nbTooltip="Descargar" nbTooltipStatus="default" size="small" style="float: right;">
+            <nb-icon icon="cloud-download"></nb-icon>
+          </button>
+          <button type="button" nbButton status="primary" shape="rectangle"
+            class="btn_eraser mr-2" (click)="onBack()"
+            nbTooltip="Volver" nbTooltipStatus="default" size="small" style="float: right;">
+            <nb-icon icon="corner-up-left-outline"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <!-- <div style="float: right;">
+      Cantidad por página:
+      <select (change)="onChangePerPage($event.target.value)">
+        <option *ngFor="let op of perPage" [selected]="settings.pager.perPage" [value]="op">{{op}}</option>
+      </select>
+    </div> -->
+    <ng2-smart-table id="table-send" #table [settings]="settings" [source]="list_send" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,24 @@
+{% load static %}
+{% load tz %}
+{% localtime on %}
+{% get_media_prefix as MEDIA_URL %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <!-- Custom CSS -->
+    <style>
+        @page {
+            size: '{{ size }}';
+        }
+        
+    </style>
+    <title>Base</title>
+</head>
+<body>
+    {% for page in pages %}
+    <pdf:nextpage/>
+    {% endfor %}
+</body>
+</html>
+{% endlocaltime %}

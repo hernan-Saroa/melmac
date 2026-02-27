@@ -1,0 +1,66 @@
+<nb-layout>
+  <nb-layout-column class="colored-column-danger" style="padding: 0px !important;">
+    <button *ngIf="zoom_view" type="button" nbButton style="position: absolute; top: 86vh; right: 45%; z-index: 1;"
+      status="warning" class="upload-btn"
+      shape="rectangle" size="medium" outline
+      (click)="zoomIn()">
+      <nb-icon icon="plus-square-outline"></nb-icon>
+    </button>
+
+    <button *ngIf="zoom_view" [disabled]="this.zoomLOut" type="button" nbButton style=" position: absolute; top: 86vh; right: 55%; z-index: 1;"
+      status="warning" class="upload-btn"
+      shape="rectangle" size="medium" outline
+      (click)="zoomOut()">
+      <nb-icon icon="minus-outline"></nb-icon>
+    </button>
+
+    <div #pdfViewer class="pdf-viewer">
+      <router-outlet>
+
+      </router-outlet>
+    </div>
+
+  </nb-layout-column>
+
+  <nb-layout-footer [hidden]="footer_view" style="position: fixed; width: 100%; bottom: 0; z-index: 2;" id="footerT">
+      <span id="footerText"> {{ footer }}  </span>
+  </nb-layout-footer>
+</nb-layout>
+
+<!-- <nb-layout>
+    <nb-layout-header id="headerT" class="{{ header_class }} container-fluid position-fixed">
+        <b *ngIf="logo == ''">{{ title }}</b>
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 divConv1"></div>
+          <div class="col-xs-4 col-sm-4 logo_form" *ngIf="logo != ''">
+            <div class="col-xs-12 col-sm-12 cont-img-prin"><img class="logo_img" [(src)]="logo" alt=""></div>
+
+            <div class="col-xs-4 col-sm-4 cont-main-sec divC1"></div>
+            <div class="col-xs-4 col-sm-4 cont-main-sec"><img class="logo_img" [(src)]="logo" alt=""></div>
+            <div class="col-xs-4 col-sm-4 cont-main-sec">
+              <div *ngIf="button_form">
+                <button type="button" id="btn-external1Sm" (click)="clickBtnUl(1)" [class]="'btn ' + (option_select == 1 ? 'btn-externalSm': 'default-click') + ' btn-sm btnP1 mt-1'" style="border-radius: 50px;margin-bottom: 5px;height: 35px;width: 35px;"><img src="./assets/images/iconosredondos-20.png" width="150" style="padding:0px;width:36px;" /></button> <br>
+                <button type="button" id="btn-external2Sm" (click)="clickBtnUl(2)" [class]="'btn ' + (option_select == 2 ? 'btn-externalSm': 'default-click') + ' btn-sm btnP2'" style="border-radius: 50px;margin-bottom: 5px;height: 35px;width: 35px;"><img src="./assets/images/iconosredondos-21.png" width="150" style="padding:0px;width:36px;" /></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-4 col-sm-4 text-right">
+            <div *ngIf="button_form" class="cont-main-prin">
+              <button type="button" id="btn-external1" (click)="clickBtnUl(1)" [class]="'btn ' + (option_select == 1 ? 'btn-external': 'default-click') + ' btn-sm mb-2 mt-1 mr-5'"><img src="./assets/images/previsualizar_18.png" width="150" /></button>
+              <button type="button" id="btn-external2" (click)="clickBtnUl(2)" [class]="'btn ' + (option_select == 2 ? 'btn-external': 'default-click') + ' btn-sm mr-5'"><img src="./assets/images/diligenciar_19.png" width="150" /></button>
+            </div>
+          </div>
+        </div>
+        <div class="row envelope_content" id="divEnvelope">
+          <div *ngIf="envelope != ''" id="contdiv2" class="envelope_name {{ header_class_2 }} position-fixed">
+            {{ envelope }}
+          </div>
+        </div>
+
+    </nb-layout-header>
+    <nb-layout-column class="colored-column-basic pt-5 layout-princ">
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+    <nb-layout-footer id="footerT">{{ footer }}</nb-layout-footer>
+</nb-layout> -->

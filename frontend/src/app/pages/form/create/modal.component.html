@@ -1,0 +1,52 @@
+<nb-card class="modal-card" style="height: 32.875rem;" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+  <nb-card-body class="modal-card-body">
+    <h5 class="modal-title">Configuración Adicional</h5>
+
+    <div class="row content-body" style="justify-content: center;">
+      <label class="label" class="label label-field-title" style="text-transform: initial; font-weight: 100;">
+        Para agregar información adicional al documento debes subir un archivo .xlsx con
+        la información en columnas (incluido el título), donde la primera columna es la identificación del usuario.
+      </label>
+    </div>
+    <div>
+      <!-- Carga de archivo -->
+      <div class="row content-inputs">
+        <div class="col-12">
+
+          <div>
+            <input type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="file-input" style="display: none;" (change)="onFileSelected($event)"
+                [ngModel]="file" #fileUpload>
+            <div class="file-upload" style="text-align: center;">
+              <button nbButton
+                [status]="file == false ? 'basic' : 'primary'" class="upload-btn"
+                shape="rectangle" outline (click)="fileUpload.click()">
+                {{ file ? 'Archivo Cargado' : 'Subir Archivo' }}<nb-icon icon="upload-outline"></nb-icon>
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <!-- Description -->
+        <div class="col-12" style="margin-top: 15px;">
+        <label class="label" class="label label-field-title">
+          Columnas / Opciones
+        </label>
+          <nb-card style="height: 13rem; margin-bottom: 0px;">
+            <nb-list>
+              <nb-list-item *ngFor="let column of columns">
+                {{ column }}
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="row content-footer">
+      <button class="modal-btn modal-btn-primary" nbButton status="primary" (click)="close()">Aceptar</button>
+    </div>
+
+  </nb-card-body>
+</nb-card>

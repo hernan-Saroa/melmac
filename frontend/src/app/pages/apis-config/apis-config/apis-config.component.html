@@ -1,0 +1,24 @@
+<div class="row">
+    <h3 class="colorTitle">Configuración de APIs</h3>
+    <div class="col-12" *ngIf="dataSelected == null">
+        <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+            <nb-card-body>
+                <ng2-smart-table 
+                    class="table-apis"
+                    [settings]="settings" 
+                    [source]="data"
+                    (userRowSelect)="onRowSelect($event)"
+                    (createConfirm)="onCreateConfirm($event)"
+                    (editConfirm)="onEditConfirm($event)">
+                </ng2-smart-table>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <ngx-apis-config-detail
+        class="col-12" 
+        *ngIf="dataSelected != null"
+        [dataSelected]="dataSelected"
+        [viewCode]="viewCode"
+        [user_hash]="user_hash"
+        (back)="onBack()"></ngx-apis-config-detail>
+</div>

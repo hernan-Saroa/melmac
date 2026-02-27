@@ -1,0 +1,44 @@
+@mixin select2-height(){
+    height:2.5rem !important;
+    line-height: 2.5rem !important;
+}
+::ng-deep .iti {
+    @include select2-height();
+    width:100% !important;
+    min-width: 1.5rem !important;
+    // text-indent: 0 !important;
+    font-size: 0.9375rem !important;
+    font-weight: 400 !important;
+    input {
+      @include select2-height();
+      text-indent: 2rem;
+    }
+}
+
+::ng-deep .iti__country-list{
+    max-height: 115px;
+    position: absolute;
+    top: 0;
+}
+
+::ng-deep .iti__country-name{
+    color: black !important;
+}
+
+input[disabled="disabled"], input.disabled {
+    background-color: red;
+}
+
+::ng-deep .icon-active-or-delete:hover {
+    color: #28a745 !important;
+}
+
+::ng-deep .smart-action-edit-is-deleted {
+    display: none !important;
+}
+
+::ng-deep body.nb-theme-dark {
+  .tel-input-number {
+    color: #495057 !important;
+  }
+}

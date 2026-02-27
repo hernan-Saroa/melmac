@@ -1,0 +1,98 @@
+.flex-centered {
+    margin: auto;
+}
+
+nb-card-body {
+    display: flex;
+}
+
+.title {
+    text-align: center;
+}
+
+.sub-title {
+    font-size: 100%;
+    text-align: center;
+    display: block;
+    margin-bottom: 3rem;
+}
+
+.message {
+    font-size: 100%;
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+    color: red;
+}
+
+.home-button {
+    margin-bottom: 2rem;
+}
+
+::ng-deep:root {
+    --my-var: #0095ff;
+    --my-var3: #0095ff;
+    --my-var5: #412378;
+    --my-var6: #ffffff;
+    --my-var9: #000000;
+}
+
+::ng-deep .buttonText{
+    color: var(--my-var) !important;
+}
+
+::ng-deep .buttonTextN{
+    color: var(--my-var6) !important;
+}
+
+::ng-deep .appearanceButtonSend {
+    background-color: var(--my-var) !important;
+    border-color: var(--my-var) !important;
+    //color: var(--my-var) !important;
+}
+
+::ng-deep .appearanceButtonSendN {
+    background-color: var(--my-var3) !important;
+    border-color: var(--my-var3) !important;
+}
+
+::ng-deep .footerText{
+    // background-color: var(--my-var) !important;
+    color:  var(--my-var) !important;
+    text-align: center;
+}
+
+::ng-deep .footerTextN{
+    // background-color: var(--my-var) !important;
+    color:  var(--my-var6) !important;
+    text-align: center;
+}
+
+::ng-deep .boxHeader{
+    background: var(--my-var) !important;
+}
+
+::ng-deep .boxHeaderN{
+    background: var(--my-var5) !important;
+}
+
+
+::ng-deep .colorTitle {
+    color: var(--my-var) !important;
+    font-family: Roboto, sans-serif;
+    text-transform: uppercase;
+}
+
+::ng-deep .colorTitleN {
+    color: var(--my-var9) !important;
+    font-family: Roboto, sans-serif;
+    text-transform: uppercase;
+}
+
+::ng-deep .colorDesc {
+    color: var(--my-var) !important;
+}
+
+::ng-deep .colorDescN {
+    color: var(--my-var9) !important;
+}

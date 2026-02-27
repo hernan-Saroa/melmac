@@ -1,0 +1,90 @@
+<nb-card>
+  <nb-card-header>
+    <h4 *ngIf="view == 1">Acceso</h4>
+    <h4 *ngIf="view == 2">Compartir</h4>
+    <h4 *ngIf="view == 3">Confirmar</h4>
+  </nb-card-header>
+  <nb-card-body class="content-role-permit" *ngIf="view == 1">
+    <div class="col-12">
+      <nb-select [(ngModel)]="option" (ngModelChange)="onChangeOption()" fullWidth name="option" class="select-form"
+        placeholder="Seleccionar">
+        <nb-option value="1">
+          Rol
+        </nb-option>
+        <nb-option value="2">
+          Usuario
+        </nb-option>
+      </nb-select>
+      <nb-select *ngIf="option == 1" [(ngModel)]="rol_select" fullWidth name="rol_select" class="select-form"
+        placeholder="Seleccionar Rol">
+        <nb-option *ngFor="let rol of list_rol" [value]="rol.id">
+          {{ rol.name }}
+        </nb-option>
+      </nb-select>
+      <!-- <nb-select *ngIf="option == 2" [(ngModel)]="user_select" fullWidth name="user_select" class="select-form"
+          placeholder="Seleccionar Usuario">
+          <nb-option *ngFor="let user of list_user" [value]="user.id">
+            {{ user.name }}
+          </nb-option>
+      </nb-select> -->
+
+      <input #autoInput *ngIf="option == 2" [ngModel]="user_option" nbInput fullWidth type="text" (input)="onChange()"
+        (ngModelChange)="onChangeAuto($event)" placeholder="Seleccionar Usuario" [nbAutocomplete]="auto" />
+
+      <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+        <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+          {{ option.name }}
+        </nb-option>
+      </nb-autocomplete>
+    </div>
+  </nb-card-body>
+  <nb-card-body class="content-share" *ngIf="view == 2">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="input-send" class="label">Escoge el medio de envió</label>
+        <nb-select fullWidth [(ngModel)]="option_share" placeholder="Seleccionar">
+          <nb-option value="1">
+            Email
+          </nb-option>
+          <nb-option value="2">
+            SMS
+          </nb-option>
+          <nb-option value="3">
+            WhatsApp
+          </nb-option>
+        </nb-select>
+      </div>
+      <div class="form-group">
+        <label for="input-send" class="label">Escribe {{optionMessages()}} y Oprime la tecla <b>ENTER</b> para agregar a los destinatarios</label>
+        <div #tagListContainer>
+          <nb-tag-list (tagRemove)="onTagRemove($event)">
+            <nb-tag *ngFor="let tree of trees" [status]="onValidate(tree)" appearance="outline" [text]="tree" removable>
+            </nb-tag>
+            <input type="text" nbTagInput (tagAdd)="onTagAdd($event)" (focusout)="onFocusAdd(add_tag)" fieldSize="large" fullWidth #add_tag>
+          </nb-tag-list>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="option_share == 1">
+        <nb-checkbox style="margin-bottom: 5px;" [(checked)]="qr_state">
+          <span>Incluir QR</span>
+        </nb-checkbox>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-body class="content-role-permit" *ngIf="view == 3">
+    <div class="div-dialog">
+      <b>Ultima modificación</b> - {{ parentComponent.modify_date | date:'medium' }}
+    </div>
+    <div class="div-dialog" *ngIf="parentComponent.date_state">Se cambiara la configuración de la fecha de vencimiento.
+    </div>
+    <div class="div-dialog" *ngIf="parentComponent.send_state">Al guardar los cambios se <b>reiniciara</b> el contador
+      de la cantidad máxima de diligenciados.</div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close()">Cancelar</button>
+    <button *ngIf="view == 1" nbButton status="primary" (click)="onAccept()">Agregar</button>
+    <button *ngIf="view == 2" nbButton [nbSpinner]="loading" nbSpinnerStatus="primary" [disabled]="loading"
+      status="primary" (click)="onShare()">Enviar</button>
+    <button *ngIf="view == 3" nbButton status="success" (click)="onLinkUpdate()">Aceptar</button>
+  </nb-card-footer>
+</nb-card>

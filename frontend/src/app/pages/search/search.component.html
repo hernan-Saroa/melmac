@@ -1,0 +1,381 @@
+<div class="container">
+
+  <div class="search-absolute">
+    <div class="search-container">
+      <button class="menu-button1 menu-button2" (click)="toggleMenu1( 'nuevo' )">+ <span class="new">Nuevo {{ sections_flecha.nuevo }}</span></button>
+                <div *ngIf="activeMenu === 'nuevo'" class="menu3">
+                  <button (click)="toggleMenu2( 'subir' )">Subir {{ sections_flecha.subir }}</button>
+                    <div *ngIf="activeMenu1 === 'subir'" class="menu5 menu4">
+                      <button>Documento</button>
+                      <button>Carpeta</button>
+                      <button>Plantilla</button>
+                    </div>
+                  <button (click)="toggleMenu2( 'crear' )">Crear {{ sections_flecha.crear }}</button>
+                    <div *ngIf="activeMenu1 === 'crear'" class="menu4">
+                      <button [routerLink]="['../form/create']">Documento</button>
+                      <button>Carpeta</button>
+                      <button>Plantilla</button>
+                    </div>
+                </div>
+      <div class="search-bar">
+        <span class="search-icon icon-b" (click) = "search_all()">
+          <img src="./assets/images/icons/unidad/Recurso_129.png" alt="Buscar" width="20" height="20">
+        </span>
+        <input
+          type="text"
+          placeholder="Buscar en Mi Unidad"
+          class="search-input"
+          id="search-input"
+          [(ngModel)]="query"
+          (input)="onInputChange($event.target.value)"
+          autocomplete="off"
+          (keydown.enter)="search_all()"
+        />
+        <span class="filter-icon">
+          <i class="material-icons">tune</i>
+        </span>
+      </div>
+
+      <!-- Botón de menú -->
+      <div class="menu-button" (click)="toggleMenu()">
+        <i class="material-icons">menu</i>
+      </div>
+
+      <!-- Lista de íconos visible solo en pantallas grandes -->
+      <div class="view-icons">
+        <div [ngClass]="{'activo': activeIndex === 1}" (click)="setActive(1)" class="menu-i" ><img src="assets/icons/list.png" alt="Lista" width="14" height="14" style= "margin-top: -3px;"></div>
+        <div [ngClass]="{'activo': activeIndex === 2}" (click)="setActive(2)" class="menu-i" ><img src="assets/icons/app.png" alt="App" width="14" height="14" style= "margin-top: -3px;"></div>
+        <div [ngClass]="{'activo': activeIndex === 3}" (click)="setActive(3)" class="menu-i" ><img src="assets/icons/app2.png" alt="App" width="14" height="14" style= "margin-top: -3px;"></div>
+      </div>
+    </div>
+
+    <!-- Lista desplegable para el menú -->
+    <div class="menu-options" [class.show]="menuOpen">
+      <div class="menu-item">Opción 1</div>
+      <div class="menu-item">Opción 2</div>
+      <div class="menu-item">Opción 3</div>
+    </div>
+
+    <!-- Lista de sugerencias -->
+    <div class="suggestions-list" id="suggestions-list">
+      <div *ngFor="let result of results" class="result-item">
+        <div class="suggestion-item" *ngIf="result.type == '1'" (click)="onClickOption($event)" style="font-weight: bold;" (click)="onDoubleClick(result)">{{ icon_template.document2 }} {{ result.id_doc }} - {{ result.title }} <span style="float: right;
+          font-weight: bolder;
+          color: gray;" class="suggestion-item">{{ result.date | date: 'd/M/yyyy'}}</span> </div>
+        <div class="suggestion-item" *ngIf="result.type == '2'" (click)="onClickOption($event)" style="font-weight: bold;" (click)="onDoubleClick(result)"><img src="assets/icons/document.png" alt="Documento" width="14" height="14" style= "margin-top: -3px;"> {{ result.id_doc }} - {{ result.title }} <span style="float: right;
+          font-weight: bolder;
+          color: gray;" class="suggestion-item">{{ result.date | date: 'd/M/yyyy'}}</span> </div>
+        <div class="suggestion-item" *ngIf="result.type == '3'" (click)="onClickOption($event)" style="font-weight: bold;" (click)="onDoubleClick(result)"><img src="assets/icons/template.png" alt="Documento" width="14" height="14" style= "margin-top: -3px;"> {{ result.id_doc }} - {{ result.title }} <span style="float: right;
+          font-weight: bolder;
+          color: gray;" class="suggestion-item">{{ result.date | date: 'd/M/yyyy'}}</span> </div>
+        <p [innerHTML]="result.snippet"></p>
+      </div>
+      <div *ngIf="results.length > 1" class="suggestion-all" (click) = "search_all()">⮐ Todos los resultados</div>
+      <div
+        *ngIf="results.length === 0 && query.trim()"
+        class="suggestion-empty"
+      >
+        No se encontraron resultados para "{{ query }}"
+      </div>
+    </div>
+  </div>
+
+  <div class="section" *ngIf="view_search">
+    <button (click)="toggleSection('templates')" class="section-header section-title-prin">
+      <span nbTooltip="Plantillas creadas desde melmac." nbTooltipPlacement="top" nbButton>
+        <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+      </span> Plantillas {{ sections_flecha.templates }}
+    </button>
+    <div *ngIf="sections.templates && activeIndex ===2" class="section-content grid">
+      <div *ngFor="let template of templates" class="badge"
+        (dblclick)="onDoubleClick(template)">
+        <span class="section-title-document" *ngIf="template.type == 'document'" title="{{ template.id }} - {{ template.name }}"> <img src="assets/icons/document.png" alt="Documento" width="14" height="14" style= "margin-top: -3px;"> {{ template.id }} - {{ template.name }}</span>
+        <span class="section-title-document" *ngIf="template.type == 'template'" title="{{ template.id }} - {{ template.name }}"> <img src="assets/icons/template.png" alt="Flujo" width="14" height="14" style= "margin-top: -3px;"> {{ template.id }} - {{ template.name }}</span>
+        <button class="menu-button1" (click)="toggleMenu1(template.id+'T'+template.type)">⋮</button>
+        <div *ngIf="activeMenu === template.id+'T'+template.type && template.type == 'document'" class="menu">
+          <button [routerLink]="['../form/answer/', template.id]"><img src="assets/icons/edit.png" alt="Diligenciar" width="10" height="10"> Diligenciar</button>
+          <button [routerLink]="['../form/associate/', template.id,'associate']"><img src="assets/icons/associate.png" alt="Asociar" width="10" height="10"> Acceso</button>
+          <button [routerLink]="['../form/associate/',template.id,'link']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+          <button [routerLink]="['../form/update/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+          <button (click) = "cloneForm(template)"><img src="assets/icons/clone.png" alt="Clonar" width="10" height="10"> Clonar</button>
+          <button (click) = "deleteForm(template)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+        </div>
+        <div *ngIf="activeMenu === template.id+'T'+template.type && template.type == 'template'" class="menu">
+          <button [routerLink]="['../folder/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+          <button [routerLink]="['../folder/', template.id,'share']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+          <button (click) = "stateEnvelope(7,template.id)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+        </div>
+      </div>
+      <button *ngIf="state_view_2 == 1" class="menu-button1" (click)="more_view(2)">Ver más ▾</button>
+    </div>
+    <div *ngIf="sections.templates && activeIndex ===1">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ID - Nombre</th>
+            <th>Versión</th>
+            <th>Fecha de creación</th>
+            <th>Fecha de modificación</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let template of templates; let i = index" (dblclick)="onDoubleClick(template)">
+            <td>{{ i + 1 }}</td> <!-- Muestra el índice comenzando desde 1 -->
+            <td>
+              <img src="assets/icons/template.png" *ngIf="template.type == 'template'" alt="Flujo" width="14" height="14" style= "margin-top: -3px;">
+              <img src="assets/icons/document.png" *ngIf="template.type == 'document'" alt="Documento" width="14" height="14" style= "margin-top: -3px;">
+               {{ template.id }} - {{ template.name }}
+            </td>
+            <td>{{ template.version }}</td>
+            <td>{{ template.creation_date }}</td>
+            <td>{{ template.modify_date }}</td>
+            <td class="menu-container-td">
+              <button class="menu-button1" (click)="toggleMenu1(template.id+'T'+template.type)">⋮</button>
+              <div *ngIf="activeMenu === template.id+'T'+template.type && template.type == 'document'" class="menu-table-1">
+                <button [routerLink]="['../form/answer/', template.id]"><img src="assets/icons/edit.png" alt="Diligenciar" width="10" height="10"> Diligenciar</button>
+                <button [routerLink]="['../form/associate/', template.id,'associate']"><img src="assets/icons/associate.png" alt="Asociar" width="10" height="10"> Acceso</button>
+                <button [routerLink]="['../form/associate/',template.id,'link']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+                <button [routerLink]="['../form/update/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                <button (click) = "cloneForm(template)"><img src="assets/icons/clone.png" alt="Clonar" width="10" height="10"> Clonar</button>
+                <button (click) = "deleteForm(template)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+              </div>
+              <div *ngIf="activeMenu === template.id+'T'+template.type && template.type == 'template'" class="menu-table-1">
+                <button [routerLink]="['../folder/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                <button [routerLink]="['../folder/', template.id,'share']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+                <button (click) = "stateEnvelope(7,template.id)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6" *ngIf="state_view_2 == 1" class="menu-button1" (click)="more_view(2)" style="width: 100%;text-align: center;font-weight: bold;">Ver más ▾</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section" *ngIf="view_search">
+      <button (click)="toggleSection('folders')" class="section-header section-title-prin">
+        Carpetas {{ sections_flecha.folders }}
+      </button>
+      <div *ngIf="sections.folders && activeIndex ===2" class="section-content grid">
+        <div *ngFor="let folder of folders" class="folder">
+          <span class="section-title-document" title="{{ folder }}"><img src="assets/icons/folder1.png" alt="Carpeta" width="16" height="16" style="margin-top: -3px;"> {{ folder }}</span>
+          <button class="menu-button1" (click)="toggleMenu1(folder)">⋮</button>
+          <div *ngIf="activeMenu === folder" class="menu">
+            <button><img src="assets/icons/rename.png" alt="Cambiar nombre" width="10" height="10"> Cambiar nombre</button>
+            <button><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+            <button><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+            <button><img src="assets/icons/info.png" alt="Información" width="10" height="10"> Información de la carpeta</button>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="sections.folders && activeIndex ===1">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Fecha de creación</th>
+              <th>Creador</th>
+              <th>Última actualización</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let doc of documents">
+              <td>{{ doc.subject }}</td>
+              <td>{{ doc.creation_date }}</td>
+              <td>{{ doc.user_name }}</td>
+              <td>{{ doc.origin_date }}</td>
+              <td>{{ doc.online }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+
+  <div class="section" *ngIf="view_search">
+    <button (click)="toggleSection('documents')" class="section-header section-title-prin">
+      Documentos {{ sections_flecha.documents }}
+    </button>
+    <div *ngIf="sections.documents && activeIndex ===2" class="section-content">
+      <div class="document-grid">
+        <div class="document-card" *ngFor="let doc of documents">
+            <div class="document-preview" (dblclick)="onDoubleClick(doc)">
+                <img src="https://static.vecteezy.com/system/resources/previews/005/129/874/non_2x/single-icon-of-document-with-check-list-icon-free-vector.jpg" alt="Vista previa del documento">
+            </div>
+            <div class="document-info">
+                <span class="section-title-document" title="{{ doc.id }} - {{ doc.subject }}"> {{ doc.id }} - {{ doc.subject }}</span>
+                <button class="menu-button1" (click)="toggleMenu1(doc.id+'D')">⋮</button>
+                <div *ngIf="activeMenu === doc.id+'D'" class="menu2">
+                  <button><img src="assets/icons/pdf.png" alt="PDF" width="10" height="10"> Ver PDF</button>
+                  <button><img src="assets/icons/document.png" alt="Excel" width="10" height="10"> Ver Excel</button>
+                  <button (click)="onClickEdit(doc)"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                  <button><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+                </div>
+            </div>
+        </div>
+          <button *ngIf="state_view_1 == 1" class="menu-button1" (click)="more_view(1)">Ver más ▾</button>
+    </div>
+
+    </div>
+    <div *ngIf="sections.documents && activeIndex ===1">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>versión</th>
+            <th>Fecha de diligenciamiento</th>
+            <th>Fecha de envío</th>
+            <th>Creador</th>
+            <th>Origen</th>
+            <th>Tipo de conexión</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of documents; let i = index" (dblclick)="onDoubleClick(doc)">
+            <td>{{ i + 1 }}</td> <!-- Muestra el índice comenzando desde 1 -->
+            <td>
+              <img src="https://static.vecteezy.com/system/resources/previews/005/129/874/non_2x/single-icon-of-document-with-check-list-icon-free-vector.jpg" alt="Vista previa del documento" width="26" height="26">
+              {{ doc.id }} - {{ doc.subject }}
+            </td>
+            <td>{{ doc.version }}</td>
+            <td>{{ doc.creation_date }}</td>
+            <td>{{ doc.origin_date }}</td>
+            <td>{{ doc.user_name }}</td>
+            <td>{{ doc.source == 1 ? 'Web' : 'Móvil' }}</td>
+            <td>{{ doc.online ? 'Online' : 'Offline' }}</td>
+            <td class="menu-container-td">
+              <button  class="menu-button1" (click)="toggleMenu1(doc.id+'D')">⋮</button>
+              <div *ngIf="activeMenu === doc.id+'D'" class="menu-table-1">
+                <button><img src="assets/icons/pdf.png" alt="PDF" width="10" height="10"> Ver PDF</button>
+                <button><img src="assets/icons/document.png" alt="Excel" width="10" height="10"> Ver Excel</button>
+                <button (click)="onClickEdit(doc)"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                <button><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6" *ngIf="state_view_1 == 1" class="menu-button1" (click)="more_view(1)" style="width: 100%;text-align: center;font-weight: bold;">Ver más ▾</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section" *ngIf="!view_search">
+    <button (click)="toggleSection('busqueda')" class="section-header section-title-prin-2">
+      Resultados de la búsqueda {{ sections_flecha.documents }}
+    </button>
+    <button (click)="closeSection()" style="float: right;border: 0px solid;"> ✖️ </button>
+    <div *ngIf="sections.busqueda && activeIndex ===2" class="section-content">
+      <div class="document-grid">
+        <div class="document-card" *ngFor="let doc of documents_all">
+            <div class="document-preview" (dblclick)="onDoubleClick(doc)">
+                <img *ngIf="doc.type == '1'" src="https://static.vecteezy.com/system/resources/previews/005/129/874/non_2x/single-icon-of-document-with-check-list-icon-free-vector.jpg" alt="Vista previa del documento">
+                <img *ngIf="doc.type == '3'" src="assets/icons/template.png" alt="Flujo" width="14" height="150" style="padding: 30px;">
+                <img *ngIf="doc.type == '2'" src="https://thumbs.dreamstime.com/b/icono-de-documento-vector-papel-aislado-negro-conceptual-162380899.jpg">
+            </div>
+            <div class="document-info" *ngIf="doc.type == '1'">
+                <span class="section-title-document" title="{{ doc.id_doc }} - {{ doc.title }}"> {{ doc.id_doc }} - {{ doc.title }}</span>
+                <button class="menu-button1" (click)="toggleMenu1(doc.id_doc+'DT'+doc.type)">⋮</button>
+                <div *ngIf="activeMenu === doc.id_doc+'DT'+doc.type" class="menu2">
+                  <button><img src="assets/icons/pdf.png" alt="PDF" width="10" height="10"> Ver PDF</button>
+                  <button><img src="assets/icons/document.png" alt="Excel" width="10" height="10"> Ver Excel</button>
+                  <button (click)="onClickEdit(doc)"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                  <button><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+                </div>
+            </div>
+            <div class="document-info" *ngIf="doc.type == '2'">
+              <span class="section-title-document" title="{{ doc.id_doc }} - {{ doc.title }}"> {{ doc.id_doc }} - {{ doc.title }}</span>
+              <button class="menu-button1" (click)="toggleMenu1(doc.id_doc+'DT'+doc.type)">⋮</button>
+              <div *ngIf="activeMenu === doc.id_doc+'DT'+doc.type" class="menu2">
+                <button [routerLink]="['../form/answer/', template.id]"><img src="assets/icons/edit.png" alt="Diligenciar" width="10" height="10"> Diligenciar</button>
+                <button [routerLink]="['../form/associate/', template.id,'associate']"><img src="assets/icons/associate.png" alt="Asociar" width="10" height="10"> Acceso</button>
+                <button [routerLink]="['../form/associate/',template.id,'link']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+                <button [routerLink]="['../form/update/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                <button (click) = "cloneForm(template)"><img src="assets/icons/clone.png" alt="Clonar" width="10" height="10"> Clonar</button>
+                <button (click) = "deleteForm(template)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+              </div>
+          </div>
+          <div class="document-info" *ngIf="doc.type == '3'">
+            <span class="section-title-document" title="{{ doc.id_doc }} - {{ doc.title }}"> {{ doc.id_doc }} - {{ doc.title }}</span>
+            <button class="menu-button1" (click)="toggleMenu1(doc.id_doc+'DT'+doc.type)">⋮</button>
+            <div *ngIf="activeMenu === doc.id_doc+'DT'+doc.type" class="menu2">
+              <button [routerLink]="['../folder/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+              <button [routerLink]="['../folder/', template.id,'share']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+              <button (click) = "stateEnvelope(7,template.id)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+            </div>
+        </div>
+        </div>
+        <button *ngIf="state_view_3 == 1" class="menu-button1" (click)="more_view(3)">Ver más ▾</button>
+    </div>
+
+    </div>
+    <div *ngIf="sections.busqueda && activeIndex ===1">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ID - Nombre</th>
+            <th>Fecha de creación</th>
+            <th>Tipo</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of documents_all; let i = index" (dblclick)="onDoubleClick(doc)">
+            <td>{{ i + 1 }}</td> <!-- Muestra el índice comenzando desde 1 -->
+            <td>
+              <img *ngIf="doc.type == '1'" src="https://static.vecteezy.com/system/resources/previews/005/129/874/non_2x/single-icon-of-document-with-check-list-icon-free-vector.jpg" alt="Vista previa del documento" alt="Flujo" width="26" height="26">
+              <img *ngIf="doc.type == '3'" src="assets/icons/template.png" alt="Flujo" width="26" height="26">
+              <img *ngIf="doc.type == '2'" src="https://thumbs.dreamstime.com/b/icono-de-documento-vector-papel-aislado-negro-conceptual-162380899.jpg" alt="Flujo" width="26" height="26">
+              {{ doc.id_doc }} - {{ doc.title }}
+            </td>
+            <td>{{ doc.date }}</td>
+            <td *ngIf="doc.type == '1'"> Recibido </td>
+            <td *ngIf="doc.type == '2'"> Documento </td>
+            <td *ngIf="doc.type == '3'"> Proceso </td>
+            <td class="menu-container-td">
+              <div *ngIf="doc.type == '1'">
+                <button class="menu-button1" (click)="toggleMenu1(doc.id_doc+'DT'+doc.type)">⋮</button>
+                <div *ngIf="activeMenu === doc.id_doc+'DT'+doc.type" class="menu-table-1">
+                  <button><img src="assets/icons/pdf.png" alt="PDF" width="10" height="10"> Ver PDF</button>
+                  <button><img src="assets/icons/document.png" alt="Excel" width="10" height="10"> Ver Excel</button>
+                  <button (click)="onClickEdit(doc)"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                  <button><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+                </div>
+              </div>
+              <div *ngIf="doc.type == '2'">
+                  <button class="menu-button1" (click)="toggleMenu1(doc.id_doc+'DT'+doc.type)">⋮</button>
+                  <div *ngIf="activeMenu === doc.id_doc+'DT'+doc.type" class="menu-table-1">
+                    <button [routerLink]="['../form/answer/', template.id]"><img src="assets/icons/edit.png" alt="Diligenciar" width="10" height="10"> Diligenciar</button>
+                    <button [routerLink]="['../form/associate/', template.id,'associate']"><img src="assets/icons/associate.png" alt="Asociar" width="10" height="10"> Acceso</button>
+                    <button [routerLink]="['../form/associate/',template.id,'link']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+                    <button [routerLink]="['../form/update/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                    <button (click) = "cloneForm(template)"><img src="assets/icons/clone.png" alt="Clonar" width="10" height="10"> Clonar</button>
+                    <button (click) = "deleteForm(template)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+                  </div>
+              </div>
+              <div *ngIf="doc.type == '3'">
+                <button class="menu-button1" (click)="toggleMenu1(doc.id_doc+'DT'+doc.type)">⋮</button>
+                <div *ngIf="activeMenu === doc.id_doc+'DT'+doc.type" class="menu-table-1">
+                  <button [routerLink]="['../folder/', template.id]"><img src="assets/icons/edit.png" alt="Editar" width="10" height="10"> Editar</button>
+                  <button [routerLink]="['../folder/', template.id,'share']"><img src="assets/icons/share.png" alt="Compartir" width="10" height="10"> Compartir</button>
+                  <button (click) = "stateEnvelope(7,template.id)"><img src="assets/icons/delete.png" alt="Eliminar" width="10" height="10"> Eliminar</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6" *ngIf="state_view_3 == 1" class="menu-button1" (click)="more_view(3)" style="width: 100%;text-align: center;font-weight: bold;">Ver más ▾</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

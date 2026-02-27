@@ -1,0 +1,58 @@
+<nb-card>
+  <nb-card-header>
+    <h4>{{title}}</h4>
+  </nb-card-header>
+  <nb-card-body style="overflow-y:auto">
+    <div class="row">
+      <!-- <div class="col-xs-12">
+        <input type="file" class="file-input"
+        (change)="onFileSelected($event)" [ngModel]="fileName" #imageUpload>
+        <div class="file-upload">
+          <span *ngIf="user_data.image == '0'">  </span>
+          <span class="upload-btn" (click)="imageUpload.click()"> Editar
+          </span>
+        </div>
+      </div> -->
+      <div class="col-xs-12 col-sm-6">
+        <label class="label" for="inputName">Primer Nombre*</label>
+        <input id="inputName" type="text" nbInput fullWidth shape="semi-round" placeholder="Primer Nombre" [(ngModel)]="user_data.fname">
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <label class="label" for="inputSecName">Segundo Nombre</label>
+        <input id="inputSecName" type="text" nbInput fullWidth shape="semi-round" placeholder="Segundo Nombre" [(ngModel)]="user_data.sname">
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <label class="label" for="inputLastName">Primer Apellido*</label>
+        <input id="inputLastName" type="text" nbInput fullWidth shape="semi-round" placeholder="Primer Apellido" [(ngModel)]="user_data.lfname">
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <label class="label" for="inputSecLastName">Segundo Apellido</label>
+        <input id="inputSecLastName" type="text" nbInput fullWidth shape="semi-round" placeholder="Segundo Apellido" [(ngModel)]="user_data.lsname">
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <label class="label" for="doc_type">Tipo Documento*</label>
+        <nb-select placeholder="Selecciona el tipo documento" id="doc_type" name="doc_type" fullWidth hero disabled [ngModel]="docTypeSelected">
+          <nb-option [value]="docType.value" *ngFor="let docType of docTypes">
+            {{docType.title}}
+          </nb-option>
+        </nb-select>
+      </div>
+      <div class="col-xs-12 col-sm-6 offset-md-3 col-md-6">
+        <label class="label" for="input-doc">Número Documento*</label>
+        <input id="input-doc" type="text" nbInput fullWidth shape="semi-round" placeholder="Numero Documento" disabled [(ngModel)]="inputDocNumber">
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <label class="label" for="inputEmail">Correo Electrónico*</label>
+        <input id="inputEmail" type="text" nbInput fullWidth shape="semi-round" placeholder="Email" disabled [(ngModel)]="inputEmail">
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <label class="label" for="inputSecLastName">Teléfono</label>
+        <input id="inputPhone" type="text" nbInput fullWidth shape="semi-round" placeholder="Telefono" disabled [(ngModel)]="inputPhone">
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" class="pull-right" (click)="onAccept($event)">Guardar</button>
+  </nb-card-footer>
+</nb-card>

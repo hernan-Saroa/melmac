@@ -1,0 +1,234 @@
+<nb-card>
+  <nb-card-header>
+    <h6>Configuración - {{ nameField(data.field_type) }}</h6>
+  </nb-card-header>
+  <nb-card-body class="content-location-permit">
+    <nb-tabset>
+      <nb-tab tabTitle="Mostrar">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label" for="input-label">Nombre *</label>
+              <input id="input-label" [(ngModel)]="label" type="text" autocomplete="off" nbInput fullWidth
+                maxlength="50" placeholder="Nombre del Campo" style="margin: 5px 0;" required>
+            </div>
+            <div class="col-sm-12">
+              <label class="label" for="input-description">Descripción <span *ngIf="data.field_type == '14'">*</span></label>
+              <textarea id="input-description" [(ngModel)]="description" autocomplete="off" nbInput fullWidth
+                name="description" rows="4" [maxlength]="data.field_type == '14' ? 5000 : 200">
+              </textarea>
+            </div>
+            <div class="col-sm-12">
+              <nb-checkbox [checked]="required" (checkedChange)="toggleRequired($event)">Requerido</nb-checkbox>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab
+        *ngIf="data.field_type == '1' || data.field_type == '2' || data.field_type == '5' || data.field_type == '6' || data.field_type == '11'"
+        tabTitle="Validación">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div *ngIf="data.field_type != '11'" class="col-sm-12">
+              <label class="label" for="input-min">Longitud mínima</label>
+              <input id="input-min" [(ngModel)]="min" type="number" autocomplete="off" nbInput fullWidth maxlength="50"
+                placeholder="Longitud mínima" style="margin: 5px 0;">
+            </div>
+            <div *ngIf="data.field_type != '11'" class="col-sm-12">
+              <label class="label" for="input-max">Longitud máxima</label>
+              <input id="input-max" [(ngModel)]="max" type="number" autocomplete="off" nbInput fullWidth maxlength="50"
+                placeholder="Longitud máxima" style="margin: 5px 0;">
+            </div>
+            <div class="col-sm-12" *ngIf="data.field_type == '1'">
+              <!-- Radio -->
+              <label class="label">Avanzada</label>
+              <nb-radio-group [(ngModel)]="validation">
+                <nb-radio
+                  value="">
+                  Ninguna
+                </nb-radio>
+                <nb-radio
+                  *ngFor="let val of validations"
+                  [hidden]="val.field_type != data.field_type"
+                  [value]="val.value">
+                  {{ val.label }}
+                </nb-radio>
+              </nb-radio-group>
+            </div>
+            <div class="col-sm-12 content-validation" *ngIf="data.field_type == '11'">
+              <!-- Checkbox -->
+              <label class="label">Avanzada</label>
+              <input type="text" class="checkbox-validation" [ngModel]="validation" #checkbox_validation>
+              <nb-checkbox style="margin-bottom: 5px;" [checked]="onCheck(validation, val.value)" (checkedChange)="toggleCheckbox($event, val.value, checkbox_validation)"
+                  *ngFor="let val of validations" [value]="val.value" [hidden]="val.field_type != data.field_type">
+                  {{ val.label }}</nb-checkbox>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab
+        *ngIf="data.field_type == '20'"
+        tabTitle="Validación">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12 content-validation">
+              <!-- Checkbox -->
+              <label class="label">Avanzada</label>
+              <input type="text" class="checkbox-validation" [ngModel]="validation3" #nit_validation>
+              <nb-checkbox style="margin-bottom: 5px;" [checked]="onCheck3(validation3, val.value)" (checkedChange)="toggleCheckbox3($event, val.value, nit_validation)"
+                  *ngFor="let val of validations" [value]="val.value" [hidden]="val.field_type != data.field_type">
+                  {{ val.label }}</nb-checkbox>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab *ngIf="validation_regis" tabTitle="Campos">
+          <div class="col-sm-12 content-validation" [hidden]="!validation_regis">
+            <label class="label">Avanzado Registraduria</label>
+            <input type="text" class="checkbox-validation" [ngModel]="validation2" #checkbox_validation2>
+            <nb-checkbox style="margin-bottom: 5px;"
+            [checked]="onCheck2(validation2, valu.value)" (checkedChange)="toggleCheckbox2($event, valu.value, checkbox_validation2)"
+            *ngFor="let valu of validations_regis" [value]="valu.value" [hidden]="valu.field_type != data.field_type">
+            {{ valu.label }}</nb-checkbox>
+          </div>
+      </nb-tab>
+      <nb-tab *ngIf="data.field_type == '3' || data.field_type == '12' || data.field_type == '13'" tabTitle="Datos">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label">Lista de Valores *</label>
+              <div cdkDropList class="selected-list" (cdkDropListDropped)="dropSelect($event)">
+                <div class="select-item" cdkDragBoundary=".selected-list" *ngFor="let option of options; let i=index;"
+                  cdkDrag>
+                  <div class="select-custom-placeholder" *cdkDragPlaceholder></div>
+                  <!-- <div> -->
+                  <span cdkDragHandle class="select-span">
+                    <nb-icon icon="move"></nb-icon>
+                  </span>
+                  <!-- {{ option }} -->
+                  <input #inputS id="index-option-{{ i }}"
+                    (change)="onChangeOption($event.target.value, i, inputS)" [value]="options[i].label"
+                    class="input-select" type="text" autocomplete="off" nbInput fullWidth maxlength="40"
+                    placeholder="Opción" required>
+                  <button [disabled]="options.length == 1" nbButton ghost status="danger" (click)="onDeleteOption(i)">
+                    <nb-icon icon="close-circle-outline"></nb-icon>
+                  </button>
+                  <!-- </div> -->
+                </div>
+              </div>
+
+
+              <button nbButton status="primary" (click)="onAddOption()">Agregar <nb-icon icon="plus-outline"></nb-icon>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+      <nb-tab *ngIf="data.field_type == '17'" tabTitle="Datos">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label" for="input-num-list">Numero de Filas</label>
+              <!-- <input id="input-num-list" [(ngModel)]="num_list" (ngModelChange)="onChangeNum($event)" type="number" autocomplete="off" nbInput fullWidth min="2" max="10"
+                placeholder="Filas" style="margin: 5px 0;"> -->
+              <nb-select id="input-num-list" fullWidth placeholder="Filas" style="margin: 5px 0;"
+                [(ngModel)]="num_list">
+                <nb-option  [value]="i + 2" *ngFor="let item of [].constructor(19); let i = index">{{ i + 2 }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="label">Columnas *</label>
+              <div cdkDropList class="selected-list" (cdkDropListDropped)="dropField($event)">
+                <div class="select-item" cdkDragBoundary=".selected-list" *ngFor="let field of list_fields; let i=index;"
+                  cdkDrag>
+                  <div class="select-custom-placeholder" *cdkDragPlaceholder></div>
+                  <span cdkDragHandle class="select-span">
+                    <nb-icon icon="move"></nb-icon>
+                  </span>
+                  <!-- {{ option }} -->
+                  <input id="index-option-{{ i }}"
+                    (change)="onChangeField($event.target.value, i)" [value]="list_fields[i].label"
+                    class="input-select" type="text" autocomplete="off" nbInput fullWidth maxlength="50"
+                    placeholder="Nombre" required>
+                  <nb-select [disabled]="field.field != ''" #select_type fullWidth placeholder="Tipo" [ngModel]="field.field_type" (ngModelChange)="onChangeFieldType($event, i, select_type)">
+                    <nb-option value="1">Alfanumérico</nb-option>
+                    <nb-option value="4">Fecha</nb-option>
+                    <nb-option value="7">Firma digitalizada</nb-option>
+                    <nb-option value="3">Lista</nb-option>
+                    <nb-option value="13">Múltiple</nb-option>
+                    <nb-option value="2">Numérico</nb-option>
+                    <nb-option value="11">Número de documento</nb-option>
+                    <nb-option value="5">Solo letras</nb-option>
+                    <nb-option value="15">Ubicación</nb-option>
+                    <nb-option value="12">Única</nb-option>
+                  </nb-select>
+                  <button [hidden]="field.field_type != 3 && field.field_type != 12 && field.field_type != 13"
+                    [status]="onValidateOptionTable(i)" nbButton ghost
+                    (click)="openOption(i)">
+                    <nb-icon icon="list-outline"></nb-icon>
+                  </button>
+                  <button [disabled]="list_fields.length <= 2" nbButton ghost status="danger" (click)="onDeleteField(i)">
+                    <nb-icon icon="close-circle-outline"></nb-icon>
+                  </button>
+                </div>
+              </div>
+
+              <button [disabled]="list_fields.length >= 20" nbButton status="primary" (click)="onAddField()">Agregar <nb-icon icon="plus-outline"></nb-icon>
+              </button>
+
+            </div>
+            <div class="col-sm-12">
+              <div [nbPopover]="tabs" [nbPopoverPlacement]="position" nbPopoverTrigger="noop"></div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close()">Cancelar</button>
+    <button [nbSpinner]="loading" nbSpinnerStatus="success" [disabled]="loading" nbButton status="primary"
+      (click)="onAccept($event)" [disabled]="onValidate()">Aceptar</button>
+  </nb-card-footer>
+</nb-card>
+
+<ng-template #tabs>
+  <nb-card class="margin-bottom-0">
+    <nb-card-header>
+      Opciones
+      <button style="float: right;" nbButton ghost status="danger" (click)="onCloseOption()"><nb-icon icon="close-outline"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div style="height: 200px;">
+        <label class="label">Lista de Valores *</label>
+        <div cdkDropList class="selected-list" (cdkDropListDropped)="dropSelect($event)">
+          <div class="select-item" cdkDragBoundary=".selected-list" *ngFor="let option of options; let i=index;"
+            cdkDrag>
+            <div class="select-custom-placeholder" *cdkDragPlaceholder></div>
+            <!-- <div> -->
+            <span cdkDragHandle class="select-span">
+              <nb-icon icon="move"></nb-icon>
+            </span>
+            <!-- {{ option }} -->
+            <input #inputS id="index-option-{{ i }}"
+              (change)="onChangeOption($event.target.value, i, inputS)" [value]="options[i].label"
+              class="input-select" type="text" autocomplete="off" nbInput fullWidth maxlength="40"
+              placeholder="Opción" required>
+            <button [disabled]="options.length == 1" nbButton ghost status="danger" (click)="onDeleteOption(i)">
+              <nb-icon icon="close-circle-outline"></nb-icon>
+            </button>
+            <!-- </div> -->
+          </div>
+        </div>
+
+        <button nbButton status="primary" (click)="onAddOption()">Agregar <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

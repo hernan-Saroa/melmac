@@ -1,0 +1,90 @@
+<nb-card>
+  <nb-card-header style="position: relative;text-transform: uppercase;">
+    Detalle de la tarea
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-4">
+        <nb-card size="medium" style="max-height: 230px;">
+          <nb-card-header>
+            Soportes
+            <i title="Ver ticket" [hidden]="info" (click)="viewPDF2()" class="nb-layout-default" style="float: right;font-size: 30px;cursor: pointer;"></i>
+          </nb-card-header>
+          <nb-list>
+            <nb-list-item [hidden]="tamSop" *ngFor="let value of dataDoc">
+              <div class="col-10">
+                ✓ {{ value.answer_form__form_enterprise__name }}
+              </div>
+              <div class="col-2">
+                <i title="Ver documento" class="nb-layout-default" (click)="viewPDF(value.answer_form__form_enterprise__digital,value.answer_form_id)" style="float: right;font-size: 38px;margin-top: -8px;cursor: pointer;"></i>
+              </div>
+            </nb-list-item>
+            <nb-list-item [hidden]="tamSop2">
+              No tiene soportes disponibles.
+            </nb-list-item>
+          </nb-list>
+        </nb-card>
+        <nb-card size="small">
+          <nb-card-header>
+            TRAZABILIDAD
+          </nb-card-header>
+          <nb-list>
+            <nb-list-item [hidden]="tamLogs" *ngFor="let date of dataTraza">
+              ✓ {{ date.create_date }} - {{ date.title }}: {{ date.detail }}
+            </nb-list-item>
+            <nb-list-item [hidden]="tamLogs2">
+              No tiene trazabilidad disponible.
+            </nb-list-item>
+          </nb-list>
+        </nb-card>
+      </div>
+      <div class="col-8">
+        <nb-card size="medium" style="height: 600px !important;">
+          <nb-card-header>
+            <div class="col-12 d-flex pl-0">
+              <div class="col-10 pl-0">{{nameTask}} - {{stateTask}}</div>
+              <div class="col-2 text-right">{{serial_numberTask}}</div>
+            </div>
+          </nb-card-header>
+          <nb-list>
+            <nb-list-item>
+              <div class="col-6">
+                <p><span style="font-weight: 900;">Fecha de creación<br></span> {{datecTask}}</p>
+              </div>
+              <div class="col-6">
+                <p><span style="font-weight: 900;">Fecha de visita<br></span> {{dateiTask}}</p>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
+              <div class="col-6">
+                <p><span style="font-weight: 900;">Hora de inicio<br></span> {{houriTask}}</p>
+              </div>
+              <div class="col-6">
+                <p><span style="font-weight: 900;">Hora final<br></span> {{houriTask}}</p>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
+              <div class="col-6">
+                <p><span style="font-weight: 900;">Dirección<br></span> {{addressTask}}</p>
+              </div>
+              <div class="col-6">
+                <p><span style="font-weight: 900;">Teléfono<br></span> {{phoneTask}}</p>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
+              <div class="col-12">
+                <p><span style="font-weight: 900;">Descripción<br></span> {{descTask}}</p>
+              </div>
+            </nb-list-item>
+            <nb-list-item>
+              <div class="col-12">
+                <p><span style="font-weight: 900;">Usuario que realiza la visita<br></span> {{nameUser}}</p>
+              </div>
+            </nb-list-item>
+          </nb-list>
+        </nb-card>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+

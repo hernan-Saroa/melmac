@@ -1,0 +1,59 @@
+<nb-card>
+  <nb-card-header style="position: relative;">
+    Tareas
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-6 d-flex">
+        <nb-select fullWidth placeholder="Seleccionar Proyecto y Subproyecto..." [(ngModel)]="selectedItemNgModel" (selectedChange)="selectSubProyect()">
+          <nb-option value="">Seleccione una opción..</nb-option>
+          <nb-option-group title="{{sub.nameP}}" *ngFor="let sub of SubProyect; let i=index;">
+            <nb-option value="{{data.id}}_{{data.mainF}}_{{sub.idP}}" *ngFor="let data of sub.data;">{{ data.name }}</nb-option>
+          </nb-option-group>
+        </nb-select>
+        <button type="button" nbButton status="primary" [disabled]="viewT" shape="rectangle" (click)="listInitial()" class="btn_eraser ml-2" nbTooltip="Limpiar proyectos" nbTooltipStatus="default" size="small">
+            <nb-icon icon="close-circle"></nb-icon>
+        </button>
+      </div>
+      <div class="col-6 text-right pt-1">
+        <button type="button" nbButton status="primary" shape="rectangle" (click)="btnRedirect(3)" class="btn_eraser mr-2" nbTooltip="Gestión de proyectos" nbTooltipStatus="default" size="small">
+            <nb-icon icon="plus-circle"></nb-icon>
+        </button>
+        <button type="button" nbButton status="primary" [disabled]="viewT" shape="rectangle" (click)="btnRedirect(2)" class="btn_eraser mr-2" nbTooltip="Tablero" nbTooltipStatus="default" size="small">
+            <nb-icon icon="layout"></nb-icon>
+        </button>
+        <button type="button" nbButton status="primary" [disabled]="viewT" shape="rectangle" (click)="btnRedirect(1)" class="btn_eraser mr-2" nbTooltip="Programación" nbTooltipStatus="default" size="small">
+            <nb-icon icon="browser-outline"></nb-icon>
+        </button>
+      </div>
+    </div><br>
+    <div class="row">
+      <div class="col-12">
+        <div class="col-12 d-flex text-center" style="font-weight: 900;border: 1px solid;padding: 5px;border-radius: 8px;border-color: darkgray;">
+          <div class="col-2">
+            Tickets <br> {{task5}}
+          </div>
+          <div class="col-2">
+            Tareas por asignar <br> {{task1}}
+          </div>
+          <div class="col-2">
+            Tareas programadas <br> {{task6}}
+          </div>
+          <div class="col-2">
+            Tareas en proceso <br> {{task7}}
+          </div>
+          <div class="col-2">
+            Tareas Reasignadas <br> {{task3}}
+          </div>
+          <div class="col-2">
+            Tareas Finalizadas <br> {{task2}}
+          </div>
+        </div>
+      </div>
+      <div class="col-12 text-center mt-2">
+        <span style="font-size: 18px;font-weight: 700;"> TOTAL TAREAS {{task4}} </span>
+      </div>
+    </div><br>
+    <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustom($event)" (create)="onCustom($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

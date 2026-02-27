@@ -1,0 +1,21 @@
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>
+        <label>Historial De Documentos - {{name_user}} </label>
+
+
+    </nb-card-header>
+</nb-card>
+<nb-card *ngIf="token_validate">
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="success">
+        <ng2-smart-table [settings]="settings" [source]="list_answer"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="!token_validate && !loading">
+    <nb-card-header>
+      <div style="text-align: center;" >
+        Esta URL no es valida
+      </div>
+    </nb-card-header>
+</nb-card>
+  

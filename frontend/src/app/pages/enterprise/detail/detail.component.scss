@@ -1,0 +1,149 @@
+@import '../../../@theme/styles/themes';
+
+nb-select {
+  margin: 0px 0px 10px 0px;
+}
+
+input {
+  margin: 0px 0px 10px 0px;
+}
+
+.pull-right{
+  float:right;
+}
+::ng-deep .file-input {
+  display: none;
+}
+
+::ng-deep .file-upload{
+  padding-bottom:15px;
+}
+
+::ng-deep .logo-enterprise{
+  max-width: 40%;
+}
+
+@include nb-install-component() {
+
+  .content_logo {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .logo {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    cursor: pointer;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .btn_edit_logo {
+    position: absolute;
+    bottom: 0px;
+    right: 15px;
+  }
+}
+
+::ng-deep .cont-abre{
+  padding: 17px 0px 10px 0px;
+  //text-align: right;
+}
+
+::ng-deep:root {
+  --my-var: #0095ff;
+}
+
+.color-titlePre{
+  background: var(--my-var) !important;
+}
+
+.color-titlePre2{
+  color: var(--my-var) !important;
+}
+
+.color-titleDesc{
+  color: var(--my-var) !important;
+}
+
+.color-titleFooter{
+  color: var(--my-var) !important;
+}
+
+.color-buttonPre{
+  background: var(--my-var) !important;
+}
+
+.color-textButton{
+  color: var(--my-var) !important;
+}
+
+.upload-btn{
+  margin-top: 10px;
+  text-align: center;
+}
+
+.textIcon{
+  height: 120px !important;
+  width: 120px !important;
+  font-size: 120px !important;
+  color: #ebebeb !important;
+}
+
+.textIconTop{
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+}
+
+.sombraNbcard{
+  -webkit-box-shadow: 10px 10px 9px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 9px -3px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 9px -3px rgba(0,0,0,0.75);
+  border: 1px solid #94949430;
+}
+
+.sombraBtn{
+  -webkit-box-shadow: 8px 8px 8px -5px rgb(0 0 0 / 48%);
+  -moz-box-shadow: 8px 8px 8px -5px rgb(0 0 0 / 48%);
+  box-shadow: 8px 8px 8px -5px rgb(0 0 0 / 48%);
+  border: 0px solid #94949430;
+  &:hover {
+    background: gray !important;
+  }
+  &:focus{
+    outline:0px auto -webkit-focus-ring-color !important;
+  }
+}
+
+.colorTitle{
+  color:#412378;
+}
+
+::ng-deep .nb-theme-material-light .content_logo {
+  border-color: rgba(0, 0, 0, 0.42) !important;
+}
+
+::ng-deep .toggle{
+  width: 95px !important;
+  height: 46px !important;
+}
+
+::ng-deep .toggle-switcher {
+  width: 2.75rem !important;
+  height: 2.75rem !important;
+}
+
+::ng-deep .toggle.checked .toggle-switcher {
+  left: calc(100% - 1.75rem - 2px - 15px) !important;
+}
+
+.circle {
+  background: #f7f9fc;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  margin-bottom: 2px;
+}

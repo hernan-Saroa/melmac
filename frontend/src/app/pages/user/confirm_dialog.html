@@ -1,0 +1,8 @@
+<h1 mat-dialog-title style="color: white;">Confirmar eliminación</h1>
+<mat-dialog-content>
+    Estas seguro de eliminar el usuario?
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color="warn">Aceptar</button>
+</mat-dialog-actions>

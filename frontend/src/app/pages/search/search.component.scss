@@ -1,0 +1,663 @@
+.search-absolute {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #eaf0f8;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    max-width: 600px;
+    width: 100%;
+    margin-right: -40px;
+  }
+
+  /* Estilo para la lista desplegable */
+  .suggestions-list {
+    display: none; /* Oculta la lista por defecto */
+    flex-direction: column; /* Apilamos las sugerencias verticalmente */
+    align-items: center;
+    margin-left: auto;
+    margin-right: -68px;/* Alineamos las sugerencias al ancho completo */
+    background-color: #ffffff;
+    position: absolute;
+    border: 1px solid white;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%; /* Hace que la lista tenga el mismo ancho que la barra de búsqueda */
+    margin-top: 55px; /* Espacio entre la barra de búsqueda y las sugerencias */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+    z-index: 1000;
+  }
+  .search-bar .search-icon,
+  .search-bar .filter-icon {
+    color: #757575;
+    cursor: pointer;
+  }
+
+  .icon-b{
+    padding: 0px 5px 6px 5px;
+  }
+
+  .icon-b:hover{
+    background: #e0e0e0;
+    border-radius: 14px;
+  }
+
+  .search-bar .search-input {
+    border: none;
+    outline: none;
+    margin: 0 8px;
+    flex-grow: 1;
+    font-size: 14px;
+    background-color: transparent;
+    color: #333;
+  }
+
+  .view-icons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+  }
+
+  .view-icons .material-icons {
+    color: #757575;
+    cursor: pointer;
+  }
+
+  .suggestions-list.show {
+    display: block; /* Se muestra cuando tiene la clase .show */
+  }
+
+  .suggestions-list .suggestion-item {
+    padding: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    color: #333;
+  }
+
+  .suggestion-item{
+    padding-left: 15px !important;
+  }
+
+
+  .suggestions-list .suggestion-item:hover {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+  }
+
+  .suggestion-all{
+    color: #412378;
+    text-align: end;
+    font-size: smaller;
+    font-weight: bold;
+    padding: 5px 10px;
+    background: #8d92ca40;
+    cursor: pointer;
+  }
+  .suggestion-empty{
+    padding-left: 43px !important;
+  }
+
+@media (min-width: 1600px) {
+  .container {
+      max-width: 1550px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .new{
+    display: none;
+  }
+}
+
+  /* Estilos generales para que el diseño sea responsive */
+@media (max-width: 768px) {
+
+  /* Ajustar el contenedor de búsqueda para evitar solapamiento */
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* La barra de búsqueda debe ajustar su tamaño */
+  .search-bar {
+    flex: 1; /* Ocupa todo el espacio restante */
+    margin-right: 10px; /* Espacio antes del botón */
+  }
+  .suggestions-list{
+    flex: 1;
+  }
+  /* Ocultar los íconos en pantallas pequeñas */
+  .view-icons {
+    display: none;
+  }
+
+  /* Mostrar el botón de menú */
+  .menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eaf0f8;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  /* Lista desplegable para el menú */
+  .menu-options {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 10px; /* Alineación al lado derecho del botón */
+    background-color: #ffffff;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin-top: 50px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .menu-options.show {
+    display: flex;
+  }
+
+  .menu-options .menu-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .menu-options .menu-item:hover {
+    background-color: #f0f0f0;
+  }
+
+}
+
+@media (max-width: 1050px) {
+
+  /* Ajustar el contenedor de búsqueda para evitar solapamiento */
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* La barra de búsqueda debe ajustar su tamaño */
+  .search-bar {
+    flex: 1; /* Ocupa todo el espacio restante */
+    margin-right: 10px; /* Espacio antes del botón */
+    width: 55%;
+  }
+  .suggestions-list{
+    flex: 1;
+  }
+
+  /* Mostrar el botón de menú */
+  .menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eaf0f8;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  /* Lista desplegable para el menú */
+  .menu-options {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 10px; /* Alineación al lado derecho del botón */
+    background-color: #ffffff;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin-top: 50px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .menu-options.show {
+    display: flex;
+  }
+
+  .menu-options .menu-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .menu-options .menu-item:hover {
+    background-color: #f0f0f0;
+  }
+
+}
+/* Ocultar el botón del menú en pantallas grandes */
+@media (min-width: 769px) {
+  .menu-item {
+    display: none !important; /* Ocultar botón en pantallas grandes */
+  }
+  .menu-button{
+    display: none !important; /* Ocultar botón en pantallas grandes */
+  }
+}
+
+.container {
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+}
+
+.section-header {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+}
+
+.section-content {
+  padding: 16px;
+  background-color: #fff;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  background: #ebebeb;
+  padding: 10px;
+  border-radius: 6px;
+  justify-content: space-between;
+  font-size: 16px;
+  position: relative;  // Agregar esto para que el menú se alinee respecto a la carpeta
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.folder {
+  display: flex;
+  align-items: center;
+  background: #ebebeb;
+  padding: 10px;
+  border-radius: 6px;
+  justify-content: space-between;
+  font-size: 16px;
+  position: relative;  // Agregar esto para que el menú se alinee respecto a la carpeta
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+.menu-button1 {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.menu-button2 {
+  background: #ebebeb;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 10px 15px;
+  color: #412378;
+  cursor: pointer;
+}
+
+.menu-button3 {
+  background: #ebebeb;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 10px 15px;
+  color: #412378;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  right: 3px;
+  top: 33px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 208px;
+  z-index: 999;
+  font-size: 12px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 4px 12px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+      background: #f4f4f4;
+    }
+  }
+}
+
+.menu-container-td {
+  position: relative; /* Asegura que el menú se posicione con relación a este <td> */
+}
+
+.menu-table-1 {
+  position: absolute;
+  top: 100%; /* Lo ubica justo debajo del botón */
+  right: 0; /* Lo alinea a la izquierda del botón */
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 208px;
+  z-index: 999;
+  font-size: 12px;
+}
+
+.menu-table-1 button {
+  background: none;
+  border: none;
+  padding: 4px 12px;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.menu-table-1 button:hover {
+  background: #f4f4f4;
+}
+
+.menu2 {
+  position: absolute;
+  right: 20px;
+  top: 195px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  z-index: 999;
+  font-size: 12px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 4px 12px;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+      background: #f4f4f4;
+    }
+  }
+}
+
+.menu3 {
+  position: absolute;
+  top: 55px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  z-index: 999;
+  font-size: 12px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 4px 12px;
+    text-align: right;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+      background: #f4f4f4;
+    }
+  }
+}
+
+.menu4 {
+  position: absolute;
+  left: 120px;
+  top: 42px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+  z-index: 999;
+  font-size: 12px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 4px 12px;
+    text-align: right;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover {
+      background: #f4f4f4;
+    }
+  }
+}
+
+.menu5 {
+  top: 0px;
+
+}
+
+.document-section {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.document-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.document-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid;
+  position: relative;
+}
+
+.document-card:hover {
+  transform: scale(1.05);
+  z-index: 999;
+}
+
+
+
+.badge:hover {
+  transform: scale(1.05);
+  z-index: 999;
+}
+
+.folder:hover {
+  transform: scale(1.05);
+  z-index: 999;
+}
+
+.document-preview img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.document-info {
+  margin-top: 8px;
+  font-size: 16px;
+  background-color: #ebebeb;
+  border-radius: 0px 0px 8px 8px;
+  padding: 15px;
+  text-align: end;
+  display: flex;
+  justify-content: space-between
+}
+
+.view-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.view-more:hover {
+  background: #0056b3;
+}
+
+.section-title-document{
+  background-color: #ebebeb;
+  color: #424242;
+  font-family: Roboto, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  float: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  cursor: default;
+}
+
+button:focus {
+  outline: 1px dotted;
+  outline: 0px auto -webkit-focus-ring-color;
+}
+
+button:hover {
+  background: #e0e0e0;
+}
+
+.section-title-prin{
+  background: white !important;
+  width: 170px;
+}
+
+.section-title-prin-2{
+  background: white !important;
+  width: 300px;
+}
+
+.activo {
+  background: #e0e0e0 !important;
+}
+
+.menu-i {
+  cursor: pointer;
+  color: gray;
+  font-size: 30px;
+  transition: color 0.3s;
+  padding: 3px;
+}

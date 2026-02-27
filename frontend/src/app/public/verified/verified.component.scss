@@ -1,0 +1,180 @@
+.div-verifed {
+  .verifed-header {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .verifed-body {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: white;
+  }
+}
+
+.modal-btn {
+  border-radius: 10px !important;
+  background: #e0e0e0;
+  box-shadow: 5px 5px 10px #bebebe, -5px -5px 5px #ffffff !important;
+  font-size: 0.8rem !important;
+  font-weight: 300 !important;
+  padding: 0.8125rem 2.125rem !important;
+}
+
+.modal-btn-primary {
+  background-color: #412378 !important;
+  border-color: #412378 !important;
+  color: #ffffff !important;
+}
+
+.modal-btn-default {
+  background-color: #444444 !important;
+  border-color: #444444 !important;
+  color: #ffffff !important;
+}
+
+@mixin select2-height(){
+  height:2.5rem !important;
+  line-height: 2.5rem !important;
+}
+
+::ng-deep .iti {
+  @include select2-height();
+  width:100% !important;
+  min-width: 1.5rem !important;
+  // text-indent: 0 !important;
+  font-size: 0.9375rem !important;
+  font-weight: 400 !important;
+  input {
+    @include select2-height();
+    text-indent: 2rem;
+  }
+}
+
+::ng-deep .iti__country-list{
+  max-height: 115px;
+  position: absolute;
+  top: 0;
+}
+
+::ng-deep .drop-area {
+  border: 1px dashed #c6bdd6;
+  opacity: 0.6;
+}
+
+.center-msg {
+  position: absolute;
+  pointer-events: none;
+  color: #8A8E9B;
+  font-size: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.finish-card {
+  border: 0.0625rem solid #412378 !important;
+  border-radius: 1.25rem;
+}
+
+.finish-title {
+  text-align: center;
+  margin: 15px 50px 15px 50px;
+}
+
+.finish-div {
+  margin-top: 20vh;
+  margin-bottom: 22vh;
+}
+
+.finish-icon {
+  width: 100%;
+  text-align: center;
+}
+
+// Checker
+.content-main-checker {
+  background: white;
+}
+
+.content-main-checker {
+  .list-pdf {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .file-option {
+    width: 97px;
+    min-height: 160px;
+    cursor: pointer;
+  }
+
+  .show-identification {
+    min-height: 300px;
+    background: #edf1f7;
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+  }
+
+  .message-verified {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-process {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-process {
+    img {
+      margin: 15px;
+    }
+  }
+
+  .user-checked {
+    margin-top: 15px;
+  }
+
+  .user-checker-content {
+    overflow: auto;
+    height: 250px;
+    border-right: 10px solid #44444489;
+    margin-bottom: 15px;
+  }
+
+  ::ng-deep nb-card-header.checked-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #41237880 !important;
+    border-bottom-width: 0;
+    border-bottom-color: #41237880;
+    color: #ffffff;
+  }
+
+  ::ng-deep nb-card-header.checked-success {
+    background-color: #3E97FF !important;
+  }
+
+  ::ng-deep nb-card-header.checked-warning {
+    background-color: #FF6B64 !important;
+  }
+
+  ::ng-deep nb-card-header.checked-select {
+    background-color: black !important;
+  }
+
+}

@@ -1,0 +1,101 @@
+.content-share-document {
+    position: relative; 
+    border: 2px solid; 
+    border-radius: 10px;
+    padding: 2px;
+    border-color: #eaecef;
+
+    .check-box {
+        position: absolute;
+        z-index: 1;
+        top: -14px;
+        right: 10px;
+        // background: white;
+    }
+    
+    .row input {
+        // background-color: white; 
+        border: none;
+    }
+
+    .list-contact {
+        position: absolute; 
+        right: 0; 
+        z-index: 1;
+
+        .box-shadow {
+            box-shadow: 0px 0px 8px 2px gray; 
+            // padding: 4px !important; 
+            // border-radius: 5px; 
+            margin-top: 5px !important; 
+            margin-bottom: 0px !important;
+            // background: white; 
+            display: flex; 
+            // align-items: center; 
+            // justify-content: space-between;
+        }
+
+        .view-all {
+            white-space: nowrap;
+            text-align: center;
+            cursor: pointer
+        }
+
+        .view-list {
+            white-space: nowrap; 
+            text-align: start;
+        }
+        
+    }
+
+    label {
+        position: absolute; 
+        z-index: 1; 
+        // background: white; 
+        padding: 0px 5px; 
+        left: 12px; 
+        top: -14px;
+    }
+}
+
+.content-share-document.error {
+    border-color: #b00020 !important;
+}
+
+::ng-deep .content-share-document .list-contact nb-card {
+    min-width: 180px;
+}
+
+::ng-deep .content-share-document .title-label nb-card-body {
+    padding: 0px !important;
+}
+
+::ng-deep .content-share-document .check-box nb-card-body {
+    padding: 0px !important;
+}
+
+::ng-deep .content-share-document nb-card-body {
+    padding: 5px 10px !important;
+}
+
+::ng-deep nb-icon:hover {
+    cursor: pointer;
+}
+
+::ng-deep nb-checkbox > label > span.text {
+    padding-left: 3px !important;
+    padding-right: 6px !important;
+}
+
+::ng-deep nb-checkbox > label > span.custom-checkbox {
+    width: 0.9rem !important;
+    height: 0.9rem !important;
+}
+
+::ng-deep nb-form-field > div > div > div.row.align-items-center > div.pr-0 > div {
+    width: 100%;
+    margin-left: 1rem;
+    div > div {
+        padding: 0px !important;
+    }
+}

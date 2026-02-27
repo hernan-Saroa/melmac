@@ -1,0 +1,411 @@
+// ::ng-deep nb-layout-header{
+//   z-index: 1000;
+// }
+
+// ::ng-deep nb-layout-header nav{
+//   display: block !important;
+//   height: 132px !important;
+//   padding-left: 0px !important;
+//   padding-right: 0px !important;
+//   padding: 0.25rem !important
+// }
+
+// ::ng-deep .nb-theme-default nb-card-body{
+//   overflow: hidden;
+// }
+
+// ::ng-deep .nb-theme-material-light nb-card-body{
+//   overflow: hidden;
+// }
+
+// ::ng-deep .nb-theme-dark nb-card-body{
+//   overflow: hidden;
+// }
+
+
+.logo_img {
+  object-fit: contain;
+  width: 230px;
+  height:100px;
+}
+
+.logo_form{
+  text-align: center;
+}
+
+::ng-deep .styless{
+  background-color: white !important;
+}
+
+::ng-deep:root {
+  --my-var: #0095ff;
+  --my-var2: #edeff3;
+  --my-var3: #0095ff;
+  --my-var4: #0069d9;
+  --my-var5: #412378;
+  --my-var6: #ffffff;
+  --my-var7: #412378;
+  --my-var8: #412378;
+  --my-var9: #000000;
+  --my-var10: #3366ff;
+  --my-var11: #8f9bb33d;
+  --my-var12: #8f9bb33d;
+}
+
+// ::ng-deep .nb-theme-corporate nb-checkbox.status-basic .custom-checkbox.checked nb-icon {
+//   color: var(--my-var4) !important ;
+// }
+
+// ::ng-deep .nb-theme-material-light nb-checkbox.status-basic .custom-checkbox.checked nb-icon {
+//   color: var(--my-var4) !important ;
+// }
+
+// ::ng-deep .nb-theme-default nb-checkbox.status-basic .custom-checkbox.checked nb-icon {
+//   color: var(--my-var4) !important ;
+// }
+
+// ::ng-deep .nb-theme-dark nb-checkbox.status-basic .custom-checkbox.checked nb-icon {
+//   color: var(--my-var4) !important ;
+// }
+
+::ng-deep .nb-theme-default nb-tabset .tab.active .tab-link::before {
+  background-color: var(--my-var) !important;
+}
+
+::ng-deep .nb-theme-default nb-tabset .tab:hover .tab-link::before{
+  background-color: var(--my-var) !important;
+  color: var(--my-var) !important;
+}
+
+::ng-deep .btnFP {
+  border-color: var(--my-var2) !important;
+  color: var(--my-var2) !important;
+}
+
+::ng-deep .btn-external {
+  border-color: var(--my-var4) !important;
+  background: var(--my-var4) !important;
+  color: #fff;
+  height: 35px;
+  width: 150px;
+  padding: 0px;
+}
+
+::ng-deep .btn-externalSm {
+  border-color: var(--my-var4) !important;
+  background: var(--my-var4) !important;
+  padding: 0px;
+}
+
+
+
+::ng-deep .btnFP[disabled] {
+  border-color: #8f9bb33d !important;
+  color: #8f9bb33d !important;
+}
+
+
+::ng-deep .boxHeader{
+  background: var(--my-var) !important;
+}
+
+::ng-deep .boxHeaderN{
+  background: var(--my-var5) !important;
+}
+
+::ng-deep .boxPrevi{
+  background: var(--my-var) !important;
+}
+
+::ng-deep .boxPreviN{
+  background: var(--my-var6) !important;
+}
+
+::ng-deep .colorTitle {
+  color: var(--my-var) !important;
+  font-family: Roboto, sans-serif;
+  text-transform: uppercase;
+}
+
+::ng-deep .colorTitleN {
+  color: var(--my-var9) !important;
+  font-family: Roboto, sans-serif;
+  text-transform: uppercase;
+}
+
+::ng-deep .colorDesc {
+  color: var(--my-var) !important;
+}
+
+::ng-deep .colorDescN {
+  color: var(--my-var9) !important;
+}
+
+::ng-deep .footerText{
+  // background-color: var(--my-var) !important;
+  color:  var(--my-var) !important;
+  text-align: center;
+}
+
+::ng-deep .footerTextN{
+  // background-color: var(--my-var) !important;
+  color:  var(--my-var6) !important;
+  text-align: center;
+}
+
+::ng-deep nb-layout-footer nav{
+  background-color: var(--my-va5) !important;
+}
+
+::ng-deep .buttonPre{
+  background-color: var(--my-var) !important;
+}
+
+::ng-deep .appearance-filled {
+  background-color: var(--my-var) !important;
+  border-color: var(--my-var) !important;
+}
+
+::ng-deep .appearance-filledN {
+  background-color: var(--my-var10) !important;
+  border-color: var(--my-var10) !important;
+}
+
+::ng-deep .appearance-filled-disable {
+  background-color: var(--my-var11) !important;
+  border-color: var(--my-var12) !important;
+}
+
+::ng-deep .appearance-filled-disableN {
+  background-color: var(--my-var11) !important;
+  border-color: var(--my-var12) !important;
+ //color: #8f9bb37a
+}
+
+::ng-deep .buttonText{
+  color: var(--my-var) !important;
+}
+
+::ng-deep .buttonTextN{
+  color: var(--my-var6) !important;
+}
+
+::ng-deep .appearanceButtonSend {
+  background-color: var(--my-var) !important;
+  border-color: var(--my-var) !important;
+  //color: var(--my-var) !important;
+}
+
+::ng-deep .appearanceButtonSendN {
+  background-color: var(--my-var3) !important;
+  border-color: var(--my-var3) !important;
+}
+
+::ng-deep nb-checkbox.status-basic .custom-checkbox.checked  {
+  background-color: var(--my-var4) !important ;
+  border-color: var(--my-var4) !important ;
+}
+
+::ng-deep nb-checkbox.status-basic .custom-checkbox.checked  nb-icon {
+  color: var(--my-var2) !important ;
+}
+
+::ng-deep nb-radio.status-basic .native-input:enabled:checked + .outer-circle {
+  //background-color: var(--my-var10) !important ;
+  border-color: var(--my-var10) !important ;
+}
+
+::ng-deep nb-radio.status-basic .native-input:enabled:checked ~ .inner-circle {
+  background-color: var(--my-var10) !important ;
+}
+
+.color_base {
+  background-color: #412378;
+  color: #ffffff;
+  font-family: Roboto, sans-serif;
+
+  b {
+    color: #ffffff;
+  }
+}
+
+::ng-deep .d-none{
+  display: none !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] { -moz-appearance:textfield; }
+
+// ::ng-deep .nb-theme-default [nbButton].appearance-filled.status-info, .nb-theme-default .appearance-filled.status-info[nbButtonToggle] {
+//   background-color: var(--my-var3) !important;
+//   border-color: var(--my-var3) !important;
+// }
+
+::ng-deep html::-webkit-scrollbar {
+  width: 0.3125rem;
+  height: 0.5125rem;
+}
+
+::ng-deep html::-webkit-scrollbar-thumb {
+  background: #8f9bb3;
+}
+
+::ng-deep html::-webkit-scrollbar-track {
+  background: #f7f9fc;
+}
+
+::ng-deep .ng-scroll::-webkit-scrollbar {
+  width: 0.3125rem;
+  height: 0.5125rem;
+}
+
+::ng-deep .ng-scroll::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 0.15625rem;
+}
+
+::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar {
+  width: 0.3125rem;
+  height: 0.5125rem;
+}
+
+::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 0.15625rem;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate, ::ng-deep body.nb-theme-material-light {
+  ::ng-deep .ng-scroll::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+  }
+
+  ::ng-deep .ng-scroll::-webkit-scrollbar-track {
+    background: #f7f9fc;
+  }
+
+  ::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+  }
+
+  ::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar-track {
+    background: #f7f9fc;
+  }
+
+  ::ng-deep html::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+  }
+
+  ::ng-deep html::-webkit-scrollbar-track {
+    background: #f7f9fc;
+  }
+}
+
+::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+  ::ng-deep .ng-scroll::-webkit-scrollbar-thumb {
+    background: #b4b4db;
+  }
+
+  ::ng-deep .ng-scroll::-webkit-scrollbar-track {
+    background: #252547;
+  }
+
+  ::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar-thumb {
+    background: #b4b4db;
+  }
+
+  ::ng-deep .ng2-pdf-viewer-container::-webkit-scrollbar-track {
+    background: #252547;
+  }
+
+  ::ng-deep html::-webkit-scrollbar-thumb {
+    background: #b4b4db;
+  }
+
+  ::ng-deep html::-webkit-scrollbar-track {
+    background: #252547;
+  }
+}
+
+.envelope_content {
+  padding: 0.1rem 0rem 0.75rem !important;
+  background: var(--my-var8) !important;
+  margin-right: -25px !important;
+  margin-left: -20px !important;
+
+  .envelope_name {
+    background-color: #412378;
+    color: #ffffff;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    width: 100%;
+    z-index: 1000;
+  }
+}
+
+.cont-main-sec {
+  display: none;
+}
+.cont-main-prin {
+  display: inline-grid;
+}
+
+.layout-princ{
+  margin-top: 125px;
+}
+
+@media (max-width: 575px) {
+
+  .cont-main-sec {
+    display: flow;
+  }
+  .cont-main-prin {
+    display: none;
+  }
+  .cont-img-prin {
+    display: none;
+  }
+  .logo_form{
+    display: flex;
+  }
+  .divConv1{
+    display: none;
+  }
+
+  .layout-princ{
+    margin-top: 155px;
+  }
+}
+
+@media (max-width: 410px) {
+  .divC1{
+    display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .logo_img {
+    width: 180px;
+  }
+}
+
+.default-click {
+  background: rgb(145, 145, 145);
+  height: 35px;
+  width: 150px;
+  padding: 0px;
+}
+
+.pdf-viewer {
+  transform-origin: top left;
+  transition: transform 0.5s ease-in-out;
+}

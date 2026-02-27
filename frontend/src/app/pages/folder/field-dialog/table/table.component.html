@@ -1,0 +1,141 @@
+<nb-card class="modal-card" style="height: 38.875rem;">
+  <nb-card-body class="modal-card-body">
+
+    <b class="modal-title">
+      Configura los campos que deseas asignar y la forma en que quieres
+      recibir los datos diligenciados por este tipo de participante
+    </b>
+
+    <a class="modal-sub-title">
+      PÚBLICO ACCESO GENERAL
+    </a>
+
+    <div class="content">
+
+      <div>
+        <div class="">
+          <!-- <div class="col-sm-12"> -->
+            <label class="label" for="input-num-list">1. ¿Cómo deseas obtener las respuestas (diligenciamientos) de los participantes?</label>
+            <nb-select id="input-num-list" fullWidth placeholder="Seleccionar una opción" style="margin: 5px 0;"
+              [(ngModel)]="description">
+              <nb-option value="0">Seleccionar una opción</nb-option>
+              <nb-option value="1">Permitir que el "bot" te organice las respuestas de los participantes de forma automática en un documento adjunto</nb-option>
+              <nb-option value="2">Ver diligenciamiento de los participantes dentro del documento PRE-CARGADO (En el lugar configurado manualmente)</nb-option>
+            </nb-select>
+          <!-- </div> -->
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <label class="label">Columnas *</label>
+            <div class="content-table-drag">
+              <div class="head-list">
+                <div cdkDropList cdkDropListOrientation="horizontal" class="table-drag-list" (cdkDropListDropped)="dropField($event)">
+                  <div class="table-drag-box" *ngFor="let field of list_fields; let i=index;" cdkDrag>
+                    <div style="margin: auto;">
+                      <div style="width: 100%; display: flex; justify-content: space-between;">
+                        <span cdkDragHandle class="select-span">
+                          <nb-icon icon="move"></nb-icon>
+                        </span>
+                        <span>
+                            <!-- <nb-icon [hidden]="field.field_type != 3 && field.field_type != 12 && field.field_type != 13" -->
+                            <nb-icon *ngIf="['3','12','13'].includes(field.field_type)"
+                              [status]="onValidateOptionTable(i)" nbButton ghost
+                              (click)="openOption(i)" icon="list-outline"></nb-icon>
+
+                            <nb-icon nbButton ghost [status]="list_fields.length <= 1 ? 'basic':'danger'"
+                              (click)="onDeleteField(i)" icon="close-circle-outline"></nb-icon>
+                        </span>
+                      </div>
+                      <div style="width: 100%; display: flex; justify-content: center">
+                        <p [hidden]="field.edit" title="{{ field.label }}" style="width: 105px; height: 22px; text-align: center; margin-bottom: 2px !important; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">
+                          <img style="cursor: pointer;" class="" src="/assets/images/icons/folder/editar.png" (click)="editDoc(i, edit_doc)">
+                          {{ field.label }}
+                        </p>
+                        <input (keyup.enter)="saveEditDoc(i)" (focusout)="saveEditDoc(i)" #edit_doc
+                          [hidden]="!field.edit" maxlength="50" [(ngModel)]="field.label" name="label_field_{{ i }}" autocomplete="off" nbInput type="text" fieldSize="tiny" style="width: 75%;" />
+                      </div>
+                      <div style="width: 100%; display: flex; justify-content: space-between;">
+                        <span style="width: 110px">
+                          <nb-select [disabled]="field.field != ''" #select_type
+                            size="tiny" fullWidth placeholder="Tipo" [ngModel]="field.field_type"
+                            (ngModelChange)="onChangeFieldType($event, i, select_type)">
+                            <nb-option value="1">Alfanumérico</nb-option>
+                            <nb-option value="4">Fecha</nb-option>
+                            <nb-option value="7">Firma manuscrita</nb-option>
+                            <nb-option value="3">Lista</nb-option>
+                            <nb-option value="13">Múltiple</nb-option>
+                            <nb-option value="2">Numérico</nb-option>
+                            <nb-option value="11">Número de documento</nb-option>
+                            <nb-option value="5">Solo letras</nb-option>
+                            <nb-option value="15">Ubicación</nb-option>
+                            <nb-option value="12">Única</nb-option>
+                          </nb-select>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button style="position: absolute; right: -42px; top: 20px; z-index: 1040;" [disabled]="list_fields.length >= 15" nbButton status="basic" (click)="onAddField()">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                </button>
+
+              </div>
+              <table class="view-table-drag">
+                <tr *ngFor="let item of [].constructor(num_list); let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td *ngFor="let field of list_fields"></td>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+          <div class="col-sm-12">
+            <div [nbPopover]="tabs" [nbPopoverPlacement]="position" nbPopoverTrigger="noop"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row content" style="justify-content: center;" >
+      <!-- Diligenciador -->
+      <button class="modal-btn modal-btn-primary" [disabled]="description == '0'" nbButton status="primary" (click)="onAccept($event)">Guardar</button>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #tabs>
+  <nb-card class="margin-bottom-0">
+    <nb-card-header>
+      Opciones
+      <button style="float: right;" nbButton ghost status="danger" (click)="onCloseOption()"><nb-icon icon="close-outline"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div style="height: 200px;">
+        <label class="label">Lista de Valores *</label>
+        <div cdkDropList class="selected-list" (cdkDropListDropped)="dropSelect($event)">
+          <div class="select-item" cdkDragBoundary=".selected-list" *ngFor="let option of options; let i=index;"
+            cdkDrag>
+            <div class="select-custom-placeholder" *cdkDragPlaceholder></div>
+            <span cdkDragHandle class="select-span">
+              <nb-icon icon="move"></nb-icon>
+            </span>
+            <input #inputS id="index-option-{{ i }}"
+              (change)="onChangeOption($event.target.value, i, inputS)" [value]="options[i].label"
+              class="input-select" type="text" autocomplete="off" nbInput fullWidth maxlength="40"
+              placeholder="Opción" required>
+            <button [disabled]="options.length == 1" nbButton ghost status="danger" (click)="onDeleteOption(i)">
+              <nb-icon icon="close-circle-outline"></nb-icon>
+            </button>
+          </div>
+        </div>
+
+        <button nbButton status="primary" (click)="onAddOption()">Agregar <nb-icon icon="plus-outline"></nb-icon>
+        </button>
+
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

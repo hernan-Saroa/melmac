@@ -1,0 +1,220 @@
+.melmac-header {
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.icon-header {
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.step-header {
+    font-size: 18px;
+    position: absolute;
+    right: 1.25rem;
+}
+
+.signup-column {
+    padding: 0px !important;
+}
+
+.logo-melmac {
+    width: 175px;
+}
+
+.title-signup {
+    margin: 16px 0 16px;
+    font-size: 45px;
+}
+
+.desc-signup-2 {
+  text-align: justify;
+}
+
+.desc-signup {
+  margin: 16px 0 32px;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+
+.or-sign-up {
+    padding-top: 30px;
+    left: -6px;
+    width: 10px;
+    height: 80px;
+    position: absolute;
+    top: 190px;
+    background: #fff;
+    font-size: 18px;
+}
+
+::ng-deep ngx-signup {
+    nb-layout-column {
+        background-color: #fff;
+    }
+
+    nb-card {
+        border: none !important;
+    }
+
+    .content-form {
+        padding-right: 35px;
+    }
+
+    .content-social {
+        padding-top: 190px;
+        padding-left: 35px;
+    }
+
+    .form-control-group {
+        margin-bottom: 10px;
+    }
+
+    .label {
+        margin-bottom: 0px;
+    }
+
+    ::ng-deep span.text {
+        font-size: 11px !important;
+    }
+}
+
+.content-social-icon {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.img-icon-social {
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.content-social-icon:hover {
+    .img-icon-social {
+        background:#eeeeee;
+    }
+}
+
+.content-social-icon:hover {
+    .img-icon-social {
+        animation: bounce 1s;
+    }
+}
+
+.text-social {
+    font-size: 12px;
+}
+
+.doc-cc {
+    height: var(--form-field-addon-medium-height);
+    width: var(--form-field-addon-medium-width);
+    font-size: var(--form-field-addon-medium-font-size);
+    line-height: var(--form-field-addon-medium-line-height);
+    font-weight: var(--form-field-addon-medium-font-weight);
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.a-cc {
+    color: #8f9bb3 !important;
+    background-color: #f7f9fc;
+    border-color: #e4e9f2;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0.6875rem 1rem;
+    border-style: solid;
+    border-width: 1px 0px 1px 1px;
+    border-radius: 0.25rem;
+}
+
+::ng-deep ngx-signup {
+    zoom: 80%;
+    height: initial !important;
+}
+
+.form-group.pass-control {
+    margin-bottom: 2rem;
+}
+
+.pass-control {
+    label {
+        color: #222b45 !important;
+        font-size: 1rem !important;
+        font-weight: 500 !important;
+    }
+}
+
+::ng-deep body.nb-theme-default::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.5125rem;
+}
+
+::ng-deep body.nb-theme-default::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+}
+
+::ng-deep body.nb-theme-default::-webkit-scrollbar-track {
+    background: #f7f9fc;
+}
+
+.link_terms {
+    color: #222b45 !important;
+    text-decoration: none !important;
+}
+
+@media (min-width: 1600px) {
+    ::ng-deep ngx-signup {
+        zoom: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-form {
+        padding-right: 15px;
+    }
+
+    .line-o {
+        display: none;
+    }
+
+    .content-social {
+        text-align: center;
+        padding-top: 30px;
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 540px) {
+    .melmac-header {
+        display: none;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      transform: translate3d(0,0,0);
+    }
+
+    40% {
+      transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      transform: translate3d(0, -6px, 0);
+    }
+
+    70% {
+      transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+      transform: translate3d(0, -4px, 0);
+    }
+
+    90% {
+      transform: translate3d(0,-2px,0);
+    }
+}

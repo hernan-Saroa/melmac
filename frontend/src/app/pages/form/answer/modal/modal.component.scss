@@ -1,0 +1,76 @@
+.modal-card {
+  width: 550px;
+  border-radius: 3%;
+}
+
+.modal-card-body {
+  overflow: hidden;
+  padding: 2rem 2rem;
+}
+
+.modal-title {
+  text-align: center;
+}
+
+.scroll-form {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.scroll-form::-webkit-scrollbar {
+  width: 0.3125rem;
+  height: 0.5125rem;
+}
+
+.scroll-form::-webkit-scrollbar-thumb {
+  background: #8f9bb3;
+  cursor: pointer;
+  border-radius: 0.15625rem;
+}
+
+.scroll-form::-webkit-scrollbar-track {
+  background: #f7f9fc;
+}
+
+// Content
+.label-field-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-style: italic;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.content-body, .content-footer {
+  margin: 15px;
+}
+
+.content-footer {
+  display: flow-root;
+}
+
+.content-inputs {
+  margin-top: 15px;
+}
+
+.modal-btn-primary {
+  float: right;
+}
+
+@media (max-width: 576px) {
+  .modal-card {
+    width: 90vw;
+  }
+  .modal-card-body {
+    overflow-y: auto;
+  }
+}
+
+@media (max-height: 576px) {
+  .modal-card {
+    height: 90vh !important;
+  }
+  .modal-card-body {
+    overflow-y: auto;
+  }
+}

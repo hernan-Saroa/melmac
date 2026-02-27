@@ -1,0 +1,40 @@
+<nb-card [nbSpinner]="loading">
+  <nb-card-header>
+    Limite de APIs
+  </nb-card-header>
+
+  <nb-card-body>
+    <nb-accordion>
+      <nb-accordion-item #item>
+        <nb-accordion-item-header>
+          Filtro
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <div class="row">
+            <div class="col-sm-1">
+              <label for="ent" style="padding-top: 5px;">Empresa</label>
+            </div>
+            <div class="col-sm-11">
+              <nb-select id="ent" #entSelect name="page" class="select-document" style="padding: 0 15px 10px 15px; width:100% !important"
+                placeholder="Seleccionar Empresa" size="small" multiple [title]="entSelect.button ? entSelect .button.nativeElement.innerText : ''"
+                (selectedChange)="setValueEnterprise($event)">
+                <nb-option value='0' selected>
+                  Todos
+                </nb-option>
+                <nb-option *ngFor = "let enterprise of select_enterprise" value="{{enterprise.id}}" [disabled]="selected_enterprise == null">
+                  {{enterprise.name + ' - ' + enterprise.user.name}}
+                </nb-option>
+              </nb-select>
+            </div>
+          </div>
+          <div>
+            <button nbButton  status="info" size="small" (click)="filter()"> Filtrar </button>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+
+    <ng2-smart-table [settings]="settings" [source]="data"
+    (editConfirm)="onEditConfirm($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

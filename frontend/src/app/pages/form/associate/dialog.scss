@@ -1,0 +1,30 @@
+nb-card-footer { 
+    text-align:right
+}
+button {
+    margin:5px
+}
+nb-checkbox {
+    margin:5px 0px
+}
+
+.scroll-form {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 133px;
+}
+
+.scroll-form::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.5125rem;
+}
+
+.scroll-form::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+}
+
+.scroll-form::-webkit-scrollbar-track {
+    background: #f7f9fc;
+}

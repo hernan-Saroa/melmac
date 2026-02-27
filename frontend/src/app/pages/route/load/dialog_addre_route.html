@@ -1,0 +1,22 @@
+<div class="info-address-modal">
+  <nb-card>
+    <nb-card-header>
+      <h1>{{data.title}}</h1>
+    </nb-card-header>
+    <nb-card-body class="content-role-permit">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <label class="label">Ruta Objetivo</label>
+          <br>
+          <nb-select name="route_final" placeholder="Ruta en la que se asigna el punto" [(ngModel)]="new_route_id" (selectedChange)="onChange($event)" style="width: 100%;">
+            <nb-option *ngFor="let route of data.parentComponent.dataTreeGrid; index as i;" [value]="route.data.data.id" [disabled]="route.data.data.id == data.route_id ? true: null">Ruta {{i + 1}}</nb-option>
+          </nb-select>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="close()">Cerrar</button>
+      <button nbButton [nbSpinner]="loading" status="success" (click)="changeRoutes()">Confirmar</button>
+    </nb-card-footer>
+  </nb-card>
+</div>

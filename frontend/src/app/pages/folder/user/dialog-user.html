@@ -1,0 +1,251 @@
+<nb-card>
+  <nb-card-header>
+    Asignar Participante Interno
+    <nb-icon class="close-tab" style="cursor: pointer; float: right;" (click)="close()" icon="close"></nb-icon>
+  </nb-card-header>
+  <nb-card-body class="content-location-permit">
+    <nb-tabset (changeTab)="changeTab($event)" [nbSpinner]="loading">
+      <nb-tab tabTitle="USUARIO" tabId="1">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-12 form-field" *ngIf="user_list">
+              <label class="label" for="user-select">
+                Selecciona el usuario de la lista y confirma para añadirlo a la lista de participantes.
+              </label>
+              <input #userInput [nbSpinner]="loading" [ngModel]="user_name_option" nbInput fullWidth type="text" (input)="onChange(userInput, 1)" (keydown.ENTER)="onChange(userInput,1)"
+                placeholder="Seleccionar Usuario" [nbAutocomplete]="autoUser"/>
+
+              <nb-autocomplete id="user-select" #autoUser (selectedChange)="onSelectionChange($event, 1)" >
+                <nb-option [value]="null"> </nb-option>
+                <!-- [disabled]="user_sel_list.includes(option.id)" -->
+                <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option" [title]="option.email">
+                  {{ option.first_name + ' ' + option.first_last_name }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="row user-info" *ngIf="user_selected !== undefined && user_selected !== null">
+              <div class="col-sm-6 col-12">`
+                <label class="label" for="u_name"> Nombre </label>
+                <input id="u_name" nbInput fullWidth disabled status="control" type="text" [value]="user_item.first_name + ' ' + user_item.first_last_name">
+              </div>
+              <div class="col-sm-6 col-12">
+                <label class="label" for="u_id"> Identificación </label>
+                <input id="u_id" nbInput fullWidth disabled status="control" type="text" [value]="user_item.identification">
+              </div>
+              <div class="col-sm-6 col-12">
+                <label class="label" for="u_email"> Email </label>
+                <input id="u_email" nbInput fullWidth disabled status="control" type="text" [value]="user_item.email">
+              </div>
+              <div class="col-sm-6 col-12">
+                <label class="label" for="u_phone"> Teléfono </label>
+                <input for="u_phone" nbInput fullWidth disabled status="control" type="tel" ng2TelInput [value]="user_item.phone"
+                [ng2TelInputOptions]="{preferredCountries: ['co']}" (intlTelInputObject)="telInputObject($event, 'user')">
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="ROL" tabId="2">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row rol-view">
+            <div class="col-12 form-field" *ngIf="user_list">
+              <label class="label" for="role-select">
+                Selecciona el rol de la lista para añadirlo a la lista de participantes.
+              </label>
+              <input #roleInput [nbSpinner]="loading" [ngModel]="role_name_option" nbInput fullWidth type="text" (input)="onChange(roleInput, 2)" (keydown.ENTER)="onChange(roleInput,2)"
+                placeholder="Seleccionar Rol" [nbAutocomplete]="autoRole"/>
+
+              <nb-autocomplete id="role-select" #autoRole (selectedChange)="onSelectionChange($event, 2)" (click)="getFilteredOptions((autoRole.value !== null ? autoRole.value : ''), 2)">
+                <nb-option [value]="null"> </nb-option>
+                <nb-option *ngFor="let option of filteredOptionsRole$ | async" [value]="option" [title]="option.description" [disabled]="role_sel_list.includes(option.id)">
+                  {{ option.name }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="col-12" *ngIf="role_item">
+              <div>
+                <label class="label" for="role-desc">Descripción</label>
+                <textarea id="role-desc" nbInput disabled [value]="role_item.description" style="resize:none; width:100%; max-width: none; max-height: 3.2rem;"></textarea>
+              </div>
+              <div class="form-control" *ngIf="role_users.length === 0">
+                <label class="label" for="role-user-list">Lista de usuarios</label>
+                <div id="role-user-list" >
+                  No hay ningun usuario asignado a este rol por el momento, pero todo aquel que se incluya le será permitido hacer uso de este sobre como participante.
+                </div>
+              </div>
+
+              <div *ngIf="role_users.length > 0">
+                <span>Estos son los usuarios incluidos en este rol, todo aquel que sea asignado posterior a esta configuración será incluido entre los posibles participantes de este sobre.</span>
+                <div class="user-list">
+                  <label class="label" for="role-user-list">Lista de usuarios</label>
+                  <nb-list id="role-user-list">
+                    <nb-list-item *ngFor="let role_user of role_users" [title]="role_user.email">
+                      {{role_user.first_name + ' ' + role_user.first_last_name + ' (' + role_user.email + ')'}}
+                    </nb-list-item>
+                  </nb-list>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="CONTACTOS" tabId="3">
+        <div style="max-width: 600px; height: 300px;">
+          <div class="row">
+            <div class="col-12 form-field" *ngIf="contact_list">
+              <label class="label" for="contact-list">
+                Selecciona un contacto de la lista y confirma para añadirlo a la lista de participantes.
+              </label>
+              <input #contactInput [nbSpinner]="loading" [ngModel]="contact_name_option" nbInput fullWidth type="text" (input)="onChange(contactInput, 3)" (keydown.ENTER)="onChange(contactInput,3)"
+                  placeholder="Seleccionar Contacto" [nbAutocomplete]="autoContact"/>
+
+              <nb-autocomplete id="contact-list" #autoContact (selectedChange)="onSelectionChange($event, 3)" >
+                <nb-option [value]="null"> </nb-option>
+                <nb-option *ngFor="let option of filteredOptionsContacts$ | async" [value]="option" [title]="option.email">
+                  {{ option.name }}
+                </nb-option>
+              </nb-autocomplete>
+            </div>
+            <div class="row user-info" *ngIf="contact_selected !== undefined && contact_selected !== null">
+              <div class="col-sm-6 col-12">
+                <label class="label" for="c_name"> Nombre </label>
+                <input id="c_name" nbInput fullWidth disabled status="control" type="text" [value]="contact_item.name">
+              </div>
+              <div class="col-sm-6 col-12">
+                <label class="label" for="c_email"> Email </label>
+                <input id="c_email" nbInput fullWidth disabled status="control" type="text" [value]="contact_item.email">
+              </div>
+              <div class="col-sm-6 col-12">
+                <label class="label" for="c_phone"> Teléfono </label>
+                <input for="c_phone" nbInput fullWidth disabled status="control" type="tel" ng2TelInput [value]="contact_item.phone"
+                [ng2TelInputOptions]="{preferredCountries: ['co']}" (intlTelInputObject)="telInputObject($event, 'contact')">
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="PÚBLICO" tabId="4">
+        <div style="max-width: 800px; height: 300px;">
+          <div class="row">
+            <div class="col-12">
+              Selecciona el tipo de participante PÚBLICO según las características de configuración que deseas integrar:
+            </div>
+
+            <div *ngIf="[0, 1].includes(public_validate)" class="col-sm-6 col-12" style="margin-top: 20px; cursor: pointer;" (click)="onSelectPublic(4)">
+              <div class="div-header-public" [style]="'background: ' + (type_public == 4 ? '#412378' : 'gray')">
+                <div>
+                  <img style="width: 45px;" src="/assets/images/icons/folder/pubico01.png" alt="">
+                </div>
+                <span style="color: white; margin-left: 10px; font-weight: bold; font-size: 12px;">ACCESO GENERAL</span>
+              </div>
+              <div style="margin-top: 15px;">
+                <p [style]="'text-align: center; font-size: 12px; color: ' + (type_public == 4 ? '#412378' : 'gray')">¡PERFECTO PARA LISTAS DE ASISTENCIA!</p>
+                <div class="row" style="margin-top: 15px;">
+
+                  <div class="col-3">
+                    <div style="display: flex; justify-content: center;">
+                      <div class="public-icon-description" [style]="'background: ' + (type_public == 4 ? '#412378' : 'gray')">
+                        <img style="width: 100%;" src="/assets/images/icons/folder/pubico03.png" alt="">
+                      </div>
+                    </div>
+                    <p style="line-height: 10px; font-size: 10px; text-align: center;">Generamos el link de acceso</p>
+                  </div>
+
+                  <div class="col-3">
+                    <div style="display: flex; justify-content: center;">
+                      <div class="public-icon-description" [style]="'background: ' + (type_public == 4 ? '#412378' : 'gray')">
+                        <img style="width: 100%;" src="/assets/images/icons/folder/pubico04.png" alt="">
+                      </div>
+                    </div>
+                    <p style="line-height: 10px; font-size: 10px; text-align: center;">Los participantes completan los datos solicitados</p>
+                  </div>
+
+                  <div class="col-3">
+                    <div style="display: flex; justify-content: center;">
+                      <div class="public-icon-description" [style]="'background: ' + (type_public == 4 ? '#412378' : 'gray')">
+                        <img style="width: 100%;" src="/assets/images/icons/folder/pubico05.png" alt="">
+                      </div>
+                    </div>
+                    <p style="line-height: 10px; font-size: 10px; text-align: center;">Listamos sus respuestas según tus necesidades</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="[0, 2].includes(public_validate)" class="col-sm-6 col-12" style="margin-top: 20px; cursor: pointer;" (click)="onSelectPublic(5)">
+              <div class="div-header-public" [style]="'background: ' + (type_public == 5 ? '#412378' : 'gray')">
+                <div>
+                  <img style="width: 45px;" src="/assets/images/icons/folder/pubico02.png" alt="">
+                </div>
+                <span style="color: white; margin-left: 10px; font-weight: bold; font-size: 12px">ACCESO APROBADO POR TERCERO</span>
+              </div>
+              <div style="margin-top: 15px;">
+                <p [style]="'text-align: center; font-size: 12px; color: ' + (type_public == 5 ? '#412378' : 'gray')">REGISTROS CON CONTACTOS VERIFICADOS</p>
+                <div class="row" style="margin-top: 15px;">
+
+                  <div class="col-3">
+                    <div style="display: flex; justify-content: center;">
+                      <div class="public-icon-description" [style]="'background: ' + (type_public == 5 ? '#412378' : 'gray')">
+                        <img style="width: 100%;" src="/assets/images/icons/folder/pubico03.png" alt="">
+                      </div>
+                    </div>
+                    <p style="line-height: 10px; font-size: 10px; text-align: center;">Generamos el link de acceso</p>
+                  </div>
+
+                  <div class="col-3">
+                    <div style="display: flex; justify-content: center;">
+                      <div class="public-icon-description" [style]="'background: ' + (type_public == 5 ? '#412378' : 'gray')">
+                        <img style="width: 100%;" src="/assets/images/icons/folder/pubico06.png" alt="">
+                      </div>
+                    </div>
+                    <p style="line-height: 10px; font-size: 10px; text-align: center;">Los participantes deben registrarse con nombre, e-mail y celular</p>
+                  </div>
+
+                  <div class="col-3">
+                    <div style="display: flex; justify-content: center;">
+                      <div class="public-icon-description" [style]="'background: ' + (type_public == 5 ? '#412378' : 'gray')">
+                        <img style="width: 100%;" src="/assets/images/icons/folder/pubico04.png" alt="">
+                      </div>
+                    </div>
+                    <p style="line-height: 10px; font-size: 10px; text-align: center;">Los contactos realizan el diligenciamiento pertinente</p>
+                  </div>
+
+                  <div class="col-3">
+                    <div style="display: flex; justify-content: center;">
+                      <div class="public-icon-description" [style]="'background: ' + (type_public == 5 ? '#412378' : 'gray')">
+                        <img style="width: 100%;" src="/assets/images/icons/folder/pubico05.png" alt="">
+                      </div>
+                    </div>
+                    <p style="line-height: 10px; font-size: 10px; text-align: center;">Listamos sus respuestas individualmente</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-10 col-12">
+                <p>Cantidad de respuestas (diligenciamientos) para el tipo de participante seleccionado:</p>
+              </div>
+
+              <div class="col-sm-2 col-12">
+                <input nbInput [(ngModel)]="limit_public" fullWidth fieldSize="tiny" type="number" min="1"
+                  [disabled]="public_validate == 2">
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+    </nb-tabset>
+  </nb-card-body>
+  <nb-card-footer>
+    <div style="float:right">
+      <button nbButton status="primary" [disabled]="formComplete()" [nbSpinner]="loading" (click)="assing()">ASIGNAR</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

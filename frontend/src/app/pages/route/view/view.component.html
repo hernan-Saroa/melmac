@@ -1,0 +1,28 @@
+<nb-card>
+  <nb-card-header>
+    Procesos de Rutas
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="mb-10">
+      <a nbButton *ngIf="btn_create" status="primary" href="/pages/route/load"> Cargar Direcciones</a>
+    </div>
+    <nb-card status="success" accent="success">
+      <nb-card-header>
+        Procesos Completados
+      </nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings_complete" [source]="source_complete"></ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card status="info" accent="primary">
+      <nb-card-header>
+        Procesos Pendientes
+      </nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source_incomplete" (edit)="onEdit($event)"></ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  </nb-card-body>
+</nb-card>

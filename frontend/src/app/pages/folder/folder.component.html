@@ -1,0 +1,577 @@
+
+<div *ngIf="!actionTrace" class="row">
+  <nb-card style="width:100%; border-bottom: 5px solid gray;">
+    <nb-card-body style="padding: 1rem">
+      <div *ngIf="!isShare">
+        <div [ngClass]="'tab-doc ' + (tab_option == 0 ? 'tab-active':'')">
+          <div class="tab-icon">
+            <img nbTooltip="Dar clic para cargar un documento" nbTooltipPlacement="bottom" nbTooltipStatus="basic"
+              class="tab-img" src="/assets/images/icons/folder/cargar_documento.png">
+          </div>
+          <div class="tab-name">
+            Cargar Documento
+          </div>
+          <div class="tab-button">
+            <button *ngIf="tab_enable > 0" nbButton ghost style="color: white" (click)="optionTabChange(0)" ><nb-icon icon="plus"></nb-icon></button>
+          </div>
+        </div>
+        <div [hidden]="tab_option != 0" #tabdoc [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+          <!-- Contenido -->
+          <div class="tab-content doc-select ng-scroll">
+
+            <div class="doc-content">
+              <div class="doc-box-add">
+                <div>
+                  <img nbTooltip="Dar clic para cargar un documento" nbTooltipPlacement="bottom" nbTooltipStatus="basic"
+                    class="upload-img" src="/assets/images/icons/folder/cargar_documento_color.png" (click)="openUpload()">
+                </div>
+              </div>
+              <div class="doc-info">
+                Cargar Documento
+              </div>
+            </div>
+
+            <div class="doc-content" *ngFor="let doc of doc_list; let i=index;">
+              <div class="doc-box">
+                <div class="box-select" (click)="changeUpload(i)" nbTooltip="Documento cargado" nbTooltipPlacement="bottom" nbTooltipStatus="basic" >
+                  <pdf-viewer [src]="(doc.create && !doc.data.src) ? '/assets/templates/base_a4.pdf' : (doc.create ? doc.data.src : doc.data)" [render-text]="true" [show-all]="false" [original-size]="false"
+                    [fit-to-page]="false" class="pdf-viewer-box"></pdf-viewer>
+                </div>
+              </div>
+              <div class="doc-info">
+                <img nbTooltip="Editar nombre" nbTooltipPlacement="bottom" nbTooltipStatus="basic" style="cursor: pointer;" class="" src="/assets/images/icons/folder/editar.png" (click)="editDoc(i, edit_doc)" >
+                <span [title]="doc.name" [hidden]="doc.edit">{{ (doc.name.length > 15)? (doc.name | slice:0:14)+'...':(doc.name) }} - {{ i + 1 }}</span>
+                <input (keyup.enter)="saveEditDoc(i)" (focusout)="saveEditDoc(i)" #edit_doc
+                  [hidden]="!doc.edit" maxlength="100" [(ngModel)]="doc.name" name="name_doc_{{ i }}" autocomplete="off" nbInput type="text" fieldSize="tiny" style="width: 75%;" />
+                <img nbTooltip="Eliminar documento" nbTooltipPlacement="bottom" nbTooltipStatus="basic" style="float: right; cursor: pointer;" class="" src="/assets/images/icons/folder/eliminar.png" (click)="deleteDoc(i)">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="col-12 col-sm-4" style="float: right; margin: 15px;">
+              <button nbTooltip="Guardar documentos y continuar" nbTooltipPlacement="top" nbTooltipStatus="primary" [disabled]="doc_list.length == 0 || loading" class="tab-sec-btn" nbButton fullWidth status="primary" size="large" (click)="loadingUpload()"> Guardar </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div [ngClass]="'tab-doc ' + (tab_option == 1 ? 'tab-active':'')">
+          <div class="tab-icon">
+            <img class="tab-img" src="/assets/images/icons/folder/definir_participantes.png">
+          </div>
+          <div class="tab-name">
+            Definir Participantes
+          </div>
+          <div class="tab-button">
+            <button *ngIf="tab_enable >= 1" nbButton ghost style="color: white" (click)="optionTabChange(1)" ><nb-icon icon="plus"></nb-icon></button>
+          </div>
+        </div>
+        <div [hidden]="tab_option != 1" class="tab-content">
+          <div *ngIf="!isShare" class="row option-user">
+            <div class="col-12 col-md-4">
+              <div class="content-option-user">
+                <div class="user-icon {{partOpt === 0 ? 'active' : ''}}">
+                  <img style="width: 100%;" src="/assets/images/icons/folder/{{partOpt === 0 ? 'on/' : ''}}un_solo_participante.png">
+                </div>
+                <div class="option-check {{partOpt === 0 ? 'active' : ''}}">
+                  <mel-radio nbTooltip="Solo yo diligenciaré los documentos de este sobre" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="radio-part" [extra]="{radioClass: 'disp-y-0', size: 'large'}" iconClass="check-text" [value]="0" [checked]="partOpt === 0" (valueChange)="changePartMode($event)">
+                    Solo yo
+                  </mel-radio>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="content-option-user">
+                <div class="user-icon {{partOpt === 1 ? 'active' : ''}}">
+                  <img style="width: 100%;" src="/assets/images/icons/folder/{{partOpt === 1 ? 'on/' : ''}}otros_y_yo.png">
+                </div>
+                <div class="option-check {{partOpt === 1 ? 'active' : ''}}">
+                  <mel-radio nbTooltip="Otros participantes y yo diligenciaremos los documentos de este sobre" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="radio-part" [extra]="{radioClass: 'disp-y-0', size: 'large'}" iconClass="check-text" [value]="1" [checked]="partOpt === 1" (valueChange)="changePartMode($event)">
+                    Otros y yo
+                  </mel-radio>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="content-option-user">
+                <div class="user-icon {{partOpt === 2 ? 'active' : ''}}">
+                  <img style="width: 100%;" src="/assets/images/icons/folder/{{partOpt === 2 ? 'on/' : ''}}otros.png">
+                </div>
+                <div class="option-check {{partOpt === 2 ? 'active' : ''}}">
+                  <mel-radio nbTooltip="Otros participantes diligenciarán los documentos de este sobre" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="radio-part" [extra]="{radioClass: 'disp-y-0', size: 'large'}" iconClass="check-text" [value]="2" [checked]="partOpt === 2" (valueChange)="changePartMode($event)">
+                    Otros
+                  </mel-radio>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 order-label">
+            Ingresa los datos solicitados para definir los participantes que quieres involucrar en este documento:
+          </div>
+          <div class="col-12 col-md-4 order-check" style="position: relative">
+            <div style="float: right;">
+              <mel-radio iconClass="{{ publicTwoValidate() ? 'disabled' : '' }}" [extra]="{size:'small', radioClass:'disp-y-0', disabled: publicTwoValidate()}" [checked]="order" (click)="!isShare ? changeOrder() : ''">
+                Respetar orden <nb-icon *ngIf="publicTwoValidate()" icon="lock-outline"></nb-icon>
+              </mel-radio>
+              <mel-radio iconClass="" [extra]="{size:'small', radioClass:'disp-y-0'}" [checked]="respect_participant" (click)="!isShare ? changeRespectParticipant() : ''">
+                Respetar participantes
+              </mel-radio>
+            </div>
+            <div *ngIf="isShare" class="content-share"></div>
+          </div>
+          <div class="list-user" style="width: 100%;">
+            <div cdkDropList class="content-user-list" (cdkDropListDropped)="drop($event)">
+              <div class="user-box {{user.errorColor ? 'user-box-error' : ''}}" *ngFor="let user of user_list; let i=index;" cdkDrag [cdkDragDisabled]="isShare">
+                <div *ngIf="user && ![2,4,5].includes(user.type)" class="row" style="display: flex; width: 100%;">
+                  <div class="col-6 col-lg-2 left-content-box">
+                    <img nbTooltip="Cambiar el orden del participante" nbTooltipPlacement="bottom" nbTooltipStatus="basic"
+                      *ngIf="!isShare" class="left-drag" style="cursor: move;" src="/assets/images/icons/folder/mover.png" cdkDragHandle>
+                    <span class="left-drag">{{ i + 1 }}</span>
+                    <div class="left-drag color-view {{user.errorColor ? 'color-view-error' : ''}}" (click)="selectedColor(i)" [style]="'background:' + user.color + '; cursor: pointer'"></div>
+                    <input id="sel-color-input-{{ i }}" [(ngModel)]="user.color" (change)="changeColor(i)" name="field_color_{{ i }}" type="color" style="position: absolute; height: 0px; bottom: 0; z-index: -1;">
+                  </div>
+                  <div class="col-12 col-lg-7 center-content-box">
+                    <div class="row">
+                      <div class="col-12 col-sm-4 field-user">
+                        <input [(ngModel)]="user.name" name="field_name_{{ i }}" fullWidth autocomplete="off" nbInput type="text" [disabled]="user.id > 0"/>
+                      </div>
+                      <div class="col-12 col-sm-5 field-user">
+                        <input [(ngModel)]="user.email" name="field_email_{{ i }}" fullWidth autocomplete="off" nbInput type="text" [disabled]="user.id > 0"/>
+                      </div>
+                      <div *ngIf="!user.reload" class="col-12 col-sm-3 field-user">
+                        <input type="tel" class="form-control" ng2TelInput nbInput fullWidth [(ngModel)]="user.phone"
+                        [ng2TelInputOptions]="{preferredCountries: ['co']}" autocomplete="off" [disabled]="user.id > 0"
+                        (intlTelInputObject)="telInputObject($event, i)" (countrychange)="onCountryChange($event, i)">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-lg-3 right-content-box">
+                    <img nbTooltip="Participante aprobador" nbTooltipPlacement="top" nbTooltipStatus="basic" *ngIf="!isShare && [1,2].includes(partOpt)" style="padding: 7px;" class="right-drag {{user.approver ? 'active' : ''}}" src="/assets/images/icons/folder/{{user.approver ? 'on/' : ''}}APROBADOR.png" (click)="changeApprover(i)"/>
+                    <label nbTooltip="Limite de tiempo" nbTooltipPlacement="top" nbTooltipStatus="basic" style="margin-bottom: 0px;">
+                      <img *ngIf="!isShare" style="padding: 8px;" class="right-drag {{user.limit_time != '' ? 'active' : ''}}"
+                        src="/assets/images/icons/folder/{{user.limit_time != '' || user.limit_opt ? 'on/' : ''}}TIEMPO.png"
+                        [nbPopover]="template" [nbPopoverContext]="{ index: i, time:user.limit_time, opt:user.limit_opt }"
+                        nbPopoverPlacement="right" #timeLimit nbPopoverTrigger="noop" (click)="openPopup(i)"/>
+                    </label>
+                    <img nbTooltip="Asignar participante" nbTooltipPlacement="top" nbTooltipStatus="basic" *ngIf="!(user_id == user.id && user.type == 1) && [1,2].includes(partOpt)" style="padding: 8px;" class="right-drag" src="/assets/images/icons/folder/CLONAR.png" (click)="openUser(i)" />
+                    <label nbTooltip="Asignar color al participante" nbTooltipPlacement="top" nbTooltipStatus="basic" *ngIf="!isShare" for="color-input-{{ i }}" style="margin-bottom: 0px;">
+                      <input id="color-input-{{ i }}" [(ngModel)]="user.color" (change)="changeColor(i)" name="field_color_{{ i }}" type="color" style="position: absolute; width: 0px; height: 0px;">
+                      <!-- <div class="right-drag">
+                        <nb-icon class="icon-color" icon="color-palette-outline"></nb-icon>
+                      </div> -->
+                      <img style="padding: 9px;" class="right-drag" src="/assets/images/icons/folder/DEFINIR_COLOR.png"/>
+                    </label>
+                    <img nbTooltip="Eliminar participante" nbTooltipPlacement="top" nbTooltipStatus="basic" *ngIf="!isShare && user_id !== user.id && [1,2].includes(partOpt)" class="right-drag" src="/assets/images/icons/folder/eliminar_drag.png" (click)="removeUser(i)"/>
+                  </div>
+                </div>
+                <!-- ROL -->
+                <div *ngIf="user && [2,4,5].includes(user.type)" class="row" style="display: flex; width: 100%;">
+                  <div class="col-6 col-lg-2 left-content-box">
+                    <img class="left-drag" style="cursor: move;" src="/assets/images/icons/folder/mover.png" cdkDragHandle>
+                    <span class="left-drag">{{ i + 1 }}</span>
+                    <div class="left-drag color-view {{user.errorColor ? 'color-view-error' : ''}}" [style]="'background:' + user.color"></div>
+                  </div>
+                  <div class="col-12 col-lg-7">
+                    <div class="row">
+                      <div class="col-4 col-lg-4 field-user">
+                        <label *ngIf="user.type === 2" class="label role-label">Rol:</label>
+                        <label *ngIf="[4,5].includes(user.type)" class="label role-label">Participante:</label>
+                      </div>
+                      <div class="col-8 col-lg-6 field-user">
+                        <input [(ngModel)]="user.name" name="field_name_{{ i }}" fullWidth autocomplete="off" nbInput type="text" disabled/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-lg-3 right-content-box">
+                    <img *ngIf="user.type === 2" style="padding: 7px;" class="right-drag {{user.approver ? 'active' : ''}}"
+                    src="/assets/images/icons/folder/{{user.approver ? 'on/' : ''}}APROBADOR.png" (click)="changeApprover(i)">
+                    <img style="padding: 8px;" class="right-drag {{user.limit_time != '' ? 'active' : ''}}"
+                    src="/assets/images/icons/folder/{{user.limit_time != '' || user.limit_opt ? 'on/' : ''}}TIEMPO.png"
+                    [nbPopover]="template" [nbPopoverContext]="{ index: i, time:user.limit_time, opt:user.limit_opt }"
+                    nbPopoverPlacement="right" #timeLimit nbPopoverTrigger="noop" (click)="openPopup(i)">
+                    <img style="padding: 8px;" class="right-drag" src="/assets/images/icons/folder/CLONAR.png" (click)="openUser(i)">
+                    <label for="color-input-{{ i }}" style="margin-bottom: 0px;">
+                      <input id="color-input-{{ i }}" [(ngModel)]="user.color" name="field_color_{{ i }}" type="color" style="position: absolute; width: 0px; height: 0px;">
+                      <img style="padding: 9px;" class="right-drag" src="/assets/images/icons/folder/DEFINIR_COLOR.png">
+                    </label>
+                    <img class="right-drag" src="/assets/images/icons/folder/eliminar_drag.png" (click)="removeUser(i)">
+                  </div>
+                </div>
+              </div>
+              <div class="user-box" *ngIf="partOpt > 0 && !isShare">
+                <div class="row" style="display: flex; width: 100%;">
+                  <div class="col-2 left-content-box">
+                    <div nbTooltip="Añadir un nuevo participante" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="left-drag add-user-option" (click)="addUser()">
+                      <img src="/assets/images/icons/folder/mas.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div *ngIf="!isShare" class="row" style="display: flex; width: 100%; position: relative; margin: 0px;">
+            <div class="col-12" style="margin: 15px;">
+              Asigna fecha de vencimiento y una hora
+            </div>
+
+            <div class="col-12 col-lg-9 center-content-datetime">
+              <div class="row" style="margin: 0px;">
+                <div class="col-12 col-sm-3 col-xs-12">
+                  <div class="row">
+                    <div class="col-3 icon-input-datetime">
+                      <img class="left-drag" style="cursor: move;" src="/assets/images/icons/folder/FECHA.png">
+                    </div>
+                    <div class="col-9" style="padding-right: 5px; padding-left: 5px;">
+                      <input [(ngModel)]="expiration_date" fullWidth nbInput [nbDatepicker]="dateTimePicker" style="cursor: pointer;">
+                      <nb-datepicker format="yyyy-MM-dd" #dateTimePicker></nb-datepicker>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-3 col-xs-12">
+                  <div class="row">
+                    <div class="col-3 icon-input-datetime">
+                      <img class="left-drag" style="cursor: move;" src="/assets/images/icons/folder/HORA.png">
+                    </div>
+                    <div class="col-9" style="padding-right: 5px; padding-left: 5px; position: relative">
+                      <input [(ngModel)]="expiration_hour_text" type="text" fullWidth nbInput>
+                      <input type="text" fullWidth nbInput [nbTimepicker]="timepickerhour" style="position: absolute; opacity: 0; top: 0; left: 5px; z-index: 1; cursor: pointer">
+                      <nb-timepicker (onSelectTime)="onSelectTime($event)" #timepickerhour="nbTimepicker" twelveHoursFormat></nb-timepicker>
+                      <!-- <input [(ngModel)]="expiration_hour" fullWidth nbInput type="text" [nbTimepicker]="timepicker" placeholder=""/>
+                      <nb-timepicker #timepicker="nbTimepicker" twelveHoursFormat></nb-timepicker> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="row">
+                    <div class="col-5 icon-input-datetime">
+                      <mel-radio iconClass="" [extra]="{size:'small', radioClass:'disp-y-0'}" [checked]="alert" (click)="changeAlert()">
+                        Activar alerta
+                      </mel-radio>
+                    </div>
+                    <div class="col-7" style="padding-right: 5px; padding-left: 5px;">
+                      <nb-select fullWidth [(ngModel)]="alert_time">
+                        <nb-option value='30'>30 minutos antes</nb-option>
+                        <nb-option value='60'>1 hora antes</nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-lg-3" style="display: flex; align-items: center; justify-content: center; padding: 0px 10px 0px 15px;" [hidden]="partOpt === 0 || user_list.length <= 1">
+              <mel-radio iconClass="" [extra]="{size:'small', radioClass:'disp-y-0'}" [checked]="checker" (click)="changeChecker()">
+                Activar verificador(es)|...
+              </mel-radio>
+            </div>
+            <div *ngIf="isShare" class="content-share"></div>
+          </div>
+
+          <div class="col-12">
+            <div class="col-12 col-sm-4" style="float: right; margin: 15px;">
+              <button nbTooltip="Guardar participantes y continuar" nbTooltipPlacement="top" nbTooltipStatus="primary"
+                [disabled]="partOpt == -1 || user_list.length == 0 || loading" class="tab-sec-btn" nbButton
+                fullWidth status="primary" size="large" (click)="setParticipants()"> Guardar </button>
+            </div>
+          </div>
+        </div>
+        <!-- Responsable y participantes para verificar -->
+        <div [ngClass]="'tab-doc ' + (tab_option == 2 ? 'tab-active':'')" [hidden]="!checker">
+          <div class="tab-icon">
+            <img class="tab-img" src="/assets/images/icons/folder/VERIFICAR.png" style="padding: 15px;">
+          </div>
+          <div class="tab-name">
+            Verificar (Rues, ANI, Datacrédito)
+          </div>
+          <div class="tab-button">
+            <button *ngIf="tab_enable >= 2" nbButton ghost style="color: white" (click)="optionTabChange(2)" ><nb-icon icon="plus"></nb-icon></button>
+          </div>
+        </div>
+        <div [hidden]="tab_option != 2" #tabdoc [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+
+          <div class="col-12" style="margin: 15px 0px 15px 0px;">
+            Asigna a un participante la responsabilidad de la verificación
+          </div>
+
+          <div class="col-12 col-sm-4" style="margin-bottom: 15px;">
+            <nb-select fullWidth [(ngModel)]="checker_user" (selectedChange)="onChangeChecker($event)">
+              <nb-option *ngFor="let user of user_list; let i = index" [value]="user.version_id" [hidden]="[4,5].includes(user.type) || (publicTwoValidate() && public_two_main_index > i)">
+                {{ user.name }}
+              </nb-option>
+            </nb-select>
+          </div>
+
+          <div class="col-12" style="margin: 15px 0px 15px 0px;">
+            Selecciona los participantes a quienes quieres verificar
+          </div>
+
+          <div class="col-12 col-sm-11">
+            <div class="row">
+              <div class="col-12 col-sm-6 checker-content ng-scroll">
+                <nb-list>
+                  <nb-list-item *ngFor="let user of checked_list; let i = index" class="list-checker" [hidden]="user.id == checker_user || (i != public_two_main_index && [4,5].includes(user.type))" (click)="checkerChange(user)">
+                    <div [ngClass]="'list-checker-option ' + (user == checker_select ? 'checker-active':'')">
+                      {{ user.name }}
+                    </div>
+                  </nb-list-item>
+                </nb-list>
+              </div>
+
+              <div class="col-12 col-sm-6 checker-content ng-scroll">
+                <nb-list>
+                  <nb-list-item *ngFor="let check of check_list" class="list-checker" (click)="checkChange(check)">
+                    <div [ngClass]="'list-check-option ' + (check_select.includes(check.id) ? 'check-active':'')">
+                      {{ check.name }}
+                    </div>
+                  </nb-list-item>
+                </nb-list>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12" style="margin: 15px 0px 15px 0px;">
+            Resumen de asignaciones
+          </div>
+          <div class="col-12 col-sm-11" *ngIf="tab_option == 2 && checked_list">
+            <div class="row">
+              <div class="col-6 col-sm-3 checked-content" *ngFor="let user of checked_list" [hidden]="user.checker.length == 0 && user != checker_select">
+                <nb-card size="tiny" style="margin-bottom: 15px;">
+                  <nb-card-header class="checked-header">{{ user.name }}</nb-card-header>
+                  <nb-card-body style="padding: 0.5rem 1.5rem;">
+                    <label *ngFor="let check of user.checker" style="width: 100%"> - {{ getLabelCheck(check) }}</label>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-2 offset-md-5" style="margin-bottom: 15px;">
+            <button nbTooltip="Confirmar configuración de verificación" nbTooltipPlacement="top" nbTooltipStatus="primary"
+              [disabled]="!validateChecker() || loading" class="tab-sec-btn" nbButton fullWidth status="primary"
+              size="large" (click)="setCheckers()"> Confirmar </button>
+          </div>
+        </div>
+
+        <div>
+          <div [ngClass]="'tab-doc ' + (tab_option == 3 ? 'tab-active':'')">
+            <div class="tab-icon">
+              <img class="tab-img" src="/assets/images/icons/folder/configurar_mensaje.png">
+            </div>
+            <div class="tab-name">
+              Configurar Mensaje y Envío para Diligenciamiento del Documento
+            </div>
+            <div class="tab-button">
+              <button *ngIf="tab_enable >= 3" nbButton ghost style="color: white" (click)="optionTabChange(3)"><nb-icon icon="plus"></nb-icon></button>
+            </div>
+          </div>
+          <div [hidden]="tab_option != 3" class="row tab-content" style="margin: 15px 0px">
+            <p style="width:100%">
+              Selecciona a continuación el tipo de mensaje que quieres configurar:
+            </p>
+            <div class="col-lg-6 col-12">
+              <div class="row">
+                <div class="col-md-4 col-4 msg-opt-container" *ngFor="let option of messageOptions; let i=index" (click)="setMsgOpt(i+1)">
+                  <img class="img-msg-opt {{option.active ? 'active': ''}}" src="/assets/images/icons/folder/{{option.active ? 'on/': ''}}{{option.icon}}.png">
+                  <span class="title-msg-opt">{{option.title}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <p class="msg-subtitle">
+                {{ msgSelected }}
+              </p>
+              <div *ngIf="msgOpt !== 3">
+                <div class="form-group subject-container">
+                  <label for="subject" class="label" (click)="subject.click()">Asunto:</label>
+                  <input id="subject" #subject type="text" nbInput fullWidth fieldSize="small" placeholder="ESCRIBE UN TITULO LLAMATIVO" [(ngModel)]="msgSubject" *ngIf="msgOpt === 2" style="border-radius: 0.5rem;">
+                  <input id="subject" #subject type="text" nbInput fullWidth fieldSize="small" value="DOCUMENTO COMPARTIDO por MELMAC" *ngIf="msgOpt === 1" style="border-radius: 0.5rem;">
+                </div>
+                <div class="form-group textarea-container">
+                  <p class="msg-content" *ngIf="msgOpt === 1">
+                    Hola, se te ha compartido el siguiente documento NOMBRE<br><br>
+                    Por favor, realiza tu diligenciamiento por medio de este enlace:
+                    <span class="link">https://melmac.co/public/TOKEN</span> <br><br>
+                    Entre más pronto, mejor. ¡Gracias!
+                  </p>
+                  <textarea id="msg-content" class="msg-content" nbInput fullWidth *ngIf="msgOpt === 2"
+                  placeholder="Redacta un mensaje para informar que el documento puede ser diligenciado, este será enviado a todos tus participantes."
+                  [(ngModel)]="msgText"></textarea>
+                  <label class="label {{msgOpt === 2 ? 'line-jump' : ''}}">Mensaje:</label>
+                  <img class="img-textarea {{msgOpt === 2 ? 'line-jump' : ''}}" src="/assets/images/icons/folder/hand.png"/>
+                </div>
+              </div>
+              <div *ngIf="msgOpt === 3">
+                <div class="user-msg-container row" *ngFor="let user of user_list">
+                  <div class="col-2">
+                    <div class="msg-user-icon">
+                      <img src="/assets/images/icons/folder/usuario.png" [ngStyle]="{'background-color':user.color}">
+                      <img src="/assets/images/icons/folder/on/APROBADOR.png" class="approver-icon" *ngIf="user.approver">
+                    </div>
+                  </div>
+                  <div class="col-10">
+                    <input type="text" nbInput fullWidth fieldSize="small" placeholder="Asunto:" [(ngModel)]="user.subject">
+                    <textarea nbInput fullWidth placeholder="Mensaje:" [(ngModel)]="user.msg"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-msg">
+                <div class="col-12">
+                  <label class="label">
+                    <nb-icon icon="info-outline" status="primary"></nb-icon>
+                    Activa los medios complementarios por los cuales quieres compartir tu mensaje para diligenciamiento
+                  </label>
+                </div>
+                <div class="col-12 row">
+                  <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-6">
+                    <mel-radio nbTooltip="Compartir por Whatsapp" nbTooltipPlacement="left" nbTooltipStatus="basic"
+                      [extra]="{radioClass: 'disp-y-0'}" (change)="toggleMsgType(0, $event)" [checked]="whatsapp">
+                      <i class="fab fa-whatsapp"></i>
+                    </mel-radio>
+                    <div class="col-12">
+                      <label class="label label-check ws">Whatsapp</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 offset-lg-1 col-md-3 col-sm-4 col-xs-6 col-6">
+                    <mel-radio nbTooltip="Compartir por SMS" nbTooltipPlacement="left" nbTooltipStatus="basic"
+                      [extra]="{radioClass: 'disp-y-0'}" iconClass="radio-image" (change)="toggleMsgType(1, $event)" [checked]="sms">
+                      <img src="/assets/images/icons/folder/sms.png">
+                    </mel-radio>
+                    <div class="col-12">
+                      <label class="label label-check">SMS</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 offset-lg-1 col-md-4 offset-md-2 col-sm-4 col-12">
+                    <button nbTooltip="Guardar configuración de mensajes" nbTooltipPlacement="bottom" nbTooltipStatus="primary"
+                      class="tab-sec-btn" nbButton fullWidth status="primary" size="large" (click)="setMessageConfig()"> Guardar </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!isShare" >
+          <div [ngClass]="'tab-doc ' + (tab_option == 4 ? 'tab-active':'')">
+            <div class="tab-icon">
+              <img class="tab-img" src="/assets/images/icons/folder/asignar_campos_al_documento.png">
+            </div>
+            <div class="tab-name">
+              Asignar Campos del Documento
+            </div>
+            <div class="tab-button">
+              <button *ngIf="tab_enable >= 4" nbButton ghost style="color: white" (click)="optionTabChange(4)" [disabled]="doc_list.length == 0" ><nb-icon icon="plus"></nb-icon></button>
+            </div>
+          </div>
+          <div [hidden]="tab_option != 4" class="row tab-content">
+            <!-- Contenido 4 -->
+          </div>
+        </div>
+        <!-- Definir vista para el diligenciamiento del pdf -->
+        <div *ngIf="!isShare" >
+          <div [ngClass]="'tab-doc ' + (tab_option == 5 ? 'tab-active':'')">
+            <div class="tab-icon">
+              <img class="tab-img" src="/assets/images/icons/folder/user-message.png">
+            </div>
+            <div class="tab-name">
+              Modo de diligenciamiento
+            </div>
+            <div class="tab-button">
+              <button *ngIf="tab_enable >= 5" nbButton ghost style="color: white" (click)="optionTabChange(5)" [disabled]="doc_list.length == 0" ><nb-icon icon="plus"></nb-icon></button>
+            </div>
+          </div>
+          <div [hidden]="tab_option != 5" class="row tab-content" style="margin: 15px 0px;">
+            <div class="col-12 col-md-6">
+              <div [ngClass]="'diligence-type ' + (view_option == 1 ? 'diligence-active' : '')" (click)="diligenceType(1)">
+                <div [ngClass]="'p-2 col-12 text-center tab-doc ' + (view_option == 1 ? 'tab-active' : '')"><b>Diligenciar en el pdf / plantilla</b></div>
+                <div class="m-4 text-center" style="position: relative;">
+                  <img src="assets/images/icons/evelope/pdf.png" style="height: 150px; opacity: 0.3;">
+                  <div class="fields pdf">
+                    <div class="mt-3">Campo 1</div>
+                    <div class="mt-2">Campo 2</div>
+                    <div class="mt-2">Campo 3</div>
+                    <div class="mt-2">. . .</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div [ngClass]="'diligence-type ' + (view_option == 2 ? 'diligence-active' : '')" (click)="diligenceType(2)">
+                <div [ngClass]="'p-2 col-12 text-center tab-doc ' + (view_option == 2 ? 'tab-active' : '')"><b>Diligenciar por pasos</b></div>
+                <div class="m-4 text-center" style="position: relative;">
+                  <!-- <img src="assets/images/icons/evelope/pdf.png" style="width: 160px;"> -->
+                  <div class="fields">
+                    <div class="mt-3">Campo 1</div>
+                    <div class="mt-2">Campo 2</div>
+                    <div class="mt-2">Campo 3</div>
+                    <div class="mt-2">. . .</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 col-lg-4 offset-lg-4 col-md-4 offset-md-4 col-sm-8 col-2">
+              <button nbTooltip="Finalizar y compartir a los participantes" nbTooltipPlacement="bottom" nbTooltipStatus="primary"
+                class="tab-sec-btn" nbButton fullWidth status="primary" size="large" (click)="saveDiligenceMode()">Guardar y Finalizar </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <div *ngIf="isShare" class="col-lg-2 offset-lg-5 col-md-4 offset-md-4 col-sm-4 col-12">
+    <button class="tab-sec-btn" nbButton fullWidth status="primary" size="large" (click)="envelopeShare()"> Compartir </button>
+  </div>
+  <div nbTooltip="Trazabilidad del sobre" nbTooltipPlacement="bottom" nbTooltipStatus="primary" (click)="traceAction(true)" class="floating-button" >
+    <nb-icon icon="file-text-outline" class="icon" ></nb-icon>
+  </div>
+</div>
+
+<div *ngIf="actionTrace" class="row">
+  <nb-card style="width:100%; border-bottom: 5px solid gray;">
+    <nb-card-body style="padding: 1rem">
+      <h4>Trazabilidad del sobre</h4>
+      <div [nbSpinner]="loadingTraza" nbSpinnerStatus="primary" nbSpinnerSize="giant"></div>
+      <div *ngIf="!loadingTraza">
+        <ng2-smart-table [settings]="settings" [source]="dataTraceability"></ng2-smart-table>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <div class="floating-button" (click)="traceAction(false)" class="floating-button">
+    <nb-icon icon="close-outline" class="icon" ></nb-icon>
+  </div>
+</div>
+
+<ng-template #template let-data>
+  <nb-card class="custom-popover-card">
+    <nb-card-body>
+      <div class="custom-popover-header">
+        <img class="popover-img" src="/assets/images/icons/folder/on/TIEMPO.png">
+        <nb-icon class="close-popover" (click)="closePopup(false, data)" icon="close"></nb-icon>
+        <div>Asigna un tiempo a este participante para su diligenciamiento:</div>
+      </div>
+      <div class="custom-popover-body">
+        <div class="time-selector">
+          <nb-select class="hour-selector" placeholder="HH" [(ngModel)]="sel_time[0]" [disabled]="data.opt != 1">
+            <nb-option *ngFor="let hour of hour_options" [value]="hour">
+              {{hour}}
+            </nb-option>
+          </nb-select>
+          :
+          <nb-select class="min-selector" placeholder="MM" [(ngModel)]="sel_time[1]" [disabled]="data.opt != 1">
+            <nb-option *ngFor="let min of min_options" [value]="min" [disabled]="min < '05' && (sel_time[0] == '00' || sel_time[0] == null)">
+              {{min}}
+            </nb-option>
+          </nb-select>
+        </div>
+        <nb-radio-group [(ngModel)]="data.opt" status="control">
+          <nb-radio value="1">Aplicar el tiempo configurado.</nb-radio>
+          <nb-radio value="2">El único limite es la fecha de vencimiento</nb-radio>
+        </nb-radio-group>
+      </div>
+      <button nbButton status="primary" (click)="closePopup(true, data)" shape="semi-round">Aplicar</button>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

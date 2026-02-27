@@ -1,0 +1,297 @@
+<h3 class="colorTitle">Filtra tus datos y genera informes más precisos y efectivos</h3>
+
+<div [nbSpinner]="loading" nbSpinnerStatus="primary">
+  <div class="row">
+    <div class="col-5">
+      <div class="col-12 mb-3">
+        <label>Aplica tus filtros seleccionando las casillas de opciones a continuación.</label>
+        <div class="row" (click)="onButtonGroupClick($event)">
+          <button class="ml-3 mr-2 btn-text btn-box-modul btn-activate" type="button" nbButton shape="rectangle" (click)="btn_view_modul(1)">
+            Documentos
+          </button>
+          <button [hidden]="permit_list_btnVisit" class="ml-2 mr-2 btn-text btn-box-modul" type="button" nbButton shape="rectangle" (click)="btn_view_modul(2)">
+            Visitas
+          </button>
+          <button class="ml-2 mr-2 btn-text btn-box-modul" type="button" nbButton shape="rectangle" (click)="btn_view_modul(3)">
+            Enviados
+          </button>
+        </div>
+      </div>
+      <div class="col-12 mb-3" [hidden]="![1,3].includes(type_report)">
+        <label>Selecciona el proceso documental</label>
+        <input #autoInput [(ngModel)]="name_option" nbInput fullWidth type="text" (input)="onChange()"
+                placeholder="Seleccionar Documento" [nbAutocomplete]="auto" />
+
+        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+          <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+            {{ option.name }}
+          </nb-option>
+        </nb-autocomplete>
+      </div>
+
+      <div class="col-12 mb-3" [hidden]="type_report != 2">
+        <label>Selecciona el sub-proyecto</label>
+        <nb-select class="styleSelect" fullWidth placeholder="Seleccionar Proyecto y Subproyecto..." [(ngModel)]="selectedItemNgModel" (selectedChange)="selectSubProyect()">
+          <nb-option value="">Seleccione una opción..</nb-option>
+          <nb-option-group title="{{sub.nameP}}" *ngFor="let sub of SubProyect; let i=index;">
+            <nb-option value="{{data.id}}_{{data.mainF}}_{{sub.idP}}_{{data.idForm}}" *ngFor="let data of sub.data;">{{ data.name }}</nb-option>
+          </nb-option-group>
+        </nb-select>
+      </div>
+      <!-- TIPO DE DOCUMENTO -->
+      <div class="col-12 mb-3" [hidden]="type_report != 2">
+        <label>Selecciona el tipo de documento</label>
+        <nb-select fullWidth class="cardinal-select" placeholder="Selecciona" [(ngModel)]="selectedOption"
+           (selectedChange)="onChangeTypeDoc($event)">
+          <nb-option *ngFor="let option of optDocType" [value]="option.id">{{ option.name }}</nb-option>
+        </nb-select>
+      </div>
+
+      <div class="col-12 mb-3">
+        <label>Asigna un título a este informe</label>
+        <input nbInput fullWidth type="text" [(ngModel)]="nameDocument">
+      </div>
+    </div>
+
+    <div class="col-7">
+      <div class="row mb-3">
+        <div class="col-4" [hidden]="type_report != 1">
+          <label for="">Tipo de fecha</label>
+          <nb-select class="styleSelect" id="field_disabled" fullWidth placeholder="Mostrar Campos Inactivos" [(ngModel)]="option_date">
+            <nb-option value="1"> Fecha de Envío </nb-option>
+            <nb-option value="2"> Fecha de Diligenciamiento </nb-option>
+          </nb-select>
+        </div>
+        <div class="col-4">
+          <label *ngIf="option_date == '1' || option_date == '2'" for="">Desde <span nbTooltip="Formato de la Fecha (Mes/dia/Año)." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label> 
+          <input nbInput fullWidth placeholder="Ingresar Fecha" [nbDatepicker]="init" [(ngModel)]="date_init">
+          <nb-datepicker format="MM/dd/yyyy" #init></nb-datepicker>
+        </div>
+        <div class="col-4">
+          <label *ngIf="option_date == '1' || option_date == '2'" for="">Hasta <span nbTooltip="Formato de la Fecha (Mes/dia/Año)." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label> 
+          <input nbInput fullWidth placeholder="Ingresar Fecha" [nbDatepicker]="end" [(ngModel)]="date_end">
+          <nb-datepicker format="MM/dd/yyyy" #end></nb-datepicker>
+        </div>
+      </div>
+      <!-- SOPORTES -->
+      <div class="row mb-3"  [hidden]="type_report != 2 || checked">
+        <div class="col-4">
+          <label for="">Soportes <span nbTooltip="Filtrar por los documentos relacionados al sub proyecto seleccionado." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <input #autoHelp [(ngModel)]="name_option_help" nbInput fullWidth type="text" (input)="onChangeHelp()"
+            placeholder="Seleccionar Soporte" [nbAutocomplete]="autoH"  />
+
+          <nb-autocomplete #autoH (selectedChange)="onSelectionHelpChange($event)">
+            <nb-option [hidden]="help_select_id.includes(help.id)" *ngFor="let help of filteredHelp$ | async" [value]="help">
+              <label>{{ help.name }} </label>
+            </nb-option>
+          </nb-autocomplete>
+        </div>
+        <div class="col-4">
+          <label for="">Soporte(s) escogido(s) <span nbTooltip="Listado de documentos seleccionados en el filtro de Soportes." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <nb-tag-list (tagRemove)="onTagRemoveHelp($event)">
+            <nb-tag *ngFor="let tree of help_select" [key]="tree.id" [text]="tree.name" [removable]="true"></nb-tag>
+          </nb-tag-list>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4" [hidden]="type_report != 1">
+          <label for="">Rol <span nbTooltip="Filtrar por un rol creado en la plataforma." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <nb-select class="styleSelect" fullWidth placeholder="Rol" [(ngModel)]="rol_select" (ngModelChange)="onChangeOptionRol()"
+            [(selected)]="rol_select">
+            <nb-option value="0">Todos</nb-option>
+            <nb-option *ngFor="let rol of list_rol" [value]="rol.id"> {{rol.name}} </nb-option>
+          </nb-select>
+        </div>
+        <div class="col-4" [hidden]="checked || type_report == 3">
+          <label for="">Usuario <span nbTooltip="Filtrar uno o varios usuarios existentes en la plataforma." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <input #autoUser [(ngModel)]="name_option_user" nbInput fullWidth type="text" (input)="onChangeUser()"
+            placeholder="Seleccionar Usuario" [nbAutocomplete]="autoU"  />
+
+          <nb-autocomplete #autoU (selectedChange)="onSelectionUserChange($event)">
+            <nb-option [ngStyle]="user.state ? {} : {'color': 'red'}" [hidden]="user_select_id.includes(user.id)" *ngFor="let user of filteredUser$ | async" [value]="user">
+              <label>{{ user.name }} </label>
+            </nb-option>
+          </nb-autocomplete>
+        </div>
+        <div class="col-4" [hidden]="checked || type_report == 3">
+          <label for="">Usuarios escogidos <span nbTooltip="Listado de usuarios seleccionados en el filtro de Usuario" nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <nb-tag-list (tagRemove)="onTagRemove($event)">
+            <nb-tag [ngStyle]="tree.state ? {'color': 'blue'} : {'color': 'red'}" *ngFor="let tree of user_select" [key]="tree.id" [text]="tree.name" [removable]="true"></nb-tag>
+          </nb-tag-list>
+        </div>
+      </div>
+      <div class="row mb-3" [hidden]="type_report == 3">
+        <div class="col-4" [hidden]="checked">
+          <label for="">Formato de fecha en el reporte <span nbTooltip="Seleccionar el orden del formato de fecha." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <nb-select class="styleSelect" id="option_r" fullWidth placeholder="Formato de la Fecha en el Reporte" [(ngModel)]="optionR">
+            <nb-option value="1"> Año-Mes-Día </nb-option>
+            <nb-option value="2"> Día-Mes-Año </nb-option>
+          </nb-select>
+        </div>
+        <div class="col-4">
+          <label for="">Incluir campos eliminados <span nbTooltip="Incluir en el reporte los campos previamente eliminados del documento seleccionado." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <nb-select class="styleSelect" id="field_disabled" fullWidth placeholder="Mostrar Campos Inactivos"
+            [(ngModel)]="field_disabled">
+            <nb-option value="0"> No </nb-option>
+            <nb-option value="1"> Si </nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="row mb-3" [hidden]="true">
+        <div class="col-4">
+          <label for="">Dispositivo <span nbTooltip="Es un tipo de autenticacíon en donde se envía un código de 6 dígitos de un solo uso y temporal." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+        </div>
+        <div class="col-4">
+          <label for="">Online/Offline <span nbTooltip="Es un tipo de autenticacíon en donde se envía un código de 6 dígitos de un solo uso y temporal." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+        </div>
+        <div class="col-4">
+          <label for="">Estado <span nbTooltip="Es un tipo de autenticacíon en donde se envía un código de 6 dígitos de un solo uso y temporal." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+        </div>
+      </div>
+
+      <!-- Enviados -->
+      <div class="row mb-3" [hidden]="type_report != 3">
+        <div class="col-4">
+          <label for="">Medio de envío <span nbTooltip="Filtrar por el medio por el cual se realizó el envío del documento." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <nb-select class="styleSelect" id="option_r" fullWidth placeholder="Medio de envío" [(ngModel)]="shipment">
+            <nb-option value="0"> Todos </nb-option>
+            <nb-option value="correo electrónico"> Correo Electrónico </nb-option>
+            <nb-option value="WhatsApp"> WhatsApp </nb-option>
+            <nb-option value="SMS"> SMS </nb-option>
+            <nb-option value="WhatsApp y SMS"> WhatsApp y SMS </nb-option>
+          </nb-select>
+        </div>
+
+        <div class="col-4">
+          <label for="">Estado <span nbTooltip="Filtrar por el estado en el cual se encuentra el documento." nbTooltipPlacement="top" nbButton>
+            <img src="./assets/images/home/recursosmoduloempresa_melmac-05.png"/>
+          </span></label>
+          <nb-select class="styleSelect" fullWidth placeholder="Estado" [(ngModel)]="process_select"
+            [(selected)]="process_select">
+            <nb-option value="0">Todos</nb-option>
+            <nb-option *ngFor="let process of list_process" [value]="process.id"> {{process.name}} </nb-option>
+          </nb-select>
+        </div>
+
+        <div class="col-4">
+          <label for="">Destinatario</label>
+          <input [(ngModel)]="addressee" nbInput fullWidth type="text" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 text-center mt-3 mb-3">
+      <span class="colorTitle">Estos son los filtros aplicados. Ajústalos o elimínalos para personalizar tu informe y luego haz clic sobre el botón "Previsualizar informe" y descarga directamente tu formato favorito.</span><br>
+      <span class="colorTitle" [hidden]="textTamVisit">Recuerda que tus soportes se visualizaran independientemente.</span>
+    </div>
+    <div class="col-12 text-center">
+      <button class="m-2 btn-padding btn-text" [hidden]="permit_list_prev" type="button" nbButton shape="rectangle" status="info" (click)="onPreview()">
+        <span class="mr-1 ml-1"><img src="./assets/images/report/recursos_informes-09.png" width="40"/></span>  Previsualizar informe
+      </button>
+      <button class="m-2 btn-text" [hidden]="permit_list_hzip" type="button" nbButton shape="rectangle" status="primary" (click)="onPreview()">
+        <span class="mr-1 ml-1"><img src="./assets/images/report/recursos_informes-17.png"/></span>Ver historial descargas
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="validate_info && count != 0">
+    <div class="col-12 text-center mb-3" style="border-bottom: 1px solid;">
+      <span class="m-2" style="color: gray;">Selecciona un formato para descargar</span><br>
+      <button class="m-2 mb-5 btn-padding btn-text btn-download" type="button" nbButton shape="rectangle" (click)="onReport()">
+        <span class="mr-1 ml-1"><img src="./assets/images/report/recursos_informes-12.png" width="40"/></span>  EXCEL
+      </button>
+      <button class="m-2 mb-5 btn-text btn-download2" [hidden]="type_report != 1" type="button" nbButton shape="rectangle" (click)="onReportPDF(1)">
+        <span class="mr-1 ml-1"><img src="./assets/images/report/recursos_informes-14.png" width="40"/></span>ZIP
+      </button>
+      <button class="m-2 mb-5 btn-text btn-download2" [hidden]="type_report != 2 || checked" type="button" nbButton shape="rectangle" (click)="onReportPDF(2)">
+        <span class="mr-1 ml-1"><img src="./assets/images/report/recursos_informes-14.png" width="40"/></span>ZIP
+      </button>
+    </div>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <nb-card class="table_card">
+            <nb-card-body class="table_card_body text-center">
+              <div class="col-12 text-center">
+                <div class="col-md-12 d-flex">
+                  <div class="col-md-10" style="padding-left: 220px;">
+
+                    <h4 class="colorTitle">{{ nameDocument }} <span *ngIf="tam_report_visit"> - {{ nameVisitF }}</span></h4>
+                  </div>
+                  <div class="col-md-2 pt-2" *ngIf="tam_report_visit">
+                    <div class="circulo" style="float: right;" (click)="cambioHoja(1)" title="Siguiente hoja">
+                      <span>></span>
+                    </div>
+                    <div class="circulo" style="float: right;margin-right: 10px;" (click)="cambioHoja(0)" title="Anterior hoja">
+                      <span><</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <table class="table_list_field">
+                <th class="th_list" *ngFor="let head of data_table.head">
+                  {{ head }}
+                </th>
+                <tr *ngFor="let body_row of data_table.body">
+                  <td class="td_list" *ngFor="let column of body_row">
+                    <p class="p_list">{{ column }}</p>
+                  </td>
+                </tr>
+              </table>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-12 count_table">
+          <p> Mostrando respuestas {{ first_num }} de {{ count }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="row" *ngIf="validate_info && count == 0">
+        <div class="col-12 count_table text-center mt-5">
+          <div class="col-md-12 d-flex">
+            <div class="col-md-10" style="padding-left: 220px;">
+              <h4 class="colorTitle">{{ nameDocument }} <span *ngIf="tam_report_visit"> - {{ nameVisitF }}</span></h4>
+            </div>
+            <div class="col-md-2 pt-2" *ngIf="tam_report_visit">
+              <div class="circulo" style="float: right;" (click)="cambioHoja(1)" title="Siguiente hoja">
+                <span>></span>
+              </div>
+              <div class="circulo" style="float: right;margin-right: 10px;" (click)="cambioHoja(0)" title="Anterior hoja">
+                <span><</span>
+              </div>
+            </div>
+          </div>
+          <p> No se encontraron datos del filtro seleccionado.</p>
+        </div>
+  </div>
+</div>

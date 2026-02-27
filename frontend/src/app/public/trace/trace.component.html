@@ -1,0 +1,113 @@
+<div *ngIf="load" class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        <nb-card>
+            <nb-card-body>
+                <div class="legal-info">
+                  <h6 class="title-trace"> Evidencias de certificación digital de documentos</h6><br>
+
+                  <p>Las Partes aceptaron en común acuerdo que el presente documento se suscribió a través de la firma electrónica. Y para este fin utilizarán el servicio de firma electrónica de una empresa que cumple los requisitos estipulados en la LEY 527 de 1999 y demás normas que las adicionen y/o modifiquen, capturando el mensaje de datos y la información generada, enviada, recibida, almacenada o comunicada por medios electrónicos y vinculando una entidad certificadora en el proceso avalada por la ONAC como ANDES SCD.
+                  En esa medida, las Partes han convenido que conocen, entienden y aceptan que:</p><br><br>
+
+                  1. Es un servicio online de firma electrónica, cuya función consiste en permitir el envío de documentos y la suscripción electrónica de los mismos. Este servicio funciona por medio de una plataforma de internet.<br><br>
+
+                  2. La firma electrónica emitida suscrita por las partes cumple con los requisitos legales dispuestos en la Ley 527 de 1999, el Decreto 2364 de 2012 y demás normas que las adicionen y/o modifiquen. La firma electrónica utiliza mecanismos técnicos de identificación personal que son seguros y confiables, para efecto de garantizar la autenticidad e integridad de los documentos que se suscriban por medio de este método de firma electrónica.<br><br>
+
+                  3. La firma electrónica utilizada en el presente documento tendrá la misma validez y efectos jurídicos que la firma manuscrita. Lo anterior para todos los efectos o actos a que haya lugar.<br><br>
+
+                  <br>
+                  <i><b>“{{doc_name}}”</b></i>
+                  <br>
+                  <br>
+                  Solicitud : “{{doc_id}}”
+
+                  4. Acatando lo estipulado por el artículo 244 del Código General del proceso y en aplicación del principio de equivalencia funcional, este documento suscrito mediante firma electrónica es auténtico y original, sin que haya lugar a repudio, ni tacha de falsedad.<br><br>
+
+                  <p>En estricto sentido, el documento que se firma electrónicamente corresponde a un Mensaje de Datos. Cualquier información generada, enviada, recibida, almacenada o comunicada por medios electrónicos corresponde a un mensaje de datos.<br><br>
+                  Un documento electrónico (por ejemplo, un contrato con sus anexos) corresponde a un único mensaje de datos. En ese sentido, cuando se inicia un proceso de firma electrónica, se está haciendo sobre la totalidad del mensaje de datos y no solo sobre una parte.<br><br>
+                  De acuerdo con lo dispuesto en el artículo 7 de la Ley 527 de 1999, se entiende que la firma electrónica cumple los requisitos legales cuando “se ha utilizado un método que permita identificar al iniciador de un mensaje de datos y para indicar que el contenido cuenta con su aprobación”. Con esto, es evidente que, al firmarse el mensaje de datos, el firmante está aprobando la totalidad de su contenido, independientemente de si el mensaje de datos (por ejemplo, el contrato) está conformado, por una parte, principal y anexos.<br><br>
+                  Para la firma del presente documento, las Partes reconocen, entienden y aceptan los Términos y Condiciones de Uso de la Firma Electrónica, así como las obligaciones derivadas de dicho uso.</p>
+
+                </div>
+
+
+                <h6 class="title-trace">{{doc_name}} - Registro del documento</h6>
+
+                <nb-list>
+                    <nb-list-item *ngFor="let trace of traceability">
+                    {{ trace.creation_date | date:'dd/MM/y, HH:mm:ss'}} - {{ trace.description }}
+                    <span *ngIf="trace.extra">
+                      <div *ngFor="let image of trace.extra.image">
+                        <button style="margin:5px" nbButton (click)="downloadImage(image)" size="small" status="info"> Ver Imagen </button>
+                      </div>
+                    </span>
+                    </nb-list-item>
+                    <nb-list-item>
+                      <p>Documento diligenciado desde las Coordenadas geográficas: {{ ubicacion }}</p>
+                    </nb-list-item>
+                </nb-list>
+
+                <div class="content-sign">
+                    <h6 class="title-trace">Firmantes</h6>
+                    <table class="table_list_field">
+                        <th class="th_list">
+                            #
+                        </th>
+                        <th class="th_list">
+                            Nombre
+                        </th>
+                        <th class="th_list">
+                          Numero identificación
+                        </th>
+                        <th class="th_list">
+                            Correo electrónico
+                        </th>
+                        <th class="th_list">
+                            Número Celular
+                        </th>
+                        <th class="th_list">
+                            Hash
+                        </th>
+                        <ng-template *ngIf="sign_data.length == 0">
+                          <tr *ngFor='let j of [].constructor(5); let i = index'>
+                              <td>{{ i + 1 }}</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                        </ng-template>
+                        <tr *ngFor='let sign of sign_data; let i = index'>
+                            <td>{{ i + 1 }}</td>
+                            <td>{{sign.name}}</td>
+                            <td>{{sign.identification}}</td>
+                            <td>{{sign.email ? sign.email : 'N/A'}}</td>
+                            <td>{{sign.phone != 0 ? sign.phone : 'N/A'}}</td>
+                            <td style="overflow-wrap:anywhere;">{{sign.hash_info}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <div class="hash-container" *ngIf="doc_hash">
+                  <h6 class="title-trace">Hash del documento</h6>
+                  <table class="table_list_field">
+                    <tbody>
+                      <tr>
+                        <td>MD5</td>
+                        <td style="word-wrap: break-word; word-break: break-all; white-space: normal;">{{ doc_hash }}</td>
+                      </tr>
+                      <tr>
+                        <td>SHA-256</td>
+                        <td style="word-wrap: break-word; word-break: break-all; white-space: normal;">{{ doc_hashSha2 }}</td>
+                      </tr>
+                      <tr>
+                        <td>SHA-512</td>
+                        <td style="word-wrap: break-word; word-break: break-all; white-space: normal;">{{ doc_hashSha }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

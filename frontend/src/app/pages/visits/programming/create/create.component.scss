@@ -1,0 +1,132 @@
+table {
+  width: 100%;
+  text-align: center;
+}
+
+td.mat-cell, td.mat-footer-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: rgba(0, 0, 0, 0.12);
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: rgba(0, 0, 0, 0.12);
+}
+
+th.mat-header-cell{
+  text-align: center;
+  font-size: 20px;
+}
+
+#register_0 td{
+  font-size: 16px;
+  background: #ded9d97a;
+  cursor: auto;
+}
+
+.columns_1{
+  font-size: 16px;
+  background: #ded9d97a;
+  width: 100px;
+  text-align: left;
+}
+
+.columns_disp:hover{
+  background: rgb(198, 235, 252);
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+.blockDay{
+  background: rgb(224, 224, 224) !important;
+  position: relative;
+  color: black;
+}
+
+.blockDay:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  right: 0;
+  border-top: 1px solid;
+  border-color: rgb(201, 64, 64);
+
+  -webkit-transform:rotate(-10deg);
+  -moz-transform:rotate(-10deg);
+  -ms-transform:rotate(-10deg);
+  -o-transform:rotate(-10deg);
+  transform:rotate(-10deg);
+}
+
+.blockDay:hover{
+  background: rgb(224, 224, 224) !important;
+  cursor: not-allowed;
+  font-size: 14px !important;
+}
+
+tr.mat-row {
+  height: 30px;
+}
+
+::ng-deep nb-base-calendar nb-card {
+  width: 100% !important;
+}
+
+.btnMenu{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px !important;
+}
+
+::ng-deep .nb-theme-material-light nb-spinner {
+  background-color: rgba(110, 110, 110, 0.699) !important;
+}
+
+::ng-deep .nb-theme-material-light nb-spinner .message {
+  color: #ffffff !important;
+  font-size: 30px !important;
+  animation-name: parpadeo;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name:parpadeo;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{
+  10% { opacity: 1.0; }
+  50% { opacity: 0.1; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {
+  10% { opacity: 1.0; }
+  50% { opacity: 0.1; }
+   100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {
+  10% { opacity: 1.0; }
+   50% { opacity: 0.1; }
+  100% { opacity: 1.0; }
+}
+
+.HourAtiveDisp{
+  font-size: 20px;
+  background: #00ffd6;
+  border: 1px solid;
+}
+
+.HourInactiveDisp{
+  font-size: 20px;
+  background: #f46f6f;
+  border: 1px solid;
+}
+

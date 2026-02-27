@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-12">
+      <nb-card>
+        <nb-card-header>
+          Cámara de Pruebas
+        </nb-card-header>
+        <nb-card-body>
+
+          <div>
+            <label for="cameras">Selecciona una cámara:</label>
+            <select id="cameras" [(ngModel)]="selectedDeviceId" (change)="startCamera()">
+              <option *ngFor="let device of videoDevices" [value]="device.deviceId">
+                {{ device.label || 'Cámara ' + (i + 1) }}
+              </option>
+            </select>
+            <button (click)="reloadProcess()">Nuevo</button>
+          </div>
+
+          <div style="margin: 50px;">
+            <div [hidden]="!view_cam" style="width: 100%; text-align: center;">
+              <div style="width: 640px; height: 480px; background: black; border-radius: 20px; margin: 0 auto;">
+                <video style="width: 100%; border-radius: 20px;" #video autoplay class="mirror-video"></video>
+              </div>
+            </div>
+
+            <div [hidden]="view_cam" style="width: 100%; text-align: center;">
+              <canvas style="width: 640px; height: 480px;" hidden #canvas class="mirror-video"></canvas>
+              <div style="width: 640px; height: 480px; padding: 5%; background: #d8d8d8; border-radius: 20px; margin: 0 auto;">
+                <img style="width: 95%; border-radius: 10px;" [src]="capturedImageBase64">
+              </div>
+            </div>
+
+          </div>
+        </nb-card-body>
+      </nb-card>
+  </div>
+</div>

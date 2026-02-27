@@ -1,0 +1,118 @@
+<nb-card class="modal-card" [style]="getStyleModal()" [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+  <nb-card-body class="modal-card-body">
+    <!-- Header -->
+    <h5 class="modal-title">Firma OTP</h5>
+    <h6 *ngIf="step_now != 7"><button style="position: absolute; top: 15px; right: 15px;" class="modal-btn-default" nbButton status="default" (click)="close()">X</button></h6>
+
+    <div>
+      <!-- Contenido -->
+      <div class="row content-inputs">
+        <!-- Paso 1 -->
+        <div class="col-12" *ngIf="step_now == 1">
+          <div class="row content-body" style="justify-content: center;">
+            <b *ngIf="type_sign == 2" style="margin: 10px; text-align: center;">Para iniciar el proceso de firma con OTP, por favor, completa tu dirección de correo electrónico.</b>
+            <b *ngIf="type_sign == 3" style="margin: 10px; text-align: center;">Para iniciar el proceso de firma con OTP, por favor, ingresa tu número telefónico.</b>
+          </div>
+
+          <!-- Opción Email -->
+          <div class="form-group" *ngIf="type_sign == 2">
+            <input autocomplete="off" [(ngModel)]="email" nbInput fullWidth [ngModelOptions]="{standalone: true}"
+            placeholder="Ingresa el correo electrónico"
+            name="email" id="email_field" type="text" [status]="checkValue(2)" maxlength="50" required/>
+          </div>
+
+          <!-- Opción Teléfono -->
+          <div class="form-group" *ngIf="type_sign == 3">
+            <nb-form-field>
+              <input type="number" ng2TelInput nbInput fullWidth [(ngModel)]="phone"
+                autocomplete="off" #phoneInput name="phone" id="phone_field" (keydown)="pulsar($event)"
+                [disabled]="code_valid" [ng2TelInputOptions]="{preferredCountries: ['co'], separateDialCode: true}"
+                (intlTelInputObject)="telInputObject($event)"
+                pattern="^[\s0-9]*$"
+                required [status]="checkValue(3)" [ngModelOptions]="{standalone: true}" style="padding: 0.4375rem 3rem;" />
+            </nb-form-field>
+          </div>
+
+          <!-- Opción Email-telefono -->
+          <div class="form-group" *ngIf="type_sign == 4">
+            <b style="text-align: center;font-size: 12px;">Por favor, completa tu dirección de correo electrónico para que se puede enviar el código OTP.</b>
+            <input autocomplete="off" [(ngModel)]="email" nbInput fullWidth [ngModelOptions]="{standalone: true}"
+            placeholder="Ingresa el correo electrónico"
+            name="email" id="email_field" type="text" [status]="checkValue(2)" maxlength="50" required/> <br>
+
+            <b style="text-align: center;font-size: 12px;">Por favor, ingresa tu número de celular para que se puede enviar el código OTP.</b>
+            <nb-form-field>
+              <input type="number" ng2TelInput nbInput fullWidth [(ngModel)]="phone"
+                autocomplete="off" #phoneInput name="phone" id="phone_field" (keydown)="pulsar($event)"
+                [disabled]="code_valid" [ng2TelInputOptions]="{preferredCountries: ['co'], separateDialCode: true}"
+                (intlTelInputObject)="telInputObject($event)"
+                pattern="^[\s0-9]*$"
+                required [status]="checkValue(3)" [ngModelOptions]="{standalone: true}" style="padding: 0.4375rem 3rem;" />
+            </nb-form-field>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <nb-checkbox (checkedChange)="toggle($event)" name="check_id">
+                He leído y autorizo el tratamiento de datos personales
+                <a href="/authorization" target="_blank">Tratamiento de Datos Personales</a>
+              </nb-checkbox>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div class="col-12" *ngIf="step_now == 2 && type_sign != 4">
+          <div class="row content-body" style="justify-content: center;">
+            <b style="margin: 10px; text-align: center;">Ingresa el código OTP de 6 dígitos que <br>enviamos a tu {{type_sign == 2 ? 'correo' : 'celular'}}<br>{{type_sign == 2 ? email : '(' + phone_ind +  ') ' + phone}}</b>
+          </div>
+
+          <div class="row justify-content-md-center">
+            <div>
+              <code-input class="token" #codeInput id="code"
+              [codeLength]="6" (codeCompleted)="verifyToken($event)" class="code-input-verify">
+              </code-input>
+            </div>
+            <div class="time-countdown mt-2">
+              <label>Este código OTP expira en
+                <b style="color: #412378;">{{minutes > 0 ? (minutes < 10 ? '0'+minutes+':' : minutes+':'):''}}{{seconds < 10 ? '0'+seconds : seconds}}</b>{{minutes > 0 ? ' minutos' : ' segundos'}}
+              </label> <br>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12" *ngIf="step_now == 2 && type_sign == 4">
+          <div class="row content-body" style="justify-content: center;">
+            <b style="margin: 10px; text-align: center;">Ingresa el código OTP de 6 dígitos que enviamos a tu correo electrónico {{ email }}</b>
+          </div>
+          <div class="row justify-content-md-center">
+            <div>
+              <code-input class="token" #codeInput id="code"
+              [codeLength]="6" (codeCompleted)="verifyToken2(1,$event)" class="code-input-verify">
+              </code-input>
+            </div>
+          </div>
+          <div class="row content-body" style="justify-content: center;">
+            <b style="margin: 10px; text-align: center;">Ingresa el código OTP de 6 dígitos que enviamos a tu celular {{'(' + phone_ind +  ') ' + phone}}</b>
+          </div>
+          <div class="row justify-content-md-center">
+            <div>
+              <code-input class="token" #codeInput2 id="code"
+              [codeLength]="6" (codeCompleted)="verifyToken2(2,$event)" class="code-input-verify">
+              </code-input>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="content-footer" style="text-align: center; margin-top: 20px;">
+      <!-- Paso 1 -->
+      <button (click)="onFirstSubmit()" [disabled]="!validFirstStep()" *ngIf="step_now == 1" class="modal-btn modal-btn-primary" nbButton status="primary">Ingresar</button>
+      <!-- Paso 2 -->
+      <button (click)="onBackFirstStep()" *ngIf="step_now == 2" class="modal-btn modal-btn-primary" nbButton status="primary">No recibí mi código</button>
+    </div>
+
+  </nb-card-body>
+</nb-card>

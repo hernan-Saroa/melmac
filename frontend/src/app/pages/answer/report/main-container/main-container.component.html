@@ -1,0 +1,50 @@
+
+<div  [nbSpinner]="loading" nbSpinnerSize="medium" nbSpinnerStatus="primary" >
+  <div class="row pl-2 mb-1" style="background: #412378b5;" >
+    <div class="col-6 pl-0 pt-2">
+      <!-- <p class="time-title">Quedan 3 minutos... </p> -->
+    </div>
+    <div class="col-6 text-right color-text-white">
+      <!-- <button nbButton size="tiny" (click)="dropThread()">Cancelar</button> -->
+      <a (click)="dropThread(1)">Cancelar</a>
+    </div>
+  </div>
+  <!-- <div [hidden]="subtitle"> -->
+  <div *ngIf="subtitle" [nbSpinner]="true" nbSpinnerMessage="Iniciando Descarga..." nbSpinnerSize="tiny" nbSpinnerStatus="primary" >
+    <label ></label>
+  </div>
+  
+  <div [ngClass]="{'scroll-form': showScroll}">
+    <div *ngFor="let massive_val of massive_values">
+      <div class="row">
+        <div class="col-2 text-left pl-2" style="line-height: 40px;border-bottom: 0.1rem solid gray;border-left: 0.1rem solid gray;">
+          <img [hidden]="massive_val.type == 'excel'" src="./assets/images/report/recursos_informes-22.png" width="40" title="Informe formato excel">
+          <img [hidden]="massive_val.type == 'zip'" src="./assets/images/report/recursos_informes-12.png" width="40" title="Informe formato zip">
+        </div>
+        <div class="col-8" style="line-height: 40px;border-bottom: 0.1rem solid gray;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">
+          <span>{{ massive_val.name }}</span>
+        </div>
+        <div class="col-2 text-right" style="line-height: 40px;border-bottom: 0.1rem solid gray;border-right: 0.1rem solid gray;height: 48.33333px;">
+          <div [hidden]="massive_values.percentage != 100 ">
+            <img  src="./assets/images/report/recursos_informes-19.png" title="Informe descargado">
+          </div>
+          <div [hidden]="massive_values.percentage == 100" style="padding-top: 9px;padding-left: 9px;">
+            <nb-card [nbSpinner]="true" nbSpinnerStatus="primary" title="{{ massive_val.percentage }}%">
+              <span style="font-size: 8px;text-align: center;">
+                {{ massive_val.percentage }}%
+              </span>
+            </nb-card>
+            <!-- <div class="progress" data-percentage="{{massive_val.percentage}}" title="{{ massive_val.percentage }}%">
+              <span class="progress-left">
+                <span class="progress-bar"></span>
+              </span>
+              <span class="progress-right">
+                <span class="progress-bar"></span>
+              </span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>

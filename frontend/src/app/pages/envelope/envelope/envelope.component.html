@@ -1,0 +1,271 @@
+<div style="position: relative;">
+  <div *ngIf="!loading_page && loading" class="sp-loading">
+    <div class="spinner-border" role="status"></div>
+  </div>
+</div>
+
+<div id="my-unit" (scroll)="onScrollStart($event)" class="container ng-scroll" style="overflow-x: hidden; overflow-y: scroll; height: 100vh;">
+  <div *ngIf="loading_page" class="not-pdf" style="height: 75vh;">
+    <div>
+      <div class="not-pdf">
+        <div class="icon-pdf">
+          <nb-icon icon="loader-outline" style="font-size: 4rem; color: white"></nb-icon>
+        </div>
+      </div>
+      <p class="text-muted" style="text-align: center;">Cargando módulo, por favor espere un momento.</p>
+    </div>
+  </div>
+
+  <div *ngIf="!loading_page" class="row justify-content-center">
+    <div class="col-12">
+      <div class="search-container">
+        <div class="recent-documents">
+          <img src="./assets/images/icons/folder/MIS_CREACIONES.png" alt="" style="margin-right: 5px;">
+          <label class="reciente">Procesos</label>
+        </div>
+        <div class="search input-group w-100 mx-auto" *ngIf="envelope_list.length > 0">
+          <div class="input-group-prepend">
+            <span class="icon-search">
+              <nb-icon icon="search-outline"></nb-icon>
+            </span>
+          </div>
+          <input type="text" class="form-control" placeholder="Buscar en procesos"/>
+          <div class="input-group-prepend">
+            <span class="icon-search">
+              <nb-icon icon="options-2-outline"></nb-icon>
+            </span>
+          </div>
+        </div>
+        <div class="input-group-append" *ngIf="envelope_list.length > 0">
+          <button class="btn btn-outline-secondary">
+            <nb-icon icon='arrow-upward-outline' pack="eva"></nb-icon>
+            <b>AZ</b>
+            <nb-icon icon='arrow-downward-outline' pack="eva"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="envelope_list.length == 0" class="">
+      <div class="d-flex justify-content-center align-items-center" style="flex-direction: column; padding: 10%;">
+        <p class="text-muted" style="text-align: center;">AÚN NO TIENES DOCUMENTOS RECIENTES</p>
+      </div>
+
+    </div>
+
+    <div class="col-12" *ngIf="envelope_list.length > 0">
+      <div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <div class="envelope-container">
+              <div class="row envelope-container-list" style="position: relative;">
+                <div [hidden]="envelope_index == 0" class="button-envelope button-back-envelope" (click)="changeIdxCar(-1)">
+                  <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+                </div>
+
+                <ng-container *ngFor="let item of envelope_list">
+                  <div class="col-sm-12 col-md-6 col-xl-3 envelope-view" *ngIf="item">
+                    <div class="card-pdf">
+
+                      <pdf-viewer style="border-radius: 10px; width: 100%; overflow: hidden; border: 2px solid #939393; background: white; height: 66%" [src]="item.template" [render-text]="true" [show-all]="false" [original-size]="true"
+                        [fit-to-page]="true" class="pdf-viewer-box"></pdf-viewer>
+
+                      <div class="card-pdf-body">
+                        <div class="menu-drop" style="display: flex; align-items: center; justify-content: space-between">
+                          <!-- <p *ngIf="item.name != ''" class="card-title ellipsis" alt="{{ item.name }}">{{ item.name }}</p> -->
+                          <p *ngIf="item.name != ''" class="card-pdf-title" alt="{{ item.name }}">{{ item.name }}</p>
+                          <p *ngIf="item.name == ''"class="card-pdf-title" >Sin nombre</p>
+
+                          <button nbButton [nbContextMenu]="items" class="nb-context-menu-content" style="margin-right: 4px;"
+                            (click)="clickMenu(item)" nbContextMenuTrigger="click" [nbContextMenuTag]="item">
+                            <nb-icon icon="more-vertical-outline" class="icon"></nb-icon>
+                          </button>
+                        </div>
+                          <p class="card-pdf-text ellipsis" alt="{{ item.user_create }}" ><b>Creado por: </b>{{ item.user_create }}</p>
+                          <p class="card-pdf-text ellipsis" alt="{{ item.creation_date }}" >{{ item.creation_date | date: 'EEEE d/M/yyyy, hh:mm a' }}</p>
+                          <p class="card-pdf-text ellipsis" alt="{{ item.modify_date }}" style="font-size: 11px;" ><b>Última actualización: </b>{{ item.modify_date | date: 'EEEE d/M/yyyy' }}</p>
+                          <!-- <p class="card-pdf-text ellipsis" alt="{{ item.person }}" >Versión: {{ item.version }}</p> -->
+                          <!-- <p class="card-text ellipsis" alt="{{ item.person }}" >Creado por: {{ item.person }}</p> -->
+                          <p class="ellipsis" [ngClass]="'item-status '+setClassState(item.status)"><b>{{ statusEnvelope[item.status] || 'Sin Estado' }}</b></p>
+                          <!-- <p class="card-status ellipsis" alt="{{ item.status }}" >Estado:{{ item.status }}</p> -->
+
+                        <!-- more-vertical-outline -->
+                      </div>
+
+                    </div>
+                  </div>
+                </ng-container>
+                <div [hidden]="total_envelope <= show_envelope || (envelope_index + show_envelope) >= total_envelope" class="button-envelope button-next-envelope" (click)="changeIdxCar(1)">
+                 <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="margin-left: -50px; margin-right: -50px">
+    </div>
+  </div>
+
+  <div *ngIf="!loading_page && envelope_list.length > 0 && data.length > 0">
+    <div class="col-md-8 col-lg-12 col-12">
+      <div class="search-container">
+        <div class="recent-documents">
+          <nb-icon icon="clock-outline"></nb-icon>
+          <label class="reciente">Recientes</label>
+        </div>
+        <div class="search input-group w-100 mx-auto">
+          <div class="input-group-prepend">
+            <span class="icon-search">
+              <nb-icon icon="search-outline"></nb-icon>
+            </span>
+          </div>
+          <input type="text" class="form-control" />
+          <div class="input-group-prepend">
+            <span class="icon-search">
+              <nb-icon icon="options-2-outline"></nb-icon>
+            </span>
+          </div>
+        </div>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary">
+            <span class="icon-search">
+              <nb-icon icon="keypad"></nb-icon>
+            </span>
+          </button>
+          <button class="btn btn-outline-secondary">
+            <span class="icon-search">
+              <nb-icon icon="options-outline"></nb-icon>
+            </span>
+          </button>
+          <button class="btn btn-outline-secondary">
+            <span class="icon-search">
+              <nb-icon icon="folder"></nb-icon>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-12">
+        <div class="envelope-container">
+          <div>
+            <div *ngIf="breadcrumbsName.length == 0" style="display: flex; align-items: center; margin-bottom: 5px;">
+              <nb-icon icon="folder-outline" style="font-size: 1.5rem;"></nb-icon>
+              <div class="valor-1">...</div>
+            </div>
+            <div *ngIf="breadcrumbsName.length > 0" style="display: flex; align-items: center; margin-bottom: 5px;">
+              <nb-icon (click)="onBack()" icon="arrow-back-outline" class="icon-on-back active"></nb-icon>
+              <span *ngFor="let breadcrumbs of breadcrumbsName; let i = index;">
+                {{ breadcrumbs}}{{breadcrumbsName.length > 1 && (i+1) < breadcrumbsName.length ? '&nbsp;&nbsp;/&nbsp;&nbsp;' : ''}}
+              </span>
+              <!-- <div class="valor-1">{{ breadcrumbsName }}</div> -->
+            </div>
+            <hr style="margin-top: 0.1rem">
+            <div class="row">
+              <pdf-viewer *ngIf="openFile" style="border-radius: 10px 10px 0 0; width: 100%; overflow: hidden;" [src]="openFile" [render-text]="true" [show-all]="false" [original-size]="false"
+                        [fit-to-page]="false" class="pdf-viewer-box"></pdf-viewer>
+              <ng-container *ngFor="let item of data" style="width: 100%;">
+                <div class="col-sm-12 col-md-6 col-xl-3 envelope-view" >
+                  <div class="card-pdf answer">
+                    <div style="border-radius: 10px; border: 2px solid #939393;">
+                      <img *ngIf="listAnswerType == 'files'" [src]="'assets/images/icons/evelope/'+item.type+'.png'" (click)="viewFile(item)" class="card-img-top p-5" alt="..." style="cursor: pointer">
+                      <div *ngIf="listAnswerType == 'folder'" style="position: relative; cursor: pointer; display: flex; justify-content: center" (click)="selectedFile(item)">
+                          <div class="count-answer-pdf">
+                          <div>{{item.answers}}</div>
+                        </div>
+                        <img class="my-2" src="assets/images/icons/evelope/folder-answer.png" alt="" style="width: 80%;">
+                      </div>
+                    </div>
+                    <!-- <img [src]="item.image" class="card-img-top" alt="..."> -->
+                    <!-- <pdf-viewer [src]="doc.file" [render-text]="true" [show-all]="false" [original-size]="false"
+                        [fit-to-page]="false" class="pdf-viewer-box"></pdf-viewer> -->
+                    <div class="card-pdf-body" [ngClass]="{'list-answer': listAnswerType != 'files' && !item.user_name}">
+                      <div class="menu-drop">
+                        <p *ngIf="listAnswerType != 'files'" class="card-pdf-title ellipsis" alt="{{ item.envelope_name }}">{{ item.envelope_name ? item.envelope_name : 'Sin nombre' }}</p>
+                        <p *ngIf="listAnswerType == 'files'" class="card-pdf-text ellipsis" alt="{{ item.name }}">{{ item.name }}</p>
+                        <!-- <button nbButton [nbContextMenu]="items" class="nb-context-menu-content"
+                          (click)="clickMenu(item)" nbContextMenuTrigger="click" [nbContextMenuTag]="item">
+                          <nb-icon icon="more-vertical-outline" class="icon"></nb-icon>
+                        </button> -->
+                      </div>
+                        <p *ngIf="listAnswerType != 'files' && item.user_name" class="card-pdf-text ellipsis" alt="{{ item.user_name }}" ><b>Creado por: </b>{{ item.user_name }}</p>
+                        <p class="card-pdf-text ellipsis" alt="{{ item.envelope_date }}" >{{ item.envelope_date | date: 'EEEE d/M/yyyy, hh:mm a' }}</p>
+                        <p [hidden]="!item.modify_date" class="card-pdf-text ellipsis" alt="{{ item.modify_date }}" style="font-size: 11px;" ><b>Última actualización: </b>{{ item.modify_date | date: 'EEEE d/M/yyyy' }}</p>
+                        <!-- <p class="card-pdf-text ellipsis" alt="{{ item.modify_date }}" style="font-size: 11px;" ><b>Última actualización: </b>{{ item.modify_date | date: 'EEEE d/M/yyyy' }}</p> -->
+                        <!-- <p class="ellipsis" [ngClass]="{'valor-1': item.status === '1', 'valor-2': item.status === '2', 'valor-3': item.status === '3', 'valor-4': item.status === '4', 'valor-5': item.status === '5', 'valor-6': item.status === '6', 'valor-7': item.status === '7'}">Estado: {{ item.status === '1' ? 'Aprobacion Pendiente' : item.status === '2' ? 'Asignar campos' :item.status === '3' ? 'Configurar envio' :item.status === '4' ? 'Definir participantes' :item.status === '5' ? 'En Diligenciamiento' :item.status === '6' ? 'Verificación Rechazada' : 'Completado' }}</p> -->
+                        <!-- <p class="card-status ellipsis" alt="{{ item.status }}" >Estado:{{ item.status }}</p> -->
+
+                      <!-- more-vertical-outline -->
+                    </div>
+
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="floating-button"  (click)="floattingButton()">
+      <nb-icon icon="file-add-outline" class="icon" ></nb-icon>
+  </div>
+  <div *ngIf="openFile" style="position: absolute; top: 0; left: 0; z-index: 1200;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 5rem;
+    background: #999999AB;">
+    <div style="position: relative; width: 100%; height: 100%;">
+      <nb-icon style="position: absolute; z-index: 1; right: 15px; top: 5px; font-size: 1.6rem;" nbButton ghost status="danger" (click)="openFile=''" icon="close-circle-outline"></nb-icon>
+      <pdf-viewer style="border-radius: 10px; width: 100%; height: 100%; overflow: hidden; background: white" [src]="openFile" [render-text]="true" class="pdf-viewer-box"></pdf-viewer>
+  </div>
+  </div>
+</div>
+<!--
+
+<div class="envelope">
+  <nb-layout>
+    <nb-layout-header fixed>
+      <app-header></app-header>
+    </nb-layout-header>
+    <nb-layout-column>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="input-group">
+              <label class="search">Documentos Recientes</label>
+              <input type="text" class="form-control search" placeholder="" [(ngModel)]="searchTerm" />
+              <div class="input-group-append">
+                <button class="btn filter-button" type="button">A</button>
+                <button class="btn filter-button" type="button">B</button>
+                <button class="btn filter-button" type="button">C</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="envelope-container">
+              <div class="row">
+                <ng-container *ngFor="let item of data">
+                  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                      <img [src]="item.image" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">{{ item.date }}</p>
+                        <p class="card-text">{{ item.person }}</p>
+                        <p class="card-text">{{ item.status }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-layout-column>
+  </nb-layout>
+</div> -->

@@ -1,0 +1,14 @@
+<nb-card>
+    <nb-card-header>
+        Configurar Intentos por firma
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table 
+            [settings]="settings" 
+            [source]="data"
+            (editConfirm)="onEditConfirm($event)"
+            (createConfirm)="onCreateConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

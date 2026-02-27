@@ -1,0 +1,13 @@
+::ng-deep .file-input {
+    display: none;
+}
+
+nb-card-body {
+    .content-data {
+        margin-bottom: 1rem;
+    }
+  
+    .content-data > * {
+      margin-top: 1rem;
+    }
+  }

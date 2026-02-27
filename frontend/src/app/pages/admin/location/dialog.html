@@ -1,0 +1,42 @@
+<nb-card>
+  <nb-card-header>
+    <h1>{{data.title}}</h1>
+  </nb-card-header>
+  <nb-card-body class="content-location-permit">
+    <div class="row">
+      <div class="col-sm-12">
+        <label class="label" for="input-name">Nombre Sucursal *</label>
+        <input id="input-name" type="text" nbInput fullWidth shape="semi-round" placeholder="Nombre de la Sucursal" [(ngModel)]="name" style="margin: 5px 0;">
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <label class="label" for="input-addr">Dirección *</label>
+        <input id="input-addr" type="text" nbInput placeholder="Dirección de la sucursal" [(ngModel)]="address" style="width:100%; max-width:100%">
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <label class="label" for="input-coun">País *</label><br>
+        <nb-select [(ngModel)]="country" name="country" id='input-coun' class="select-form"
+          placeholder="Seleccione País de la sucursal">
+          <nb-option *ngFor="let country_data of data.parentComponent.countries;"
+              [value]="country_data.id">{{ country_data.name }}</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <label class="label" for="input-city">Ciudad *</label><br>
+        <nb-select [(ngModel)]="city" name="city" id='input-city' class="select-form"
+          placeholder="Seleccione Ciudad de la sucursal">
+          <nb-option *ngFor="let city_data of data.parentComponent.cities;"
+              [value]="city_data.id" [hidden]="city_data.country_id != country" >{{ city_data.name }}</nb-option>
+        </nb-select>
+      </div>
+      <div class="col-sm-12" style="margin-top: 10px;">
+        <nb-checkbox [(ngModel)]="isDefault" [checked]="isDefault"
+        (checkedChange)="toggle($event)" title="¿Es la sucursal principal?" >¿Es la sucursal principal?</nb-checkbox>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close()">Cancelar</button>
+    <button [nbSpinner]="loading" nbSpinnerStatus="default" [disabled]="loading" nbButton status="warning" [hidden]="!state_location" (click)="onDisable($event)" *ngIf="data.type == 2">Deshabilitar</button>
+    <button [nbSpinner]="loading" nbSpinnerStatus="success" [disabled]="loading" nbButton status="primary" (click)="onAccept($event)">Aceptar</button>
+  </nb-card-footer>
+</nb-card>

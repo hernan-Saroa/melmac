@@ -1,0 +1,163 @@
+<div class="row">
+  <div class="col-xl-5 col-lg-5 col-md-5 col-12">
+      <nb-card accent="primary" status="info" size="small">
+          <nb-card-header>Mapa</nb-card-header>
+          <nb-card-body>
+            <div style="height: 100%; position:relative"
+              leaflet
+              [leafletOptions]="options"
+              (leafletMapReady)="onMapReady($event)">
+              <div [leafletLayers]="markers.position"></div>
+              <div [leafletLayers]="markers.paths"></div>
+            </div>
+          </nb-card-body>
+      </nb-card>
+      <nb-card accent="primary" status="info" size="tiny">
+          <nb-card-header>Datos del servicio</nb-card-header>
+          <nb-card-body>
+              <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                      <div class="progress-info" *ngFor="let item of data_service">
+                          <div class="title" *ngIf="item.value != ''">{{ item.title }}</div>
+                          <div class="subtitle">{{ item.value }}</div>
+                      </div>
+                  </div>
+              </div>
+          </nb-card-body>
+      </nb-card>
+  </div>
+
+  <div class="col-xl-3 col-lg-3 col-md-3 col-12">
+      <nb-card accent="primary" status="info" size="large">
+          <nb-card-header>Puntos de la ruta</nb-card-header>
+          <nb-card-body>
+
+              <nb-list>
+                  <nb-list-item *ngFor="let item of address_list; let i=index;"
+                      [class]="'address-content ' + getClass(i)">
+                      <label class="address-item"
+                          (click)="showTrace(item.id, item.guide, i)">
+                          <nb-icon icon="pin" pack="eva"></nb-icon> {{ item.address }}
+                      </label>
+                      <button class="end-float pt-0 pb-0" nbButton ghost status="default"
+                          [nbContextMenu]="items" nbContextMenuTag='{{i}}' nbContextMenuTrigger="click">
+                          <nb-icon icon="more-vertical"></nb-icon>
+                      </button>
+                  </nb-list-item>
+              </nb-list>
+          </nb-card-body>
+      </nb-card>
+  </div>
+
+  <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+    <nb-card accent="primary" status="info" size="large"
+      [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+      <nb-card-header>Servicio y Estados</nb-card-header>
+      <nb-card-body>
+          <div *ngIf="trace_service == null && data_state">
+            <div style="margin-top: 50%">
+              Haz click en cualquiera de las direcciones para ver la trazabilidad del punto
+            </div>
+          </div>
+          <div *ngIf="trace_service != null && data_state">
+              <nb-card class="header_trace">
+                  <nb-card-body>
+                      <div class="visited-pages-count" *ngIf="trace_service.user.name == undefined">
+                          <h6>Sin asignar entrega</h6>
+                      </div>
+                      <div class="visited-pages-count" [hidden]="trace_service.user.name == undefined">
+                          <h6>Asignado - {{ trace_service.user.name }}</h6>
+                          <label class="caption">
+                              <nb-icon style="font-size: 12px;" icon="hash-outline" pack="eva"></nb-icon> {{ trace_service.user.identification }}
+                          </label><br>
+                          <label class="caption">
+                              <nb-icon style="font-size: 12px;" icon="phone" pack="eva"></nb-icon> {{ trace_service.user.phone }}
+                          </label>
+                      </div>
+                  </nb-card-body>
+              </nb-card>
+              <nb-card class="header_trace">
+                  <nb-card-body class="body_trace">
+                      <div class="visited-pages-count">
+                          <label class="caption">Guía: <b class="guide_trace">{{ trace_service.num }}</b></label>
+                      </div>
+                  </nb-card-body>
+              </nb-card>
+              <nb-card class="state_service" *ngFor="let trace of trace_service.trace">
+                  <nb-card-body>
+                      <div class="visited-pages-count">
+                          <div class="caption">{{ trace.name }}</div>
+                          <div class="date_state">{{ trace.date }}</div>
+                          <!-- <button style="position: absolute; top: 10px; right: 10px; float: right;"
+                              nbButton
+                              outline status="primary" size="tiny">
+                              <nb-icon icon="eye"></nb-icon>
+                          </button> -->
+                      </div>
+                  </nb-card-body>
+              </nb-card>
+          </div>
+          <div *ngIf="data_delivery">
+              <nb-card class="header_trace">
+                  <nb-card-body>
+                      <div class="visited-pages-count">
+                          <h6>Datos de Entrega</h6>
+                          <label class="caption">
+                              <nb-icon style="font-size: 12px;" icon="home-outline" pack="eva"></nb-icon> {{ select_address.comment }}
+                          </label><br>
+                          <label class="caption">
+                              <nb-icon style="font-size: 12px;" icon="pin" pack="eva"></nb-icon> {{ select_address.address }}
+                          </label><br>
+                          <label class="caption">
+                              <nb-icon style="font-size: 12px;" icon="person-outline" pack="eva"></nb-icon> {{ select_address.user_name }}
+                          </label><br>
+                          <label class="caption">
+                              <nb-icon style="font-size: 12px;" icon="hash-outline" pack="eva"></nb-icon>
+                              <a *ngIf="select_address.user_id_number != null"> {{ select_address.user_id_number }}</a>
+                              <a *ngIf="select_address.user_id_number == null"> N/A</a>
+                          </label><br>
+                          <label class="caption">
+                              <nb-icon style="font-size: 12px;" icon="phone" pack="eva"></nb-icon> {{ select_address.user_phone }}
+                          </label><br>
+                      </div>
+                  </nb-card-body>
+              </nb-card>
+          </div>
+          <div *ngIf="data_voucher">
+              <nb-card class="header_trace">
+                  <nb-card-body>
+                      <div class="visited-pages-count">
+                          <h6>Comprobante</h6>
+                          <label class="caption text-primary btn-answer" *ngIf="select_address.answer != null" (click)="showAnswer()">
+                              <nb-icon style="font-size: 12px;" icon="edit-2-outline" pack="eva"></nb-icon> Documento
+                          </label>
+                          <label class="caption" *ngIf="select_address.answer == null">No se ha diligenciado el documento</label>
+                          <br>
+                      </div>
+                  </nb-card-body>
+              </nb-card>
+          </div>
+          <div *ngIf="data_option">
+              <nb-card class="header_trace">
+                  <nb-card-body>
+                      <div class="visited-pages-count">
+                          <h6>{{ select_address.address }}</h6>
+                          <label class="caption">
+                              Seguro que quieres cancelar este servicio?
+                          </label>
+                          <br>
+                          <button
+                              nbButton
+                              outline status="danger" size="tiny"
+                              (click)="cancelService()">
+                              Cancelar
+                          </button>
+                      </div>
+                  </nb-card-body>
+              </nb-card>
+          </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>

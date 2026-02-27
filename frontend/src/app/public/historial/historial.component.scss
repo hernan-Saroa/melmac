@@ -1,0 +1,108 @@
+
+::ng-deep .table-answer {
+    ::ng-deep i[itemprop]:hover::after {
+        z-index: 1;
+        padding: 5px;
+        font-size: 14px;
+        content: attr(itemprop);
+        position: absolute;
+        border-radius: 0px 5px 5px 5px;
+        border: 1px solid;
+        bottom: -15px;
+        margin-left: -0.4em;
+    }
+  }
+  
+  ::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+    ::ng-deep .table-answer {
+        ::ng-deep i[itemprop]:hover::after {
+            background-color: #edf1f7;
+            color: #3366ff;
+        }
+    }
+  }
+  
+  ::ng-deep body.nb-theme-cosmic {
+    ::ng-deep .table-answer {
+        ::ng-deep i[itemprop]:hover::after {
+            background-color: #323259;
+            color: #a16eff;
+        }
+    }
+  }
+  
+  ::ng-deep body.nb-theme-dark {
+    ::ng-deep .table-answer {
+        ::ng-deep i[itemprop]:hover::after {
+            background-color: #222b45;
+            color: #3366ff;
+        }
+    }
+  }
+  
+  .btn_eraser {
+      float: right;
+  }
+  
+  ::ng-deep .table-answer {
+    tr {
+      cursor: pointer;
+    }
+  }
+  
+  // Resumen
+  ::ng-deep.table_list_field {
+    border-radius: 0.25rem;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+  }
+  
+  ::ng-deep.table_list_data {
+    margin-bottom: 15px;
+  }
+  
+  ::ng-deep .th_list {
+    padding: 5px;
+    border-radius: 0.25rem;
+  }
+  
+  ::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #e4e9f2;
+    }
+  
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #e4e9f2;
+    }
+  }
+  
+  ::ng-deep body.nb-theme-dark {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #101426;
+    }
+  
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #101426;
+    }
+  }
+  
+  ::ng-deep body.nb-theme-cosmic {
+    ::ng-deep.table_list_field {
+        border: 0.0625rem solid #13132b;
+    }
+  
+    ::ng-deep .th_list {
+        border: 0.0625rem solid #13132b;
+    }
+  }
+  
+  ::ng-deep .end-float{
+    float: right;
+  }
+  
+  .form_value, .enroll_data {
+    padding: 5px;
+    border: 0.0625rem solid #e4e9f2;
+  }
+  

@@ -1,0 +1,376 @@
+.geo-col {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.geo-card {
+  margin-bottom: 0px;
+}
+
+.action-col {
+  box-shadow: 0px 4px 5px 0px #00000024, 0px 1px 10px 0px #0000001f, 0px 2px 4px -1px #00000033;
+}
+
+.hidden-col {
+  display: none;
+}
+
+.body-geo-map {
+    padding: 0px 0px 0px 0px;
+}
+
+.map-size {
+  height: 100%;
+  width:95%;
+  position:relative;
+  float: left;
+}
+
+.menu-size {
+  width:5%;
+  position:relative;
+  float: right;
+  text-align: center;
+}
+
+.body-geo-menu {
+    text-align: center;
+    padding-top: 0px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.content-btn {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.content-title {
+    margin: 15px;
+}
+
+.btn-close {
+  position: absolute !important;
+  width: 50px !important;
+  right: 5px !important;
+  top: 5px !important;
+}
+
+.btn-dropdown-option {
+  padding: 0px !important;
+}
+
+.option-board {
+  height: 0px;
+}
+
+.option-board.active {
+  height: 115px;
+}
+
+.option-board {
+  transition: 0.40s height;
+}
+
+// Point
+.label {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+    .content-btn, .internal-list {
+        border-bottom: 2px solid #edf1f7;
+    }
+    .option-board.active {
+      border-bottom: 1px solid #edf1f7;
+    }
+}
+
+::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+    .content-btn, .internal-list {
+        border-bottom: 2px solid #1b1b38;
+    }
+    .option-board.active {
+      border-bottom: 1px solid #1b1b38;
+    }
+    div.leaflet-popup-content {
+      p {
+        color: black;
+      }
+    }
+}
+
+::ng-deep .leaflet-bar > a {
+  text-decoration: none !important;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+
+    ::ng-deep .content-list::-webkit-scrollbar, ::ng-deep .option-field-select::-webkit-scrollbar, ::ng-deep .internal-list::-webkit-scrollbar-track {
+      width: 0.3125rem;
+      height: 0.5125rem;
+    }
+
+    ::ng-deep .content-list::-webkit-scrollbar-thumb, ::ng-deep .option-field-select::-webkit-scrollbar-thumb, ::ng-deep .internal-list::-webkit-scrollbar-track {
+      background: #8f9bb3;
+      cursor: pointer;
+      border-radius: 0.15625rem;
+    }
+
+    ::ng-deep .content-list::-webkit-scrollbar-track, ::ng-deep .option-field-select::-webkit-scrollbar-track, ::ng-deep .internal-list::-webkit-scrollbar-track {
+      background: #f7f9fc;
+    }
+
+  }
+
+  ::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+    ::ng-deep .content-list::-webkit-scrollbar, ::ng-deep .internal-list::-webkit-scrollbar-track {
+      width: 0.3125rem;
+      height: 0.3125rem;
+    }
+
+    ::ng-deep .content-list::-webkit-scrollbar-thumb, ::ng-deep .internal-list::-webkit-scrollbar-track {
+      background: #b4b4db;
+      cursor: pointer;
+      border-radius: 0.15625rem;
+    }
+
+    ::ng-deep .content-list::-webkit-scrollbar-track, ::ng-deep .internal-list::-webkit-scrollbar-track {
+      background: #252547;
+    }
+  }
+
+  @media (max-width: 1400px) {
+    .map-size {
+      width:94%;
+    }
+
+    .menu-size {
+      width:6%;
+    }
+  }
+
+  @media (max-width: 1300px) {
+    .map-size {
+      width:92%;
+    }
+
+    .menu-size {
+      width:8%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .map-size {
+      width:88%;
+    }
+
+    .menu-size {
+      width:12%;
+    }
+
+    .btn-close {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .map-size {
+      width:85%;
+    }
+
+    .menu-size {
+      width:15%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .map-size {
+      width:80%;
+    }
+
+    .menu-size {
+      width:20%;
+    }
+  }
+
+  .internal-list {
+    max-height: 200px;
+  }
+
+::ng-deep .marker-cluster {
+  background-clip: padding-box;
+  border-radius: 20px;
+  margin-left: -20px;
+  margin-top: -20px;
+  width: 40px;
+  height: 40px;
+  transform: translate3d(408px, 275px, 0px);
+  z-index: 275;
+  opacity: 1;
+}
+
+::ng-deep .mycluster{
+  max-width: 100px;
+  width:100%;
+  height: 40px;
+  text-align: center;
+  // outline: #000000 solid 1px;
+  font-size: 12px;
+  background-color: rgba(181, 226, 140, 0.6);
+}
+
+::ng-deep .marker-cluster-small {
+  background-color: rgba(181, 226, 140, 0.6)
+}
+
+::ng-deep .marker-cluster-medium {
+  background-color: rgba(241, 211, 87, 0.6);
+}
+
+::ng-deep .marker-cluster-large {
+  background-color: rgba(253, 156, 115, 0.6);
+}
+
+::ng-deep .mycluster {
+  background-clip: padding-box;
+  border-radius: 20px;
+}
+
+::ng-deep .mycluster span {
+  line-height: 30px;
+}
+
+
+::ng-deep .mycluster div {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+::ng-deep .marker-cluster-small div {
+  background-color: rgba(110, 204, 57, 0.6);
+}
+
+::ng-deep .marker-cluster-medium div {
+  background-color: rgba(240, 194, 12, 0.6);
+}
+
+::ng-deep .marker-cluster-large div {
+  background-color: rgba(241, 128, 23, 0.6);
+}
+
+::ng-deep .leaflet-cluster-anim .leaflet-marker-icon, ::ng-deep .leaflet-cluster-anim .leaflet-marker-shadow {
+	-webkit-transition: -webkit-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-moz-transition: -moz-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-o-transition: -o-transform 0.3s ease-out, opacity 0.3s ease-in;
+	transition: transform 0.3s ease-out, opacity 0.3s ease-in;
+}
+
+::ng-deep .leaflet-cluster-spider-leg {
+	-webkit-transition: -webkit-stroke-dashoffset 0.3s ease-out, -webkit-stroke-opacity 0.3s ease-in;
+	-moz-transition: -moz-stroke-dashoffset 0.3s ease-out, -moz-stroke-opacity 0.3s ease-in;
+	-o-transition: -o-stroke-dashoffset 0.3s ease-out, -o-stroke-opacity 0.3s ease-in;
+	transition: stroke-dashoffset 0.3s ease-out, stroke-opacity 0.3s ease-in;
+}
+
+::ng-deep nb-option-list {
+  overflow-y: auto;
+}
+
+::ng-deep .option-list::-webkit-scrollbar {
+  width: 0.3125rem;
+  height: 0.5125rem;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+  ::ng-deep .option-list::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+  }
+
+  ::ng-deep .option-list::-webkit-scrollbar-track {
+    background: #f7f9fc;
+  }
+}
+
+::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+  ::ng-deep .option-list::-webkit-scrollbar-thumb {
+    background: #b4b4db;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+  }
+
+  ::ng-deep .option-list::-webkit-scrollbar-track {
+    background: #252547;
+  }
+}
+
+::ng-deep .link{
+  color: #3366ff;
+  text-decoration: underline;
+  font-size: 12px;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+::ng-deep .link:hover{
+  color: rgba(51, 181, 229, 0.4) !important;
+}
+
+::ng-deep .mobile_info{
+  label {
+    margin-bottom: 0px !important;
+  }
+  .space-down{
+    margin-bottom: 0.5rem !important;
+  }
+  .danger{
+    color:rgba(250, 92, 92, 0.6);
+  }
+  .success{
+    color:rgba(110, 204, 57, 0.6);
+  }
+  .warning{
+    color:rgba(255, 165, 47, 0.8);
+  }
+}
+
+.color-path{
+  padding:0;
+  margin: 0 0 0 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border:none;
+  cursor: pointer;
+  width: 40px;
+  height: 20px;
+  background-color: transparent;
+}
+
+
+.color-path::-webkit-color-swatch{
+  border: none;
+  border-radius: 10px;
+}
+
+.color-path::-moz-color-swatch{
+  border: none;
+  border-radius: 10px;
+}
+
+
+::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+}

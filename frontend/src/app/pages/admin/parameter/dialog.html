@@ -1,0 +1,28 @@
+<nb-card>
+  <nb-card-header>
+    <h1>{{data.title}}</h1>
+  </nb-card-header>
+  <nb-card-body class="content-location-permit">
+    <div class="row">
+      <div class="col-sm-12">
+        <label class="label" for="input-name">Nombre Parámetro</label>
+        <!-- <input id="input-name" type="text" disabled nbInput fullWidth placeholder="Nombre del Parametro" [(ngModel)]="parameter" style="margin: 5px 0;"> -->
+        <h6>{{ parameter }}</h6>
+      </div>
+      <div class="col-sm-12">
+        <label class="label" for="input-coun">Valores *</label><br>
+        <nb-select [(ngModel)]="value" fullWidth name="value" id='input-coun' class="select-form"
+          placeholder="Seleccione el Valor">
+          <nb-option *ngFor="let parameter_data of list_values"
+            [hidden]="parameter_data.parameter_id != type"
+            [value]="parameter_data.value">{{ parameter_data.description }}
+          </nb-option>
+        </nb-select>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close()">Cancelar</button>
+    <button [nbSpinner]="loading" nbSpinnerStatus="success" [disabled]="loading" nbButton status="primary" (click)="onAccept($event)">Aceptar</button>
+  </nb-card-footer>
+</nb-card>

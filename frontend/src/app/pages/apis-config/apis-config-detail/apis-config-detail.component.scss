@@ -1,0 +1,17 @@
+.i-frame-ejemplo {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    height: 320px;
+    background: #8f9bb329;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.i-frame-ejemplo > div > h2 {
+    color: #222b4542;
+}
+
+.i-frame-ejemplo > div > p {
+    color: #222b4582;
+}

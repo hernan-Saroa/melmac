@@ -1,0 +1,50 @@
+<nb-card class="modal-card" [style]="'height: ' + size">
+  <nb-card-body class="modal-card-body">
+    <h5 class="modal-title">{{ title }}</h5>
+
+    <div class="row content-body" style="justify-content: center;">
+      <label class="label" class="label label-field-title">
+        {{ data.field.label }}<span *ngIf="data.field.required">*</span>
+      </label>
+    </div>
+    <div>
+      <!-- Inputs -->
+      <div class="row content-inputs">
+        <div class="col-12">
+          <div class="form-group">
+            <input placeholder="Valor" type="text" autocomplete="off"
+              [type]="typeField(data.field.field_type)" minlength="{{ data.field.validate.min }}"
+              maxlength="{{ data.field.validate.max }}" min="{{ data.field.validate.min }}"
+              max="{{ data.field.validate.max }}"
+              [pattern]="patternField(data.field.field_type)"
+              (keydown)="onKeydown(data.field.field_type, $event)"
+              (keyup.control.v)="$event.preventDefault()"
+              [(ngModel)]="value" nbInput fullWidth>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <input placeholder="Confirmar Valor" type="text" autocomplete="off"
+              [type]="typeField(data.field.field_type)" minlength="{{ data.field.validate.min }}"
+              maxlength="{{ data.field.validate.max }}" min="{{ data.field.validate.min }}"
+              max="{{ data.field.validate.max }}"
+              [pattern]="patternField(data.field.field_type)"
+              (keydown)="onKeydown(data.field.field_type, $event)"
+              [(ngModel)]="confirm" nbInput fullWidth>
+          </div>
+        </div>
+        <!-- Description -->
+        <div class="col-12">
+          <label style="width: 100%;margin-bottom: 0px;" class="label"><span class="span-field">{{ data.field.description }}</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="row content-footer">
+      <button class="modal-btn modal-btn-basic" nbButton status="basic" (click)="close()">Cancelar</button>
+      <button [disabled]="onValidate()" class="modal-btn modal-btn-primary" nbButton status="primary" (click)="onAccept($event)">Guardar</button>
+    </div>
+
+  </nb-card-body>
+</nb-card>

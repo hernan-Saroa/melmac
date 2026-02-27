@@ -1,0 +1,61 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <!-- <a class="logo" href="#" (click)="navigateHome()">{{ mainTitle }}</a> -->
+    <a class="logo" href="#" (click)="navigateHome()"><img [src]="image_theme" alt="" style="width: 70%;"></a>
+  </div>
+  <nb-select *ngIf="user.role == 2" [selected]="currentTheme" (selectedChange)="onChangeTheme($event)" status="primary">
+    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+  </nb-select>
+</div>
+
+<div class="header-container">
+  <nb-actions size="small">
+
+  <!--  <nb-action class="control-item">
+      <nb-search type="rotate-layout"></nb-search>
+    </nb-action>
+    <nb-action class="control-item" icon="email-outline"></nb-action>-->
+    <nb-action #notAct class="notify-action"
+      icon="bell-outline" [nbPopover]="notificationRef" nbPopoverPlacement="bottom"
+      (nbPopoverShowStateChange)="markAsReaded()" [badgeDot]="left_read" badgeStatus="danger">
+    </nb-action>
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
+      <nb-user [nbContextMenu]="userMenu"
+               [onlyPicture]="userPictureOnly"
+               [name]="user?.first_name + ' ' + user?.first_last_name"
+               [picture]="user?.picture"
+               nbContextMenuTag="profile-context-menu">
+      </nb-user>
+    </nb-action>
+  </nb-actions>
+</div>
+<ng-template #notificationRef>
+  <nb-card class="notify-card">
+    <nb-list class="notify-container">
+      <nb-list-item style="padding:1px 5px" *ngFor="let item of notification_list">
+        <nb-alert class="notify" [status]="item.status" closable (close)="markAsDeleted(item.id)">
+          <div class="row">
+            <div class="col-2">
+              <nb-icon class="notify-icon" [icon]="item.icon" [options]="{ animation: { type: 'zoom' } }"></nb-icon>
+            </div>
+            <div class="col-10">
+              <b>{{ item.title }}</b><br>
+              <label class="notify-hour"> {{ item.date ? item.date : time_now | date:'d/M/yyyy h:mm a' }} </label><br>
+              <label class="notify-label"> {{item.description}} </label><br>
+              <a class="notify-link" *ngIf="item.extra && item.extra.link" href="{{item.extra.link}}"> Ir a {{item.extra.item}}</a>
+            </div>
+          </div>
+        </nb-alert>
+      </nb-list-item>
+    </nb-list>
+    <div style="margin:5px">
+      <button nbButton status="info" fullWidth *ngIf="!notify_end"> Ver más </button>
+      <nb-alert class="notify info" [status]="default" *ngIf="notify_end">
+        No hay más notificaciones.
+      </nb-alert>
+    </div>
+  </nb-card>
+</ng-template>

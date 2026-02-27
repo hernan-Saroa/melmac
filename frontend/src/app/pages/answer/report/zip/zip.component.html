@@ -1,0 +1,63 @@
+<nb-card>
+    <nb-card-header>
+        Reporte Zip De Documentos
+    </nb-card-header>
+    <nb-card-body>
+        <div class="row">
+            <div class="col-12 col-md-4" *ngFor="let massive_val of massive_values">
+                <div >
+                    <nb-card class="table_card">
+                        <nb-card-header >
+                            {{massive_val.filters.doc_id}} - {{getName(massive_val.filters.doc_id)}}
+                        </nb-card-header>
+                        <nb-card-body>
+                            <nb-progress-bar [value]="massive_val.percentage" [status]="getStatus(massive_val.percentage)" [displayValue]="true"></nb-progress-bar>
+                        </nb-card-body>
+                        <nb-card-body>
+                            <table class="table_list_field">
+                                <th class="th_list" >
+                                    #
+                                </th>
+                                <th class="th_list" >
+                                    Fecha Creación
+                                </th>                                
+                                <th class="th_list" >
+                                    Cantidad
+                                </th>
+                                <th class="th_list" >
+                                    Completados
+                                </th>
+                                <th class="th_list" >
+                                    Errores
+                                </th>
+                                <tr>
+                                    <td class="td_list" >
+                                      <p class="p_list">{{ massive_val.id }}</p>
+                                    </td>
+                                    <td class="td_list" >
+                                        <p class="p_list">{{ massive_val.date | date:'medium' }}</p>
+                                    </td>                                   
+                                    <td class="td_list" >
+                                        <p class="p_list">{{ massive_val.amount }}</p>
+                                    </td>
+                                    <td class="td_list" >
+                                        <p class="p_list">{{ massive_val.success }}</p>
+                                    </td>
+                                    <td class="td_list" >
+                                        <p class="p_list">{{ massive_val.error }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </nb-card-body>
+                        <nb-card-body>
+                            <button class="col-12 count_table" [disabled]="massive_val.percentage != 100 || massive_val.status != 1" style="margin-top: 20px;" type="button" nbButton shape="rectangle" status="primary" (click)="downloadZip(massive_val.id)">
+                                Descargar Zip
+                            </button>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

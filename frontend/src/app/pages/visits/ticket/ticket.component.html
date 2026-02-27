@@ -1,0 +1,107 @@
+<h3>
+  <button nbButton ghost status="primary" (click)="onBack()">
+    <nb-icon class="icon-header" icon="arrow-back-outline"></nb-icon>
+  </button>
+  TABLERO DE TAREAS {{subProyectName}}</h3><br>
+<div class="contPrincipal">
+  <div class="example-container">
+    <nb-alert status="primary" class="mb-0 border-cont">TICKETS <br> {{Ntickets}} INCIDENCIAS</nb-alert>
+    <div
+      cdkDropList
+      #ticketsList="cdkDropList"
+      [cdkDropListData]="tickets"
+      id="ColumTicket"
+      [cdkDropListConnectedTo]="[taskcList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of tickets" cdkDrag>
+        Ticket #{{item.serial}}
+        <span><nb-icon icon="move"></nb-icon></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <nb-alert status="primary" class="mb-0 border-cont" style="display: block;"><span>POR ASIGNAR</span><i title="programar tareas" class="nb-layout-sidebar-right" style="float: right;font-size: 38px;margin-top: -8px;cursor: pointer;" (click)="programming()"></i><i title="crear tarea" class="nb-plus" style="float: right;font-size: 38px;margin-top: -8px;cursor: pointer;" (click)="addtask()"></i> <br> {{Ntaskc}} INCIDENCIAS</nb-alert>
+    <div
+      cdkDropList
+      #taskcList="cdkDropList"
+      [cdkDropListData]="taskc"
+      id="ColumTask"
+      [cdkDropListConnectedTo]="[taskList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" (click)="openTask(i,1)" *ngFor="let item of taskc; let i=index;" cdkDrag>
+        {{item.name}}
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <nb-alert status="primary" class="mb-0 border-cont">PROGRAMADAS <br> {{Ntask}} INCIDENCIAS</nb-alert>
+    <div
+      cdkDropList
+      #taskList="cdkDropList"
+      [cdkDropListData]="task"
+      [cdkDropListConnectedTo]="[taskList]"
+      id="ColumProg"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" (click)="openTask(i,2)" *ngFor="let item of task; let i=index;" cdkDrag>
+        {{item.name}}
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <nb-alert status="primary" class="mb-0 border-cont">EN PROCESO <br> {{Nprocces}} INCIDENCIAS</nb-alert>
+    <div
+      cdkDropList
+      #proccesList="cdkDropList"
+      [cdkDropListData]="procces"
+      [cdkDropListConnectedTo]="[finishList]"
+      id="ColumInprocess"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of procces" cdkDrag>
+        {{item.name}}
+        <span><nb-icon icon="move"></nb-icon></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <nb-alert status="primary" class="mb-0 border-cont">REASIGNADAS <br> {{Nrest}} INCIDENCIAS</nb-alert>
+    <div
+      cdkDropList
+      #restList="cdkDropList"
+      [cdkDropListData]="rest"
+      [cdkDropListConnectedTo]="[taskcList]"
+      id="Columrest"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" (click)="openTask(i,3)" *ngFor="let item of rest; let i=index;" cdkDrag>
+        {{item.name}}
+        <span><nb-icon icon="move"></nb-icon></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <nb-alert status="primary" class="mb-0 border-cont">FINALIZADAS <br> {{Nfinish}} INCIDENCIAS</nb-alert>
+    <div
+      cdkDropList
+      #finishList="cdkDropList"
+      [cdkDropListData]="finish"
+      [cdkDropListConnectedTo]="[finishList]"
+      id="ColumEnd"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of finish" cdkDrag>
+        {{item.name}}
+      </div>
+    </div>
+  </div>
+
+</div>
+

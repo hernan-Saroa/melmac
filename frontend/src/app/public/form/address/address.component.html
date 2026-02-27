@@ -1,0 +1,117 @@
+
+<nb-card class="modal-card" style="height: 27.875rem">
+  <nb-card-body class="modal-card-body">
+    <div class="row">
+      <div class="col-9">
+        <h2 class="modal-title"><nb-icon icon="pin-outline"></nb-icon>DIRECCIÓN</h2>
+      </div>
+      <div class="col-3">
+        <h2><button class="modal-btn-default" nbButton status="default" (click)="close()">X</button></h2>
+      </div>
+    </div>
+
+    <div class="row content">
+      <div class="col-md-12 col-12 btn-explain-option" style="text-align: center;">
+        <label>DILIGENCIA A CONTINUACIÓN LOS DATOS REQUERIDOS</label><br>
+        <label>Sí la dirección tiene datos básicos, perfecto, no es obligatorio
+          llenar los campos que no necesites
+        </label>
+        <div>            
+          <label>
+            Ejp.: Calle 45b Bis # 54f - 46 Este 
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" >
+      <div class="row">
+        <div class="col-12 col-sm-5">
+          <div class="col-12">            
+            <div class="row">
+              <div class="col-5">
+                <input #autoRoad type="text" [ngModel]="main_road" nbInput fullWidth  style=" background-color: transparent; border:none; border-radius: inherit; border-bottom:0.5px solid; padding: 0.4375rem 0.5rem;"
+                (input)="onChangeAddress()"  placeholder="Selecciona" [nbAutocomplete]="auto" (keydown)="onKeyWord($event)"/>
+                
+                <nb-autocomplete #auto fullWidth  (selectedChange)="onSelectionAddressChange($event)">
+                  <nb-option *ngFor="let road of filteredRoad$ | async" [value]="road.name">
+                  <label> {{road.name}} </label>
+                  </nb-option>
+                </nb-autocomplete>
+              </div>
+              <div class="col-3">
+                <input [(ngModel)]="letter_road" min="0" (keydown)="onKeyWord($event)" style="text-transform:uppercase; background-color: transparent; border:none; border-radius: inherit; border-radius: inherit; border-bottom:0.5px solid; padding: 0.4375rem 0.5rem;" fullWidth nbInput type="text" />
+              </div>                                
+              <div class="col-4">
+                <nb-select fullWidth class="cardinal-select" placeholder="Selecciona"  [(ngModel)]="main_cardinal"
+                  [(selected)]="main_cardinal"> -.
+                  <nb-option *ngFor="let cardinal of cardinal_road" [value]="cardinal.id"> {{cardinal.name}} </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+        </div>          
+        <br><br><br>
+        <div class="col-12 col-sm-3" style="padding: 0px;">
+          <div class="col-12"> 
+            <div class="row"> 
+              <div class="col-1" style="padding: 0px;">
+                <h3 class="modal-title"> # </h3>
+              </div>
+              <div class="col-5">
+                <input [(ngModel)]="second_letter_road" min="0" (keydown)="onKeyWord($event)" style="text-transform:uppercase; background-color: transparent; border:none; border-radius: inherit; border-bottom:0.5px solid; padding: 0.4375rem 0.5rem;" fullWidth nbInput type="text" />
+              </div>
+              <div class="col-5">
+                <nb-select fullWidth class="cardinal-select" placeholder="Selecciona"  [(ngModel)]="second_main_cardinal"
+                  [(selected)]="second_main_cardinal"> -.
+                  <nb-option *ngFor="let cardinal of cardinal_road" [value]="cardinal.id"> {{cardinal.name}} </nb-option>
+                </nb-select>
+              </div>   
+            </div> 
+          </div>
+        </div>
+        <div class="col-12 col-sm-4" style="padding: 0px;">
+          <div class="col-12"> 
+            <div class="row">
+              <div class="col-1" style="padding: 0px;">
+                <h2 class="modal-title">-</h2>
+              </div>
+              <div class="col-4">
+                <input [(ngModel)]="three_letter_road" min="0" (keydown)="onKeyWord($event)" style="text-transform:uppercase; background-color: transparent; border:none; border-radius: inherit;  border-bottom:0.5px solid; padding: 0.4375rem 0.5rem;" fullWidth nbInput type="text" />
+              </div>
+              <div class="col-6">
+                <nb-select fullWidth placeholder="Selecciona"  [(ngModel)]="three_main_cardinal"
+                  [(selected)]="three_main_cardinal"> -.
+                  <nb-option *ngFor="let cardinal of cardinal_road" [value]="cardinal.id"> {{cardinal.id}} </nb-option>
+                </nb-select>
+              </div>    
+            </div> 
+          </div>
+        </div>
+      </div> 
+    </div>
+    <br>
+    <div class="col-12" style="text-align: center;" >
+      <div class="row">
+          <div class="col-12">              
+            <label>De ser necesario, escribe a continuación los detalles o complementos
+            </label>
+          </div>
+      </div> 
+    </div>
+    <div class="col-12" style="text-align: center;">
+      <input placeholder="Direccion" [value]="main_road +' '+ letter_road +' '+ main_cardinal +' '+ second_letter_road +' '+ second_main_cardinal +' '+ three_letter_road +' '+ three_main_cardinal " style="text-transform:uppercase; background-color: transparent; border:none; border-bottom:0.5px solid;" fullWidth nbInput [disabled]="disable_street" />
+    </div>
+    <div class="form-group">
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-2">
+        </div>
+        <div class="col-md-auto">
+          <button class="modal-btn modal-btn-primary" nbButton status="primary" [disabled]="!main_road && main_road == ''" (click)="onAccept($event)">ENVIAR</button>
+        </div>
+        <div class="col col-lg-2">
+        </div>
+      </div>
+    </div>  
+  </nb-card-body>
+</nb-card>
+

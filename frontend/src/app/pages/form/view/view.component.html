@@ -1,0 +1,43 @@
+<div class="row" [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <div class="col-xxl-12">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <nb-card>
+                  <nb-card-header>
+                    <span [hidden]="!inactive">Papelera - </span> Documentos: {{ this.doc_count }} de {{this.totDoc}}
+                    <button type="button" nbButton status="primary" shape="rectangle"
+                        class="btn_eraser" (click)="onEraser()" [hidden]="inactive"
+                        nbTooltip="Papelera" nbTooltipStatus="default" size="small">
+                        <nb-icon icon="trash-2-outline"></nb-icon>
+                    </button>
+                    <button type="button" nbButton status="primary" shape="rectangle"
+                        class="btn_eraser" (click)="onForm()" [hidden]="!inactive"
+                        nbTooltip="Volver" nbTooltipStatus="default" size="small">
+                        <nb-icon icon="corner-up-left-outline"></nb-icon>
+                    </button>
+                    <div *ngIf="option_form == 2">
+                        <pdf-viewer class="pdf_view"
+                            [src]="src"
+                            [rotation]="0"
+                            [original-size]="false"
+                            [show-all]="true"
+                            [fit-to-page]="false"
+                            [zoom]="1"
+                            [zoom-scale]="'page-width'"
+                            [stick-to-page]="false"
+                            [render-text]="true"
+                            [external-link-target]="'blank'"
+                            [autoresize]="true"
+                            [show-borders]="false">
+                        </pdf-viewer>
+                    </div>
+                  </nb-card-header>
+
+                  <nb-card-body>
+                      <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)"></ng2-smart-table>
+                  </nb-card-body>
+                </nb-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="full_pdf_view" *ngIf="pdf_view">
+    <div class="content_pdf_iframe">
+        <nb-actions size="small" class="btn_actions_pdf">
+            <nb-action id="btn-action-1" (click)="pdf_view = !pdf_view" icon="arrow-back-outline"></nb-action>
+            <nb-action id="btn-action-2" (click)="downLoadFileClick()" icon="download-outline" style="border-left: none"></nb-action>
+        </nb-actions>
+    <div id="content_pdf_view" style="width: 100%; height: 98%;"></div>
+    </div>
+</div>
+<nb-card class="modal-card">
+    <nb-card-header class="modal-title-card-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <!-- VALIDACION DEL TEXTO QUE VA EN EL HEADER -->
+                <div class="col-md-4 col-sm-8 col-8" *ngIf="!fraud && data.field_type == 10"> FIRMA BIO-FACIAL</div>
+                <div class="col-md-4 col-sm-8 col-8" *ngIf="!fraud && data.field_type == 18"> FIRMA CÉDULA</div>
+                <div class="col-md-4 col-sm-8 col-8" *ngIf="!fraud && data.field_type == 22"> FIRMA OTP</div>
+                <div class="col-md-4 col-sm-8 col-8" *ngIf="fraud"> FIRMAS CON FRÁUDES</div>
+                <div class="col-md-4 col-sm-4 col-4">
+                    <button class="close-button" size="tiny" nbButton status="default" (click)="close()">X</button>
+                </div>
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body class="modal-card-body" >
+        <!-- VALIDACION DEL ESTADO DE LA FIRMAS CON FRAUDE-->
+        <nb-card *ngIf="data.main_status == 2">
+            <div class="row">
+                <div class="col-12">
+                    <nb-card-body >
+                    <p class="text-info-danger">
+                        <span class="text-title-info-danger">¡ATENCIÓN!</span>   este documento ha sido cerrado de manera anticipada por sospecha de fraude.</p>
+                    </nb-card-body>
+                </div>
+            </div>
+        </nb-card>
+        <!-- OK, IRREGU, FRAUDE -->
+        <div *ngFor="let form of data.sign; let i=index;" >
+            <nb-flip-card [showToggleButton]="form.main_status != 0">
+                <nb-card-front >
+                    <nb-card [accent]="cardAddStyle(form.main_status, false)">
+                            <div *ngFor="let doc of form.info; let i=index;" >
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 col-md-3">
+                                            <nb-card-body class="text-center">
+                                                <!-- VALIDACION DEL QR Y EL HASH -->
+                                                <div class="text-center">
+                                                    <img *ngIf="form.main_status == 0" class="size-img" src="{{ doc.qr_file ? doc.qr_file : './assets/images/icons/melmac/QR_BREAK.png' }}">
+                                                    <img *ngIf="form.main_status == 1" class="size-img" src="{{ doc.qr_file ? doc.qr_file : './assets/images/icons/melmac/QR_BREAK.png' }}">
+                                                    <img *ngIf="form.main_status == 2" class="size-img" src="./assets/images/icons/melmac/QR_BREAK.png">
+                                                </div>
+                                                <div class="text-center">
+                                                    <p>
+                                                        <span class="truncate"> {{doc.hash}} </span>
+                                                    </p>
+                                                </div>
+                                            </nb-card-body>
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <nb-card-body class="nb-card-body-info-basic" >
+                                                <!-- INFORMACION DETALLADA DE LA FIRMA -->
+                                                <div >
+                                                    <p class="text-info-basic">
+                                                        <span class="text-title-info-general"> {{form.name_field}} </span><br><br>
+                                                        <span class="text-title-info-basic"> Tipo de campo: </span> {{form.name_sign}} <br>
+                                                        <span class="text-title-info-basic"> Certificado digital PDF: </span> {{ form.date_sign_document |date:"fullDate" }}<br>
+                                                        <span class="text-title-info-basic"> Estampa de tiempo melmac:  </span> {{ form.stamp_melmac |date:"fullDate" }}<br>
+                                                        <span class="text-title-info-basic"> Correo Electrónico o Número del firmante:  </span> {{doc.email}}<br>
+                                                        <span class="text-title-info-basic"> Aceptación datos personales: </span> {{ form.logs_data_conf |date:"fullDate" }} <br>
+                                                        <span class="text-title-info-basic"> Fecha de diligenciamiento: </span> {{ form.date_filing |date:"fullDate" }} <br>
+                                                    </p>
+                                                </div>
+                                                <!-- BOTON QUE PERMITE OBTENER EL SOPORTE -->
+                                                <div class="text-center" *ngIf="form.main_status != 2">
+                                                    <button nbButton outline status="info" size="tiny" (click)="getPdfDocument(form, 5)">Soporte</button>
+                                                </div>
+                                                <div *ngIf="form.main_status == 2">
+                                                    <br>
+                                                </div>
+                                            </nb-card-body>
+                                        </div>
+                                        <div class="col-12 col-md-1">
+                                            <nb-card-body >
+                                                <div class="tool-tip" >
+
+                                                    <button [nbTooltip]="cardAddStyle(form.main_status, true)" nbTooltipPlacement="right"  [nbTooltipStatus]="cardAddStyle(form.main_status, false)" nbButton [status]="cardAddStyle(form.main_status, false)" size="tiny">
+                                                    <nb-icon icon="compass-outline"></nb-icon>
+                                                    </button>
+                                                </div>
+                                            </nb-card-body>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </nb-card>
+                </nb-card-front>
+                <nb-card-back>
+                    <nb-card [accent]="cardAddStyle(form.main_status, false)" >
+                        <nb-card-body class="nb-card-front-back" >
+                            <div *ngFor="let state_answer of form.state_answer;">
+                                <!-- AGRUPAMIENTO DE LAS ANOMALIAS Y FRAUDES -->
+                                <div>
+                                    <p *ngIf="state_answer.status == 1" class="text-title-anomaly">RAZONES DE LA IRREGULARIDAD</p>
+                                    <p *ngIf="state_answer.status == 2" class="text-title-anomaly">RAZONES DEL FRAUDE</p>
+                                    <p class="text-info-anomaly">
+                                    <div *ngFor="let val of state_answer.data;" >
+                                        {{setAnomaly(val)}}
+                                        <hr style="margin: 8px 0px">
+                                    </div>
+                                </div>
+                            </div>
+                        </nb-card-body>
+                        </nb-card>
+                </nb-card-back>
+            </nb-flip-card>
+        </div>
+    </nb-card-body>
+</nb-card>

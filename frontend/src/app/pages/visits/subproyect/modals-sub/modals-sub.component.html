@@ -1,0 +1,147 @@
+<div class="row" [hidden]="vist">
+  <div class="col-md-12" style="width: 1000px;">
+    <div class="col-md-12 mx-auto container">
+      <nb-card>
+        <nb-card-header><h2 class="text-center">{{titleModal}} sub proyecto</h2></nb-card-header>
+        <nb-card-body style="max-height: 400px;">
+              <div class="form-group">
+                <nb-toggle [(ngModel)]="toggleNgModelState" labelPosition="start" class="titleLabel" (checkedChange)="toggleClick($event)">Sub proyecto {{titleState}}</nb-toggle>
+              </div>
+              <div class="form-group">
+                <label for="inputName" class="titleLabel"> Nombre del sub-proyecto </label>
+                <input type="text" [maxlength]="500" id="caracter_name" (input)="amountWords($event,1)" nbInput fullWidth fieldSize="small" shape="semi-round" placeholder="Ingrese nombre del proyecto" [(ngModel)]="inputItemNgModelName" #inputName id="inputName">
+                <span class="mount-words"> {{ caracter_name }} / 500</span>
+              </div>
+
+              <div class="col-md-12 d-flex pl-0 pr-0">
+                <div class="form-group col-md-6 pl-0">
+                  <label for="inputDataOne" class="titleLabel"> Fecha de inicio </label><br>
+                  <input nbInput [nbDatepicker]="ngmodelI" [(ngModel)]="ngModelDateI" id="inputDataOne">
+                  <nb-datepicker #ngmodelI></nb-datepicker>
+                  <!-- <input class="ngModleHour" nbInput type="text" [nbTimepicker]="timepickerI" [(ngModel)]="ngModelHourI"/> -->
+                  <input class="ngModleHour" fullWidth nbInput type="time" [(ngModel)]="ngModelHourI">
+                  <!-- <nb-timepicker #timepickerI></nb-timepicker> -->
+                </div>
+
+                <div class="form-group col-md-6 pr-0 pl-4">
+                  <label for="inputDataTwo" class="titleLabel"> Fecha de finalización </label><br>
+                  <input nbInput [nbDatepicker]="ngmodelF" [(ngModel)]="ngModelDateF" id="inputDataTwo">
+                  <nb-datepicker #ngmodelF></nb-datepicker>
+                  <!-- <input class="ngModleHour" nbInput type="text" [nbTimepicker]="timepickerF" [(ngModel)]="ngModelHourF"/> -->
+                  <input class="ngModleHour" fullWidth nbInput type="time" [(ngModel)]="ngModelHourF">
+                  <!-- <nb-timepicker #timepickerF></nb-timepicker> -->
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputDescription" class="titleLabel"> Descripción del sub-proyecto </label>
+                <textarea nbInput fullWidth [maxlength]="500" id="caracter" (input)="amountWords($event,2)" placeholder="Ingrese una descripción para el Subproyecto" shape="semi-round" [(ngModel)]="textareaItemNgModel" id="inputDescription"></textarea>
+                <span class="mount-words" id="resultado"> {{ caracter }} / 500</span>
+              </div>
+              <div class="form-group">
+                <label for="inputObjet" class="titleLabel"> Objetivo del sub-proyecto </label>
+                <textarea nbInput fullWidth placeholder="Ingrese una descripción para el Subproyecto" shape="semi-round" [(ngModel)]="textareaItemNgModelObjet" id="inputObjet"></textarea>
+              </div>
+              <!-- <div class="form-group">
+                <label for="inputEmail" class="titleLabel"> Correo del encargado del sub-proyecto </label>
+                <input type="email" nbInput fullWidth fieldSize="small" shape="semi-round" placeholder="Ingrese el correo del encargado del Subproyecto" [(ngModel)]="inputItemNgModelEmail" #inputEmail id="inputEmail" [status]="checkValue(2)">
+              </div> -->
+              <div class="form-group">
+                <label for="input-send" class="label">Escribe max 5 correos y Oprime la tecla <b>ENTER</b> para agregar a los destinatarios</label>
+                <nb-tag-list (tagRemove)="onTagRemove($event)">
+                  <nb-tag *ngFor="let tree of trees" [status]="onValidate(tree)" appearance="outline" [text]="tree" removable>
+                  </nb-tag>
+                  <input type="text" nbTagInput (tagAdd)="onTagAdd($event)" (focusout)="onFocusAdd(add_tag)" fieldSize="large" fullWidth #add_tag>
+                </nb-tag-list>
+              </div>
+
+              <div class="form-group">
+                <label for="selectForms" class="titleLabel"> Formularios para el sub-proyecto </label>
+                <nb-select fullWidth multiple placeholder="Seleccione 1 o varios formularios para las visitas" id="selectForms" [(ngModel)]="selectedItemNgModel" [(selected)]="selectedItems2">
+                  <nb-option *ngFor="let forms_data of forms;"
+                    [value]="forms_data.id">{{ forms_data.name }}</nb-option>
+                </nb-select>
+              </div>
+
+
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+          <button nbButton shape="rectangle" status="primary" (click)="sendDataModal(true,0)" class="mr-3" [nbSpinner]="btnLoadingModal" nbSpinnerStatus="warning" [disabled]="btnDisabledModal">{{btnModal}} sub proyecto</button>
+          <button nbButton shape="rectangle" style="float: left;" status="danger" (click)="closeModal('1')">Cancelar</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>
+
+<div class="row" [hidden]="!vist">
+  <div class="col-md-12" style="width: 1000px;">
+    <div class="col-md-12 mx-auto container">
+      <nb-card>
+        <nb-card-header><h2 class="text-center">{{titleModal}} sub proyecto (parámetros)</h2></nb-card-header>
+        <nb-card-body style="max-height: 400px;">
+          <p>A continuación configura los parámetros que el sistema tendrá en cuenta al momento de realizar la programación.</p>
+          <div class="form-group pt-3">
+            <label class="titleLabel"> Días laborales de la semana: </label><br>
+            <nb-card-body class="example-items-rows">
+              <nb-checkbox status="primary" [(ngModel)]="day_0" [checked]="day_0" (checkedChange)="toggleCheckbox(0)">Domingo</nb-checkbox>
+              <nb-checkbox status="primary" [(ngModel)]="day_1" [checked]="day_1" (checkedChange)="toggleCheckbox(1)">Lunes</nb-checkbox>
+              <nb-checkbox status="primary" [(ngModel)]="day_2" [checked]="day_2" (checkedChange)="toggleCheckbox(2)">Martes</nb-checkbox>
+              <nb-checkbox status="primary" [(ngModel)]="day_3" [checked]="day_3" (checkedChange)="toggleCheckbox(3)">Miércoles</nb-checkbox>
+              <nb-checkbox status="primary" [(ngModel)]="day_4" [checked]="day_4" (checkedChange)="toggleCheckbox(4)">Jueves</nb-checkbox>
+              <nb-checkbox status="primary" [(ngModel)]="day_5" [checked]="day_5" (checkedChange)="toggleCheckbox(5)">Viernes</nb-checkbox>
+              <nb-checkbox status="primary" [(ngModel)]="day_6" [checked]="day_6" (checkedChange)="toggleCheckbox(6)">Sábado</nb-checkbox>
+            </nb-card-body>
+          </div>
+          <div class="col-md-12 d-flex pl-0 pr-0">
+            <div class="form-group col-md-6 pl-0">
+              <label for="inputDataOne" class="titleLabel"> Inicio de jornada </label><br>
+              <input fullWidth nbInput type="time" [(ngModel)]="ngModelHourIP">
+              <!-- <input fullWidth nbInput type="text" [nbTimepicker]="timepickerIP" />
+               --><!-- <nb-timepicker #timepickerIP></nb-timepicker> -->
+            </div>
+
+            <div class="form-group col-md-6 pr-0 pl-4">
+              <label for="inputDataTwo" class="titleLabel"> Fin de jornada </label><br>
+              <input fullWidth nbInput type="time" [(ngModel)]="ngModelHourFP">
+              <!-- <input fullWidth nbInput type="text" [nbTimepicker]="timepickerFP" [(ngModel)]="ngModelHourFP"/>
+              <nb-timepicker #timepickerFP></nb-timepicker> -->
+            </div>
+          </div>
+          <div class="col-md-12 d-flex pl-0 pr-0">
+            <div class="form-group col-md-6 pl-0">
+              <label class="titleLabel"> Tiempo de desplazamiento </label><br>
+              <nb-select fullWidth [(selected)]="selectedItem">
+                <nb-option value="0">0 minutos</nb-option>
+                <nb-option value="30">30 minutos</nb-option>
+                <nb-option value="60">1 hora</nb-option>
+                <nb-option value="90">1 hora y 30 minutos</nb-option>
+                <nb-option value="120">2 horas</nb-option>
+                <nb-option value="150">2 horas y 30 minutos</nb-option>
+              </nb-select>
+            </div>
+
+            <div class="form-group col-md-6 pr-0 pl-4">
+              <label class="titleLabel"> Tiempo de almuerzo </label><br>
+              <nb-select fullWidth [(selected)]="selectedItemLunch">
+                <nb-option value="0">0 minutos</nb-option>
+                <nb-option value="30">30 minutos</nb-option>
+                <nb-option value="60">1 hora</nb-option>
+                <nb-option value="90">1 hora y 30 minutos</nb-option>
+                <nb-option value="120">2 horas</nb-option>
+                <nb-option value="150">2 horas y 30 minutos</nb-option>
+              </nb-select>
+
+            </div>
+          </div>
+
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+          <button nbButton shape="rectangle" style="float: left;" status="danger" (click)="closeModal('1')">Cancelar</button>
+          <button nbButton shape="rectangle" style="float: left;" status="info" (click)="sendDataModal(false,0)" class="ml-3">Atras</button>
+          <button nbButton shape="rectangle" status="primary" (click)="sendDataModal(true,1)" class="mr-3" [nbSpinner]="btnLoadingModal" nbSpinnerStatus="warning" [disabled]="btnDisabledModal">{{btnModal}} sub proyecto</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>

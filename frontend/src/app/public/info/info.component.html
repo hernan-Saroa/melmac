@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-header id="headerT" class="header-pdf">
+                <div *ngIf="logo != ''" style="display: flex; justify-content: center; align-items: center;">
+                <div style="width: 80px;">
+                    <img style="width: 100%;" class="logo_img" [(src)]="logo" alt="">
+                </div>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <div class="flex-centered col-xl-4 col-lg-6 col-md-8 col-sm-12">
+                    <h2 class="title" id="contdiv2">{{ title }}</h2>
+                    <!-- ESTO SE DEBE MODIFICAR -->
+                    <small class="sub-title" id="contdivdesc">{{ sub_title }}</small>
+                    <button [disabled]="btn_disabled" nbButton fullWidth (click)="goNew()" type="button" status="primary"
+                        class="home-button" id="btnSendForm" status="primary" >
+                        <span id="colorButtonSendText"> Volver a Diligenciar</span>
+                    </button>
+                    <small class="message">{{ message }}</small>
+                </div>
+            </nb-card-body>
+            <!-- <nb-layout-footer style="position: fixed; width: 100%; bottom: 0; z-index: 2;" id="footerT">
+                <span id="footerText"> {{ footer }}  </span>
+            </nb-layout-footer> -->
+        </nb-card>
+    </div>
+</div>

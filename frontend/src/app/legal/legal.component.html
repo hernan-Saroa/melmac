@@ -1,0 +1,669 @@
+<nb-layout>
+    <nb-layout-header *ngIf="step != 3 && step != 4" fixed>
+        <a (click)="onBack()">
+            <nb-icon class="icon-header" icon="arrow-back-outline"></nb-icon> <a class="melmac-header">Regresar</a>
+        </a>
+    </nb-layout-header>
+    <nb-layout-column class="signup-column">
+        <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
+            <nb-card-body>
+                <!-- Paso #1 -->
+                <div *ngIf="step == 1" class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div style="text-align: center;">
+                            <img class="logo-melmac" src="assets/images/logo_melmac.png" alt="">
+                            <p class="desc-signup">
+                              <b>POLÍTICA DE PRIVACIDAD Y TRATAMIENTO DE DATOS PERSONALES</b> <br><br><br>
+                              Domicilio: Bogotá, Bogotá D.C – Colombia Teléfono: 3144750696
+                              Correo Electrónico: mariajose.martinez@saroa.co
+                              Sitio Web: https://saroa.co
+                              Sitio Web Producto MELMAC:
+                              https://www.melmac.co
+                            </p>
+                            <p class="desc-signup-2">
+                              “Para todos los efectos del presente documento SAROA S.A.S, se denominará “La
+                              Empresa” o “Empresa”.
+                            </p>
+
+                            <p class="desc-signup-2">
+                            <strong>1) GLOSARIO</strong><br/><br/>
+                            En desarrollo de la actividad de negocios adelantada por SAROA S.A.S (también nombrada
+                            como SAROA S.A.S o LA EMPRESA) a través de su aplicación MELMAC, en adelante LA
+                            PLATAFORMA, es común que se genere información contentiva de datos recolectados de
+                            los clientes y usuarios como resultado de la interacción de los mismos con esta y en su
+                            condición de Responsable,  Encargado, Mandante y eventualmente mandataria sobre el
+                            tratamiento de los  datos personales, ha adoptado el presente documento consagra las
+                            políticas de privacidad y uso de la información de LA PLATAFORMA, alojada en el dominio
+                            https://melmac.co<br/><br/>
+                            La presente política tiene como propósito dar cumplimiento a lo establecido en la Ley 1581
+                            de 2012, su decreto reglamentario 1377 de 2013 y demás normas concordantes que
+                            regulan el derecho constitucional de los ciudadanos a autorizar el tratamiento de sus datos
+                            personales, así como a conocer, actualizar y rectificar las informaciones que se hayan
+                            recogido sobre ellos en las bases de datos o en archivos de entidades públicas y privadas.
+                            SAROA toma las precauciones necesarias para proteger la información de los usuarios y
+                            visitantes de LA PLATAFORMA a través de herramientas de seguridad informática, en
+                            concordancia con las leyes colombianas y no colombianas, según el caso, aplicables sobre
+                            la materia.<br/><br/>
+                            Se entienden por Definiciones Principales para efecto e interpretación de esta política y las
+                            obligaciones de SAROA S.A.S, así como de las obligaciones y derechos de los Titulares, al
+                            amparo de las normas aplicables y de la voluntad contractual de las partes, se entiende
+                            por:  <br/><br/>
+                            <strong>a) Autorización:</strong> Consentimiento previo, expreso e informado del Titular para llevar a
+                            cabo el Tratamiento de datos personales.<br/>
+                            <strong>b) Base de Datos:</strong> Conjunto organizado de datos personales que sea objeto de
+                            Tratamiento.<br/>
+                            <strong>c) Dato personal o Información Personal:</strong> Cualquier dato o información vinculada o
+                            que pueda asociarse a una o varias personas naturales determinadas o
+                            determinables.<br/>
+                            <strong>d) Dato Público:</strong> Por su naturaleza, los datos públicos pueden estar contenidos, entre
+                            otros, en registros públicos, documentos públicos, gacetas y boletines oficiales, y
+                            sentencias judiciales debidamente ejecutoriadas que no estén sometidas a reserva.<br/>
+                            <strong>e) Dato Sensible:</strong> Son los datos que afectan la intimidad del Titular o cuyo uso
+                            indebido puede generar su discriminación, en los términos que define la ley. La
+                            empresa puede llegar a tener acceso a información relacionada con sistemas de
+                            identificación biométrica, la captura de imágenes fijas o en movimiento, voz, huellas
+                            digitales, fotografías, y otras existentes.<br/>
+                            <strong>f) Encargado del Tratamiento:</strong> Persona natural o jurídica, pública o privada, que por
+                            sí misma o en asocio con otros, realice el Tratamiento de datos personales por
+                            cuenta del Responsable del Tratamiento.<br/>
+                            <strong>g) Formas de recabar los datos personales:</strong> SAROA podrá conocer, recolectar,
+                            almacenar, administrar la información del titular de la información de conformidad
+                            con la política de uso de datos contenida en el presente documento a través de los
+                            siguientes medios: (i) Inscripción y uso de la aplicación móvil MELMAC; (ii)
+                            Inscripción y uso de la página web de MELMAC (https://melmac.co ); (iii) suscripción
+                            de cualquier tipo de contrato, alianza y/o convenio con SAROA S.A.S.; (iv)
+                            Inscripción como proveedor de SAROA S.A.S.<br/>
+                            <strong>h) La Empresa:</strong> SAROA y las empresas o entidades que hacen parte de su
+                            organización.<br/>
+                            <strong>i) La Plataforma:</strong> Aplicación web denominada MELMAC y alojada en el dominio
+                            https://melmac.co , orientada al apoyo a la gestión y asignación de servicios en
+                            campo especializada para operaciones post-venta en tiempo real. Incluye, de
+                            manera enunciativa características como las siguientes:<br/><br/>
+                            ✓ Creación de servicios<br/>
+                            ✓ Creación de recursos en campo<br/>
+                            ✓ Asignación de servicios<br/>
+                            ✓ Programación de servicios<br/>
+                            ✓ Historial de servicios<br/>
+                            ✓ Reportes<br/>
+                            ✓ Ruteo y control de recorridos de recursos.<br/><br/>
+                            <strong>j) Proveedor:</strong> Es una persona natural o jurídica que suministra productos o servicios a
+                            SAROA S.A.S.<br/>
+                            <strong>k) Responsable del Tratamiento:</strong> Persona natural o jurídica, pública o privada, que
+                            por sí misma o en asocio con otros, decida sobre la base de datos y/o el Tratamiento
+                            de los datos. En el marco de la presente Política de Privacidad, el responsable del
+                            tratamiento de la información es SAROA S.A.S., sociedad comercial con NIT
+                            901106996-5, correo electrónico: soporte@saroa.co, URL https://www.melmac.co<br/>
+                            <strong>l) Titular:</strong> Persona natural cuyos datos personales sean objeto de Tratamiento.<br/>
+                            <strong>m) Tratamiento:</strong> Cualquier operación o conjunto de operaciones sobre datos
+                            personales, tales como la recolección, almacenamiento, uso, circulación o supresión.<br/>
+                            <strong>n) Usuario registrado:</strong> Es una persona que ingresa a LA PLATAFORMA a través de
+                            un usuario y una contraseña registrada previamente.<br/>
+                            <strong>o) Visitante:</strong> Es un usuario no registrado que tiene una interacción con LA
+                            PLATAFORMA a través de medios electrónicos.<br/>
+                            <strong>p) Geo localización:</strong> Es la capacidad de rastrear el paradero de un
+                            dispositivo utilizando GPS, torres de teléfonos celulares, puntos de acceso WiFi o
+                            una combinación de estos.<br/>
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>2) DERECHOS DE LOS TITULARES</strong><br/><br/>
+                              Sin perjuicio de que SAROA sea el responsable del tratamiento de la información objeto de
+                              la presente política de privacidad, los titulares de la misma son los usuarios y visitantes de
+                              LA PLATAFORMA, y a los mismos les asisten los siguientes derechos:<br/><br/>
+                              Derecho de acceso, retiro, actualización y rectificación de la información personal: Los
+                              titulares los derechos podrán, de forma gratuita, conocer, acceder, retirar, actualizar y
+                              rectificar la información Personal que de ellos haya sido recolectada a través de LA
+                              PLATAFORMA, Este derecho se podrá ejercer frente a datos parciales, inexactos,
+                              incompletos, fraccionados, que induzcan a error, o aquellos cuyo Tratamiento esté
+                              expresamente prohibido o no haya sido autorizado por los titulares, Sin perjuicio de lo
+                              anterior, los titulares son los únicos responsables de la veracidad, exactitud, vigencia y
+                              autenticidad de la información personal consignada en LA PLATAFORMA, Con fines de
+                              prevención de fraude o de reclamaciones de cualquier índole, SAROA podrá conservar
+                              registros de las diferentes versiones de la información rectificada y actualizada por los
+                              titulares, así como de la cual se solicite retiro.<br/><br/>
+                              <strong>a) Derecho a solicitar prueba de la autorización:</strong> Los titulares podrán solicitar a
+                              SAROA prueba de la autorización otorgada para el tratamiento de su información,
+                              salvo cuando expresamente se exceptúe como requisito para el Tratamiento, de
+                              conformidad con lo previsto en la ley.<br/>
+                              <strong>b) Derecho a información sobre el uso de datos:</strong> Los titulares podrán solicitar a
+                              SAROA que les informe sobre el uso que le da a la información personal de los
+                              mismos recolectada a través de LA PLATAFORMA.<br/>
+                              <strong>c) Derecho a presentar quejas:</strong> En caso de infracciones a la presente política de
+                              privacidad o a la normatividad aplicable, los titulares o sus causahabientes podrán
+                              presentar quejas ante la autoridad competente según las leyes aplicables, siempre y
+                              cuando se agote de manera previa el trámite de consulta o reclamo ante SAROA
+                              S.A.S.<br/>
+                              <strong>d) Derecho a revocar la autorización:</strong> Los titulares podrán revocar la autorización y/o
+                              solicitar la supresión del dato cuando en el tratamiento de los mismos por SAROA
+                              S.A.S. no se respeten los principios, derechos y garantías constitucionales y legales
+                              aplicables. La revocatoria y/o supresión procederá cuando la autoridad competente
+                              haya determinado que SAROA S.A.S. ha incurrido en conductas contrarias a la ley y
+                              a la Constitución de Colombia.<br/>
+                              <strong>e) Derecho a no responder ciertas preguntas:</strong> Es facultativo para los titulares dar
+                              respuesta a las preguntas que le sean hechas a través de LA PLATAFORMA o de
+                              medios electrónicos relacionados (como el correo electrónico), cuando estas versen
+                              sobre datos que sean sensibles según las normas aplicables o sobre los datos de
+                              las niñas, niños y adolescentes.<br/>
+                              <strong>f) El derecho de supresión no es un derecho absoluto:</strong> La Empresa puede negar o
+                              limitar el ejercicio del mismo cuando:<br/><br/>
+                              ✓ El titular de los datos tenga el deber legal o contractual de permanecer en la base de
+                              datos.<br/>
+                              ✓ Eliminación de datos obstaculice actuaciones judiciales o administrativas vinculadas
+                              a obligaciones fiscales, delitos o la actualización de sanciones administrativas.<br/>
+                              ✓ Los datos sean necesarios para proteger los intereses del titular; para realizar una
+                              acción en función del interés público, o para cumplir con una obligación legalmente
+                              adquirida por el titular.<br/>
+                              ✓ Los datos sean datos de naturaleza pública.<br/>
+                              ✓ Los datos constituyan un soporte para la operación normal de La Empresa y que
+                              deban ser conservados por esta en virtud de la Ley o sus procesos internos.<br/>
+                              ✓ Igualmente, el titular de datos personales puede revocar en cualquier momento, el
+                              consentimiento al tratamiento de éstos, siempre y cuando, no lo impida una
+                              disposición legal o contractual. En este caso puede operar de manera parcial o total.<br/>
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>3) PROCEDIMIENTO PARA EJERCER LOS DERECHOS DE LOS
+                                USUARIOS.</strong><br/><br/>
+                                En caso de que el titular de la información desee ejercer alguno de sus derechos, deberá
+                                enviar su solicitud, explicando de forma clara y detallada el motivo de su requerimiento, los
+                                hechos que la sustentan, su información de contacto, los documentos que quiera hacer
+                                valer y su(s) pretensión(es) al correo electrónico soporte@saroa.co o por medio del
+                                formulario de contacto disponible en el sitio web https://www.melmac.co/<br/><br/>
+                                Si el reclamo resulta incompleto, se requerirá al interesado dentro de los cinco (5) días
+                                siguientes a la recepción del reclamo para que subsane las fallas. Transcurridos dos (2)
+                                meses desde la fecha del requerimiento, sin que el solicitante presente la información
+                                requerida, se entenderá que ha desistido del reclamo. En caso de que quien reciba el
+                                reclamo no sea competente para resolverlo, dará traslado a quien corresponda en un
+                                término máximo de dos (2) días hábiles e informará de la situación al interesado.<br/><br/>
+                                Las consultas serán atendidas en un término máximo de quince (15) días hábiles contados
+                                a partir de la fecha de recibo de la misma. Cuando no fuere posible atender la consulta
+                                dentro de dicho término, SAROA informará al interesado, expresando los motivos de la
+                                demora y señalando la fecha en que se atenderá su consulta, la cual en ningún caso podrá
+                                superar los ocho (8) días hábiles siguientes al vencimiento del primer término.<br/><br/>
+                                En relación con las quejas, el Titular o causahabiente sólo podrá elevar queja ante la
+                                autoridad competente una vez haya agotado el trámite de consulta o reclamo ante SAROA
+                                o Encargado del Tratamiento, según el caso.<br/><br/>
+                                La solicitud de retiro o supresión no procederá cuando exista el deber contractual de
+                                mantenerlo en la base de datos de SAROA S.A.S.
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>4) RECOLECCIÓN DE LA INFORMACIÓN DE LOS USUARIOS/CLIENTES.</strong><br/><br/>
+
+                              La recolección de datos personales de usuarios potenciales y usuarios de SAROA y LA
+                              PLATAFORMA, se realizará de las siguientes formas:<br/><br/>
+                              Mediante el almacenamiento automático de los datos de los usuarios que acceden a la
+                              plataforma de MELMAC por el uso de cookies. Un ejemplo de los datos que se pueden
+                              almacenar automáticamente son las URL, el navegador utilizado, dirección IP, idioma, entre
+                              otros.<br/><br/>
+                              Mediante el almacenamiento automático de los datos de los usuarios que acceden a la
+                              aplicación móvil de MELMAC con su usuario y contraseña. Un ejemplo de los datos que se
+                              almacenan es la geolocalización del usuario, rutas recorridas y hora en cada punto de
+                              captura de datos.<br/><br/>
+                              ✓ Mediante el diligenciamiento de formularios asignados.<br/>
+                              ✓ A través del envió de la información o formularios por medio de la Aplicación.<br/>
+                              ✓ A través de cada parada y visita realizada a cada prospecto y cliente.<br/>
+                              SAROA S.A.S., a través de LA PLATAFORMA, recolecta información de sus usuarios y
+                              visitantes utilizando para ello la creación de usuarios, roles y asignación de cada
+                              formulario u documento creado con anterioridad por el cliente final por medio de su
+                              usuario administrador en la plataforma web, en donde el formulario construido incluye
+                              los siguientes datos:<br/><br/>
+                              ✓ Nombres y apellidos de la persona de contacto<br/>
+                              ✓ Tipo y número de documento de identidad<br/>
+                              ✓ Dirección de correo electrónico<br/>
+                              ✓ Numero de contacto Celular<br/><br/>
+                              Los titulares son los únicos responsables de la veracidad, exactitud, vigencia y autenticidad
+                              de la información consignada en LA PLATAFORMA. Sin perjuicio de lo anterior y de ser
+                              necesario, SAROA S.A.S. podrá confirmar los datos suministrados acudiendo a entidades
+                              públicas o privadas relacionadas al igual que a centrales de riesgo. La información obtenida
+                              de estas entidades estará sujeta a confidencialidad.<br/><br/>
+                              Los titulares autorizan expresamente a SAROA S.A.S. para confirmar los datos
+                              suministrados y, además, para que tenga acceso en cualquier momento a la totalidad de la
+                              información contenida en la cuenta personal generada dentro de LA PLATAFORMA, sin
+                              limitación alguna, lo cual incluye registros de los formularios diligenciados, clientes y
+                              material multimedia y en general cualquier otro tipo de contenido.<br/><br/>
+                              SAROA recolecta información de sus posibles usuarios y visitantes a través de
+                              correspondencia física o electrónica intercambiada con los mismos. En este caso, los
+                              emisores y receptores de los mensajes autorizan a SAROA para recolectar y almacenar la
+                              información relacionada, incluyendo cuerpo de mensaje, confirmación de recepción y grado
+                              de interacción con el mensaje, archivos adjuntos de cualquier tipo y dirección de correo
+                              electrónico de emisores y receptores.<br/><br/>
+                              En caso de que SAROA recolecte información de posibles usuarios o visitantes por otro
+                              medio no mencionado, solicitará la autorización de tratamiento de la misma a través de
+                              correo electrónico.<br/><br/>
+                              SAROA podrá encargar a un tercero la actividad de recolección de información, caso en el
+                              cual se informará debidamente a los titulares quienes serán los únicos responsables de la
+                              decisión de entrega de la misma. En caso de que el tercero solicite información adicional a
+                              la solicitada por SAROA S.A.S., o los titulares la entreguen voluntariamente a través de los
+                              medios electrónicos de ese tercero, serán las políticas de privacidad y uso de la información
+                              de este las que sean aplicables a tal relación.<br/><br/>
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>5) TRATAMIENTO DE LA INFORMACIÓN Y FINALIDAD DEL MISMO.</strong><br/><br/>
+                              La información recibida por usuarios y visitantes en virtud de lo anterior no podrá ser
+                              utilizada por estos con fines publicitarios o promocionales o comerciales de cualquier índole
+                              o para cualquier otra actividad no relacionada con LA PLATAFORMA, salvo autorización
+                              expresa del titular de la información.<br/><br/>
+                              Los titulares autorizan expresamente a SAROA para el uso de la información mencionada
+                              en los términos de este numeral con fines publicitarios y/o promocionales, sin derecho a
+                              compensación alguna.<br/><br/>
+                              En caso de interceptación de la información por parte de alguna de las entidades
+                              mencionadas o de otra de cualquier naturaleza, SAROA no será responsable por el
+                              tratamiento de tal información por parte de las mismas.<br/><br/>
+
+                              SAROA a través de la información recolectada en los términos del presente documento
+                              busca ofrecer a sus usuarios y visitantes un servicio personalizado y susceptible de mejora
+                              permanente en relación con la satisfacción de necesidades, usabilidad y comodidad.
+                              Por ello la recolección de los datos de los usuarios de la PLATAFORMA tiene como
+                              finalidad principal prestar los servicios ofrecidos y/o contratados de forma adecuada. El uso
+                              de la información por parte de SAROA se orienta a: Fines informativos, comerciales y
+                              estadísticos.<br/><br/>
+                              Para garantizar y mejorar la usabilidad del servicio, soporte, mantenimiento,
+                              actualizaciones, atender incidentes, inconvenientes, requerimientos o fallas.<br/><br/>
+                              Para efectos administrativos (cotizaciones, facturación, recaudo, pedidos, compras, gestión
+                              de pagos, asuntos laborales y/o de gestión de recursos humanos, referencias,
+                              certificaciones, etc.), Creación y administración de la cuenta del usuario.<br/><br/>
+                              Realizar procesos al interior de la empresa, con fines de desarrollo operativo y/o de
+                              administración de sistemas y bases de datos.<br/><br/>
+                              Realizar el envío de información de novedades, noticias, boletines, foros de educación,
+                              publicidad o marketing, ventas a distancia. Haciendo uso de medios tales como, correo
+                              electrónico, notificaciones PUSH, mensajes de texto (SMS).<br/><br/>
+                              Presentar reportes ante las autoridades de inspección, vigilancia y control, y tramitar los
+                              requerimientos realizados por entidades administrativas o judiciales, en caso de ser
+                              requeridos por los mismos.<br/><br/>
+                              Realizar acciones de inteligencia de negocios, creación de ofertas a la medida, prospectiva
+                              de clientes, investigación y tendencias de mercado, entendimiento de perfiles, rutas de
+                              navegación.<br/><br/>
+                              Comunicar los datos a terceros o proveedores, encargados de alguno de los usos y
+                              tratamientos mencionados en el presente texto, bien sea que se ubiquen en Colombia o en
+                              el exterior.<br/><br/>
+                              a) Ejercer su derecho de conocer de manera suficiente al Titular de los datos con quien
+                              se propone entablar relaciones, prestar servicios, y valorar el riesgo presente o
+                              futuro de las mismas relaciones y servicios. <br/>
+                              b) Efectuar las gestiones pertinentes para el desarrollo de la etapa precontractual,
+                              contractual y post contractual con SAROA S.A.S. Respecto de cualquiera de los
+                              productos o servicios ofrecidos por SAROA S.A.S., que el Titular haya o no
+                              adquirido, o respecto de cualquier relación negocial subyacente que tenga con ella,
+                              así como para dar cumplimiento a la ley colombiana o extranjera y a las órdenes de
+                              autoridades judiciales o administrativas; <br/>
+                              c) Evaluación, mantenimiento y mejora continúa de las características
+                              y funcionalidades de la aplicación y la experiencia del Usuario. <br/>
+                              d) Conocimiento de las necesidades, gustos y preferencias del Usuario con el único
+                              propósito de ofrecer beneficios e información sobre trámites y novedades que
+                              puedan ser de su interés y que pueda realizar mediante la aplicación. <br/>
+                              e) Envió de información comercial y publicitaria de carácter general sobre los productos
+                              y servicios de SAROA S.A.S, así como de Aliados o Entidades que sean afines con
+                              las necesidades, gustos y preferencias del Usuario final. <br/>
+                              f) Análisis de datos personales recolectados para el continuo desarrollo de algoritmos
+                              de seguridad en la Identificación de los Usuarios y/o Titulares. <br/>
+                              g) Procesamiento de los datos personales y/o datos personales sensibles (como la
+                              biometría facial, de iris, de voz, comportamental, entre otros), con el propósito de
+                              verificar la identidad de sus titulares y/o autenticarlos para los trámites y procesos
+                              que deseen adelantar ante entidades públicas o privadas a través de la Aplicación
+                              y/o SDK de Melmac.  <br/>
+                              h) Realizar actividades de mercadeo, ventas y promocionales, tele
+                              marketing (mercadeo telefónico), servicio al cliente, actividades de activación de
+                              marca, premios y promociones de Melmac. <br/>
+                              i) Implementar estrategias de relacionamiento y/o segmentación con  clientes,
+                              proveedores y otros terceros con los cuales SAROA S.A.S., tenga relaciones 
+                              contractuales o legales. <br/>
+                              j) Mejorar productos y servicios u ofertar nuevos productos, y todas aquellas 
+                              actividades asociadas a la relación comercial o vínculo existente con SAROA S.A.S.,
+                              o  aquel que llegare a tener. <br/>
+                              k) Dar a conocer, Transferir y/o Trasmitir Datos Personales dentro y/o fuera del  país a
+                              las compañías matrices, filiales o subsidiarias de SAROA S.A.S., o a terceros, aliado
+                              estratégico, como consecuencia de un contrato, ley o vínculo lícito que  así lo
+                              requiera, o para implementar servicios de computación en la nube. <br/>
+                              l) Los datos que se recolecten o almacenen sobre los empleados  de SAROA S.A.S.,
+                              mediante el diligenciamiento de formatos, vía telefónica, o con la  entrega de
+                              documentos (hojas de vida, anexos) serán tratados para todo lo  relacionado con
+                              cuestiones laborales de orden legal o contractual. En virtud  de lo anterior, SAROA
+                              S.A.S., utilizará los Datos Personales para los siguientes fines: (a) dar cumplimiento
+                              a las leyes como, entre otras, de derecho laboral,  seguridad social, pensiones,
+                              riesgos profesionales, cajas de compensación familiar (Sistema Integral de
+                              Seguridad Social) e impuestos; (b) cumplir las  instrucciones de las autoridades
+                              judiciales y administrativas competentes; (c)  implementar las políticas y estrategias
+                              laborales y organizacionales. Estas  finalidades aplicarán para los datos que se
+                              recolecten o almacenen sobre los  empleados de SAROA S.A.S., mediante el
+                              diligenciamiento de formatos, vía telefónica, o con la entrega de documentos (hojas
+                              de vida, anexos) serán tratados para todo lo relacionado con cuestiones laborales de
+                              orden legal o  contractual. <br/>
+                              m) Ordenar, catalogar, clasificar, dividir o separar la información suministrada  por los
+                              Titulares de datos. <br/>
+                              n) Verificar, corroborar, comprobar, validar, investigar o comparar la  información
+                              suministrada por los Titulares de datos, con cualquier  información de que disponga
+                              legítimamente, como relaciones comerciales,  y/o ante bases de datos públicas y/o
+                              privadas gestionados por encargados y/o  responsables, con el propósito de validar
+                              información requerida por Aliados  en el marco de trámites y/o interacciones a través
+                              de la Aplicación Melmac,  siempre con la autorización previa, expresa e informada
+                              del Titular de los Datos.  <br/>
+                              o) Tratar la información personal suministrada con fines de estadística y  analítica,
+                              gestión de riesgos, gestión de identidades, prevención del fraude  y/o la suplantación
+                              de identidad, perfilamiento de riesgo de fraude /o  suplantación de identidad, y/o
+                              transmitir y/o transferir dicha información y/o  los resultados de su análisis con
+                              Aliados para permitirles a estos gestionar los  riesgos de fraude y/o suplantación de
+                              identidad en sus transacciones a través  de la Aplicación, siempre con la
+                              autorización previa, expresa e informada del  Titular de los Datos.<br/>
+                              p) Acceder, consultar, comparar y evaluar toda la información que sobre el  Titular se
+                              encuentre almacenada en las bases de datos de cualquier central  de riesgo
+                              crediticio, financiero, de antecedentes judiciales o de seguridad, de  naturaleza
+                              estatal o privada, nacional o extranjera, o cualquier base de datos  comercial o de
+                              servicios, que permita establecer de manera integral e  histórica completa, el
+                              comportamiento que como deudor, usuario, cliente,  garante, endosante, afiliado,
+                              beneficiario, suscriptor, contribuyente y/o como  Titular de servicios financieros,
+                              comerciales o de cualquier otra índole. r) Conocer, almacenar y procesar toda la
+                              información suministrada por los  Titulares de datos en una o varias bases de datos,
+                              en el formato que estime  más conveniente. <br/>
+                              q) Los datos biométricos los cuales son catalogadas como información  sensible y son
+                              de facultativo suministro. Los datos biométricos pueden ser  tratados para fines de
+                              seguridad, validación de información y como sistema  de identificación biométrica.  <br/>
+                              r) Realizar todas las gestiones de orden tributario, contable, fiscal y de  facturación. <br/>
+                              s) Enviar información importante acerca de cambios en las políticas, otros  términos y
+                              condiciones, modificaciones en el Sitio web y otra información de  carácter
+                              administrativo o comercial. <br/>
+                              t) Brindar una mejor calidad, capacitación y seguridad a los trabajadores  para el
+                              correcto manejo de los Datos Personales adquiridos por  cumplimiento de las
+                              obligaciones pactadas. <br/>
+                              u) De acuerdo con las obligaciones legales y corporativas de SAROA S.A.S., para 
+                              prevenir, detectar e investigar delitos, incluidos fraude y lavado de dinero, y  analizar
+                              y gestionar otros riesgos comerciales. <br/>
+                              v) Llevar a cabo estudios técnico – actuariales, estadísticas, investigaciones,  analítica
+                              y análisis de mercado, incluidas encuestas de satisfacción. <br/>
+                              w) Personalizar la experiencia presentando información y publicidad  diseñadas de
+                              acuerdo con sus características específicas como cliente. <br/>
+                              x) Identificar ante las personas a quien envíe mensajes a través del Sitio Web. <br/>
+                              y) Dar la oportunidad de participar en sorteos, concursos y promociones  similares y
+                              administrar estas actividades. Algunas de estas actividades tienen  términos y
+                              condiciones adicionales, sobre los que se requerirá la Autorización expresa, dado
+                              que podrían contener otra información sobre cómo se usa y se  divulga la
+                              Información Personal respectiva. <br/>
+                              z) Administrar la infraestructura y las operaciones comerciales; y cumplir  con las
+                              políticas y procedimientos internos, incluidos aquellos relacionados  con auditorias,
+                              finanzas, contabilidad, facturación, cobro, sistemas de tecnología de la información,
+                              alojamiento de datos, sitios web, continuidad  del negocio; y gestión de registros,
+                              documentos e impresión. <br/>
+                              aa) Resolver quejas y tramitar solicitudes de acceso a datos o corrección de  los
+                              mismos. <br/>
+                              bb) Cumplir con las leyes y las obligaciones regulatorias aplicables, tales  como las
+                              relativas a la lucha contra el lavado de dinero y el terrorismo; cumplir  con procesos
+                              legales, y responder a las peticiones de las autoridades públicas  y
+                              gubernamentales. <br/>
+                              cc) Establecer y defender los derechos a los que hubiere lugar; proteger las 
+                              operaciones de SAROA S.A.S., o de sus socios dentro del negocio; así como los 
+                              derechos, privacidad, seguridad y/o propiedad de Melmac, los clientes,  proveedores
+                              o contratistas; obtener las indemnizaciones aplicables o limitar  los daños y
+                              perjuicios que puedan afectar a SAROA S.A.S. <br/>
+                              dd) Entregar, Transferir o Transmitir Información Personal dentro y fuera del  territorio
+                              colombiano a empresas del cual SAROA S.A.S., hace parte, proveedores,  terceros
+                              que actúan en calidad de encargados del tratamiento para la  prestación de servicios
+                              de procesamiento, alojamiento, seguridad de la  información, prevención del fraude
+                              y/o la suplantación de identidad, Aliados y/o a Aliados Estratégicos, para efectos de,
+                              entre otros, salvaguardar mejor la  información, proteger la privacidad y la identidad
+                              digital de los Usuarios,  llevar un control de calidad de los servicios prestados y
+                              unificar  corporativamente el manejo de la información.  Las entidades con las que el
+                              Usuario active la realización de un trámite al interior  de la aplicación, serán
+                              responsables de obtener las autorizaciones que requieran  en desarrollo de sus
+                              propios objetos sociales o actividades para tratar los Datos  Personales enviados por
+                              la aplicación cuando se quiera hacer uso de estos para  finalidades distintas al
+                              trámite señalado.<br/>
+                              ee) Estas entidades definirán de forma  autónoma las finalidades adicionales para el
+                              Tratamiento de los Datos Personales  que es enviada por SAROA S.A.S y serán
+                              responsables del cumplimiento de la  legislación de Protección de datos
+                              personales.  En el siguiente enlace se encuentra la lista de entidades que a la fecha
+                              hacen uso  de la Aplicación y el acceso a sus política de tratamiento, de SAROA
+                              S.A., la cual es  actualizada de tiempo en tiempo: SAROA S.A.S– Política
+                              tratamiento de la información.<br/><br/>
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>6) CASOS ESPECIALES.</strong><br/><br/>
+                              <strong>Ofertas promocionales:</strong> SAROA podrá enviar ofertas en su propio nombre o a nombre de
+                              terceros a los usuarios y visitantes de LA PLATAFORMA. En este último caso, la
+                              información de los destinatarios no será compartida con el tercero.<br/><br/>
+                              <strong>Transmisiones de sociedades:</strong> En caso de que SAROA compre o venda alguna unidad de
+                              negocio, la información personal de los usuarios y visitantes de LA PLATAFORMA estará
+                              sujeta a las políticas de privacidad preexistentes sin perjuicio de nueva autorización de los
+                              titulares. En caso de que SAROA sea adquirido total o parcialmente de forma mayoritaria
+                              por un tercero, será al adquirente el nuevo responsable del tratamiento de la información
+                              recolectada a través de LA PLATAFORMA y por tanto contraerá todas las obligaciones y
+                              adquirirá todos los derechos relacionados.
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>7) AUTORIZACIÓN DEL TITULAR</strong><br/><br/>
+
+                              Sin perjuicio de las excepciones previstas en la ley, en el Tratamiento se requiere la
+                              autorización previa e informada del Titular, la cual deberá ser obtenida por cualquier medio
+                              que pueda ser objeto de consulta posterior. El usuario podrá autorizar expresamente esta
+                              política a través de mecanismos físicos o electrónicos, entre otros, telefónicamente, vía e-
+                              mail, al registrarse como usuario en la página web https://melmac.co o registrar información
+                              en los formularios de la landing page, etc. Al registrarse, el titular de la información autoriza
+                              el tratamiento de sus datos.<br/><br/>
+                              Al dar su autorización, el titular acepta que los datos personales aportados al momento de
+                              su registro, o cualquier otro dato facilitado a La EMPRESA en cualquier momento, de
+                              acuerdo al tipo de vinculación o base de datos, para su acceso a algunos de los servicios,
+                              eventos, promociones, información, etc., sean utilizados con la finalidad de facilitar la
+                              relación que se establece o se pretende establecer, prestación de los servicios solicitados.
+
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>8) CONFIDENCIALIDAD</strong><br/><br/>
+                              SAROA no venderá, alquilará o compartirá la información personal de los titulares excepto
+                              en las formas establecidas en este documento.<br/><br/>
+                              Sin perjuicio de lo anterior los titulares autorizan expresamente a SAROA para que
+                              transfiera total o parcialmente la responsabilidad sobre el tratamiento de la información
+                              personal de los usuarios a sociedades controladas, controlantes y/o vinculadas con SAROA
+                              S.A.S., a cualquier título y en el momento, forma y condiciones que estime pertinentes
+                              haciendo las gestiones necesarias para proteger la confidencialidad acordada.
+
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>9) REGISTRO EN LA PLATAFORMA</strong><br/><br/>
+
+                              El uso de LA PLATAFORMA en sus espacios no transaccionales (landing page, sitio web o
+                              redes sociales) es libre y no es necesario registro alguno para ser visitante.
+                              Los usuarios que voluntariamente pretendan registrarse en LA PLATAFORMA para realizar
+                              transacciones e interacciones, así como acceder a servicios relacionados según el rol que
+                              les corresponda podrán hacerlo mediante la introducción de una contraseña personal y un
+                              nombre de usuario de su elección. La confidencialidad de la contraseña es responsabilidad
+                              de cada usuario.<br/><br/>
+                              SAROA no será responsable de cualquier fraude o perjuicio realizado como consecuencia
+                              de mal manejo de la contraseña o nombre de usuario por parte de los usuarios, quienes
+                              serán los únicos responsables de uso de LA PLATAFORMA bajo los mismos. Incluyendo
+                              transacciones e interacciones realizadas al igual que modificaciones a la información.
+
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>10) CAPACIDAD LEGAL</strong><br/><br/>
+
+                              El uso de LA PLATAFORMA en sus espacios no transaccionales (landing page, sitio web o
+                              redes sociales) es libre y no es necesario ser legalmente capaz para ser visitante. El
+                              registro para ser cliente, proveedor, o usuario registrado sí exige capacidad legal.<br/><br/>
+                              Quienes no sean capaces legalmente deberán abstenerse de suministrar información
+                              personal a través de LA PLATAFORMA, sin prejuicio de que puedan utilizarse figuras de
+                              representación legal, incluidas la tutoría y la curaduría.
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>11) COOKIES</strong><br/><br/>
+
+                              Las Cookies son pequeños archivos de información enviados por LA PLATAFORMA y
+                              almacenados en el navegador del usuario, de manera que aquella puede consultar la
+                              actividad previa del usuario o visitante para ofrecerle un servicio más coherente con sus
+                              necesidades e intereses.<br/><br/>
+                              Los usuarios y visitantes de LA PLATAFORMA autorizan expresamente a SAROA para
+                              utilizar un sistema de seguimiento basado en cookies, directamente desde LA
+                              PLATAFORMA o a través de otros medios electrónicos que lo permitan, incluido el correo
+                              electrónico.<br/><br/>
+                              El principal objetivo del uso de cookies es perfeccionar la oferta de contenidos y artículos de
+                              SAROA a través de la personalización de los mismos. De igual manera podrán utilizarse
+                              para promover el cumplimiento de las reglas de seguridad de LA PLATAFORMA.
+                              Los usos adicionales de las cookies son: Evitar una frecuente e innecesaria introducción de
+                              la contraseña durante las sesiones de usuario durante una sesión de navegación;
+                              contabilización y confirmación de nuevos registros de usuario, grado de interacción de
+                              usuarios y visitantes con LA PLATAFORMA.<br/><br/>
+                              Las cookies no serán usadas para propósitos ajenos a los relacionados con LA
+                              PLATAFORMA. La permanencia de las cookies en los dispositivos fijos o móviles de los
+                              usuarios y visitantes es responsabilidad exclusiva de los mismos.
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>12) SUMINISTRO DE LA INFORMACIÓN A TERCEROS</strong><br/><br/>
+                              La información recolectada por SAROA a través de LA PLATAFORMA o canales
+                              electrónicos relacionados podrá suministrarse a las siguientes personas:<br/><br/>
+                              a) A los Titulares, sus causahabientes o sus representantes legales;<br/>
+                              b) A las entidades públicas o administrativas en ejercicio de sus funciones legales o por
+                              orden judicial;<br/>
+                              c) A los terceros autorizados por el Titular o por la ley.<br/>
+                              Lo anterior en función de garantizar el cumplimiento de las leyes aplicables, de manera
+                              enunciativa en materia de protección de derechos de propiedad industrial e intelectual,
+                              prevención del fraude entre otras.<br/><br/>
+                              Cualquier actividad potencial o realmente contraria a la Ley que pueda afectar
+                              negativamente a SAROA o a sus usuarios o visitantes al exponerlos a responsabilidad legal,
+                              podrá ser motivo para que SAROA suministre información personal de sus usuarios sin
+                              perjuicio de lo consagrado en la presente política y en la normatividad aplicable. SAROA
+                              colaborará con las autoridades competentes en función de salvaguardar la integridad y la
+                              seguridad de LA PLATAFORMA la de sus usuarios.<br/><br/>
+                              Los titulares autorizan expresamente a SAROA a comunicar información sobre sus usuarios
+                              a otros usuarios, entidades o terceros cuando haya motivos suficientes para considerar que
+                              la actividad de un usuario sea sospechosa o exista un motivo razonable para creer que
+                              haya autoría o participación en un delito relacionado con LA PLATAFORMA, o cuando se
+                              considere que intenta perjudicar a otras personas, sean o no usuarios o visitantes. SAROA
+                              determina la situación mencionada atendiendo a la amenaza real o inminente que la misma
+                              represente para LA PLATAFORMA y sus usuarios.
+
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>13) ALMACENAMIENTO DE LA INFORMACIÓN</strong><br/><br/>
+
+                              SAROA realizará las gestiones necesarias y coherentes con la normatividad aplicable en
+                              materia de medidas de seguridad aplicables a la información personal. La información de
+                              los usuarios debe ser protegida de pérdida o acceso no autorizado y para ello, SAROA
+                              utiliza técnicas de seguridad en internet. Tomando en cuenta que tal obligación es de medio
+                              y no de resultado, SAROA no garantiza totalmente que pueda evitarse la pérdida de
+                              información o el acceso no autorizado a la misma.<br/><br/>
+                              En virtud de lo anterior, SAROA no se hace responsable por interceptaciones ilegales o
+                              violación de sus sistemas o bases de datos por parte de personas no autorizadas al igual
+                              que por la indebida utilización de la información obtenida por esos medios.
+
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>14) PERÍODO DE VIGENCIA DE LOS DATOS</strong><br/><br/>
+                              Los datos personales de los usuarios estarán vigentes durante el plazo necesario para
+                              cumplir los usos y finalidades descritos en las Políticas de Privacidad o en los Términos y
+                              Condiciones.
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>15) PERMISOS DE APLICACIÓN</strong><br/><br/>
+
+                              La aplicación no solicitara permisos de aplicación que no sean necesarios para su funcionamiento. como su cámara o ubicación, no lo permita. Tenga su privacidad en cuenta a la hora de decidir si evita o acepta la solicitud de permiso en la aplicación. Al momento de solicitar cada uno de los permisos, la plataforma informara al usuario en que momento se utilizara, y darle la opcion de poder activarlo o de dejarlo sin activar. En la aplicación se mostrara aviso sobre la privacidad de datos y permisos necesarios para el funcionamiento. <br><br>
+
+                              Aquí encontrarás información sobre los permisos que tiene la app: <br><br>
+
+                              <b>* Ubicación:</b> Active y use el GPS u otras características de búsqueda de ubicación en el dispositivo. Acceda a los datos de ubicación Mapas y otras aplicaciones de ubicación. Al solicitar permisos de ubicación a los usuarios es con el único objetivo de realizar procesos de envio de formularios y ubicación en el mapa general de la aplicación. <br><br>
+
+                              La ubicación en segundo plano se utiliza para proporcionar funciones beneficiosas para el usuario en una de las funciones principales para la aplicación como lo es el tema de trazabilidad y almacenamiento en tiempo real para procesos fuera de linea.<br><br>
+
+                              Con esta se permite a la aplicacion usar la ubicación aproximada (por medio de estaciones base móviles y zonas con cobertura Wi-Fi) y la ubicación exacta (por GPS).<br><br>
+
+                              Con esta la aplicación podra ayudarle a moverse entre puntos; las de cámara pueden etiquetar las fotos por lugar, así sabrá dónde se hicieron.<br><br>
+
+                              Melmac solicitara un permiso de segundo plano, en el cual como usuario puede escojer: <b>Permitir todo el tiempo</b>, <b>Permitir solo con la app en uso</b>, <b>Preguntar siempre</b> y <b>No permitir</b>. <br><br>
+
+                              <b>* Acceda a todos sus archivos e imagenes :</b> La aplicación tiene la capacidad de leer o escribir en todos los archivos (incluidos documentos e imágenes) y la configuración del Registro, lo que permite a la aplicación realizar cambios en el equipo y la configuración. <br>
+
+                              Las aplicacion solo solicitara acceso al almacenamiento del dispositivo en procesos fundamentales para que funcionen el proceso de formularios. No se solicitara acceso al almacenamiento del dispositivo en nombre de ningún tercero por ningún motivo que no esté relacionado con las funciones esenciales de la aplicación de cara al usuario.<br><br>
+
+                              <b>* Cámara:</b> Activar y usar la cámara en el dispositivo. <br><br>
+
+                              Lo bueno: las aplicaciones de cámara necesitan este permiso para dejarle hacer fotos.
+
+                              <b>Permisos de todo o nada</b>
+
+                              En algunas versiones de Android, aceptar grupos de permisos era una cuestión de «todo o nada». O aceptaba todos los permisos que solicitaba una aplicación (antes de la instalación), o los rechazaba todos, con lo cual no se podía instalar. De las versiones de Android 6.0 hacia adelante esto cambio y ya podran aceptar y rechazar los permisos deacuerdo a la necesidad y aceptación que desee el usuario, Se dara permiso de uso <b>MIENTRAS LA APP ESTÁ EN USO</b>, <b>SOLO ESTA VEZ</b> y <b>NINGUNA</b>. <br><br>
+
+
+                            </p><br/><br/>
+
+                            <p class="desc-signup-2">
+                              <strong>16) MODIFICACIONES A LA POLITICA DE PRIVACIDAD Y USO DE LA
+                                INFORMACIÓN</strong><br/><br/>
+                                La presente Política de Privacidad y Uso de la Información puede ser modificada en virtud
+                                de la dinámica comercial de SAROA y de las condiciones comerciales y legales del entorno
+                                de la misma. Los cambios serán comunicados a los usuarios y visitantes a través de la
+                                plataforma y/o a través de correo electrónico y en ningún caso disminuirán los esfuerzos de
+                                SAROA en función de la eficacia en el tratamiento de la información personal de la cual es
+                                responsable.<br/><br/>
+                                Los cambios sustanciales deberán ser objeto de una nueva aceptación por parte de los
+                                usuarios de LA PLATAFORMA.
+                            </p><br/><br/>
+
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="step == 3" class="row">
+                  <div class="col-md-8 offset-md-2">
+                    <div style="text-align: center;">
+                        <img class="logo-melmac" src="assets/images/logo_melmac.png" alt="">
+                        <p class="desc-signup">
+                          Autorización para el tratamiento de datos personales (ATDP)<br>
+                          Sitio Web: https://saroa.co<br>
+                          https://www.melmac.co
+                        </p>
+
+                        <p class="desc-signup-2">
+                          Declaró de manera libre, expresa, inequívoca e informada que, AUTORIZO a SAROA SAS, para que, en los términos de la Ley 1581 de 2012 y las demás normas que sean aplicables a la materia, realice la recolección, almacenamiento, uso y circulación de mis datos personales, incluyendo datos sensibles de los cuales conozco el carácter facultativo de responder preguntas o solicitudes que versen sobre los mismos.<br><br>
+
+                          Dentro de los datos personales que como titular AUTORIZÓ para su tratamiento están mis datos biométricos; huellas dactilares, rostro e iris, (en caso de que sean solicitados), para validación ante las bases de datos de la Registraduría Nacional del Estado Civil, así mismo documentos personales, información de la cédula de ciudadanía, firmas electrónicas y que ellos me permitan identificarme como firmante en documentos electrónicos, correo electrónicos y números de teléfono fijo o celular y demás datos que puedan llegar a ser considerados como personales de conformidad con la Ley, para que dicho tratamiento se realice con el fin de usarse como mecanismo de identificación y autenticación personal en cualquier proceso tecnológico de cualquier entidad nacional o extranjera que así lo requiera, de forma presencial o remota.<br><br>
+
+                          Autorizo el tratamiento de mis datos personales con el fin de que sean utilizados en conjunto o por separado para el entrenamiento de diferentes tipos de software como Inteligencia artificial, aprendizaje de máquinas, aprendizaje profundo o algoritmos combinados o separados en técnicas de identificación y/o autenticación personal, creación de identidades digitales a partir de los datos entregados y los demás que se recopilen de mí o de terceros que sean obtenidos como información relacionada con mi o mis datos o metadatos y que sean susceptibles de ser tratados que se encuentren en las redes sociales, en la web, ciberespacio con información no indexada u otros similares con el fin de mejorar la precisión de los sistemas de verificación de identidad desarrollados por SAROA SAS, autorizando para ello que las bases de datos sean permanentemente complementadas, actualizadas, o corregidas.<br><br>
+
+                          Así mismo autorizo a SAROA SAS en relación con mis datos a servir como fuente de conocimiento de contrapartes en cualquier negocio jurídico de naturaleza legal o permitida, que mis datos sean objeto de transferencias o transmisiones de carácter nacional o internacional a terceros países que estén calificados como seguros por la Superintendencia de Industria y Comercio o a otras empresas ya sea en calidad de encargadas del tratamiento de datos personales o responsables del tratamiento de datos personales, a compartir estas identidades digitales o avatares digitales creados a partir de mis datos con terceros que así lo requieran para los fines aquí descritos, así como para que se notifique a mí y a terceros que así lo requieran posibles usos fraudulentos que se puedan dar con mi información personal.<br><br>
+
+                          También autorizo el tratamiento de mis datos personales y sensibles aquí descritos, con el fin de acceder a los servicios ciudadanos digitales que disponga el gobierno nacional, los trámites ciudadanos digitales que se desarrollen en el marco de interoperabilidad y que disponga para tal el sector público o privado o en forma conjunta.<br><br>
+
+                          Autorizo el tratamiento de mis datos personales con el fin de obtener métodos de firmas electrónicas y que ellos me permitan identificarme como firmante en documentos electrónicos.<br><br>
+
+                          Finalmente, autorizo a SAROA SAS a suministrar información comercial de sus productos y servicios a través de las diversas aplicaciones existentes a mi correo electrónico, redes sociales, mediante sms, mensajes de voz o telefónicamente.<br><br>
+
+                          Expreso que se me ha informado de manera clara y comprensible que tengo derecho a conocer, actualizar y rectificar los datos personales proporcionados, a solicitar prueba de esta autorización, a solicitar información sobre el uso que se le ha dado a mis datos personales, a presentar quejas ante la Superintendencia de Industria y Comercio por el uso indebido de mis datos personales, a revocar esta autorización o solicitar la supresión de los datos personales suministrados y a acceder de forma gratuita a los mismos.<br><br>
+
+                          Manifiesto igualmente que he sido informado sobre la Política de Protección de Datos Personales del SAROA SAS, disponible en la página web https://saroa.co , para cualquier consulta o reclamación relacionada con el tratamiento de mis datos personales, que podrá ser elevada ante SAROA SAS, como responsable del Tratamiento.<br><br>
+
+                          En mi condición de Titular de la Información, consiento y autorizo que mis datos personales sean tratados conforme a lo previsto en la presente autorización, haciendo clic en el cuadro que indica que acepto estos términos y condiciones.<br><br>
+
+                          <strong>Autorización para el tratamiento de datos personales (ATDP)</strong><br/><br/>
+
+                          SAROA SAS, podrá recolectar información personal biométrica como huellas, fotografías del rostro (selfie), iris, cadencias, voz, firma, reconocimiento facial, rasgos morfológicos, entre otros, (en adelante los “Datos Biométricos”) con el fin de permitir la Identificación de los Usuarios y/o Titulares, conforme a los parámetros de seguridad establecidos en la regulación, las buenas prácticas y las señaladas por las autoridades.<br><br>
+
+                          Entendiendo que dicha información, bajo la ley de protección de datos Ley 1581 de 2012 y las demás normas que sean aplicables a la materia, es considerada como un Dato Personal Sensible y que el Usuario no está en la obligación de autorizar su tratamiento.<br><br>
+
+                          Los Datos Biométricos serán tratados por SAROA SAS con el fin de verificar la identidad personal de los Titulares de Datos Personales, corroborando la información biométrica contra bases de datos públicas o privadas, propias o de terceros, cuyos administradores sean responsables o encargados del tratamiento de información personal o biométrica. <br><br>
+
+                          Así mismo, SAROA, podrá utilizar los Datos Biométricos con el propósito de crear identidades digitales y/u obtener plantillas biométricas para posteriores cotejos de identidad. SAROA podrá transmitir dichas plantillas biométricas con terceras personas y/o entidades encargadas, a fin de verificar la identidad del Titular de Datos Personales en el momento de un registro, transacción, solicitud de productos y/o servicios, u otra forma de interacción del Titular de Datos Personales con sistemas informáticos que requiera procesos de autenticación.<br><br>
+
+                        </p><br/><br/>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="step == 4" class="row">
+                  <div class="col-md-8 offset-md-2">
+                    <div style="text-align: center;border: 2px solid #bcbfbc; padding: 54px; border-top: 5px solid #bcbfbc;">
+                        <img class="logo-melmac" src="assets/images/logo_melmac.png" alt="">
+                        <div style="text-align: center;" [innerHtml]="DetailLR"></div>
+                    </div>
+                  </div>
+                </div>
+
+            </nb-card-body>
+        </nb-card>
+
+    </nb-layout-column>
+</nb-layout>

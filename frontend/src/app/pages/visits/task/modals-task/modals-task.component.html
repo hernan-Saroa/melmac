@@ -1,0 +1,153 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12 mx-auto container">
+      <nb-card>
+        <nb-card-header><h2 class="text-center">{{titleModal}} tarea<i title="Cerrar" class="nb-close" style="float: right;font-size: 38px;cursor: pointer;" (click)="closeModal('1')"></i> </h2> </nb-card-header>
+        <nb-card-body class="col-12" style="max-height: 350px;overflow-y: auto;width: 860px;">
+              <div class="form-group">
+                <label for="inputTicket" class="titleLabel" style="font-weight: 900;font-size: 20px;"> TICKET: {{textTicket}}</label>
+                <i title="Ver trazabilidad" [hidden]="btnTraza" class="nb-list" style="float: right;font-size: 38px;margin-top: -8px;cursor: pointer;" (click)="viewTraza('1')"></i>
+                <i title="Editar tarea" [hidden]="btnMenu" class="nb-compose" style="float: right;font-size: 38px;margin-top: -8px;cursor: pointer;" (click)="viewTraza('2')"></i>
+              </div>
+              <div [hidden]="divTraza">
+                <nb-card size="medium">
+                  <nb-card-header>
+                    TRAZABILIDAD
+                  </nb-card-header>
+                  <nb-list>
+                    <nb-list-item *ngFor="let date of logs">
+                      ✓ {{ date.create_date }} - {{ date.title }}: {{ date.detail }}
+                    </nb-list-item>
+                  </nb-list>
+                </nb-card>
+              </div>
+              <div [hidden]="divMenu">
+                  <div class="form-group">
+                    <label for="inputName" class="titleLabel"> Nombre de la tarea *</label>
+                    <input type="text" autocomplete="off" nbInput fullWidth fieldSize="small" shape="semi-round" placeholder="Ingrese nombre de la tarea" [(ngModel)]="inputItemNgModelName" id="inputName">
+                    <span style="color: red;" [hidden]="spamName">*Campo requerido</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputDescription" class="titleLabel"> Descripción de la tarea </label>
+                    <textarea (keyup)="onKey($event)" [maxlength]="maxCharacters" nbInput fullWidth placeholder="Ingrese una descripción para la tarea" shape="semi-round" [(ngModel)]="textareaItemNgModel" id="inputDescription"></textarea>
+                    <span style="float: right; font-size: 12px;">{{characters}} / {{maxCharacters}} caracteres</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputDir" class="titleLabel"> Dirección de la visita *</label>
+                    <div class="d-flex">
+                      <input *ngIf="!divDir1" type="text" class="mr-2" nbInput fullWidth fieldSize="small" shape="semi-round" placeholder="Ingrese una dirección, donde se debe realizar la visita" [(ngModel)]="inputItemNgModelNameDir" id="inputDir">
+                      <button *ngIf="!divDir1" nbTooltip="Agregar dirección desde un punto Fijo" nbTooltipPlacement="top" nbTooltipStatus="primary" nbTooltipPlacement="left" shape="round" outline nbButton (click)="btnDireccion(true)"><nb-icon icon="map"></nb-icon></button>
+                    </div>
+                    <div class="d-flex">
+                      <nb-select *ngIf="!divDir2" fullWidth placeholder="Seleccionar dirección..." class="mr-2" fieldSize="small" shape="semi-round" [(ngModel)]="selectedItemNgModel" (selectedChange)="selectSubProyect()">
+                        <nb-option-group title="{{sub.name}}" *ngFor="let sub of addressList; let i=index;">
+                          <nb-option value="{{data.address}}" *ngFor="let data of sub.json_path;">- {{data.name}}: {{data.address}}</nb-option>
+                        </nb-option-group>
+                      </nb-select>
+                      <button *ngIf="!divDir2" nbTooltip="Agregar dirección manual" nbTooltipPlacement="top" nbTooltipStatus="primary" nbTooltipPlacement="left" shape="round" outline nbButton (click)="btnDireccion(false)"><nb-icon icon="edit"></nb-icon></button>
+                    </div>
+                    <span style="color: red;" [hidden]="spamNameDir">* Campo requerido</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputNum" class="titleLabel">Ingrese el teléfono de la persona</label>
+                    <nb-form-field>
+                      <input #phoneInput autocomplete="off" [(ngModel)]="inputItemNgModelNum" nbInput fullWidth name="phone" id="inputNum"
+                        type="number" (keydown)="pulsar($event)" minlength="1" [ngModelOptions]="{standalone: true}" maxlength="10" pattern="/^3[0-9]{9}$/"
+                        [status]="checkValue(3)"/>
+                    </nb-form-field>
+                  </div>
+                  <div *ngFor="let field of fields; let i=index;">
+                    <div class="form-group" *ngIf="!field.obligatory_visit">
+                      <div *ngIf="field.field_type == 1 || field.field_type == 2 || field.field_type == 4 || field.field_type == 5 || field.field_type == 16">
+                        <label for="inputField-{{ field.field }}" class="titleLabel">
+                          {{field.label}}
+                          <span *ngIf="field.required">*</span>
+                        </label>
+                        <input
+                          [hidden]="field.validate && field.validate.advanced == 'confirm'"
+                          autocomplete="off" [(ngModel)]="field.answer" nbInput fullWidth
+                          name="field_{{ field.field }}" id="inputField-{{ field.field }}"
+                          [type]="typeField(field.field_type, field.validate)" minlength="{{ field.validate.min }}"
+                          [class]="classField(field.field_type)"
+                          maxlength="{{ field.validate.max }}" min="{{ field.validate.min }}"
+                          (keydown)="onKeyNumber(field.field_type, $event)"
+                          max="{{ field.validate.max }}" required="{{ field.required }}"
+                          [pattern]="patternField(field.field_type, field.validate)"
+                          [status]="field.duplicate ? 'warning' : 'basic'"
+                          (change)="onChangeValue($event, field.field_type, field.validate, i)"/>
+                          <ng-container *ngIf="onErrorField(field.validate, i)">
+                              <p class="caption status-danger">
+                                  ¡El correo electrónico debe ser verdadero!
+                              </p>
+                          </ng-container>
+                          <ng-container *ngIf="onRequired(field, i) && show_errors">
+                            <span style="color: red;">*Campo requerido</span>
+                          </ng-container>
+                      </div>
+                      <!-- Campo de Texto -->
+                      <div *ngIf="field.field_type == 6">
+                        <label for="inputField-{{ field.field }}" class="titleLabel">
+                          {{field.label}}
+                          <span *ngIf="field.required">*</span>
+                        </label>
+                        <textarea autocomplete="off" [(ngModel)]="field.answer" nbInput
+                            fullWidth name="field_{{ field.field }}" minlength="{{ field.validate.min }}"
+                            maxlength="{{ field.validate.max }}" required="{{ field.required }}">
+                        </textarea>
+                      </div>
+                      <!-- Hora -->
+                      <div *ngIf="field.field_type == 19">
+                        <label for="inputField-{{ field.field }}" class="titleLabel">
+                          {{field.label}}
+                          <span *ngIf="field.required">*</span>
+                        </label>
+                        <div class="time">
+                            <input nbInput type="time" [(ngModel)]="field.answer"
+                                name="field_{{ field.field }}" fullWidth
+                                class="input-text-time" autocomplete="off"/>
+                            <button type="button" nbButton style="margin-top: 3px;width: 100%;border: 1px solid #c8cddc;box-shadow: 1px 4px 12px -4px #9ca6b7 !important;"
+                                [status]="basic" class="upload-btn"
+                                shape="rectangle" size="tiny" outline
+                                (click)="getTime(i)">
+                                Obtener Hora Actual
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 d-flex pl-0 pr-0">
+                    <div class="form-group col-md-4 pl-0">
+                      <label for="inputDataOne" class="titleLabel"> Fecha para la visita *</label><br>
+                      <input nbInput [nbDatepicker]="ngmodelI" [(ngModel)]="ngModelDateI" id="inputDataOne">
+                      <nb-datepicker #ngmodelI></nb-datepicker><br>
+                      <span style="color: red;" [hidden]="spamNameDate">*Campo requerido</span>
+                    </div>
+                    <div class="form-group col-md-4 pr-0 pl-4">
+                      <label for="inputDataTwo" class="titleLabel"> Hora de llegada al punto de visita </label><br>
+                      <input class="ngModleHour" fullWidth nbInput type="time" [(ngModel)]="ngModelHourF">
+                      <!-- <input class="ngModleHour" nbInput type="text" [nbTimepicker]="timepickerF" [(ngModel)]="ngModelHourF"/>
+                      <nb-timepicker #timepickerF></nb-timepicker> --><br>
+                      <span style="color: red;" [hidden]="spamNameHour">*Campo requerido</span>
+                    </div>
+                    <div class="form-group col-md-4 pr-0 pl-4">
+                      <label for="inputDataTwo" class="titleLabel"> Duración de visita </label><br>
+                      <nb-select fullWidth [(selected)]="selectedItem">
+                        <nb-option value="30">30 minutos</nb-option>
+                        <nb-option value="60">1 hora</nb-option>
+                        <nb-option value="90">1 hora y 30 minutos</nb-option>
+                        <nb-option value="120">2 horas</nb-option>
+                        <nb-option value="150">2 horas y 30 minutos</nb-option>
+                      </nb-select>
+                    </div>
+                  </div>
+                </div>
+        </nb-card-body>
+        <nb-card-footer class="text-right">
+          <button nbButton shape="rectangle" status="primary" (click)="sendDataModal()" class="mr-3" [nbSpinner]="btnLoadingModal" nbSpinnerStatus="warning" [disabled]="btnDisabledModal">{{btnModal}} tarea</button>
+          <button *ngIf="ticket" nbButton shape="rectangle" style="float: left;" class="mr-3" status="danger" (click)="sendDataModal(true)">Rechazar tarea</button>
+          <button nbButton shape="rectangle" status="info" style="float: left;" class="mr-2" (click)="viewPDF()" [hidden]="btnInfo">Información general</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>

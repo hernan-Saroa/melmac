@@ -1,0 +1,427 @@
+
+<nb-card *ngIf="permit_view" [nbSpinner]="loading" nbSpinnerStatus="primary" [hidden]="view_option != 0">
+    <nb-card-header>
+        <span [hidden]="option != 1">Papelera - </span>
+        <label [hidden]="option == 2">Documentos {{option == 3 ? 'Diligenciando' : 'Recibidos'}} {{count}} de {{totCount}} </label>
+        <label [hidden]="option != 2">Respuestas Únicas Duplicadas {{count}} de {{totCount}} </label>
+        <button type="button" nbButton status="basic" shape="rectangle" style="margin-left: 8px"
+            class="btn_eraser" (click)="onNavigate('/pages/inbox/inactive')" [hidden]="[1,2,3].includes(option)"
+            nbTooltip="Papelera" nbTooltipStatus="default" size="small">
+            <nb-icon icon="trash-2-outline"></nb-icon>
+        </button>
+
+        <button type="button" nbButton status="basic" shape="rectangle" style="margin-left: 8px"
+            class="btn_eraser" (click)="onNavigate('/pages/inbox/filling-out')" [hidden]="[1,2,3].includes(option)"
+            nbTooltip="Diligenciando" nbTooltipStatus="default" size="small">
+            <nb-icon icon="alert-circle-outline"></nb-icon>
+        </button>
+        <button type="button" nbButton status="basic" shape="rectangle" style="margin-left: 8px"
+            class="btn_eraser" (click)="onNavigate('/pages/form/send')" [hidden]="[1,2,3].includes(option)"
+            nbTooltip="Enviados" nbTooltipStatus="default" size="small">
+            <nb-icon icon="swap-outline"></nb-icon>
+        </button>
+
+        <!-- Condicional... -->
+        <button type="button" nbButton status="basic" shape="rectangle" style="margin-left: 8px"
+            *ngIf="show_duplicate"
+            class="btn_eraser" (click)="onNavigate('/pages/inbox/duplicate')" [hidden]="[1,2].includes(option)"
+            nbTooltip="Respuestas Únicas Duplicadas" nbTooltipStatus="default" size="small">
+            <nb-icon icon="copy-outline"></nb-icon>
+        </button>
+
+        <button type="button" nbButton status="basic" shape="rectangle" style="margin-left: 6px"
+            class="btn_eraser" (click)="onNavigate('/pages/inbox')" [hidden]="![1,2,3].includes(option)"
+            nbTooltip="Volver" nbTooltipStatus="default" size="small">
+            <nb-icon icon="corner-up-left-outline"></nb-icon>
+        </button>
+
+    </nb-card-header>
+    <nb-card-body>
+        <ng2-smart-table class="table-answer" [settings]="settings" (create)="onCreate($event)" [source]="list_answer"
+        (userRowSelect)="onUserRowSelect($event)" (custom)="onCustom($event)"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>
+
+<nb-card *ngIf="!permit_view">
+  <nb-card-header>
+    <div style="text-align: center;" >
+      No tienes permiso para ver esta sección. Contacte al administrador
+    </div>
+  </nb-card-header>
+</nb-card>
+
+<!-- Resumen -->
+<div [hidden]="view_option != 1">
+  <!-- Respuesta -->
+  <nb-card class="actions-card">
+    <nb-card-header>
+      <!-- Acciones -->
+      <nb-actions size="small" style="float: left;">
+        <nb-action (click)="onBack()" nbTooltip="Volver" icon="arrow-back-outline"></nb-action>
+        <nb-action (click)="onActionAnswer('pdf')" [hidden]="option == 3" nbTooltip="Ver PDF" icon="file-outline"></nb-action>
+        <nb-action (click)="getPdfDocument(1)" [hidden]="option == 3" *ngIf="ani" nbTooltip="Ver PDF - Documento Identidad" icon="person-done-outline"></nb-action>
+        <nb-action (click)="getPdfDocument(2)" [hidden]="option == 3" *ngIf="nit" nbTooltip="Ver PDF - Documento Nit" icon="credit-card-outline"></nb-action>
+        <nb-action (click)="getPdfDocument(3)" [hidden]="option == 3" *ngIf="sign" nbTooltip="Ver PDF - Soporte Firma" icon="file-add-outline"></nb-action>
+        <nb-action (click)="onActionAnswer('excel')" [hidden]="option == 3" nbTooltip="Ver Excel" icon="file-text-outline"></nb-action>
+        <nb-action (click)="onActionAnswer('edit')" [hidden]="hiddenPermit(31)" nbTooltip="Editar" icon="edit-outline"></nb-action>
+        <nb-action (click)="onActionAnswer('delete')" [hidden]="hiddenPermit(32)" nbTooltip="Eliminar" icon="trash-outline"></nb-action>
+        <nb-action (click)="getPdfDocument(4)" *ngIf="form_value && form_value.trace" nbTooltip="Ver Trazabilidad" icon="archive-outline"></nb-action>
+      </nb-actions>
+      <!-- Movimiento -->
+      <nb-actions size="small" style="float: right;">
+        <nb-action nbTooltip="Anterior" icon="arrow-ios-back-outline" (click)="loadPrev()" *ngIf="!(list_answer.getPaging().page == 1 && index_select == 0)" [disabled]="loading || loading_element"></nb-action>
+        <nb-action nbTooltip="Siguiente" icon="arrow-ios-forward-outline" (click)="loadNext()" *ngIf="!is_last" [disabled]="loading || loading_element"></nb-action>
+      </nb-actions>
+    </nb-card-header>
+    <nb-card-body *ngIf="row_data_select && row_data_select.consecutive" [nbSpinner]="loading || loading_element">
+      <nb-actions fullWidth>
+        <nb-action *ngFor="let form of form_list; let i=index;">
+            <button [title]="form_check.includes(form.id) ? 'Diligenciado' : 'No diligenciado'" fullWidth nbButton [status]="form_check.includes(form.id) ? 'success' : 'basic'">{{ form.name }}</button>
+        </nb-action>
+      </nb-actions>
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card *ngIf="form_value" [hidden]="pdf_view">
+    <nb-card-body>
+      <div class="col-xxl-12">
+          <div class="row form_value">
+            <div class="col-12 col-md-3" style="text-align: center;">
+                <label class="label">
+                    Usuario
+                </label>
+                <br>
+                <label class="label">{{ form_value.user }}</label>
+            </div>
+            <div class="col-12 col-md-3" style="text-align: center;">
+                <label class="label" *ngIf="row_data_select && !row_data_select.consecutive">
+                    Documento - Versión #{{ form_value.version }}
+                </label>
+                <label class="label" *ngIf="row_data_select && row_data_select.consecutive">
+                  Documento - Versión #{{ version }}
+              </label>
+                <br>
+                <label class="label" *ngIf="row_data_select && !row_data_select.consecutive">{{ form_value.name }} </label>
+                <label class="label" *ngIf="row_data_select && row_data_select.consecutive">{{ name }} </label>
+            </div>
+            <div class="col-12 col-md-3" style="text-align: center;">
+                <label class="label">
+                    Fecha de Envío
+                </label>
+                <br>
+                <label class="label">{{ form_value.creation_date | date:'medium' }}</label>
+            </div>
+            <div class="col-12 col-md-3" style="text-align: center;">
+                <label class="label">
+                    Dispositivo - Estado
+                </label>
+                <br>
+                <label class="label">{{ form_value.source == 1 ? 'Web' : 'Móvil' }} - {{ form_value.online ? 'Online' : 'Offline' }}</label>
+            </div>
+        </div>
+    </div>
+    </nb-card-body>
+  </nb-card>
+
+  <div class="row" *ngIf="status_answer" [hidden]="pdf_view">
+      <div class="col-md-4" *ngFor="let form of status_answer">
+        <div class="card-container">
+          <ng-container>
+            <nb-card style="border-radius: 3px;">
+              <nb-card-header class="modal-title-card-header" *ngIf="form.field_type == 10"> FIRMA BIO-FACIAL: {{form.sign.length}}</nb-card-header>
+              <nb-card-header class="modal-title-card-header" *ngIf="form.field_type == 18"> FIRMA CÉDULA: {{form.sign.length}}</nb-card-header>
+              <nb-card-header class="modal-title-card-header" *ngIf="form.field_type == 22"> FIRMA OTP: {{form.sign.length}}</nb-card-header>
+              <nb-card-body>
+                <div>
+                  <p class="text-justify" *ngIf="form.main_status == 0" > El proceso de autenticación y validación de cada firma presente en el documento se realizó correctamente y no se encontró ninguna irregularidad.</p>
+                  <p class="text-justify" *ngIf="form.main_status == 1" > El proceso de autenticación y validación de cada firma presente en el documento se realizó correctamente y se encontró una irregularidad que le sugerimos revisar. </p>
+                  <p class="text-justify" *ngIf="form.main_status == 2" > El proceso de autenticación y validación de cada firma presente en el documento ya que NO se completó correctamente, le sugerimos revisar los motivos.</p>
+                </div>
+                <div class="text-center" *ngIf="form.main_status == 2">
+                  <img class="size-img" src="./assets/images/icons/melmac/MELMAC_FRAUDE.png">
+                </div>
+                <div *ngIf="form.main_status != 2">
+                  <ngb-carousel *ngIf="form.field_type == 10 || form.field_type == 18 || form.field_type == 22" >
+                    <ng-template ngbSlide>
+                      <div class="picsum-img-wrapper">
+                        <div class="container">
+                          <div class="flex-carousel">
+                            <div style="flex-basis: 250px">
+                              <div class="circulo-carousel mx-auto">
+                                <div class="text-center">
+                                    <img class="size-img" *ngIf="form.main_status == 0" src="./assets/images/icons/melmac/MELMAC_OK.png">
+                                    <img class="size-img" *ngIf="form.main_status == 1" src="./assets/images/icons/melmac/MELMAC_IRREGU.png">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide *ngFor="let data of form.sign">
+                      <div class="picsum-img-wrapper" >
+                        <div class="container">
+                          <div class="flex-carousel">
+                            <div class="circulo-carousel mx-auto">
+                              <div class="row">
+                                <div class="col-6">
+                                  <img class="size-img-init" *ngIf="data.main_status == 0" src="./assets/images/icons/melmac/Congrats_Ok.png">
+                                  <img class="size-img-init" *ngIf="data.main_status == 1" src="./assets/images/icons/melmac/Congrats_Anomaly.png">
+                                </div>
+                                <div class="col-6">
+                                  <div class="container">
+                                    <div class="row" style="text-align: left;">
+                                      <div class="col-12">
+                                        <h2>Campo</h2>
+                                        <span>{{data.name_field}}</span>
+                                      </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 50%; justify-content: center;">
+                                      <div class="col-12">
+                                        <div *ngFor="let val of data.info">
+                                          <div *ngFor="let score of val.score ">
+                                            <h2>{{ score.final?.all ?? '99.9' }}%</h2>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+                <button class="modal-btn-primary" nbButton outline status="info" size="tiny" (click)="openModal(form, false)" ><nb-icon icon="menu-outline"></nb-icon></button>
+              </nb-card-body>
+            </nb-card>
+          </ng-container>
+        </div>
+      </div>
+  </div>
+
+  <div class="row" *ngIf="status_fraud" [hidden]="pdf_view">
+    <div class="col-12">
+      <nb-card>
+        <nb-card-body >
+          <p class="text-info-danger">
+            <span class="text-title-info-danger">¡ATENCIÓN!</span>   este documento ha sido cerrado de manera anticipada por sospecha de fraude.</p>
+          <div class="text-center">
+            <button  nbButton outline status="info" (click)="openModal(array_fraud, true )" >Ver</button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <nb-card *ngFor="let form of list_form; let i=index;" [nbSpinner]="loading || loading_element" [hidden]="pdf_view">
+    <nb-card-header id="{{ form.id }}" *ngIf="row_data_select && row_data_select.consecutive">
+        Documento: {{ form.name }}
+    </nb-card-header>
+    <nb-card-body>
+      <!-- Solo Consecutivo -->
+      <div class="col-xxl-12" *ngIf="row_data_select && row_data_select.consecutive">
+          <div class="row">
+              <div class="col-12 offset-md-4 col-md-4" style="text-align: center;">
+                  <label class="label">{{ form.creation_date | date:'medium' }}</label>
+              </div>
+          </div>
+      </div><br>
+        <div class="col-xxl-12">
+            <div class="row">
+                <div *ngFor="let field of form.fields; let i=index;" class="col-12 col-md-6" [hidden]="field.type == 14 || (form_value.source == 1 && field.type == 11 && field.name=='Número de documento a validar biometricamente')">
+                    <nb-card >
+                        <nb-card-header>{{ i + 1 }}) {{ field.name }}</nb-card-header>
+                        <nb-card-body *ngIf="(field.type != 11 && field.type != 7 && field.type != 8 && field.type != 9 && field.type != 10 && field.type != 17 && field.type != 18 && field.type != 20 && field.type != 22 && field.type != 23 && field.type != 25 && field.type != 26)">
+                            {{ field.answer }}
+                        </nb-card-body>
+                        <nb-card-body *ngIf="(field.type == 7 || field.type == 8 || field.type == 9 || field.type == 10 || field.type == 18 || field.type == 22) || ((field.type == 10 || field.type == 18) && form.online == false)">
+                            <a *ngIf="field.answer != '' && field.type == 8" target="_blank" href="{{ field.answer }}">Ver archivo</a><br>
+                            <div *ngIf="field.answer != '' && (field.type == 10 || field.type == 18 || field.type == 22)"> Comprobante de firma<br><br> Hash - {{ field.answer.hash }}</div>
+                            <div *ngIf="field.answer != '' && field.answer.value != '' && field.type == 22"> Valor - {{ field.answer.value }}</div>
+                            <img *ngIf="field.answer != '' && field.type != 7 && field.type != 8 && field.type != 9" src="{{ field.answer.answer }}" style="width: 150px !important;">
+                            <img *ngIf="field.answer != '' && field.type != 10 && field.type != 18 && field.type != 22 && isImage(field.answer)" src="{{ field.answer }}" style="width: 150px !important;">
+                            <img *ngIf="field.answer != '' && (field.type == 7 || field.type == 9)" src="{{ field.answer }}" style="width: 150px !important;">
+                            <a *ngIf="field.answer != '' && field.type == 10 && field.answer.identification != '' " href="#" (click)="getPDFIns($event,field.field)"><br>Autenticación Cédula {{ field.answer.identification }}</a>
+                        </nb-card-body>
+                        <nb-card-body *ngIf="field.type == 11">
+                          {{ getIdentification(field.answer) }}
+                        </nb-card-body>
+                        <nb-card-body *ngIf="field.type == 17">
+                            <table class="table_list_field">
+                                <th class="th_list" *ngFor="let head of field.answer.head">
+                                    {{ head[1] }}
+                                </th>
+                                <tr *ngFor="let body of field.answer.body"
+                                    class="th_list" >
+                                    <td class="th_list" *ngFor="let head of field.answer.head">
+                                        <img *ngIf="getTableData(head[0], body) != '' && head[2] == 7" src="{{ getTableData(head[0], body) }}" style="width: 150px !important;">
+                                        <p *ngIf="head[2] != 7">{{ getTableData(head[0], body) }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </nb-card-body>
+                        <nb-card-body *ngIf="field.type == 20">
+                          {{ nameNit[i] }}
+                        </nb-card-body>
+                        <nb-card-body *ngIf="field.type == 23">
+                          {{ field.answer }}
+                        </nb-card-body>
+                        <!-- # DIRECCION -->
+                        <nb-card-body *ngIf="field.type == 25">
+                          {{ getAdrress(field.answer)}}
+                        </nb-card-body>
+                        <!-- # Llave y Valores -->
+                        <nb-card-body *ngIf="field.type == 26">
+                          <table class="table_list_field">
+                              <th class="th_list" *ngFor="let head of field.answer">
+                                  {{ head.label }}
+                              </th>
+                              <tr class="th_list">
+                                  <td class="th_list" *ngFor="let head of field.answer">
+                                      <p>{{ head.answer }}</p>
+                                  </td>
+                              </tr>
+                          </table>
+                        </nb-card-body>
+                    </nb-card>
+                </div>
+            </div>
+        </div>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<div [hidden]="view_option != 2">
+  <!-- Respuesta -->
+  <nb-card class="actions-card" [hidden]="pdf_view">
+    <nb-card-header>
+      <!-- Acciones -->
+      <nb-actions size="small" style="float: left;">
+        <nb-action (click)="onBack()" nbTooltip="Volver" icon="arrow-back-outline"></nb-action>
+        <nb-action (click)="onActionAnswer('pdf')" nbTooltip="Ver PDF" icon="file-outline"></nb-action>
+      </nb-actions>
+      <!-- Movimiento -->
+      <nb-actions size="small" style="float: right;">
+        <nb-action nbTooltip="Anterior" icon="arrow-ios-back-outline" (click)="loadPrev()" *ngIf="!(list_answer.getPaging().page == 1 && index_select == 0)" [disabled]="loading"></nb-action>
+        <nb-action nbTooltip="Siguiente" icon="arrow-ios-forward-outline" (click)="loadNext()" *ngIf="!is_last" [disabled]="loading"></nb-action>
+      </nb-actions>
+    </nb-card-header>
+  </nb-card>
+
+  <nb-card *ngIf="enroll_data" [nbSpinner]="loading || loading_element" [hidden]="pdf_view">
+    <nb-card-header>
+      Inscripción {{ enroll_data.name }}
+    </nb-card-header>
+    <nb-card-body>
+      <div class="col-xxl-12">
+        <div class="row enroll_data">
+          <div class="col-12 col-md-4" style="text-align: center;">
+            <label class="label">
+                Usuario
+            </label>
+            <br>
+            <label class="label">{{ enroll_data.user_name }}</label>
+          </div>
+          <div class="col-12 col-md-4" style="text-align: center;">
+            <label class="label">
+                Correo
+            </label>
+            <br>
+            <label class="label">{{ enroll_data.user_email }}</label>
+          </div>
+          <div class="col-12 col-md-4" style="text-align: center;">
+            <label class="label">
+                Fecha
+            </label>
+            <br>
+            <label class="label">{{ enroll_data.creation_date | date:'yyyy-MM-dd HH:mm:ss'}}</label>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="col-xxl-12">
+        <div class="row">
+          <table class="table_list_field table_list_data" *ngIf="enroll_data.files">
+            <th class="th_list" colspan="2">
+              <label class="label">Persona inscrita</label>
+            </th>
+            <tr class="th_list">
+              <td class="th_list">
+                <label class="label">{{ enroll_data.name }}</label>
+              </td>
+              <td class="th_list">
+                <label class="label">{{ enroll_data.type_identification }}</label><br>
+                <label class="label">{{ enroll_data.identification }}</label>
+              </td>
+            </tr>
+          </table>
+
+          <table class="table_list_field table_list_data" *ngIf="enroll_data.files">
+            <th class="th_list" colspan="2">
+            <!-- <th class="th_list" colspan="{{ enroll_data.files.length }}"> -->
+              <label class="label">Archivos</label>
+            </th>
+            <tr class="th_list" >
+              <td *ngFor="let file of enroll_data.files; let i=index;" class="th_list">
+                <label class="label"><a href="{{ file }}" target="_blank">Archivo #{{ i + 1 }}</a></label>
+              </td>
+            </tr>
+          </table>
+
+          <table class="table_list_field table_list_data">
+            <th class="th_list" colspan="3">
+              <label class="label">Trazabilidad</label>
+            </th>
+            <tr *ngFor="let trace of enroll_data.traceability" class="th_list" >
+              <td class="th_list" colspan="2">
+                <label class="label">{{ trace.description }}</label>
+              </td>
+              <td class="th_list">
+                <label class="label">{{ trace.creation_date | date:'yyyy-MM-dd HH:mm:ss'}}</label>
+              </td>
+            </tr>
+          </table>
+
+          <table class="table_list_field table_list_data">
+            <th class="th_list">
+              <label class="label">Listas Restrictivas</label>
+            </th>
+            <tr class="th_list" [hidden]="!isString(enroll_data.restrictive_lists)">
+              <td class="th_list">
+                <label class="label">{{ enroll_data.restrictive_lists }}</label>
+              </td>
+            </tr>
+            <tr class="th_list" *ngFor="let restrictive of enroll_data.restrictive_lists; let i=index;" >
+              <td class="th_list">
+                <label class="label">{{ restrictive }}</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+<!-- VISUALIZADOR DE PDF -->
+<nb-card *ngIf="permit_view" [nbSpinner]="loading" nbSpinnerStatus="primary" [hidden]="!pdf_view" size="giant">
+  <nb-card-body>
+    <!-- Lista -->
+    <div class="full_pdf_view" *ngIf="pdf_view">
+      <div class="content_pdf_iframe">
+        <!-- <nb-actions size="small" class="btn_actions">
+          <nb-action id="sidenavToggle" (click)="MenuClick()" icon="menu-outline" style="border-left: none"></nb-action>
+        </nb-actions> -->
+        <nb-actions size="small" class="btn_actions_pdf">
+          <nb-action class="action-1" id="btn-action-2" (click)="pdf_view = !pdf_view" icon="close-outline"></nb-action>
+          <nb-action class="action-3" id="btn-action-3" (click)="downLoadFileClick()" icon="download-outline"></nb-action>
+        </nb-actions>
+        <div  id="content_pdf_view" style="width: 98%; height: 98%;"></div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

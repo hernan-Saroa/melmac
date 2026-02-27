@@ -1,0 +1,589 @@
+// PDF
+.input-box {
+  font-size: 9px;
+  height: 17px;
+  border: solid 1px #ccc;
+  border-radius: 0 !important;
+  color: white !important;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  // background: #444444 !important;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 0px 3px 0px 3px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.input-box.config {
+  border: none !important;
+  box-shadow: none !important;
+}
+::ng-deep .create_container_pdf > .ng2-pdf-viewer-container {
+  overflow: hidden !important;
+}
+
+.zoom-pdf-content {
+  padding: 0px;
+}
+
+.file-input {
+  display: none;
+}
+
+.button-img {
+  box-shadow: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+.button-img:focus:not(:hover):not(:active) {
+  box-shadow: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+// Message
+
+.flex-centered {
+  margin: auto;
+  margin: 3rem 1rem 3rem 1rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.sub-title {
+  font-size: 100%;
+  text-align: center;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.message {
+  font-size: 100%;
+  text-align: center;
+  display: block;
+  margin-bottom: 5px;
+  color: red;
+}
+
+.home-button {
+  margin-bottom: 2rem;
+}
+
+.btn-content-validate {
+  display: grid;
+  position: fixed;
+  right: 0px;
+  bottom: 70px;
+  z-index: 3;
+
+  .img-btn-action {
+    cursor: pointer;
+    width: 80px;
+  }
+}
+
+.finish-card {
+  border: 0.0625rem solid #412378 !important;
+  border-radius: 1.25rem;
+}
+
+.finish-title {
+  text-align: center;
+  margin: 15px 50px 15px 50px;
+}
+
+.finish-div {
+  margin-top: 20vh;
+  margin-bottom: 22vh;
+}
+
+.finish-icon {
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .btn-content-validate {
+    width: 35%;
+  }
+}
+
+// Campo Tabla
+.view-table-drag {
+  border: 2px solid #8f8f8f;
+  background: white;
+  // opacity: 0.8;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  tr {
+    height: 15px;
+    border: 2px solid #8f8f8f;
+  }
+
+  td {
+    width: 60px;
+    min-width: 60px;
+    border: 2px solid #8f8f8f;
+  }
+}
+
+.table-input {
+  display: none;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.location-input {
+  display: none;
+}
+
+.view-table-drag {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      /* display: none; <- Crashes Chrome on hover */
+      -webkit-appearance: none;
+      margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  input[type=number] {
+      -moz-appearance:textfield; /* Firefox */
+  }
+
+  ::ng-deep .size-tiny {
+    font-size: 10px !important;
+    padding: 0 !important;
+  }
+
+  ::ng-deep .select-button {
+    font-size: 10px !important;
+    padding: 0 !important;
+    min-width: 60px !important;
+  }
+
+}
+
+::ng-deep nb-option-list {
+  min-width: 6rem;
+}
+
+.content-field-special {
+  .option{
+    position: absolute;
+    z-index: 1;
+    display: inline-flex;
+  }
+
+  ::ng-deep nb-radio {
+    .outer-circle {
+      width: 10px !important;
+      height: 10px !important;
+    }
+    .inner-circle {
+      width: 10px !important;
+      height: 10px !important;
+    }
+    .text {
+      padding-left: 0rem !important;
+      margin-left: 1rem !important;
+      line-height: 0rem !important;
+    }
+    label {
+      padding-right: 0rem !important;
+    }
+  }
+  ::ng-deep nb-checkbox {
+    .custom-checkbox{
+      width: 10px !important;
+      height: 10px !important;
+    }
+    .text {
+      padding-left: 0rem !important;
+      margin-left: 0.4rem !important;
+      line-height: 0rem !important;
+    }
+    label {
+      padding-right: 0rem !important;
+    }
+  }
+}
+
+
+// New ----------------------------------------
+// Previsual
+.full_pdf_view {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background: white;
+}
+
+::ng-deep .doc-content {
+  display: inline-block;
+  // margin-right: 15px;
+  // margin-bottom: 15px;
+}
+
+::ng-deep .doc-box {
+  padding: 1px;
+  width: 150px;
+  height: 200px;
+  border: 1px solid #3f3f3f;
+  border-radius: 3%;
+}
+
+.doc-box-active {
+  transform: scale(1.05);
+  border: 1.5px solid #412378;
+}
+
+::ng-deep .pdf-viewer-box {
+  width: 146px;
+  height: 190px;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+::ng-deep .doc-box {
+  ::ng-deep .ng2-pdf-viewer-container{
+    overflow: hidden;
+  }
+}
+::ng-deep .picker-dialog {
+  z-index: 1080 !important;
+}
+
+.box-select {
+  cursor: pointer;
+}
+
+::ng-deep .doc-box {
+  transition: transform .5s ease;
+}
+
+.doc-box:hover {
+  transform: scale(1.05);
+  border: 1.5px solid #412378;
+}
+
+// Preview
+@keyframes show {
+  0%   {
+    opacity: 0;
+    transform: translate3d(0,-50px,0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes hide {
+  0%   {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0,-50px,0);
+  }
+}
+
+@keyframes shows {
+  0%   {
+    transform: translate3d(0,-100px,0);
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+
+@keyframes next {
+  0%   {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  25% {
+    transform: translate3d(200px,0,0);
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+
+@keyframes back {
+  0%   {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  25% {
+    transform: translate3d(-200px,0,0);
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
+
+/* The element to apply the animation to */
+.show_pdf_view {
+  animation-name: show;
+  animation-duration: 1s;
+}
+
+.hide_pdf_view {
+  animation-name: hide;
+  animation-duration: 1s;
+}
+
+.next_show_go {
+  animation-name: next;
+  animation-duration: 1s;
+}
+
+.back_show_go {
+  animation-name: back;
+  animation-duration: 1s;
+}
+
+.content-pdf-view {
+  border: 1px solid #e4e9f2;
+  border-radius: 2%;
+  padding: 50px;
+  background: #f7f9fc;
+  animation-name: shows;
+  animation-duration: 1s;
+}
+
+::ng-deep .pdf_view {
+  ::ng-deep .doc-box {
+    width: 60vw;
+    min-width: 300px;
+    height: 80vh;
+    border: none;
+  }
+
+  ::ng-deep .pdf-viewer-box {
+    width: 60vw;
+    min-width: 300px;
+    height: 80vh;
+  }
+
+  .doc-box:hover {
+    transform: none;
+    border: none;
+  }
+
+  ::ng-deep .doc-box {
+    ::ng-deep .ng2-pdf-viewer-container{
+      overflow: scroll;
+      pointer-events: initial;
+    }
+  }
+}
+
+.circle-pdf {
+  border: 1px solid #e4e9f2;
+  border-radius: 50%;
+  padding: 50px 75px 50px 75px;
+  background: #f7f9fc;
+}
+
+//
+// ::ng-deep .header-pdf {
+//   background: #412378 !important;
+// }
+
+// ::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+
+// }
+
+::ng-deep body.nb-theme-dark {
+  .full_pdf_view {
+    background: #151a30;
+  }
+
+  .circle-pdf {
+    border: 1px solid #101426;
+    background: #192038;
+  }
+
+  .content-pdf-view {
+    border: 1px solid #101426;
+    background: #192038;
+  }
+}
+
+// Nuevas cosas.
+.div-configure {
+  padding: 0px !important;
+}
+
+.full-size-configure {
+  // height: calc(100vh - 60.89px) !important;
+  margin-bottom: 0px;
+}
+
+.full-size-configure-option-two {
+  height: calc(100vh - 60.89px) !important;
+}
+
+::ng-deep html {
+  overflow: hidden !important;
+}
+
+.input-list-content {
+  height: calc(70vh - 90px);
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+::ng-deep body.nb-theme-default, ::ng-deep body.nb-theme-corporate {
+  ::ng-deep .input-list-content::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.5125rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-thumb {
+    background: #8f9bb3;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-track {
+    background: #f7f9fc;
+  }
+}
+
+::ng-deep body.nb-theme-cosmic, ::ng-deep body.nb-theme-dark {
+  ::ng-deep .input-list-content::-webkit-scrollbar {
+    width: 0.3125rem;
+    height: 0.3125rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-thumb {
+    background: #b4b4db;
+    cursor: pointer;
+    border-radius: 0.15625rem;
+  }
+
+  ::ng-deep .input-list-content::-webkit-scrollbar-track {
+    background: #252547;
+  }
+}
+
+@media (max-width: 768px){
+  ::ng-deep html {
+    overflow: auto !important;
+  }
+
+  .full-size-configure-responsive {
+    height: initial !important;
+  }
+
+  .div-pdf-content-main {
+    margin-top: 2px !important;
+  }
+
+  .orientation-list {
+    overflow-x: auto;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 10px;
+  }
+
+  .list-doc-content {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+::ng-deep ngx-answer {
+  margin-top: -15px;
+}
+
+//.custom-tooltip {
+  //position: relative;
+  //display: inline-block;
+//}
+
+.custom-tooltip .tooltip-text {
+  visibility: hidden;
+  width: 70px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 1px;
+  position: absolute;
+  z-index: 1;
+  top: -25px; /* Ajusta la posición vertical según sea necesario */
+  left: 67%; /* Ajusta la posición horizontal según sea necesario */
+}
+
+.custom-tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+
+// ::ng-deep .tooltip-container {
+//   left: -0px; /* Ajusta el valor según sea necesario */
+// }
+
+::ng-deep nb-select > button {
+  padding: 0rem !important;
+  padding-left: 0.2rem !important;
+  color: white !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.animated {
+  animation: zoom 1s infinite;
+  border: 1px solid #412379;
+  box-shadow: 0px 0px 5px 3px #8A74AB
+}
+
+@keyframes zoom {
+  0% {
+    // border: 3px solid red;
+    box-shadow: 0px 0px 5px 3px #8A74AB
+  }
+  50% {
+    // border: 0px solid red;
+    box-shadow: 0px 0px 0px 0px #8A74AB
+  }
+  100% {
+    // border: 3px solid red;
+    box-shadow: 0px 0px 5px 3px #8A74AB
+  }
+}

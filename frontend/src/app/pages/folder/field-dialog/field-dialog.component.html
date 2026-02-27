@@ -1,0 +1,975 @@
+<div class="container">
+  <div class="header row">
+    <div class="col-2" (click)="close()">
+      <span class="back-button"> &lt; Salir de Asignar Campos</span>
+    </div>
+    <div class="col-6">
+      <div class='envelope-name-container'>
+        <div class="col-4">
+          <label for="env-name" class="label"> Asigna un titulo al sobre:</label>
+        </div>
+        <div class="col-8">
+          <input id="env-name" maxLength="100" [(ngModel)]="data.parentComponent.name_envelope"
+                  nbInput type="text" placeholder="Titulo del sobre" autocomplete="off" fullWidth>
+          <div class="tooltip" *ngIf="!data.parentComponent.name_envelope" [@tooltipAnimation]="tooltipState"
+          >Por favor, ingresa un título para el sobre.</div>
+        </div>
+        <!-- <div class="col-8">
+
+          <input id="env-name" maxLength="100" [(ngModel)]="data.parentComponent.name_envelope" nbInput type="text" placeholder="Titulo del sobre" autocomplete="off" fullWidth>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="doc-selector">
+        <div class="col-2">
+          <button nbTooltip="Anterior" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="left" nbButton shape="round" size="large" [disabled]="car_index == 0" (click)="changeIdxCar(-1)">
+            <nb-icon icon="arrow-left"></nb-icon>
+          </button>
+        </div>
+        <div class="col-8">
+          <div class="doc-carousel">
+            <div *ngFor="let item of car_items; let pos = index;" style="padding: 0.33rem;" class="col-4">
+              <div class="doc-item" *ngIf="!item">
+                No tienes mas documentos en este sobre.
+              </div>
+              <div class="doc-item item-clickable" [style]="doc_select == item ? '' : 'filter: brightness(0.9);'" *ngIf="item" (click)="changeSrc(item, pos)">
+                <nb-icon [hidden]="doc_select == item" nbTooltip="Abrir previsualización" nbTooltipPlacement="top" nbTooltipStatus="basic" style="position: absolute; z-index: 1; height: 1.5rem; width: 1.5rem;" icon="eye-outline"></nb-icon>
+                <pdf-viewer [src]="(item.create && !item.data.src) ? '/assets/templates/base_a4.pdf' : (item.create ? item.data.src : item.data)" [render-text]="true" [show-all]="false" [original-size]="false"
+                    [fit-to-page]="false" class="pdf-viewer-box-view"></pdf-viewer>
+                <!-- {{item.name}} -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <button nbTooltip="Siguiente" nbTooltipPlacement="bottom" nbTooltipStatus="basic" class="right" nbButton shape="round" size="large" [disabled]="car_index + 3 == data.parentComponent.doc_list.length"  (click)="changeIdxCar(1)">
+            <nb-icon icon="arrow-right"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-view">
+    <div class="row">
+      <div class="col-9">
+        <div class="row">
+          <!-- header -->
+          <div class="col-4 sub-text">
+              Arrastra los campos que deseas asignar.
+          </div>
+          <div class="col-8 pdf-options">
+            <div class="col-5 col-xl-6">
+              <nb-toggle nbTooltip="Apagar/Encender" nbTooltipPlacement="bottom" nbTooltipStatus="basic" labelPosition="start" [(ngModel)]="data.parentComponent.autosave">Autoguardado</nb-toggle>
+            </div>
+            <div class="col-7 col-xl-6 zoom-options">
+              <nb-select [(selected)]="zoomOpt">
+                <nb-option *ngFor="let zOpt of zoomOptions" [value]="zOpt/100">{{zOpt}}%</nb-option>
+              </nb-select>
+              <div class="zoom-btn zoom-plus" title="Acercar" (click)="zoom('in')">
+                <i class="fas fa-search-plus"></i>
+              </div>
+              <div class="zoom-btn zoom-minus" title="Alejar" (click)="zoom('out')">
+                <i class="fas fa-search-minus"></i>
+              </div>
+              <div style="margin-bottom: 0.5rem; margin-left: 0.5rem">
+                <label for="pageSelector" class="label">Página Actual</label>
+                <input id="pageSelector" type="number" step="1" [(ngModel)]="page" nbInput [min]="1" [max]="doc_select ? doc_select.extra.max_pages : 1" (ngModelChange)="verifyPage($event)" style="width:4.25rem; line-height:1rem">
+              </div>
+            </div>
+          </div>
+          <!-- body -->
+          <div class="col-4">
+            <nb-accordion multi class="fields-selector ng-scroll" [nbSpinner]="loading">
+              <nb-accordion-item expanded>
+                  <nb-accordion-item-body class="content-type-list">
+                    <div cdkDropList #typeList="cdkDropList" [cdkDropListData]="field_types"
+                      cdkDropListSortingDisabled class="type-list" #list>
+                      <nb-accordion multi>
+                        <nb-accordion-item class="type-{{ group.key }}" [hidden]="isHideType()" *ngFor="let group of field_types | keyvalue; let i = index;" expanded="{{ i == expandedItem }}" (collapsedChange)="getChildModulesList($event, i)">
+                          <nb-accordion-item-header style="color:white" nbTooltip="Desplegar listado de {{ types_names[group.key] }}" nbTooltipPlacement="bottom" nbTooltipStatus="basic">
+                            {{ types_names[group.key] }}
+                          </nb-accordion-item-header>
+                          <nb-accordion-item-body>
+                            <div *ngFor="let item of group.value; let j = index;">
+                              <div class="type-box type-{{ item.group }}" cdkDrag [cdkDragDisabled]="disableMove(item)" (cdkDragMoved)="moveToPDF($event, i, j, list, cont_pdf, pdfContainer)" (cdkDragReleased)="addField(item)" (cdkDragStarted)="onEdit.edit=false">
+                                {{ item.label }}
+                                <div class="type-custom-placeholder" *cdkDragPlaceholder></div>
+                              </div>
+                            </div>
+                          </nb-accordion-item-body>
+                        </nb-accordion-item>
+                        <nb-accordion-item class="type-field" [hidden]="partSelected && (partSelected.approver || data.parentComponent.checker_user == partSelected.version_id)" expanded="{{ expandedItem == 3 }}" (collapsedChange)="getChildModulesList($event, 0, 'field')">
+                          <nb-accordion-item-header style="color:white" nbTooltip="Desplegar la sección de campos utilizados" nbTooltipPlacement="bottom" nbTooltipStatus="basic">
+                            Campos
+                          </nb-accordion-item-header>
+                          <nb-accordion-item-body>
+                            <div *ngFor="let doc of data.parentComponent.doc_list let i = index;">
+                              <div class="type-box type-title">{{ doc.name }} - {{ i + 1 }}</div>
+                              <div *ngFor="let item of doc['fields_drag'] let j = index;">
+                                <div *ngIf="!item.isConfig && item.field_type != 17" class="type-box type-field" cdkDrag (cdkDragMoved)="moveToPDF($event, i, j, list, cont_pdf, pdfContainer, true)" (cdkDragReleased)="addClone(item, i, j)" (cdkDragStarted)="onEdit.edit=false">
+                                  {{ item['label'] }}
+                                  <div class="type-custom-placeholder" *cdkDragPlaceholder></div>
+                                </div>
+                              </div>
+                            </div>
+                          </nb-accordion-item-body>
+                        </nb-accordion-item>
+                        <nb-accordion-item class="type-config" expanded="{{ expandedItem == 4 }}" (collapsedChange)="getChildModulesList($event, 0, 'config')">
+                          <nb-accordion-item-header style="color: black" nbTooltip="Desplegar la sección de elementos adicionales" nbTooltipPlacement="bottom" nbTooltipStatus="basic">
+                            Configuración General
+                          </nb-accordion-item-header>
+                          <nb-accordion-item-body>
+                            <div *ngFor="let item of configGeneral; let j = index;">
+                              <div class="type-box type-config" cdkDrag (cdkDragMoved)="moveToPDF($event, 0, j, list, cont_pdf, pdfContainer, false, true)" (cdkDragReleased)="addField(item, true)" (cdkDragStarted)="onEdit.edit=false">
+                                {{ item.label }}
+                                <div class="type-custom-placeholder" *cdkDragPlaceholder></div>
+                              </div>
+                            </div>
+                          </nb-accordion-item-body>
+                        </nb-accordion-item>
+                      </nb-accordion>
+                    </div>
+                  </nb-accordion-item-body>
+              </nb-accordion-item>
+          </nb-accordion>
+          </div>
+          <div class="col-8">
+
+            <div class="row">
+              <div class="col-lg-12 col-md-12 ng-scroll" style="overflow: auto; background: #44444489; padding-left: 0; max-height: 75vh;" #div_content_data [style]="getHeight()" #cont_pdf >
+                <div *ngIf="false" class="input-box-config" [style]="
+                  setTopLeftZoom() +
+                  'display: block;' +
+                  'z-index: 1000;'">
+                  <div>
+                    <nb-select
+                      [ngModel]="font"
+                      (ngModelChange)="fontChange($event)"
+                      name="font"
+                      nbTooltip="Fuente"
+                      nbTooltipPlacement="top"
+                      style="margin-top: 4px; margin-right: 4px;"
+                      name="page"
+                      placeholder="Fuente"
+                      [disabled]="(field['isConfig'] && (field['field_type']=='4' || field['field_type']=='5')) || field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22' || field['field_type']=='23' || column_type && column_type == '7'"
+                      [selected]="font" size="tiny">
+                      <nb-option value="Arial">Arial</nb-option>
+                      <nb-option value="Courier">Courier</nb-option>
+                      <nb-option value="Times">Times</nb-option>
+                      <nb-option value="Symbol">Symbol</nb-option>
+                      <!-- <nb-option value="ZapfDingbats">ZapfDingbats</nb-option> -->
+                    </nb-select>
+                  </div>
+                </div>
+                <div class="input-boundary" [style]="getWidth() + getHeight()" [ngStyle]="{zoom: zoomOpt}">
+                  <!-- Vista de + para aumentar el tamaño de los campos de configuración general -->
+                  <div *ngFor="let field of doc_select['fields_drag']; let idx=index;">
+                    <div *ngIf="field.isConfig && !cdkDragStarted" [style]="'color: black;
+                      position: absolute;
+                      font-size: 1.3rem;
+                      text-shadow: 0px 0px 4px white;
+                      cursor: pointer;' +
+                      setWidthMove(field)" #elSize
+                      cdkDragBoundary=".input-boundary"
+                      (cdkDragMoved)="mouseDragMoved($event, elSize, field, idx)"
+                      (cdkDragStarted)="onEdit.edit=false"
+                      (cdkDragEnded)="mouseDragEnded($event, elSize, field)" cdkDrag>+</div>
+                  </div>
+                  <!-- Vista principal dentro del PDF para los campos -->
+                  <div *ngFor="let field of doc_select['fields_drag']; let i=index;"
+                    [title]="getTitle(field)"
+                    [style]="'left:' + field.left + 'px;' +
+                        'top: ' + field.top + 'px;' +
+                        'height: ' + (field.size + 4) + 'px;' +
+                        'background: ' + setColor(field, 'background') + ';' +
+                        getSizeSign(field, field.size_image_x, field.size_image_y)"
+                    [hidden]="field.page != page || (!field.isConfig && ['3', '12', '13'].includes(field.field_type+''))"
+                    [id]="'field-in-pdf-' + i"
+                    [class]="'input-box item-resizer-' + i + ' ' + getClass(i)" #element
+                    (click)="selectField(field, i)"
+                    cdkDragBoundary=".input-boundary"
+                    (cdkDragStarted)="onEdit.edit=false; cdkDragStarted=true"
+                    (cdkDragEnded)="moveField($event, element, i, cont_pdf)"
+                    cdkDrag>
+                    <div *ngIf="field && field.field_type != '17'" [style]="'font-family: ' + field.font +
+                      ';display: ' + (field.isConfig && (field.field_type == '4' || field.field_type == '5') ? 'none' : 'block') +
+                      ';color: ' + setColor(field, 'color') +
+                      ';font-size: ' + field.size + 'px;' +
+                      fieldConfig(field) +
+                      getBold(field.bold) + getItalic(field.italic) + getUnderline(field.underline)" class="label-box">
+                      {{ field.isConfig ? field.label : ((getLabel(field) && getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field))) }}
+                    </div>
+
+                    <div *ngIf="field && field.field_type == '17'">
+                      <img *ngIf="field.description == '1'" style="cursor: move; position: absolute; width: 40px; left: 0; top: 0;" src="/assets/images/icons/folder/PDF.png">
+                      <table class="view-table-drag" *ngIf="field.description == '2'">
+                        <tr>
+                          <td [style]="'font-family: ' + field.font +
+                            ';color: ' + setColor(field, 'table') +
+                            ';font-size: ' + field.size + 'px;' +
+                            fieldConfig(field) +
+                            getBold(field.bold) + getItalic(field.italic) + getUnderline(field.underline)"
+                            *ngFor="let ti of field.fields" >
+                            {{ ti.label }}
+                          </td>
+                        </tr>
+                        <tr *ngFor="let item of [].constructor(field.user.limit_public - 1); let o = index">
+                          <td *ngFor="let ti of field.fields"></td>
+                        </tr>
+                      </table>
+                    </div>
+
+                    <div *ngIf="field && field.isConfig && field.field_type == '4'">
+                      <img [src]="field.url_src" class="img-svg-icon" [style]="'width: ' + field.size_image_x + 'px; filter: ' + colorCssFilter(field)" />
+                    </div>
+                    <div *ngIf="field && field.isConfig && field.field_type == '5'">
+                      <img [src]="field.url_src" class="img-svg-icon" [style]="'width: ' + field.size_image_x + 'px'" />
+                    </div>
+                    <div *ngIf="!field.isConfig && line_check && (field.field_type == 1 || field.field_type == 2 || field.field_type == 5 || field.field_type == 6 || (column_type && column_type == '1' || column_type == '2' || column_type == '5' || column_type == '6'))"
+                      [class]="'input-box-line ' + getClass(i)" [style]="getSizeLine(field.size_image_x, field.line_height)">
+                      {{ getLine(field.size_image_x) }}
+                    </div>
+                  </div>
+
+                  <!-- Vista los campos clonados -->
+                  <div *ngFor="let doc of data.parentComponent.doc_list let d = index;">
+                    <div *ngFor="let field of doc['fields_drag']; let i=index;">
+                      <div *ngFor="let clone of field.clone; let l=index;"
+                          [title]="getTitle(field)"
+                          [style]="'left:' + clone.left + 'px;' +
+                              'top: ' + clone.top + 'px;' +
+                              'height: ' + (clone.size + 4) + 'px;' +
+                              'background: ' +setColor(field, 'background') + ';' +
+                              getSizeSign(field.field_type, clone.size_image_x, clone.size_image_y)"
+                          [hidden]="clone.envelope_version_form_id != doc_select['id'] || clone.page != page"
+                          [class]="'input-box ' + getClass(i, d, l)" #element
+                          (click)="selectClone(field, d, i, l)"
+                          cdkDragBoundary=".input-boundary"
+                          (cdkDragEnded)="moveClone($event, element, d, i, l, cont_pdf)"
+                          cdkDrag>
+                          <div *ngIf="field" [style]="'font-family: ' + clone.font +
+                            ';color: ' + setColor(field, 'color') +
+                            ';font-size: ' + clone.size + 'px;' +
+                            getBold(clone.bold) + getItalic(clone.italic) + getUnderline(clone.underline)" class="label-box">
+                            {{ (getLabel(field) && getLabel(field).length > 8)? (getLabel(field) | slice:0:5)+'...':(getLabel(field)) }}
+                          </div>
+                          <div *ngIf="line_check && (field.field_type == 1 || field.field_type == 2 || field.field_type == 5 || field.field_type == 6 || (column_type && column_type == '1' || column_type == '2' || column_type == '5' || column_type == '6'))"
+                            [class]="'input-box-line ' + getClass(i, d, l)" [style]="getSizeLine(clone.size_image_x, clone.line_height)">
+                            {{ getLine(clone.size_image_x) }}
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Vista para mover las opciones -->
+                  <div *ngFor="let field of doc_select['fields_drag']">
+                    <div *ngIf="activeOptions(field)" class="options-content">
+                      <div *ngIf="field.option == '0'"
+                        [class]="'opt-label ' + setStyleLista(field, true)"
+                        [style]="'top: ' + field.top + 'px; left: ' + field.left + 'px;' + setStyleLista(field, false)"
+                        cdkDragBoundary=".input-boundary" #element
+                        (cdkDragEnded)="moveOptionEnd($event, element, field, opt, cont_pdf, true)"
+                        cdkDrag>{{field.label}}</div>
+                      <div *ngIf="field['field_type'] != '3'">
+                        <div *ngFor="let option of field['values']; let opt = index;"
+                          class="opt-options"
+                          [style]="setPositionOption(field.option, option)"
+                          cdkDragBoundary=".input-boundary" #element
+                          (cdkDragEnded)="moveOptionEnd($event, element, field, opt, cont_pdf)"
+                          cdkDrag
+                          [ngSwitch]="field.option">
+                          <div *ngSwitchCase="'0'"
+                            [style]="'color: ' + field.user.color"
+                            [nbTooltip]="field.label + ' - ' + option.value" nbTooltipPlacement="top" nbTooltipStatus="primary">{{option.value}}</div>
+                          <div *ngSwitchCase="'1'"
+                            [style]="'display: flex; align-items: center; color: ' + field.user.color"
+                            [nbTooltip]="field.label + ' - ' + option.value" nbTooltipPlacement="top" nbTooltipStatus="primary">
+                            <div class="list-sel"></div>{{option.value}}</div>
+                          <div *ngSwitchCase="'2'"
+                            [style]="'background: ' + field.user.color"
+                            class="option-circle" [nbTooltip]="field.label + ' - ' + option.value" nbTooltipPlacement="top" nbTooltipStatus="primary"></div>
+                          <div *ngSwitchCase="'3'"
+                            [style]="'color: ' + field.user.color"
+                            [nbTooltip]="field.label + ' - ' + option.value" nbTooltipPlacement="top" nbTooltipStatus="primary">X</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <pdf-viewer class="create_container_pdf" #pdfContainer [style]="getWidth() + getHeight() + 'position: absolute;'"
+                      [src]="src"
+                      [rotation]="0"
+                      [original-size]="false"
+                      [show-all]="false"
+                      [page]="page"
+                      [fit-to-page]="false"
+                      [zoom]="1"
+                      [zoom-scale]="'page-width'"
+                      [stick-to-page]="false"
+                      [render-text]="true"
+                      [external-link-target]="'blank'"
+                      [autoresize]="true"
+                      [show-borders]="false"
+                      cdkDragBoundary=".example-boundary"
+                      (click)="selectField([], null)"
+                  >
+                  </pdf-viewer>
+                </div>
+                <!-- Vista para editar la Configuración de los campos -->
+                <div *ngIf="onEdit.edit && field && (field['isConfig'] || !['3', '12', '13'].includes(field['field_type']))" class="input-box-config"
+                  [style]="
+                    setTopLeftZoom() +
+                    'display: block;' +
+                    'z-index: 100;'">
+                  <div class="d-flex">
+                    <div class="d-flex">
+                      <div>
+                        <nb-select
+                          [ngModel]="font"
+                          (ngModelChange)="fontChange($event)"
+                          name="font"
+                          nbTooltip="Fuente"
+                          nbTooltipPlacement="top"
+                          style="margin-top: 4px; margin-right: 4px;"
+                          name="page"
+                          placeholder="Fuente"
+                          [disabled]="(field['isConfig'] && (field['field_type']=='4' || field['field_type']=='5')) || field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22' || field['field_type']=='23' || column_type && column_type == '7'"
+                          [selected]="font" size="tiny">
+                          <nb-option value="Arial">Arial</nb-option>
+                          <nb-option value="Courier">Courier</nb-option>
+                          <nb-option value="Times">Times</nb-option>
+                          <nb-option value="Symbol">Symbol</nb-option>
+                          <!-- <nb-option value="ZapfDingbats">ZapfDingbats</nb-option> -->
+                        </nb-select>
+                      </div>
+                      <!-- Size  -->
+                      <div>
+                        <input [ngModel]="size"
+                          (ngModelChange)="sizeChange($event, field['isConfig'] ? 32 : 20)"
+                          name="size"
+                          style="margin-top: 4px;"
+                          nbTooltip="Tamaño letra"
+                          nbTooltipPlacement="top"
+                          nbButton
+                          type="number" min="7" max="32"
+                          nbInput fieldSize="tiny"
+                          [disabled]="(field['isConfig'] && (field['field_type']=='4' || field['field_type']=='5')) || field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22' || field['field_type']=='23' || column_type && column_type == '7'"
+                          placeholder="Tamaño letra">
+                      </div>
+                    </div>
+                    <div class="px-1">
+                      <div class="d-flex">
+                        <nb-button-group multiple size="tiny" [disabled]="(field['isConfig'] && field['field_type']=='4') || field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22' || field['field_type']=='23' || column_type && column_type == '7'" style="margin-top: 4px; margin-right: 4px;">
+                          <button nbButtonToggle nbTooltip="Negrita" nbTooltipPlacement="top" nbTooltipStatus="primary" (click)="boldChange()" [pressed]="bold" style="font-weight: 700">N</button>
+                          <button nbButtonToggle nbTooltip="Cursiva" nbTooltipPlacement="top" nbTooltipStatus="primary" (click)="italicChange()" [pressed]="italic" style="font-style: italic;">K</button>
+                          <button nbButtonToggle nbTooltip="Subrayado" nbTooltipPlacement="top" nbTooltipStatus="primary" (click)="underlineChange()" [pressed]="underline" style="text-decoration: underline;">S</button>
+                        </nb-button-group>
+                        <button nbButton ghost status="info"
+                          nbTooltip="Los estilos de negrita y cursiva no se aplican a Symbol"
+                          nbTooltipStatus="info" style="margin-top: 4px; margin-right: 4px;" size="tiny">
+                          !
+                        </button>
+                      </div>
+                      <nb-button-group *ngIf="field['isConfig']" [disabled]="field['field_type']=='4' || field['field_type']=='5'" size="tiny" style="margin-top: 4px; margin-right: 4px;">
+                        <button nbButtonToggle nbTooltip="Izquierda" nbTooltipPlacement="top" nbTooltipStatus="primary" [pressed]="field['justify'] == 'left'" (click)="justifyChange('left')"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+                        <button nbButtonToggle nbTooltip="Centrado" nbTooltipPlacement="top" nbTooltipStatus="primary" [pressed]="field['justify'] == 'center'" (click)="justifyChange('center')">-</button>
+                        <button nbButtonToggle nbTooltip="Derecha" nbTooltipPlacement="top" nbTooltipStatus="primary" [pressed]="field['justify'] == 'right'" (click)="justifyChange('right')"><nb-icon icon="arrow-forward-outline"></nb-icon></button>
+                      </nb-button-group>
+                    </div>
+                    <div>
+                      <!-- <input *ngIf="field['isConfig']" [ngModel]="field['size_image_x']"
+                        (ngModelChange)="sizeSignChange($event, field['field_type'], field['isConfig'])"
+                        name="size_image_x"
+                        style="margin-top: 4px; margin-right: 4px"
+                        nbTooltip="Tamaño"
+                        type="number" min="50" max="400"
+                        nbInput fieldSize="tiny"
+                        placeholder="Tamaño"> -->
+                      <input
+                        [ngModel]="color"
+                        (ngModelChange)="colorChange($event)"
+                        name="color"
+                        nbTooltip="Color"
+                        style="margin-top: 4px;"
+                        type="color"
+                        nbInput fieldSize="tiny"
+                        [disabled]="(field['isConfig'] && field['field_type']=='5') || field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22'  || field['field_type']=='23'|| column_type && column_type == '7'"
+                        placeholder="Color">
+                    </div>
+                    <!-- Asignar campo para que el pdf se llame asi segun la respuesta -->
+                    <div class="px-3 d-flex align-items-end">
+                      <nb-checkbox nbTooltip="Asignar campo de respuesta al sobre" [ngModel]="assign_name_pdf" (checkedChange)="toggleAssignNamePdf($event)">
+                        <nb-icon style="margin-left: 15px; cursor: pointer;" icon="file-text-outline"></nb-icon>
+                      </nb-checkbox>
+                    </div>
+                  </div>
+                  <div *ngIf="!field['isConfig']">
+                    <!-- Fecha -->
+                    <div *ngIf="field.length != 0 && field['field_type'] == '4'">
+                      <nb-button-group status="info" size="tiny" (valueChange)="dateChange($event)" style="margin-top: 4px; margin-right: 4px;">
+                          <button nbButtonToggle nbTooltip="Fecha - Completa" value="0" nbTooltipStatus="info" [pressed]="0 == option" nbTooltipPlacement="bottom">Completa</button>
+                          <button nbButtonToggle nbTooltip="Fecha - Día" value="1" nbTooltipStatus="info" [pressed]="1 == option" nbTooltipPlacement="bottom">Día</button>
+                          <button nbButtonToggle nbTooltip="Fecha - Mes" value="2" nbTooltipStatus="info" [pressed]="2 == option" nbTooltipPlacement="bottom">Mes</button>
+                          <button nbButtonToggle nbTooltip="Fecha - Año" value="3" nbTooltipStatus="info" [pressed]="3 == option" nbTooltipPlacement="bottom">Año</button>
+                      </nb-button-group>
+                    </div>
+                    <!-- Seleccionable -->
+                    <div *ngIf="field.length != 0 && field['field_type'] == '3' || field['field_type'] == '12' || field['field_type'] == '13'">
+                      <nb-button-group status="info" size="tiny" (valueChange)="optionChange($event)" style="margin-top: 4px; margin-right: 4px;">
+                          <button nbButtonToggle nbTooltip="Mostrar - Texto" value="0" nbTooltipStatus="info" [pressed]="0 == option" nbTooltipPlacement="bottom">T</button>
+                          <button nbButtonToggle nbTooltip="Mostrar - Marca x" value="1" nbTooltipStatus="info" [pressed]="1 == option" nbTooltipPlacement="bottom">x</button>
+                      </nb-button-group>
+                      <br>
+                      <nb-button-group class="option-field-select"
+                          *ngIf="field['data']['values'].length != 0"
+                          (valueChange)="optionValueChange($event)"
+                          [disabled]="option==0" status="info" size="tiny">
+                          <button *ngFor="let opt of field['data']['values']; let i=index;"
+                              nbButtonToggle [nbTooltip]="'Opción - ' + opt.label"
+                              [value]="opt.value"
+                              [pressed]="opt.value == option_value"
+                              nbTooltipStatus="info" nbTooltipPlacement="bottom">
+                              {{ (opt.label.length > 6)? (opt.label | slice:0:3)+'...':(opt.label) }}
+                          </button>
+                      </nb-button-group>
+                    </div>
+                    <!-- Tabla -->
+                    <div *ngIf="field.length != 0 && field['field_type'] == '17'">
+                      <nb-select [ngModel]="row_field"
+                          (ngModelChange)="rowChange($event)"
+                          name="row_field" class="select-form mt-15"
+                          placeholder="Seleccionar fila"
+                          size="tiny"
+                          [selected]="page">
+                          <nb-option [value]="i + 1" *ngFor="let item of [].constructor(field['row']); let i = index">
+                              Fila {{ i + 1 }}
+                          </nb-option>
+                      </nb-select>
+                      <br>
+                      <nb-button-group class="option-field-select"
+                          *ngIf="field['fields'].length != 0"
+                          (valueChange)="columnValueChange($event)"
+                          status="info" size="tiny">
+                          <button *ngFor="let field_l of field['fields']; let i_l=index;"
+                              nbButtonToggle [nbTooltip]="'Columna - ' + field_l.label"
+                              [value]="field_l"
+                              [pressed]="field_l.field == column_value"
+                              nbTooltipStatus="info" nbTooltipPlacement="bottom">
+                              {{ (field_l.label.length > 6)? (field_l.label | slice:0:3)+'...':(field_l.label) }}
+                          </button>
+                      </nb-button-group>
+                      <!-- Seleccionable -->
+                      <div *ngIf="column_type && column_type == '3' || column_type == '12' || column_type == '13'">
+                          <nb-button-group status="info" size="tiny" (valueChange)="optionChange($event)" style="margin-top: 4px; margin-right: 4px;">
+                              <button nbButtonToggle nbTooltip="Mostrar - Texto" value="0" nbTooltipStatus="info" [pressed]="0 == option" nbTooltipPlacement="bottom">T</button>
+                              <button nbButtonToggle nbTooltip="Mostrar - Marca x" value="1" nbTooltipStatus="info" [pressed]="1 == option" nbTooltipPlacement="bottom">x</button>
+                          </nb-button-group>
+                          <br>
+                          <nb-button-group class="option-field-select"
+                              *ngIf="column_options.length != 0"
+                              (valueChange)="optionValueChange($event)"
+                              [disabled]="option==0" status="info" size="tiny">
+                              <button *ngFor="let opt of column_options; let i=index;"
+                                  nbButtonToggle [nbTooltip]="'Opción - ' + opt.label"
+                                  [value]="opt.value"
+                                  [pressed]="opt.value == option_value"
+                                  nbTooltipStatus="info" nbTooltipPlacement="bottom">
+                                  {{ (opt.label.length > 6)? (opt.label | slice:0:3)+'...':(opt.label) }}
+                              </button>
+                          </nb-button-group>
+                      </div>
+                    </div>
+                    <!-- Firma y Archivos -->
+                    <div *ngIf="field.length != 0 && (field['field_type'] == '7' || field['field_type']=='9' || field['field_type'] == '10' || field['field_type'] == '18' || field['field_type'] == '22' || field['field_type']=='23') || column_type && column_type == '7'">
+                      <input [ngModel]="size_image_x"
+                          (ngModelChange)="sizeSignChange($event, field['field_type'])"
+                          name="size_image_x"
+                          style="margin-top: 4px;"
+                          nbTooltip="Tamaño Firma"
+                          type="number" min="50" max="400"
+                          nbInput fieldSize="tiny"
+                          placeholder="Tamaño Firma">
+                    </div>
+                    <!-- Tamaño de espacio y interlineado -->
+                    <div style="padding-top: 4px;" *ngIf="(field['field_type']=='1' || field['field_type']=='2' || field['field_type']=='5' || field['field_type']=='6') || (column_type && column_type == '1' || column_type == '2' || column_type == '5' || column_type == '6')">
+                      <nb-checkbox nbTooltip="Salto de Linea" [(ngModel)]="line_check" (checkedChange)="toggleLine($event)">
+                        <nb-icon style="margin-left: 15px; cursor: pointer;" icon="menu-2-outline"></nb-icon>
+                      </nb-checkbox>
+                      <br>
+                      <input *ngIf="line_check" [ngModel]="size_image_x"
+                          (ngModelChange)="sizeSignChange($event, field['field_type'])"
+                          name="size_image_x"
+                          nbTooltip="Tamaño Espacio"
+                          type="number" min="50" max="400"
+                          nbInput fieldSize="tiny"
+                          placeholder="Tamaño Espacio">
+                      <input *ngIf="line_check" [ngModel]="line_height"
+                          (ngModelChange)="lineHeightChange($event)"
+                          name="line_height"
+                          style="margin-left: 4px;"
+                          nbTooltip="Interlineado"
+                          type="number" min="10" max="25"
+                          nbInput fieldSize="tiny"
+                          placeholder="Tamaño">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- input settings -->
+      <div class="col-3">
+        <div class="part-selector">
+          <nb-select-label >Participante</nb-select-label>
+          <nb-form-field>
+            <nb-icon [ngStyle]="{'background-color':partSelected.color, 'color': partSelected.color}" nbPrefix class="color" icon="star" *ngIf="partSelected"></nb-icon>
+            <nb-select [disabled]="clone_index != null" fullWidth [(ngModel)]="partSelected" (selectedChange)="setParticipant($event)">
+              <!-- <nb-option [value]="null">--</nb-option> -->
+              <nb-option *ngFor="let user of data.parentComponent.user_list; let i = index" [value]="user">
+                {{i+1}} - {{ user.name }}
+              </nb-option>
+            </nb-select>
+          </nb-form-field>
+        </div>
+        <div class="menu-content-out ng-scroll" [nbSpinner]="loading" style="overflow: auto; max-height: 66vh;" nbSpinnerStatus="primary">
+          <!-- ------- ANTERIOR FUNCIONALIDAD PARA DAR ESTILO A UN CAMPO - Código al final de archivo ------- -->
+          <!-- Configuración de los campos para diligenciar por participante -->
+          <nb-accordion multi>
+            <nb-accordion-item expanded>
+              <nb-accordion-item-body *ngIf="partSelected">
+                <div *ngFor="let doc of data.parentComponent.doc_list; let docIndex = index;">
+                  <div *ngFor="let field of doc['fields_drag']; let fieldIndex = index;">
+                    <div *ngIf="!field.isConfig && partSelected.id == field.user.id && partSelected.type == field.user.type && field.page == page && docIndex == doc_selected_index">
+                      <div class="d-flex justify-content-between align-items-center mb-1 p-1" [ngStyle]="{'background-color':partSelected.color, 'color': 'white'}" style="border: 1px solid #b7b7b7;">
+                        <div class="text-truncate">
+                          {{field.label}}
+                        </div>
+                        <div class="d-flex">
+                          <a nbTooltip="Editar" nbTooltipPlacement="top">
+                            <button (click)="onEditFieldConfig(fieldIndex)" nbButton size="tiny">
+                                <nb-icon icon="edit-2-outline"></nb-icon>
+                            </button>
+                          </a>
+                          <a nbTooltip="Eliminar" class="ml-1" nbTooltipPlacement="top">
+                            <button (click)="onDeleteField(docIndex, fieldIndex, null, field)" nbButton size="tiny">
+                                <nb-icon icon="trash-2-outline"></nb-icon>
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngFor="let clone of field.clone; let cloneIndex = index;">
+                      <div *ngIf="doc_select.id == clone.envelope_version_form_id"
+                        class="d-flex justify-content-between align-items-center mb-1 p-1"
+                        [ngStyle]="{'background-color':partSelected.color, 'color': 'white'}"
+                        style="border: 1px solid #b7b7b7;">
+                        <div class="text-truncate" nbTooltip="Campo clonado" nbTooltipPlacement="left" style="cursor: help;">
+                          {{field.label}}
+                        </div>
+                        <div class="d-flex">
+                          <a nbTooltip="Eliminar" class="ml-1" nbTooltipPlacement="top">
+                            <button (click)="onDeleteField(docIndex, fieldIndex, cloneIndex, clone)" nbButton size="tiny">
+                                <nb-icon icon="trash-2-outline"></nb-icon>
+                            </button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+          <br>
+          <!-- Configuración general -->
+          <nb-accordion multi>
+            <nb-accordion-item expanded>
+              <nb-accordion-item-body>
+                <h6>Configuración General</h6>
+                <div *ngFor="let field of doc_select['fields_drag']; let j = index;">
+                  <div *ngIf="field.isConfig && field.page == page" class="mb-1 p-1" style="border: 1px solid #b7b7b7;">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="text-truncate">
+                        <img *ngIf="field.field_type == '4'" [src]="field.url_src" class="img-svg-icon" [style]="'width: 24px; filter: ' + colorCssFilter(field)" />
+                        <img *ngIf="field.field_type == '5'" [src]="field.url_src" class="img-svg-icon" [style]="'width: 24px;'" />
+                        {{getTitleConfig(field.field_type)}}{{(field.field_type == '4' || field.field_type == '5') ? '' : (' - '+field.label)}}
+                      </div>
+                      <div class="d-flex">
+                        <a nbTooltip="Editar" nbTooltipPlacement="top">
+                          <button (click)="onEditFieldConfig(j)" nbButton size="tiny">
+                              <nb-icon icon="edit-2-outline"></nb-icon>
+                          </button>
+                        </a>
+                        <a nbTooltip="Eliminar" class="ml-1" nbTooltipPlacement="top">
+                          <button (click)="deleteFieldConfig(j, field)" nbButton size="tiny">
+                              <nb-icon icon="trash-2-outline"></nb-icon>
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="data.parentComponent.fieldsConfigCount == 0">No hay campos configurados</div>
+            </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+          <br>
+          <nb-accordion multi style=" bottom: 0; width: 91%">
+              <nb-accordion-item expanded>
+                  <nb-accordion-item-body>
+                      <button nbTooltip="Guardar campos y elementos" nbTooltipPlacement="bottom" nbTooltipStatus="primary"
+                        nbButton size="small" status="primary" fullWidth (click)="onPDFSubmit()">Guardar</button>
+                  </nb-accordion-item-body>
+              </nb-accordion-item>
+          </nb-accordion>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div class="container">
+  <div class="header row">
+    <div class="col-2" (click)="close()">
+      <span class="back-button"> &lt; Salir de Asignar Campos</span>
+    </div>
+    <div class="col-6">
+      <div class='envelope-name-container'>
+        <div class="col-3">
+          <label for="env-name" class="label"> Asigna un titulo al sobre:</label>
+        </div>
+        <div class="col-9">
+          <input id="env-name" nbInput type="text" placeholder="Titulo del dobre" fullWidth>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="doc-selector">
+        <div class="col-2">
+          <button class="left" nbButton shape="round" size="large">
+            <nb-icon icon="arrow-left"></nb-icon>
+          </button>
+        </div>
+        <div class="col-8">
+          <div class="doc-carousel">
+            <div *ngFor="let item of [1,2,3]" class="col-4 doc-item">
+              No tienes mas documentos en este sobre.
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <button class="right" nbButton shape="round" size="large">
+            <nb-icon icon="arrow-right"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-view" style="display:flex">
+    <div class="col-2">
+      <div class="subtitle">
+        Arrastra los campos que deseas asignar.
+      </div>
+      <nb-accordion multi class="fields-selector ng-scroll">
+        <nb-accordion-item expanded>
+          <nb-accordion-item-body class="content-type-list">
+            <div cdkDropList #typeList="cdkDropList" [cdkDropListData]="field_types"
+              cdkDropListSortingDisabled class="type-list"
+              (cdkDropListDropped)="dropField($event, pdf_local)"  >
+
+                <div class="type-box" *ngFor="let item of field_types" cdkDrag #cosaaaaa (cdkDragMoved)="moveFieldTest($event, cosaaaaa, pdf_local)">
+                    <div class="type-custom-placeholder" *cdkDragPlaceholder></div>
+                    {{ item.label }}
+                </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+    </div>
+
+    <div class="col-7 preview" id="form-field-list">
+      <div class="pdf-options">
+        <div class="col-7">
+          <nb-toggle labelPosition="start">Autoguardado</nb-toggle>
+        </div>
+        <div class="col-5 zoom-options">
+          <nb-select [(selected)]="zoomOpt">
+            <nb-option *ngFor="let zOpt of zoomOptions" [value]="zOpt/100">{{zOpt}}%</nb-option>
+          </nb-select>
+          <div class="zoom-btn zoom-plus" title="Acercar" (click)="zoom('in')">
+            <i class="fas fa-search-plus"></i>
+          </div>
+          <div class="zoom-btn zoom-minus" title="Alejar" (click)="zoom('out')">
+            <i class="fas fa-search-minus"></i>
+          </div>
+        </div>
+      </div>
+      <div class="drag_container_pdf" #pdf_local>
+        <div *ngFor="let field of fields_drag; let i=index;"
+            [style]="'left:' + field.left + 'px;' +
+                'top: ' + field.top + 'px;'"
+            [class]="'input-box'" #element
+            cdkDragBoundary=".drag_container_pdf"
+            (cdkDragEnded)="moveField($event, element, i)" cdkDrag>
+            SIn nada
+        </div>
+
+        <pdf-viewer class="create_container_pdf"
+          src="http://localhost:4200/assets/legal/TERMINOS-Y-CONDICIONES.pdf"
+          [rotation]="0"
+          [original-size]="false"
+          [show-all]="false"
+          [page]="0"
+          [fit-to-page]="true"
+          [zoom]="zoomOpt"
+          [zoom-scale]="'page-width'"
+          [stick-to-page]="false"
+          [render-text]="true"
+          [external-link-target]="'blank'"
+          [autoresize]="true"
+          [show-borders]="true"
+          cdkDragBoundary=".example-boundary">
+        </pdf-viewer>
+      </div>
+    </div>
+    <div class="col-3 field-config">
+      <nb-select-label >Participante</nb-select-label>
+      <nb-form-field>
+        <nb-icon [ngStyle]="{'background-color':'#44ff44', 'color': '#44ff44'}" nbPrefix class="color" icon="star" *ngIf="partSelected"></nb-icon>
+        <nb-select fullWidth [(selected)]="partSelected">
+          <nb-option class="partOpt" value="0">
+          1 - Lorena Gutiérrez
+          </nb-option>
+        </nb-select>
+      </nb-form-field>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+<!-- ------- ANTERIOR FUNCIONALIDAD PARA DAR ESTILO A UN CAMPO ------- -->
+<!-- <nb-accordion multi class="d-none">
+  <nb-accordion-item expanded>
+      <nb-accordion-item-body class="content-field-list">
+        <nb-select
+            [ngModel]="font"
+            (ngModelChange)="fontChange($event)"
+            name="font"
+            nbTooltip="Fuente"
+            style="margin-top: 4px; margin-right: 4px;"
+            name="page"
+            placeholder="Fuente"
+            [disabled]="field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22' || field['field_type']=='23' || column_type && column_type == '7'"
+            [selected]="font" size="tiny">
+            <nb-option value="Arial">
+                Arial
+            </nb-option>
+            <nb-option value="Courier">
+                Courier
+            </nb-option>
+            <nb-option value="Times">
+                Times
+            </nb-option>
+            <nb-option value="Symbol">
+                Symbol
+            </nb-option>
+            <!-- <nb-option value="ZapfDingbats">
+                ZapfDingbats
+            </nb-option> ->
+        </nb-select>
+        <!-- Size  ->
+        <input [ngModel]="size"
+            (ngModelChange)="sizeChange($event, 20)"
+            name="size"
+            style="margin-top: 4px;"
+            nbTooltip="Tamaño"
+            type="number" min="7" max="20"
+            nbInput fieldSize="tiny"
+            [disabled]="field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22' || field['field_type']=='23' || column_type && column_type == '7'"
+            placeholder="Tamaño">
+        <br>
+        <nb-button-group multiple size="tiny" [disabled]="field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22' || field['field_type']=='23' || column_type && column_type == '7'" style="margin-top: 4px; margin-right: 4px;">
+            <button nbButtonToggle nbTooltip="Negrita" nbTooltipStatus="primary" (click)="boldChange()" [pressed]="bold">N</button>
+            <button nbButtonToggle nbTooltip="Cursiva" nbTooltipStatus="primary" (click)="italicChange()" [pressed]="italic" class="text-italic">K</button>
+            <button nbButtonToggle nbTooltip="Subrayado" nbTooltipStatus="primary" (click)="underlineChange()" [pressed]="underline" class="text-underline">S</button>
+        </nb-button-group>
+        <button nbButton ghost status="info"
+            nbTooltip="Los estilos de negrita y cursiva no se aplican a Symbol"
+            nbTooltipStatus="info" style="margin-top: 4px; margin-right: 4px;" size="tiny">
+            !
+        </button>
+        <input
+            [ngModel]="color" (ngModelChange)="colorChange($event)"
+            name="color"
+            nbTooltip="Color"
+            style="margin-top: 4px;"
+            type="color"
+            nbInput fieldSize="tiny"
+            [disabled]="field['field_type']=='7' || field['field_type']=='9' || field['field_type']=='10' || field['field_type']=='18' || field['field_type']=='22'  || field['field_type']=='23'|| column_type && column_type == '7'"
+            placeholder="Color">
+        <a nbTooltip="Editar" nbTooltipStatus="warning"
+            nbTooltipPlacement="top"
+            style="margin-top: 4px; margin-left: 4px; float: right;">
+            <button [disabled]="field_index == null || clone_index != null"
+                (click)="onEditField()" nbButton
+                outline status="warning" size="tiny">
+                <nb-icon icon="edit-2-outline"></nb-icon>
+            </button>
+        </a>
+        <br>
+        <a nbTooltip="Eliminar" nbTooltipStatus="danger"
+            nbTooltipPlacement="bottom"
+            style="margin-top: 4px; float: right;">
+            <button [disabled]="field_index == null && clone_index == null"
+                (click)="deleteField()" nbButton
+                outline status="danger" size="tiny">
+                <nb-icon icon="close"></nb-icon>
+            </button>
+        </a>
+        <!-- Fecha ->
+        <div *ngIf="field.length != 0 && field['field_type'] == '4'">
+            <nb-button-group status="info" size="tiny" (valueChange)="dateChange($event)" style="margin-top: 4px; margin-right: 4px;">
+                <button nbButtonToggle nbTooltip="Fecha - Completa" value="0" nbTooltipStatus="info" [pressed]="0 == option" nbTooltipPlacement="bottom">Completa</button>
+                <button nbButtonToggle nbTooltip="Fecha - Día" value="1" nbTooltipStatus="info" [pressed]="1 == option" nbTooltipPlacement="bottom">Día</button>
+                <button nbButtonToggle nbTooltip="Fecha - Mes" value="2" nbTooltipStatus="info" [pressed]="2 == option" nbTooltipPlacement="bottom">Mes</button>
+                <button nbButtonToggle nbTooltip="Fecha - Año" value="3" nbTooltipStatus="info" [pressed]="3 == option" nbTooltipPlacement="bottom">Año</button>
+            </nb-button-group>
+        </div>
+        <!-- Seleccionable ->
+        <div *ngIf="field.length != 0 && field['field_type'] == '3' || field['field_type'] == '12' || field['field_type'] == '13'">
+            <nb-button-group status="info" size="tiny" (valueChange)="optionChange($event)" style="margin-top: 4px; margin-right: 4px;">
+                <button nbButtonToggle nbTooltip="Mostrar - Texto" value="0" nbTooltipStatus="info" [pressed]="0 == option" nbTooltipPlacement="bottom">T</button>
+                <button nbButtonToggle nbTooltip="Mostrar - Marca x" value="1" nbTooltipStatus="info" [pressed]="1 == option" nbTooltipPlacement="bottom">x</button>
+            </nb-button-group>
+            <br>
+            <nb-button-group class="option-field-select"
+                *ngIf="field['data']['values'].length != 0"
+                (valueChange)="optionValueChange($event)"
+                [disabled]="option==0" status="info" size="tiny">
+                <button *ngFor="let opt of field['data']['values']; let i=index;"
+                    nbButtonToggle [nbTooltip]="'Opción - ' + opt.label"
+                    [value]="opt.value"
+                    [pressed]="opt.value == option_value"
+                    nbTooltipStatus="info" nbTooltipPlacement="bottom">
+                    {{ (opt.label.length > 6)? (opt.label | slice:0:3)+'...':(opt.label) }}
+                </button>
+            </nb-button-group>
+          </div>
+          <!-- Tabla ->
+          <div *ngIf="field.length != 0 && field['field_type'] == '17'">
+            <nb-select [ngModel]="row_field"
+                (ngModelChange)="rowChange($event)"
+                name="row_field" class="select-form mt-15"
+                placeholder="Seleccionar fila"
+                size="tiny"
+                [selected]="page">
+                <nb-option [value]="i + 1" *ngFor="let item of [].constructor(field['row']); let i = index">
+                    Fila {{ i + 1 }}
+                </nb-option>
+            </nb-select>
+            <br>
+            <nb-button-group class="option-field-select"
+                *ngIf="field['fields'].length != 0"
+                (valueChange)="columnValueChange($event)"
+                status="info" size="tiny">
+                <button *ngFor="let field_l of field['fields']; let i_l=index;"
+                    nbButtonToggle [nbTooltip]="'Columna - ' + field_l.label"
+                    [value]="field_l"
+                    [pressed]="field_l.field == column_value"
+                    nbTooltipStatus="info" nbTooltipPlacement="bottom">
+                    {{ (field_l.label.length > 6)? (field_l.label | slice:0:3)+'...':(field_l.label) }}
+                </button>
+            </nb-button-group>
+            <!-- Seleccionable ->
+            <div *ngIf="column_type && column_type == '3' || column_type == '12' || column_type == '13'">
+                <nb-button-group status="info" size="tiny" (valueChange)="optionChange($event)" style="margin-top: 4px; margin-right: 4px;">
+                    <button nbButtonToggle nbTooltip="Mostrar - Texto" value="0" nbTooltipStatus="info" [pressed]="0 == option" nbTooltipPlacement="bottom">T</button>
+                    <button nbButtonToggle nbTooltip="Mostrar - Marca x" value="1" nbTooltipStatus="info" [pressed]="1 == option" nbTooltipPlacement="bottom">x</button>
+                </nb-button-group>
+                <br>
+                <nb-button-group class="option-field-select"
+                    *ngIf="column_options.length != 0"
+                    (valueChange)="optionValueChange($event)"
+                    [disabled]="option==0" status="info" size="tiny">
+                    <button *ngFor="let opt of column_options; let i=index;"
+                        nbButtonToggle [nbTooltip]="'Opción - ' + opt.label"
+                        [value]="opt.value"
+                        [pressed]="opt.value == option_value"
+                        nbTooltipStatus="info" nbTooltipPlacement="bottom">
+                        {{ (opt.label.length > 6)? (opt.label | slice:0:3)+'...':(opt.label) }}
+                    </button>
+                </nb-button-group>
+            </div>
+          </div>
+          <!-- Firma y Archivos ->
+          <div *ngIf="field.length != 0 && (field['field_type'] == '7' || field['field_type']=='9' || field['field_type'] == '10' || field['field_type'] == '18' || field['field_type'] == '22' || field['field_type']=='23') || column_type && column_type == '7'">
+            <input [ngModel]="size_image_x"
+                (ngModelChange)="sizeSignChange($event, field['field_type'])"
+                name="size_image_x"
+                style="margin-top: 4px;"
+                nbTooltip="Tamaño Firma"
+                type="number" min="50" max="400"
+                nbInput fieldSize="tiny"
+                placeholder="Tamaño Firma">
+          </div>
+          <!-- Tamaño de espacio y interlineado ->
+          <div style="padding-top: 4px;" *ngIf="(field['field_type']=='1' || field['field_type']=='2' || field['field_type']=='5' || field['field_type']=='6') || (column_type && column_type == '1' || column_type == '2' || column_type == '5' || column_type == '6')">
+            <nb-checkbox nbTooltip="Salto de Linea" [(ngModel)]="line_check" (checkedChange)="toggleLine($event)">
+              <nb-icon style="margin-left: 15px; cursor: pointer;" icon="menu-2-outline"></nb-icon>
+            </nb-checkbox>
+            <br>
+            <input *ngIf="line_check" [ngModel]="size_image_x"
+                (ngModelChange)="sizeSignChange($event, field['field_type'])"
+                name="size_image_x"
+                nbTooltip="Tamaño Espacio"
+                type="number" min="50" max="400"
+                nbInput fieldSize="tiny"
+                placeholder="Tamaño Espacio">
+            <input *ngIf="line_check" [ngModel]="line_height"
+                (ngModelChange)="lineHeightChange($event)"
+                name="line_height"
+                style="margin-left: 4px;"
+                nbTooltip="Interlineado"
+                type="number" min="10" max="25"
+                nbInput fieldSize="tiny"
+                placeholder="Tamaño">
+          </div>
+          <!-- Temporal -->
+          <!-- <button
+              style="margin-top: 4px;"
+              (click)="see()" nbButton
+              outline status="primary" size="tiny">
+              <nb-icon icon="eye"></nb-icon>
+          </button> ->
+      </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion> -->

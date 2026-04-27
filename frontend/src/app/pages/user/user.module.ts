@@ -35,8 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
   providers: [
     UserService
   ],
-  entryComponents: [
-  ]
+  
 })
 
 export class UserModule { }

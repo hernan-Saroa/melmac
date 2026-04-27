@@ -43,8 +43,7 @@ import { AttemptsComponent } from './attempts/attempts.component';
   providers: [
     EnterpriseService
   ],
-  entryComponents: [
-  ]
+  
 })
 
 export class EnterpriseModule { }

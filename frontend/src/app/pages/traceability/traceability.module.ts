@@ -29,8 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
   ],
-  entryComponents: [
-  ]
+  
 })
 
 export class TraceabilityModule { }

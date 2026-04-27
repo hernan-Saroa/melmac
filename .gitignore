@@ -1,0 +1,13 @@
+# Databases and Dumps
+*.sql
+*.sqlite3
+
+# Build Errors
+build_errors*.txt
+
+# Compressed files
+*.zip
+*.tar.gz
+
+# Angular
+.angular/

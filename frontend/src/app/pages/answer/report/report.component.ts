@@ -677,6 +677,7 @@ export class ReportComponent implements OnInit {
         minimize: this.minimize,
         maximize: this.maximize,
         fullScreen: this.fullScreen,
+        close: this.close,
         };
       const windowRef = this.windowService.open(MainContainerComponent, { title: `Descargando informes`, buttons: buttonsConfig, closeOnEsc:false, windowClass: "window-form-popup"});
       this.answerService.setWindowRef(windowRef);

@@ -36,7 +36,6 @@ import { EchartsComponent } from './echarts/echarts.component';
   ],
   providers: [
   ],
-  entryComponents: [
-  ]
+  
 })
 export class DashboardModule { }

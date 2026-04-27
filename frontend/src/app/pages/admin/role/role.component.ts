@@ -310,7 +310,7 @@ export class RoleDialogComponent implements OnInit{
         } else {
           name = this.inputNameNgModel.trim();
         }
-        if (!undefined == this.descriptionNgModel || !("undefined" == ('' + this.descriptionNgModel).trim())){
+        if (this.descriptionNgModel !== undefined && "undefined" != ('' + this.descriptionNgModel).trim()){
           descrip = this.descriptionNgModel.trim();
         }
         if (!errors) {
@@ -357,7 +357,7 @@ export class RoleDialogComponent implements OnInit{
         } else {
           name = this.inputNameNgModel.trim();
         }
-        if (!undefined == this.descriptionNgModel || !("undefined" == ('' + this.descriptionNgModel).trim())){
+        if (this.descriptionNgModel !== undefined && "undefined" != ('' + this.descriptionNgModel).trim()){
           descrip = this.descriptionNgModel.trim();
         }
         if (!errors) {
@@ -440,7 +440,7 @@ export class RoleDialogComponent implements OnInit{
 
   validAll(permissions) {
     let all = true;
-    if (this.permissions != []) {
+    if (this.permissions.length != 0) {
       Object.keys(this.permissions).forEach(element => {
         this.permissions[element].forEach(permit => {
           if (!permissions.includes(permit['id'])) {

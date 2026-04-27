@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-export const BASE_URL = 'http://localhost:8000/';
+export const BASE_URL = 'http://127.0.0.1:8000/';
 
 @Injectable({
   providedIn: 'root'

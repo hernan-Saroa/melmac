@@ -309,8 +309,8 @@ export class AssociateComponent implements OnInit {
         const file = new Blob([res], {type: res.type});
 
         // IE
-        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-          window.navigator.msSaveOrOpenBlob(file);
+        if (window.navigator && (window.navigator as any).msSaveOrOpenBlob) {
+          (window.navigator as any).msSaveOrOpenBlob(file);
           return;
         }
 

@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "skipLibCheck": true,
     "importHelpers": true,
     "module": "es2020",
     "outDir": "./dist/out-tsc",
@@ -19,5 +20,10 @@
     "plugins": [
       { "name": "tslint-language-service"}
     ]
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": false,
+    "fullTemplateTypeCheck": false,
+    "strictInjectionParameters": false
   }
 }

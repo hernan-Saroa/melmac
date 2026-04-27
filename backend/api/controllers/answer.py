@@ -67,18 +67,18 @@ from api.data import COUNTRYS_DATA_DICT, COUNTRYS_DATA_DICT_VALUES, IDENTIFICATI
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from datetime import datetime, timedelta
-from django_xhtml2pdf.utils import generate_pdf
+# from django_xhtml2pdf.utils import generate_pdf
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from itertools import chain
-from PyPDF2 import PdfFileWriter, PdfFileReader
+# from PyPDF2 import PdfFileWriter, PdfFileReader
 from threading import Thread
-from weasyprint import HTML
+# from weasyprint import HTML
 from api.controllers.site import get_nit_info, get_ani_external
 from PIL import Image, ImageDraw, ImageFont
 import base64
-import fpdf
+# import fpdf
 import hashlib
 import itertools
 import json

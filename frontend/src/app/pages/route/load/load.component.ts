@@ -402,7 +402,7 @@ export class LoadComponent implements OnInit {
   }
 
   onSecondSubmit(next_second) {
-    if (this.inputMessagersModel < 1){
+    if (Number(this.inputMessagersModel) < 1){
       this.secondForm.markAsDirty();
     } else {
       this.loading = true;

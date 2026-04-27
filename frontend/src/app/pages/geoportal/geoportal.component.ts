@@ -130,9 +130,9 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   markerData;
 
-  markerCluster:L.MarkerClusterGroup;
+  markerCluster: any;
 
-  markerClusterOptions:L.MarkerClusterGroupOptions = {
+  markerClusterOptions: any = {
     maxClusterRadius: 100,
     iconCreateFunction: (cluster) => {
       let markers = cluster.getAllChildMarkers();
@@ -681,7 +681,7 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map = map;
   }
 
-  markerClusterReady(event:L.MarkerClusterGroup){
+  markerClusterReady(event: any){
     this.markerCluster = event;
   }
 
@@ -772,9 +772,9 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
       let date = parts[1];
       let follow = this.follow_data[user];
       if (follow && follow[date] && follow[date]['map'].length == 4){
-        var decorator = L.polylineDecorator(follow[date]['map'][2], {
+        var decorator = (L as any).polylineDecorator(follow[date]['map'][2], {
           patterns: [
-              {offset: 0, repeat: 100, symbol: L.Symbol.arrowHead({pixelSize: 10, polygon: false, pathOptions: {stroke: true, color: follow[date]['map'][2].options.color}})}
+              {offset: 0, repeat: 100, symbol: (L as any).Symbol.arrowHead({pixelSize: 10, polygon: false, pathOptions: {stroke: true, color: follow[date]['map'][2].options.color}})}
           ]
         });
         this.markers.timeline.push(

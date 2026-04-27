@@ -60,7 +60,6 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   providers: [
   ],
-  entryComponents: [
-  ]
+  
 })
 export class AnswerModule { }

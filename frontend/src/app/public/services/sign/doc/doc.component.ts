@@ -648,7 +648,7 @@ export class DocComponent implements OnInit {
   }
 
   async startCamera2() {
-    navigator.permissions.query({ name: 'camera' }).then((permissionStatus) => {
+    navigator.permissions.query({ name: 'camera' as any }).then((permissionStatus) => {
       if (permissionStatus.state === 'denied') {
         // Mostrar un mensaje al usuario sobre cómo habilitar manualmente el permiso
         alert(`Parece que el acceso a la cámara ha sido bloqueado.

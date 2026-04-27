@@ -32,7 +32,6 @@ import { DeviceService } from '../../services/device.service';
     DeviceService,
     AdminService,
   ],
-  entryComponents: [
-  ]
+  
 })
 export class DeviceModule { }

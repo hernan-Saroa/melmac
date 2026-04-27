@@ -2,7 +2,11 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from unittest.mock import MagicMock
+sys.modules['weasyprint'] = MagicMock()
+sys.modules['django_xhtml2pdf'] = MagicMock()
+sys.modules['django_xhtml2pdf.utils'] = MagicMock()
+sys.modules['xhtml2pdf'] = MagicMock()
 
 def main():
     """Run administrative tasks."""

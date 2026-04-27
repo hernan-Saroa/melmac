@@ -48,7 +48,6 @@ import { FormAnswerComponent } from './form-answer/form-answer.component';
     UserService,
     ToastService,
   ],
-  entryComponents: [
-  ]
+  
 })
 export class MassiveModule { }

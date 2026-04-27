@@ -45,10 +45,10 @@ export class CustomDataSource extends ServerDataSource {
   }
 
   getTotalCount(){
-    return this.lastRequestCount;
+    return (this as any).lastRequestCount;
   }
 
   getData():any[]{
-    return this.data;
+    return (this as any).data;
   }
 }

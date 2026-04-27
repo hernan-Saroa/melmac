@@ -2,13 +2,13 @@ import { ConfirmDialog } from './../role/role.component';
 import { NbDialogService } from '@nebular/theme';
 import { AdminService } from '../../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ToastService } from '../../../usable/toast.service';
 
 
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
@@ -30,6 +30,8 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 
 export class CustomInputTextFilterComponentProject extends DefaultFilter implements OnInit, OnChanges {
+  delay = 300;
+
   inputControl = new FormControl();
 
   constructor() {
@@ -40,7 +42,7 @@ export class CustomInputTextFilterComponentProject extends DefaultFilter impleme
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });

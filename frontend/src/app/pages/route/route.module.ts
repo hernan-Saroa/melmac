@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ViewComponent } from './view/view.component';
 import { RouteRoutingModule } from './route-routing.module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { LoadComponent, AddressInfoDialogComponent, AddressRouteDialogComponent } from './load/load.component';
 import { MonitorComponent } from './monitor/monitor.component';
 import { MonitorListComponent } from './monitor/list/list.component';
@@ -26,7 +26,7 @@ import { MonitorListComponent } from './monitor/list/list.component';
     RouteRoutingModule,
     NbCardModule,
     NbIconModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbButtonModule,
     NbSpinnerModule,
     FormsModule,

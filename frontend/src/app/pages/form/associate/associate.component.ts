@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { FormService } from '../../../services/form.service';
 import { AssociateService } from '../../../services/associate.service';
 import { AnswerService } from '../../../services/answer.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { ToastService } from '../../../usable/toast.service';
 import { Observable, of } from 'rxjs';

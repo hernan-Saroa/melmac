@@ -1,4 +1,4 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { DeviceService } from './../../../services/device.service';
 import { NbDialogRef } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';

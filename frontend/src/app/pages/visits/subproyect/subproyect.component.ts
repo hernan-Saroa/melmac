@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { VisitsService } from '../../../services/visits.service';
 import { SwitchService } from '../../../services/switch.service';
 import { ModalsSubComponent } from './modals-sub/modals-sub.component';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { Location } from '@angular/common';
 
 @Component({

@@ -7,7 +7,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { RoutingService } from '../../../services/routing.service';
 import { AdminService } from '../../../services/admin.service';
 import { Observable} from 'rxjs';
-import { Row } from 'ng2-smart-table/lib/lib/data-set/row';
+import { Row } from 'angular2-smart-table';
 import { pines } from '../../../usable/pines';
 
 const html2canvas = require('../../../../../node_modules/html2canvas');

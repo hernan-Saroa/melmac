@@ -2,7 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminModule } from './../admin/admin.module';
 import { NgModule } from '@angular/core';
 import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule, NbButtonModule, NbSelectModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { UserService } from '../../@core/mock/users.service';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -19,7 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
     NbIconModule,
     NbInputModule,
     ThemeModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     MatDialogModule,
     MatButtonModule,
     AdminModule,

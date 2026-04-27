@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultEditor, LocalDataSource } from 'ng2-smart-table';
+import { DefaultEditor, LocalDataSource } from 'angular2-smart-table';
 import { ContactsService } from '../../services/contacts.service';
 import { ToastService } from '../../usable/toast.service';
 import { ContactsTable } from './contacts.table';
@@ -255,7 +255,7 @@ export class CustomInputPhoneComponentUser extends DefaultEditor implements OnIn
 
   onBlur(event) {
     this.phone.phoneInd = this.inputObject ? `+${this.inputObject.s.dialCode}-${this.inputObject.s.iso2}` : null;
-    this.cell.setValue(this.phone);
+    this.cell.setValue(this.phone.phoneNumber);
   }
 
   telInputObject(event) {
@@ -269,7 +269,7 @@ export class CustomInputPhoneComponentUser extends DefaultEditor implements OnIn
     }
     this.inputObject = event;
     this.phone.phoneInd = this.inputObject ? `+${this.inputObject.s.dialCode}-${this.inputObject.s.iso2}` : null;
-    this.cell.setValue(this.phone);
+    this.cell.setValue(this.phone.phoneNumber);
   }
 
 }

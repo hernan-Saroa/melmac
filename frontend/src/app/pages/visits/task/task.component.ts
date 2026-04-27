@@ -4,7 +4,7 @@ import { ModalsTaskComponent } from './modals-task/modals-task.component';
 import { VisitsService } from '../../../services/visits.service';
 import { SwitchService } from '../../../services/switch.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { FormService } from '../../../services/form.service';
 import { Location } from '@angular/common';
 

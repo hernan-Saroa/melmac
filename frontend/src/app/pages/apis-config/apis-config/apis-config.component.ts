@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ApisConfigService } from '../../../services/apis-config.service';
 import { ToastService } from '../../../usable/toast.service';
 import { EnterpriseService } from '../../../services/enterprise.service';

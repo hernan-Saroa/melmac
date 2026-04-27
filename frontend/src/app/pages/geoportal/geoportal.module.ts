@@ -1,7 +1,7 @@
 import { ToastService } from '../../usable/toast.service';
 import { NgModule } from '@angular/core';
 import { NbAccordionModule, NbActionsModule, NbAutocompleteModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbContextMenuModule, NbIconModule, NbInfiniteListDirective, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbStepperModule, NbToggleModule, NbTooltipModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { GeoportalComponent } from './geoportal.component';
 import { GeoportalRoutingModule } from './geoportal-routing.module';
@@ -25,7 +25,7 @@ import { FormService } from '../../services/form.service';
     NbIconModule,
     NbInputModule,
     NbButtonModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     LeafletModule,
     NbLayoutModule,
     NbSidebarModule,

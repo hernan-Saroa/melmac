@@ -1,4 +1,4 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { Router } from '@angular/router';
 import { ToastService } from './../../../../usable/toast.service';
 import { Component, OnInit } from '@angular/core';

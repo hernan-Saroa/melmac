@@ -1,7 +1,7 @@
 import { LocationComponent, LocationDialogComponent, CustomInputTextFilterComponentLocation } from './location/location.component';
 import { ProjectComponent, CustomInputTextFilterComponentProject } from './project/project.component';
 import { NgModule } from '@angular/core';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { PermitComponent, CustomInputTextFilterComponentPermit } from './permit/permit.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ThemeModule } from '../../@theme/theme.module';
@@ -52,7 +52,7 @@ import { AdminComponent, PermitItemComponent } from './permit/admin/admin.compon
     NbLayoutModule,
     NbToggleModule,
     ThemeModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     AdminRoutingModule,
     MatDialogModule,
     MatButtonModule,

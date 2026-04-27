@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { DefaultFilter, LocalDataSource } from 'ng2-smart-table';
+import { DefaultFilter, LocalDataSource } from 'angular2-smart-table';
 import { AnswerService } from '../../services/answer.service';
 import { TraceabilityService } from '../../services/traceability.service';
 import { ToastService } from '../../usable/toast.service';
@@ -155,7 +155,7 @@ export class TraceabilityComponent implements OnInit {
   getTXT() {
     let data = {}
     data['user'] = this.user;
-    let filters = this.trace_send.getFilter().filters
+    let filters = this.trace_send.getFilter()
     if(filters && filters.length > 0) {
       filters.forEach(filter => {
         if(filter['search'] != '') {
@@ -197,6 +197,7 @@ export class TraceabilityComponent implements OnInit {
   `,
 })
 export class CustomInputDateFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
+  delay: number = 300;
   inputControl = new FormControl();
   inputTextControl = new FormControl();
   change_value = true;
@@ -207,7 +208,7 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
 
   ngOnInit() {
     this.delay = 2000;
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       try {
         if (this.inputControl.value == null){
           this.query = '';

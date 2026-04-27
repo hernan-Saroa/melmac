@@ -24,7 +24,7 @@ import { HandwrittenComponent as EnvelopeHandwrittenComponent } from './envelope
 import { ModalComponent } from './modal/modal.component';
 import { VerifiedComponent } from './verified/verified.component';
 import { Ng2TelInputModule } from 'ng2-tel-input';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { CustomInputDateFilterComponentAnswer, CustomInputTextFilterComponentAnswer, HistorialComponent } from './historial/historial.component';
 import { AddressComponent } from './form/address/address.component';
 import { BioComponent } from './form/sign/bio/bio.component';
@@ -43,7 +43,7 @@ import { DocComponent as iFrame_DocComponent } from './services/sign/doc/doc.com
     NbLayoutModule,
     NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
     FormsModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbDatepickerModule,
     NbButtonModule,
     NbCardModule,

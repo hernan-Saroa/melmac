@@ -1,0 +1,12 @@
+diff --git a/node_modules/@nebular/theme/fesm2022/nebular-theme.mjs b/node_modules/@nebular/theme/fesm2022/nebular-theme.mjs
+index 33bcbc2..99d570c 100644
+--- a/node_modules/@nebular/theme/fesm2022/nebular-theme.mjs
++++ b/node_modules/@nebular/theme/fesm2022/nebular-theme.mjs
+@@ -1,5 +1,6 @@
++import { DOCUMENT } from '@angular/common';
+ import * as i0 from '@angular/core';
+-import { InjectionToken, Inject, Injectable, Optional, NgModule, Directive, HostBinding, Input, Component, Injector, ViewChild, DOCUMENT, PLATFORM_ID, ChangeDetectionStrategy, ElementRef, ContentChildren, HostListener, EventEmitter, Output, ViewContainerRef, TemplateRef, LOCALE_ID, forwardRef, Pipe, ContentChild, SimpleChange, Type, Host, Attribute, SkipSelf, ViewChildren, isDevMode } from '@angular/core';
++import { InjectionToken, Inject, Injectable, Optional, NgModule, Directive, HostBinding, Input, Component, Injector, ViewChild,  PLATFORM_ID, ChangeDetectionStrategy, ElementRef, ContentChildren, HostListener, EventEmitter, Output, ViewContainerRef, TemplateRef, LOCALE_ID, forwardRef, Pipe, ContentChild, SimpleChange, Type, Host, Attribute, SkipSelf, ViewChildren, isDevMode } from '@angular/core';
+ import * as i1$1 from '@angular/common';
+ import { CommonModule, isPlatformBrowser, TranslationWidth, DatePipe, getLocaleTimeFormat, FormatWidth, getLocaleFirstDayOfWeek, getLocaleMonthNames, FormStyle, getLocaleDayNames } from '@angular/common';
+ import { ReplaySubject, Subject, Observable, merge, fromEvent, EMPTY, BehaviorSubject, combineLatest, of, from, interval, timer, forkJoin, animationFrameScheduler } from 'rxjs';

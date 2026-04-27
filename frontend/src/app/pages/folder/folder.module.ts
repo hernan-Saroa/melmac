@@ -26,7 +26,7 @@ import {
   NbDatepickerModule,
 } from "@nebular/theme";
 
-import { Ng2SmartTableModule } from "ng2-smart-table";
+import { Angular2SmartTableModule } from "angular2-smart-table";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ThemeModule } from "../../@theme/theme.module";
@@ -61,7 +61,7 @@ import { MatTableModule } from "@angular/material/table";
     NbInputModule,
     NbButtonModule,
     ngFormsModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbStepperModule,
     FormsModule,
     ReactiveFormsModule,

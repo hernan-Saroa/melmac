@@ -1,7 +1,7 @@
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgModule } from '@angular/core';
 import { NbActionsModule, NbAutocompleteModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule, NbSpinnerModule, NbTooltipModule, NbDatepickerModule, NbContextMenuModule,NbSelectModule,NbRadioModule, NbTagModule, NbFormFieldModule, NbProgressBarModule,NbWindowModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { FormsModule } from '@angular/forms';
 
 
@@ -27,7 +27,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     NbInputModule,
     NbButtonModule,
     ThemeModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     MatDialogModule,
     MatButtonModule,
     LeafletModule,

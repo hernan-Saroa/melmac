@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule, NbButtonModule, NbToggleModule,NbTooltipModule,NbSelectModule,NbSpinnerModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { EnterpriseService } from '../../services/enterprise.service';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -23,7 +23,7 @@ import { AttemptsComponent } from './attempts/attempts.component';
     NbIconModule,
     NbInputModule,
     ThemeModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     MatDialogModule,
     MatButtonModule,
     FormsModule,

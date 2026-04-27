@@ -28,7 +28,7 @@
   background-color: #ffde90 !important;
 }
 
-::ng-deep .nb-theme-default ng2-smart-table tbody tr.row-orange:hover {
+::ng-deep .nb-theme-default angular2-smart-table tbody tr.row-orange:hover {
   background-color: #fcc649 !important;
 }
 
@@ -40,7 +40,7 @@
     border-right: 0px !important;
   }
 }
-::ng-deep .nb-theme-default ng2-smart-table tbody tr.row-red:hover {
+::ng-deep .nb-theme-default angular2-smart-table tbody tr.row-red:hover {
   background-color: #ff6666 !important;
 }
 
@@ -49,12 +49,12 @@
 }
 
 /* Estilo para filas con source por defecto */
-::ng-deep .nb-theme-default ng2-smart-table tbody tr > td {
+::ng-deep .nb-theme-default angular2-smart-table tbody tr > td {
   border-left: 0px !important;
   border-right: 0px !important;
 }
 
-::ng-deep .nb-theme-default ng2-smart-table tbody tr:hover {
+::ng-deep .nb-theme-default angular2-smart-table tbody tr:hover {
   background: #d6dce4 !important;
 }
 
@@ -78,7 +78,7 @@
   }
 }
 
-// ::ng-deep .nb-theme-default ng2-smart-table tbody , .nb-theme-default ng2-smart-table tbody  {
+// ::ng-deep .nb-theme-default angular2-smart-table tbody , .nb-theme-default angular2-smart-table tbody  {
 //   background: #b91010 !important;
 // }
 

@@ -4,7 +4,7 @@ import { ModalsProyectComponent } from './modals-proyect/modals-proyect.componen
 import { VisitsService } from '../../../services/visits.service';
 import { SwitchService } from '../../../services/switch.service';
 import { Router } from '@angular/router';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ToastService } from '../../../usable/toast.service';
 import { Location } from '@angular/common';
 

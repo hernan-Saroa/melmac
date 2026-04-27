@@ -3,14 +3,14 @@
     <div class="col-12" *ngIf="dataSelected == null">
         <nb-card [nbSpinner]="loading" nbSpinnerStatus="primary" nbSpinnerSize="giant">
             <nb-card-body>
-                <ng2-smart-table 
+                <angular2-smart-table 
                     class="table-apis"
                     [settings]="settings" 
                     [source]="data"
                     (userRowSelect)="onRowSelect($event)"
                     (createConfirm)="onCreateConfirm($event)"
                     (editConfirm)="onEditConfirm($event)">
-                </ng2-smart-table>
+                </angular2-smart-table>
             </nb-card-body>
         </nb-card>
     </div>

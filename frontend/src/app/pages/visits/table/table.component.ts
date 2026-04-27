@@ -1,9 +1,8 @@
 import { Component, OnInit, Input,OnDestroy } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VisitsService } from '../../../services/visits.service';
 import { DatePipe } from '@angular/common';
-import { ViewCell } from 'ng2-smart-table';
 import { SharedService } from '../../answer/shared.service';
 import { NbMenuService } from '@nebular/theme';
 import { filter, map } from "rxjs/operators";
@@ -14,7 +13,7 @@ import { filter, map } from "rxjs/operators";
     <nb-icon icon="more-vertical-outline"></nb-icon>
   </button>`,
 })
-export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy {
+export class CustomActionRenderComponent implements OnInit, OnDestroy {
 
   inactive = false;
   renderValue: string;

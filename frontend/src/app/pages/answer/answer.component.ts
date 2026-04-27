@@ -7,12 +7,11 @@ import { NbDialogRef, NbDialogService, NbMenuService } from '@nebular/theme';
 
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../../services/site.service';
 import { CustomDataSource } from '../../usable/custom.dataSource';
 import { debounceTime, distinctUntilChanged, filter, map } from "rxjs/operators";
-import { ViewCell } from 'ng2-smart-table';
 import { SharedService } from './shared.service';
 import { EnrollService } from '../../services/enroll.service';
 import { SwitchService } from '../../services/switch.service';
@@ -25,7 +24,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
     <nb-icon icon="more-vertical-outline"></nb-icon>
   </button>`,
 })
-export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy {
+export class CustomActionRenderComponent implements OnInit, OnDestroy {
 
   option = 0;
   renderValue: string;
@@ -165,6 +164,7 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
 })
 
 export class CustomInputTextFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
+  delay: number = 300;
   inputControl = new FormControl();
 
   constructor() {
@@ -176,7 +176,7 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -208,6 +208,7 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
   `,
 })
 export class CustomInputDateFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
+  delay: number = 300;
   inputControl = new FormControl();
   inputTextControl = new FormControl();
   change_value = true;
@@ -218,7 +219,7 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
 
   ngOnInit() {
     this.delay = 2000;
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       try {
         if (this.inputControl.value == null){
           this.query = '';
@@ -288,6 +289,8 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
   `,
 })
 export class CustomButtonFilterComponentAnswer extends DefaultFilter implements OnChanges {
+  delay: number = 300;
+
   inputControl = new FormControl();
 
   constructor(private router: Router) {

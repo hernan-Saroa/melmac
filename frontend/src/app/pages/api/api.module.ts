@@ -1,5 +1,5 @@
 import { ApiRoutingModule } from './api-routing,module';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { NbCardModule, NbIconModule, NbInputModule, NbButtonModule, NbCheckboxModule, NbSpinnerModule, NbSelectModule, NbAccordionModule } from '@nebular/theme';
 import { CommonModule } from '@angular/common';
 import { ApiComponent } from './api.component';
@@ -18,7 +18,7 @@ import { EnterpriseService } from '../../services/enterprise.service';
     NbIconModule,
     NbInputModule,
     NbButtonModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbCheckboxModule,
     NbSpinnerModule,
     NbSelectModule,

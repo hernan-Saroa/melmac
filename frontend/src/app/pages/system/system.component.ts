@@ -1,10 +1,9 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
-import { DefaultFilter } from 'ng2-smart-table';
+import { DefaultFilter } from 'angular2-smart-table';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SystemService } from '../../services/system.service';
-import { ViewCell } from 'ng2-smart-table';
 
 @Component({
   template: `
@@ -18,7 +17,9 @@ import { ViewCell } from 'ng2-smart-table';
     </div>
   `,
 })
-export class CustomRenderComponent implements ViewCell, OnInit {
+export class CustomRenderComponent implements OnInit {
+  delay = 300;
+
 
   status_list = [
     {
@@ -291,7 +292,7 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });

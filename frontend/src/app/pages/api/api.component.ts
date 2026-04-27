@@ -1,4 +1,4 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { NbSelectComponent } from '@nebular/theme';
 import { EnterpriseService } from './../../services/enterprise.service';
 import { Component, OnInit, ViewChild } from '@angular/core';

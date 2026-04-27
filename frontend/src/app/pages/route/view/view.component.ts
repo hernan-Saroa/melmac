@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { ToastService } from './../../../usable/toast.service';
 import { RoutingService } from './../../../services/routing.service';
 import { NbComponentStatus, NbMenuService } from '@nebular/theme';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { filter, map } from 'rxjs/operators';

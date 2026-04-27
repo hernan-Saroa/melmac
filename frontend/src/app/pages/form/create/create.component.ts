@@ -6,7 +6,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { FormService } from '../../../services/form.service';
 import { DigitalService } from '../../../services/digital.service';
 import { ToastService } from '../../../usable/toast.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { NbPopoverDirective, NbPosition, NbTrigger } from '@nebular/theme';

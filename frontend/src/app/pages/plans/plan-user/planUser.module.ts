@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule,NbCheckboxModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { FormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PlanUserComponent } from './plan-user.component';
@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common'
     FormsModule,
     NbButtonModule,
     NbCheckboxModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     LeafletModule,
     CommonModule
   ],

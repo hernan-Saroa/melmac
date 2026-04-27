@@ -71,6 +71,6 @@
         <option *ngFor="let op of perPage" [selected]="settings.pager.perPage" [value]="op">{{op}}</option>
       </select>
     </div> -->
-    <ng2-smart-table id="table-send" #table [settings]="settings" [source]="list_send" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
+    <angular2-smart-table id="table-send" #table [settings]="settings" [source]="list_send" (userRowSelect)="onRowSelect($event)"></angular2-smart-table>
   </nb-card-body>
 </nb-card>

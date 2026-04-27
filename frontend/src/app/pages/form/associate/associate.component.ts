@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { FormService } from '../../../services/form.service';
 import { AssociateService } from '../../../services/associate.service';
 import { AnswerService } from '../../../services/answer.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { ToastService } from '../../../usable/toast.service';
 import { Observable, of } from 'rxjs';
@@ -15,9 +15,10 @@ import { IShareDocument, IReturnData, ICkeckBox } from '../../../core/models/inp
 import { EnumCheckBox, EnumOptionShared, EnumShareDocumentActions, EnumShareDocumentLabel, EnumShareDocumentType } from '../../../core/enums/input-share-document.enum';
 
 @Component({
-  selector: 'ngx-associate',
-  templateUrl: './associate.component.html',
-  styleUrls: ['./associate.component.scss']
+    selector: 'ngx-associate',
+    templateUrl: './associate.component.html',
+    styleUrls: ['./associate.component.scss'],
+    standalone: false
 })
 export class AssociateComponent implements OnInit {
   id:string;
@@ -309,8 +310,8 @@ export class AssociateComponent implements OnInit {
         const file = new Blob([res], {type: res.type});
 
         // IE
-        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-          window.navigator.msSaveOrOpenBlob(file);
+        if (window.navigator && (window.navigator as any).msSaveOrOpenBlob) {
+          (window.navigator as any).msSaveOrOpenBlob(file);
           return;
         }
 
@@ -561,10 +562,11 @@ export class AssociateComponent implements OnInit {
 }
 
 @Component({
-  selector: 'confirm-dialog',
-  templateUrl: 'dialog.html',
-  //styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}'],
-  styleUrls: ['dialog.scss']
+    selector: 'confirm-dialog',
+    templateUrl: 'dialog.html',
+    //styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}'],
+    styleUrls: ['dialog.scss'],
+    standalone: false
 })
 export class AssociateDialogComponent implements OnInit{
   @ViewChild('tagListContainer', { static: false }) tagListContainer: ElementRef;

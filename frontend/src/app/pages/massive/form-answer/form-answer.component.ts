@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { AnswerService } from '../../../services/answer.service';
 import { FormService } from '../../../services/form.service';
 import { ToastService } from '../../../usable/toast.service';
 
 @Component({
-  selector: 'ngx-form-answer',
-  templateUrl: './form-answer.component.html',
-  styleUrls: ['./form-answer.component.scss']
+    selector: 'ngx-form-answer',
+    templateUrl: './form-answer.component.html',
+    styleUrls: ['./form-answer.component.scss'],
+    standalone: false
 })
 export class FormAnswerComponent implements OnInit {
 

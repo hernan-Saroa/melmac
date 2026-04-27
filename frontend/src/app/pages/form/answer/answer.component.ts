@@ -23,9 +23,10 @@ import { DocComponent } from './sign/doc/doc.component';
 import { OtpComponent } from './sign/otp/otp.component';
 
 @Component({
-  selector: 'ngx-answer',
-  templateUrl: './answer.component.html',
-  styleUrls: ['./answer.component.scss']
+    selector: 'ngx-answer',
+    templateUrl: './answer.component.html',
+    styleUrls: ['./answer.component.scss'],
+    standalone: false
 })
 export class AnswerComponent implements OnInit {
 
@@ -99,7 +100,7 @@ export class AnswerComponent implements OnInit {
   array_ani = [];
 
   // Firma
-  // @ViewChild(SignaturePad) signaturePad: SignaturePad;
+  // @ViewChild(SignaturePadComponent) signaturePad: SignaturePadComponent;
   private signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
     'minWidth': 0.5,
     'Width': 0.5,

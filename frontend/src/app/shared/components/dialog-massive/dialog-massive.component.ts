@@ -7,9 +7,10 @@ import { EnumShareDocumentType } from '../../../core/enums/input-share-document.
 import { ToastService } from '../../../usable/toast.service';
 
 @Component({
-  selector: 'ngx-dialog-massive',
-  templateUrl: './dialog-massive.component.html',
-  styleUrls: ['./dialog-massive.component.scss']
+    selector: 'ngx-dialog-massive',
+    templateUrl: './dialog-massive.component.html',
+    styleUrls: ['./dialog-massive.component.scss'],
+    standalone: false
 })
 export class DialogMassiveComponent implements OnInit {
 

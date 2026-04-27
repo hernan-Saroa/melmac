@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-footer',
-  styleUrls: ['./footer.component.scss'],
-  template: `
+    selector: 'ngx-footer',
+    styleUrls: ['./footer.component.scss'],
+    template: `
     <span class="created-by">
       {{ footer }}
     </span>
@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
       <a href="https://www.facebook.com/people/Hernan-Saroa/100074470931177/" target="_blank" class="ion ion-social-facebook"></a>
     </div>
   `,
+    standalone: false
 })
 export class FooterComponent {
   footer = '© Saroa SAS 2021';

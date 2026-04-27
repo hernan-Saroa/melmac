@@ -1859,6 +1859,20 @@ class Plans(models.Model):
     price = models.CharField(max_length=40, blank=True)
     color = models.CharField(max_length=40, blank=True)
     image = models.FileField(upload_to=profile_directory_path, null=True, blank=True)
+    
+    # SAROA Commercial Features (Modules)
+    feature_received = models.BooleanField(default=False)
+    feature_documents = models.BooleanField(default=False)
+    feature_roles = models.BooleanField(default=False)
+    feature_reports = models.BooleanField(default=False)
+    feature_statistics = models.BooleanField(default=False)
+    feature_flows = models.BooleanField(default=False)
+    feature_my_drive = models.BooleanField(default=False)
+    feature_lists = models.BooleanField(default=False)
+    feature_visits = models.BooleanField(default=False)
+    feature_field_service = models.BooleanField(default=False)
+    feature_db_segmented = models.BooleanField(default=False)
+
     creation_date = models.DateTimeField(auto_now_add=True)
     modify_date = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
@@ -1868,6 +1882,7 @@ class Plans(models.Model):
 
 class Enterprise_Plans(models.Model):
     enterprise = models.ForeignKey(Enterprise, on_delete=models.CASCADE)
+    plan = models.ForeignKey(Plans, on_delete=models.CASCADE, null=True)
     initial_date = models.DateTimeField(auto_now_add=False)
     finish_date = models.DateTimeField(auto_now=False)
     state = models.BooleanField(default=True)
@@ -2166,3 +2181,42 @@ class Form_Temporal_Digital(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class Enterprise_Attempt(models.Model):
+    enterprise = models.ForeignKey(Enterprise, on_delete=models.CASCADE)
+    field_type = models.ForeignKey(Field_Type, on_delete=models.CASCADE)
+    attempts = models.IntegerField()
+    description = models.CharField(max_length=250, null=True, blank=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'api_enterprise_attempt'
+
+class Apis_Config(models.Model):
+    enterprise = models.ForeignKey(Enterprise, on_delete=models.CASCADE)
+    service_type = models.IntegerField()
+    service = models.IntegerField()
+    token = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    url = models.CharField(max_length=500)
+    description = models.TextField(null=True, blank=True)
+    state = models.BooleanField(default=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name} - {self.enterprise.name}'
+
+class Apis_Config_Params(models.Model):
+    apis_config = models.ForeignKey(Apis_Config, on_delete=models.CASCADE)
+    param = models.CharField(max_length=255)
+    type = models.CharField(max_length=50)
+    param_type = models.IntegerField()
+    required = models.BooleanField(default=False)
+    value = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    state = models.BooleanField(default=True)
+    creation_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.param
+

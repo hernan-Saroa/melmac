@@ -12,7 +12,6 @@ import { MassiveModule } from './massive/massive.module';
 import { FormModule } from './form/form.module';
 import { AnswerModule } from './answer/answer.module';
 import { EnterpriseModule } from './enterprise/enterprise.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { PlataformModule } from './plataform/plataform.module';
 import { GeoportalModule } from './geoportal/geoportal.module';
 import { ApiModule } from './api/api.module';
@@ -44,7 +43,6 @@ import { MatButtonModule } from '@angular/material/button';
     FormModule,
     AnswerModule,
     EnterpriseModule,
-    DashboardModule,
     PlataformModule,
     GeoportalModule,
     RouteModule,
@@ -56,7 +54,6 @@ import { MatButtonModule } from '@angular/material/button';
     PlansModule,
     ContactsModule,
     NbSpinnerModule,
-    NgbModule,
     FormsModule,
     NbTooltipModule,
     HttpClientModule,

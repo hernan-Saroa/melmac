@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -87,6 +88,7 @@ CHANNEL_LAYERS = {
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://localhost:4200',
+    'http://localhost:4300',
 ]
 
 # Database
@@ -95,7 +97,7 @@ CORS_ORIGIN_WHITELIST = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'melmac',
+        'NAME': 'melmac_pre',
         'HOST': 'localhost',
         'USER': 'postgres',
         'PASSWORD': 'admin',

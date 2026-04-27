@@ -14,9 +14,10 @@ interface Permit {
 }
 
 @Component({
-  selector: 'ngx-admin-permit',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+    selector: 'ngx-admin-permit',
+    templateUrl: './admin.component.html',
+    styleUrls: ['./admin.component.scss'],
+    standalone: false
 })
 export class AdminComponent implements OnInit {
   public data: {enterprise_id:string, parent:EnterpriseComponent};
@@ -106,8 +107,8 @@ export class AdminComponent implements OnInit {
 }
 
 @Component({
-  selector: 'permit-item',
-  template: `
+    selector: 'permit-item',
+    template: `
     <div class="row" style="border-bottom: 1px #363636;">
       <div class="col-12">
         <span style="font-weight: bold;"> {{name}} </span>
@@ -120,6 +121,7 @@ export class AdminComponent implements OnInit {
       </div>
     </div>
   `,
+    standalone: false
 })
 export class PermitItemComponent implements OnInit{
   @Input('id') id: number;

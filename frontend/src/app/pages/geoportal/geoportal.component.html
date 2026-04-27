@@ -5,11 +5,9 @@
         <div class="map-size" leaflet
           [leafletOptions]="options"
           (leafletMapReady)="onMapReady($event)"
-          [leafletLayers]="group ? [] : markerData"
-          [leafletMarkerCluster]="group ? markerData : []"
-          [leafletMarkerClusterOptions]="markerClusterOptions"
-          (leafletMarkerClusterReady)="markerClusterReady($event)"
-          (leafletMapZoomEnd)="invalidMap()">
+          [leafletLayers]="markerData"
+          (leafletMapMoveEnd)="refreshSupercluster()"
+          (leafletMapZoomEnd)="invalidMap(); refreshSupercluster()">
 
           <div id="timeline_layers" *ngIf="markers.timeline.length > 0">
             <div *ngFor="let timeline of markers.timeline">
@@ -78,7 +76,7 @@
                 <!-- Filtros puntos fijos -->
               </div>
               <div [hidden]="option != 1">
-                <label style="margin: 5px 15px; font-size:12px;">Para seleccionar uno o varios formularios, desmarca la opción <b>Todos</b>.</label>
+                <label class="sub-helper-text">Para seleccionar uno o varios formularios, desmarca la opción <b>Todos</b>.</label>
                 <nb-select #docSelect class="select-document" style="padding: 0 15px 10px 15px;"
                   placeholder="Seleccionar Documento" size="tiny" fullWidth multiple [title]="doc_title"
                   (selectedChange)="setValueFilter($event)">
@@ -90,7 +88,7 @@
                   </nb-option>
                 </nb-select>
 
-                <label style="margin: 5px 15px; font-size:12px;">Rol</label>
+                <label class="sub-helper-text">Rol</label>
                 <nb-select #rolSelect class="select-document" style="padding: 0 15px 10px 15px;"
                   placeholder="Seleccionar Rol" size="tiny" fullWidth [(ngModel)]="role_select" (ngModelChange)="onChangeOptionRol()">
                   <nb-option value="0">
@@ -101,7 +99,7 @@
                   </nb-option>
                 </nb-select>
 
-                <label style="margin: 5px 15px; font-size:12px;">Usuario(s)</label>
+                <label class="sub-helper-text">Usuario(s)</label>
                 <nb-select class="select-document" style="padding: 0 15px 10px 15px;" size="tiny" fullWidth multiple placeholder="Usuario(s)" [(ngModel)]="list_user_select">
                   <nb-option *ngFor="let user of list_user" [value]="user.id"> {{user.first_name}}{{ user.middle_name ? ' ' + user.middle_name :''}} {{user.first_last_name}} {{ user.second_last_name ? ' ' + user.second_last_name :''}} </nb-option>
                 </nb-select>
@@ -133,10 +131,10 @@
                   </nb-autocomplete>
 
                   <input nbInput placeholder="Rol" [(ngModel)]="option_select.follow.role">
-                  <label style="margin: 5px 15px; font-size:12px;">Rol</label>
+                  <label class="sub-helper-text">Rol</label>
                   <nb-select #rolSelect class="select-document" style="padding: 0 15px 10px 15px;"
                     placeholder="Seleccionar Rol" size="tiny" fullWidth [(ngModel)]="follow_role_select" (ngModelChange)="onChangeFollowRol()">
-                    <nb-option value="0" selected>
+                    <nb-option value="0">
                       Todos
                     </nb-option>
                     <nb-option *ngFor = "let role of list_follow_role" value="{{role.id}}">
@@ -154,27 +152,26 @@
                   </nb-autocomplete> -->
                 </div>
 
-                <label style="margin: 5px 15px; font-size:12px;">Role(s)</label>
+                <label class="sub-helper-text">Role(s)</label>
                 <nb-select #folRolSelect name="page" class="select-document" style="padding: 0 15px 10px 15px;"
                   placeholder="Seleccionar Rol" size="tiny" fullWidth multiple [title]="follow_title"
-                  (selectedChange)="onChangeFollowRol($event)">
-                  <nb-option value="0" selected>
+                  [(selected)]="follow_options.role" (selectedChange)="onChangeFollowRol($event)">
+                  <nb-option value="0">
                     Todos
                   </nb-option>
-                  <nb-option *ngFor = "let role of list_follow_role" value="{{role.id}}" [disabled]="follow_options.role == null"
-                  [selected]="follow_options.role && follow_options.role.includes(role.id)">
+                  <nb-option *ngFor = "let role of list_follow_role" value="{{role.id}}" [disabled]="follow_options.role == null">
                     {{ role.name }}
                   </nb-option>
                 </nb-select>
 
-                <label style="margin: 5px 15px; font-size:12px;">Usuario(s)</label> <span style="margin: 5px 15px; float:right; font-size:12px;"> Total: {{tot_count}} </span>
+                <label class="sub-helper-text">Usuario(s)</label> <span style="float:right;"> Total: {{tot_count}} </span>
                 <nb-select #userSelect name="page" class="select-document" style="padding: 0 15px 10px 15px;"
                   placeholder="Seleccionar Usuario" size="tiny" fullWidth multiple [title]="follow_title"
-                  (selectedChange)="setValueFilter($event, false)">
-                  <nb-option value="0" selected>
+                  [(selected)]="follow_options.users" (selectedChange)="setValueFilter($event, false)">
+                  <nb-option value="0">
                     Todos
                   </nb-option>
-                  <nb-option *ngFor = "let user of user_data_sel" value="{{user.id}}" [disabled]="follow_options.users == null" [selected]="follow_options.users && follow_options.users.includes(user.id)">
+                  <nb-option *ngFor = "let user of user_data_sel" value="{{user.id}}" [disabled]="follow_options.users == null">
                     {{user.first_name}}{{ user.middle_name ? ' ' + user.middle_name :''}} {{user.first_last_name}} {{ user.second_last_name ? ' ' + user.second_last_name :''}}
                   </nb-option>
                 </nb-select>
@@ -194,7 +191,7 @@
               </div>
 
               <div [hidden]="option != 3">
-                <label style="margin: 5px 15px; font-size:12px;">Para seleccionar uno o varios dispositivos, desmarca la opción <b>Todos</b>.</label>
+                <label class="sub-helper-text">Para seleccionar uno o varios dispositivos, desmarca la opción <b>Todos</b>.</label>
                 <nb-select #devSelect name="page" class="select-document" style="padding: 0 15px 10px 15px;"
                   placeholder="Seleccionar Dispositivo" size="tiny" fullWidth multiple [title]="device_title"
                   (selectedChange)="setValueFilter($event)">
@@ -407,8 +404,7 @@
                 <nb-list-item *ngFor="let follow of user.dates; let j=index;"     style="padding-right: 0;">
                   <div class="row" style="width: 100%;">
                     <div class="col-md-10 col-sm-11" style="margin-bottom: 5px;">
-                      <nb-checkbox [checked]="user_select.includes(user.id + '&' + follow)" (checkedChange)="toggleCheckbox($event, user.id + '&' + follow)"
-                      [value]="user.id + '-' + follow">
+                      <nb-checkbox [checked]="user_select.includes(user.id + '&' + follow)" (checkedChange)="toggleCheckbox($event, user.id + '&' + follow)">
                       {{ follow }} </nb-checkbox>
                     </div>
                     <div class="col-md-2 col-sm-1">

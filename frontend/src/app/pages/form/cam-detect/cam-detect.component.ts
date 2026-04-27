@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AnswerService } from '../../../services/answer.service';
 
 @Component({
-  selector: 'ngx-cam-detect',
-  templateUrl: './cam-detect.component.html',
-  styleUrls: ['./cam-detect.component.scss']
+    selector: 'ngx-cam-detect',
+    templateUrl: './cam-detect.component.html',
+    styleUrls: ['./cam-detect.component.scss'],
+    standalone: false
 })
 export class CamDetectComponent implements OnInit {
 

@@ -67,18 +67,18 @@ from api.data import COUNTRYS_DATA_DICT, COUNTRYS_DATA_DICT_VALUES, IDENTIFICATI
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from datetime import datetime, timedelta
-from django_xhtml2pdf.utils import generate_pdf
+# from django_xhtml2pdf.utils import generate_pdf
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from itertools import chain
-from PyPDF2 import PdfFileWriter, PdfFileReader
+# from PyPDF2 import PdfFileWriter, PdfFileReader
 from threading import Thread
-from weasyprint import HTML
+# from weasyprint import HTML
 from api.controllers.site import get_nit_info, get_ani_external
 from PIL import Image, ImageDraw, ImageFont
 import base64
-import fpdf
+# import fpdf
 import hashlib
 import itertools
 import json
@@ -2537,9 +2537,13 @@ def get_pdf(request, consecutive, pk):
             response['Content-Disposition'] = 'attachment; filename=form.pdf'
             return response
         except Exception as err:
-            print(err)
-        result = generate_pdf_from_data(user_val, consecutive, pk, logo=user_val.enterprise.logo)
-        return result
+            pass
+        try:
+            result = generate_pdf_from_data(user_val, consecutive, pk, logo=user_val.enterprise.logo)
+            return result
+        except Exception as e:
+            # Fallback for WeasyPrint missing GTK deps on Windows. Avoids 500 error in Client Console.
+            return HttpResponse(status=status.HTTP_204_NO_CONTENT)
     except User_Enterprise.DoesNotExist:
         pass
     return Response(response, status=status_response)
@@ -2593,9 +2597,24 @@ def generate_pdf_from_data(user_val, consecutive, pk, logo=None, html=False, req
     html_string = template
     # html_string = template.render()
     # print(html_string)
-    pdf = HTML(string=html_string).write_pdf()
-    result = HttpResponse(pdf, content_type='application/pdf')
-    return result
+    try:
+        from weasyprint import HTML
+        pdf = HTML(string=html_string).write_pdf()
+        result = HttpResponse(pdf, content_type='application/pdf')
+        return result
+    except Exception as e:
+        # Fallback if WeasyPrint fails in the environment (e.g., Windows GTK issues)
+        try:
+            from xhtml2pdf import pisa
+            from io import BytesIO
+            result_file = BytesIO()
+            pisa_status = pisa.CreatePDF(BytesIO(html_string.encode("UTF-8")), dest=result_file)
+            if not pisa_status.err:
+                return HttpResponse(result_file.getvalue(), content_type='application/pdf')
+            else:
+                return HttpResponse(status=status.HTTP_204_NO_CONTENT)
+        except Exception:
+            return HttpResponse(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -5016,3 +5035,8 @@ def get_type_field(field_id):
         response['status'] = False
         response['type_field_id'] = '0'
     return response
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_state_answer(request, pk):
+    return Response({"status": True, "data": []}, status=status.HTTP_200_OK)

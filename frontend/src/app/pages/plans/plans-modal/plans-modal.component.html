@@ -1,30 +1,66 @@
 <div class="row">
-  <div class="col-md-12" style="width: 1000px;">
-    <div class="col-md-12 mx-auto">
-      <nb-card size="medium">
-         <div>
-          <p >Nombre</p>
-          <input type="text" nbInput [ngModel]="name" (change)="changeValue(0,$event)">
-          <p >Descripción</p>
-          <input type="text" nbInput [ngModel]="description" (change)="changeValue(1,$event)">
-          <p >Precio</p>
-          <input type="text" nbInput [ngModel]="price" (change)="changeValue(2,$event)">
-          <nb-checkbox (checkedChange)="toggle($event)" [ngModel]="state" (change)="changeValue(3,$event)">Activo</nb-checkbox>
-         </div>
-         <div class="col-xs-12 col-sm-6">
-          <label class="label" for="inputPublic">Color para la cabecera documento público</label>
-          <input id="inputPublic" type="color" nbInput fullWidth shape="semi-round" autocomplete="off" style="height: 60px;" [ngModel]="colorB" (change)="changeValue(4,$event)">
-          <input type="file" accept="image/*" (change)="onFileSelected($event)" #fileUpload>
-         <div>
-          <div class="col-12 col-md-12" *ngFor="let item of indexItems; let i=index;">
-            <nb-checkbox [checked]="enable_checked(item.id)" (checkedChange)="toggle($event, item.id)">{{item.service}}</nb-checkbox>
-           </div>
-          <div>
-            <button nbButton status="primary" (click) = "finish()">Aceptar</button>
+  <div class="col-md-12" style="width: 800px;">
+    <nb-card size="medium">
+      <nb-card-header>Configuración de Plan SaaS</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <!-- Detalles Básicos -->
+          <div class="col-md-6">
+            <h6>Generales</h6>
+            <div class="form-group">
+              <label class="label">Nombre del Plan</label>
+              <input type="text" nbInput fullWidth [ngModel]="name" (change)="changeValue(0, $event)">
+            </div>
+            <div class="form-group">
+              <label class="label">Descripción</label>
+              <input type="text" nbInput fullWidth [ngModel]="description" (change)="changeValue(1, $event)">
+            </div>
+            <div class="form-group">
+              <label class="label">Precio (Transaccional)</label>
+              <input type="text" nbInput fullWidth [ngModel]="price" (change)="changeValue(2, $event)">
+            </div>
+            
+            <div class="d-flex align-items-center mt-3 mb-3">
+              <nb-checkbox (checkedChange)="toggleState($event)" [ngModel]="state">Estado Activo</nb-checkbox>
+            </div>
+
+            <div class="form-group">
+              <label class="label" for="inputPublic">Color del Tema Asignado</label>
+              <input id="inputPublic" type="color" nbInput fullWidth shape="semi-round" autocomplete="off" style="height: 50px;" [ngModel]="colorB" (change)="changeValue(4, $event)">
+            </div>
+            <div class="form-group">
+              <label class="label">Sello Visual (Imagen)</label>
+              <input type="file" fullWidth accept="image/*" (change)="onFileSelected($event)" #fileUpload>
+            </div>
           </div>
-         </div>
+
+          <!-- Módulos Incluidos (Feature Flags) -->
+          <div class="col-md-6">
+            <h6>Módulos del Sistema Incluidos</h6>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_received">O. Recibidos</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_documents">D. Documentos</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_roles">R. Roles</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_reports">I. Informes</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_statistics">E. Estadísticas</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_db_segmented">Base Datos Segm.</nb-checkbox>
+              </div>
+              <div class="col-md-6">
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_flows">F. Flujos</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_my_drive">M. Mi Unidad</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_lists">L. Listas</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_visits">V. Visitas</nb-checkbox>
+                <nb-checkbox class="mb-2 d-block" [(ngModel)]="feature_field_service">Gestión Terreno Mv.</nb-checkbox>
+              </div>
+            </div>
+          </div>
         </div>
-      </nb-card>
-    </div>
+      </nb-card-body>
+      <nb-card-footer class="text-right">
+        <button nbButton status="basic" class="mr-2" (click)="closeModal()">Cancelar</button>
+        <button nbButton status="primary" (click)="finish()">Guardar Plan SAAS</button>
+      </nb-card-footer>
+    </nb-card>
   </div>
 </div>

@@ -15,13 +15,35 @@ import { SignupService } from '../services/signup.service';
 @Component({
   selector: 'ngx-login-new',
   templateUrl: './login-new.component.html',
-  styleUrls: ['./login-new.component.scss']
+  styleUrls: ['./login-new.component.scss'],
+  standalone: false
 })
 export class LoginNewComponent implements OnInit {
 
   hidden_reg=true;
   loading = false;
   acronym = null;
+
+  phrases = [
+    {h1: 'MELMAC DOC Y', h2: 'MELMAC ID / KYC', h3: 'VALIDACIÓN DE IDENTIDAD PARA TUS PROCESOS DIGITALES'},
+    {h1: 'VALIDACIÓN DE', h2: 'IDENTIDAD (KYC)', h3: 'SUSTENTO Y SEGURIDAD PARA LAS EMPRESAS MODERNAS'},
+    {h1: 'ONBOARDING KYC', h2: '100% SEGURO', h3: 'VALIDA IDENTIDADES EN TUS PROCESOS DIGITALES'},
+    {h1: 'SEGURIDAD Y', h2: 'PRUEBA DE VIDA', h3: 'DAR SUSTENTO A TU NEGOCIO MEDIANTE KYC'},
+    {h1: 'GESTOR DOCUMENTAL', h2: 'MELMAC DOC', h3: 'CENTRALIZA Y EXPANDE TUS PROCESOS DIGITALES'},
+    {h1: 'FIRMA DIGITAL', h2: 'Y MELMAC ID', h3: 'SEGURIDAD ABSOLUTA EN LA VALIDACIÓN DE IDENTIDAD'},
+    {h1: 'CONFIANZA TOTAL EN', h2: 'PROCESOS DIGITALES', h3: 'KYC: DA SEGURIDAD Y SUSTENTO A TU EMPRESA'},
+    {h1: 'CUMPLIMIENTO Y', h2: 'VALIDEZ LEGAL', h3: 'FIRMA ELECTRÓNICA Y VERIFICACIÓN DE IDENTIDAD'},
+    {h1: 'WORKFLOWS', h2: 'INTELIGENTES', h3: 'MELMAC DOC Y KYC EN PERFECTA SINERGIA'},
+    {h1: 'PROCESOS B2B', h2: 'SEGUROS (KYC)', h3: 'SUSTENTANDO DIGITALMENTE LA VALIDACIÓN DE USUARIOS'}
+  ];
+  bgImages = [
+    'url(./assets/images/landing/premium_bg.png?v=3)',
+    'url(./assets/images/landing/bg_docs.png)',
+    'url(./assets/images/landing/bg_kyc.png)'
+  ];
+  currentBg = this.bgImages[0];
+  currentPhrase = this.phrases[0];
+  rotationIndex = 0;
   authsocial = false;
   email = "";
   password = "";
@@ -65,6 +87,16 @@ export class LoginNewComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.rotationIndex = Math.floor(Math.random() * this.phrases.length);
+    this.currentPhrase = this.phrases[this.rotationIndex];
+    this.currentBg = this.bgImages[this.rotationIndex % this.bgImages.length];
+
+    setInterval(() => {
+      this.rotationIndex = (this.rotationIndex + 1) % this.phrases.length;
+      this.currentPhrase = this.phrases[this.rotationIndex];
+      this.currentBg = this.bgImages[this.rotationIndex % this.bgImages.length];
+    }, 10000);
+
     // this.showMessages = {};
     this.getIPAddress();
     this.acronym = this.activatedRoute.snapshot.paramMap.get('ent');
@@ -76,7 +108,7 @@ export class LoginNewComponent implements OnInit {
       if(permits.includes(71)){
         view = permits.includes(71) ? '/pages/home' : '/pages/inbox';
       }else{
-        view =  permits.includes(62) ? '/pages/dashboard' : '/pages/inbox';
+        view =  permits.includes(62) ? '/pages/statistics' : '/pages/inbox';
       }
       this.router.navigate([view, {}]);
     }else {
@@ -143,7 +175,7 @@ export class LoginNewComponent implements OnInit {
             if(permits.includes(71)){
               view = permits.includes(71) ? '/pages/home' : '/pages/inbox';
             }else{
-              view =  permits.includes(62) ? '/pages/dashboard' : '/pages/inbox';
+              view =  permits.includes(62) ? '/pages/statistics' : '/pages/inbox';
             }
             this.router.navigate([ view, {}]);
           }

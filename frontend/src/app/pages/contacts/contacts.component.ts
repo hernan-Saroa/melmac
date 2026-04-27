@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultEditor, LocalDataSource } from 'ng2-smart-table';
+import { DefaultEditor, LocalDataSource } from 'angular2-smart-table';
 import { ContactsService } from '../../services/contacts.service';
 import { ToastService } from '../../usable/toast.service';
 import { ContactsTable } from './contacts.table';
 
 @Component({
-  selector: 'ngx-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss']
+    selector: 'ngx-contacts',
+    templateUrl: './contacts.component.html',
+    styleUrls: ['./contacts.component.scss'],
+    standalone: false
 })
 export class ContactsComponent implements OnInit {
 
@@ -222,8 +223,8 @@ export class ContactsComponent implements OnInit {
 }
 
 @Component({
-  selector: "input-custom-phone",
-  template: `
+    selector: "input-custom-phone",
+    template: `
     <nb-form-field>
     <input type="number" ng2TelInput nbInput fullWidth autocomplete="off"
       style="background-color: white"
@@ -234,6 +235,7 @@ export class ContactsComponent implements OnInit {
       (intlTelInputObject)="telInputObject($event)">
     </nb-form-field>
   `,
+    standalone: false
 })
 
 
@@ -255,7 +257,7 @@ export class CustomInputPhoneComponentUser extends DefaultEditor implements OnIn
 
   onBlur(event) {
     this.phone.phoneInd = this.inputObject ? `+${this.inputObject.s.dialCode}-${this.inputObject.s.iso2}` : null;
-    this.cell.setValue(this.phone);
+    this.cell.setValue(String(this.phone.phoneNumber || this.phone));
   }
 
   telInputObject(event) {
@@ -269,7 +271,7 @@ export class CustomInputPhoneComponentUser extends DefaultEditor implements OnIn
     }
     this.inputObject = event;
     this.phone.phoneInd = this.inputObject ? `+${this.inputObject.s.dialCode}-${this.inputObject.s.iso2}` : null;
-    this.cell.setValue(this.phone);
+    this.cell.setValue(String(this.phone.phoneNumber || this.phone));
   }
 
 }

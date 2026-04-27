@@ -1,0 +1,246 @@
+<!-- Encabezado y Filtros Flotantes (World Class Search Pill) -->
+<div class="row mb-5 align-items-center">
+  <div class="col-md-4">
+    <h1 class="page-super-title">Gestión.</h1>
+  </div>
+  
+  <div class="col-md-8 d-flex justify-content-md-end mt-3 mt-md-0">
+    <div class="search-pill-container">
+      
+      <!-- Selector de Empresa (Solo Superadmin) -->
+      <ng-container *ngIf="userRole === 1">
+        <nb-select placeholder="Todas las Empresas" 
+                   [(selected)]="selectedEnterprise" 
+                   (selectedChange)="onSelectEnterprise($event)"
+                   optionsListClass="search-pill-dropdown">
+          <nb-option value="all">Todas las Empresas</nb-option>
+          <nb-option *ngFor="let ent of enterprises" [value]="ent.id">{{ent.name}}</nb-option>
+        </nb-select>
+        <div class="pill-divider"></div>
+      </ng-container>
+
+      <!-- Filtrar por Documento -->
+      <nb-select placeholder="Todos los Documentos" 
+                 [(selected)]="selectedForm" 
+                 (selectedChange)="loadData()"
+                 optionsListClass="search-pill-dropdown">
+        <nb-option value="all">Todos los Documentos</nb-option>
+        <nb-option *ngFor="let form of forms" [value]="form.id">{{form.name}}</nb-option>
+      </nb-select>
+      
+      <div class="pill-divider d-none d-md-block"></div>
+
+      <!-- Rango de Fechas -->
+      <div class="d-none d-md-flex align-items-center">
+        <nb-datepicker #formpicker format="dd/MM/yyyy"></nb-datepicker>
+        <input nbInput placeholder="Inicio" [nbDatepicker]="formpicker" [(ngModel)]="startDate" readonly>
+        
+        <span style="color: var(--text-hint-color); font-weight: 500;">-</span>
+        
+        <nb-datepicker #formpicker2 format="dd/MM/yyyy"></nb-datepicker>
+        <input nbInput placeholder="Fin" [nbDatepicker]="formpicker2" [(ngModel)]="endDate" readonly>
+      </div>
+
+      <div class="pill-divider"></div>
+
+      <!-- Acciones Rápidas -->
+      <div class="d-flex" style="gap: 4px;">
+        <button nbButton ghost status="primary" (click)="loadData()" title="Consultar Datos">
+          <nb-icon icon="search-outline"></nb-icon>
+        </button>
+        <button nbButton ghost status="basic" (click)="clearDates()" *ngIf="startDate || endDate || selectedEnterprise !== 'all'" title="Limpiar Filtros">
+          <nb-icon icon="close-outline"></nb-icon>
+        </button>
+        <button nbButton ghost status="success" (click)="exportData()" title="Exportar métricas a Excel">
+          <nb-icon icon="download-outline"></nb-icon>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="summaryData">
+  <!-- Usuarios Activos -->
+  <div class="col-xxxl-3 col-md-6 mb-4">
+    <nb-card class="modern-card">
+      <div class="metric-card-body">
+        <div class="top-row">
+          <span class="title">Usuarios Activos</span>
+          <div class="icon-circle tint-melmac-1">
+            <nb-icon icon="person-done-outline"></nb-icon>
+          </div>
+        </div>
+        <div class="value">{{summaryData.users.active}}</div>
+      </div>
+    </nb-card>
+  </div>
+
+  <!-- Usuarios Inactivos -->
+  <div class="col-xxxl-3 col-md-6 mb-4">
+    <nb-card class="modern-card">
+      <div class="metric-card-body">
+        <div class="top-row">
+          <span class="title">Usuarios Inactivos</span>
+          <div class="icon-circle tint-melmac-2">
+            <nb-icon icon="person-remove-outline"></nb-icon>
+          </div>
+        </div>
+        <div class="value">{{summaryData.users.inactive}}</div>
+      </div>
+    </nb-card>
+  </div>
+
+  <!-- Plantillas -->
+  <div class="col-xxxl-3 col-md-6 mb-4">
+    <nb-card class="modern-card">
+      <div class="metric-card-body">
+        <div class="top-row">
+          <span class="title">Plantillas Activas</span>
+          <div class="icon-circle tint-melmac-3">
+            <nb-icon icon="layout-outline"></nb-icon>
+          </div>
+        </div>
+        <div class="value">{{summaryData.templates}}</div>
+      </div>
+    </nb-card>
+  </div>
+
+  <!-- Documentos -->
+  <div class="col-xxxl-3 col-md-6 mb-4">
+    <nb-card class="modern-card">
+      <div class="metric-card-body">
+        <div class="top-row">
+          <span class="title">Documentos Generados</span>
+          <div class="icon-circle tint-melmac-4">
+            <nb-icon icon="file-text-outline"></nb-icon>
+          </div>
+        </div>
+        <div class="value">{{summaryData.documents}}</div>
+      </div>
+    </nb-card>
+  </div>
+</div>
+
+<!-- ==========================================
+     TRANSACTIONS & FRAUD PREVENTION (MAIN FOCUS)
+     ========================================== -->
+<div class="row">
+  <div class="col-lg-4 col-md-12 mb-4">
+    <nb-card class="modern-card size-medium" style="height: 380px; ">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Documentos (Con/Sin Firmas)</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsSignedDocs" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  
+  <div class="col-lg-4 col-md-12 mb-4">
+    <nb-card class="modern-card size-medium" style="height: 380px; ">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Tipos de Firmas Emitidas</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsSignatures" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-lg-4 col-md-12 mb-4">
+    <nb-card class="modern-card size-medium" style="height: 380px; ">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Consultas Operativas Externas</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsTransactions" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-4">
+    <nb-card class="modern-card size-medium" style="height: 420px; ">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700; color: var(--text-basic-color);">
+        Flujo de Firmas y Cobros (Aprobaciones vs. Rechazos o Fraude)
+      </nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsBillables" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Timeline de Evolución -->
+  <div class="col-md-12 mb-4">
+    <nb-card class="modern-card size-medium" style="height: 380px;">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Progreso Histórico: Emisión de Documentos</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsTimeline" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Distribución de Documentos Públicos vs Privados -->
+  <div class="col-md-4 mb-4">
+    <nb-card class="modern-card size-medium">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Documentos Públicos vs. Privados</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsDocumentTypes" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <!-- Medios de Divulgación de Documentos -->
+  <div class="col-md-8 mb-4">
+    <nb-card class="modern-card size-medium">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Canales de Envío (WhatsApp, SMS, Correo)</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsSharedDocs" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row" *ngIf="userRole === 1">
+  <!-- Planes Activos -->
+  <div class="col-md-6 mb-4">
+    <nb-card class="modern-card size-medium">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Planes Contratados por Cliente</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsActivePlans" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <!-- Ranking Top 5 Empresas -->
+  <div class="col-md-6 mb-4">
+    <nb-card class="modern-card size-medium">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Top 5: Clientes de Mayor Actividad</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsTopEnterprises" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Configuración de Empleados / Origen -->
+  <div class="col-md-5 mb-4">
+    <nb-card class="modern-card size-medium">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Origen de Acceso: Web vs. App Móvil</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsUserTypes" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <!-- Top Campos Usados (Componentes) -->
+  <div class="col-md-7 mb-4">
+    <nb-card class="modern-card size-medium">
+      <nb-card-header style="border-bottom: 1px solid var(--border-basic-color-2); font-weight: 700;">Herramientas Favoritas: Campos más usados</nb-card-header>
+      <nb-card-body style="padding: 1.5rem !important;">
+        <div echarts [options]="optionsTemplateMetrics" class="echart"></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

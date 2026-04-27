@@ -5,9 +5,10 @@ import { PlansModalComponent } from './plans-modal/plans-modal.component';
 import { SwitchService } from '../../services/switch.service';
 
 @Component({
-  selector: 'ngx-plans',
-  templateUrl: './plans.component.html',
-  styleUrls: ['./plans.component.scss']
+    selector: 'ngx-plans',
+    templateUrl: './plans.component.html',
+    styleUrls: ['./plans.component.scss'],
+    standalone: false
 })
 export class PlansComponent implements OnInit {
   data;

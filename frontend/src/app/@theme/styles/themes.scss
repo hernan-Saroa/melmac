@@ -1,7 +1,7 @@
 // @nebular theming framework
-@import '~@nebular/theme/styles/theming';
+@import '@nebular/theme/styles/theming';
 // @nebular out of the box themes
-@import '~@nebular/theme/styles/themes';
+@import '@nebular/theme/styles/themes';
 // material themes
 @import './material/material-dark';
 @import './material/material-light';
@@ -9,6 +9,15 @@
 $nb-themes: nb-register-theme((
   layout-padding-top: 2.25rem,
 
+  menu-bg: #fbfcfd,
+  menu-item-active-background-color: rgba(121, 179, 165, 0.15),
+  menu-item-active-text-color: #509180,
+  menu-item-icon-active-color: #509180,
+  menu-item-hover-background-color: #f1f5f9,
+  menu-item-hover-text-color: #1e293b,
+  menu-text-font-family: ('Inter', sans-serif),
+  menu-submenu-bg: #fbfcfd,
+  menu-submenu-item-hover-background-color: #f1f5f9,
   menu-item-icon-margin: 0 0.5rem 0 0,
 
   card-height-tiny: 13.5rem,
@@ -30,6 +39,15 @@ $nb-themes: nb-register-theme((
 $nb-themes: nb-register-theme((
   layout-padding-top: 2.25rem,
 
+  menu-bg: #fbfcfd,
+  menu-item-active-background-color: rgba(121, 179, 165, 0.15),
+  menu-item-active-text-color: #509180,
+  menu-item-icon-active-color: #509180,
+  menu-item-hover-background-color: #f1f5f9,
+  menu-item-hover-text-color: #1e293b,
+  menu-text-font-family: ('Inter', sans-serif),
+  menu-submenu-bg: #fbfcfd,
+  menu-submenu-item-hover-background-color: #f1f5f9,
   menu-item-icon-margin: 0 0.5rem 0 0,
 
   card-height-tiny: 13.5rem,
@@ -53,6 +71,15 @@ $nb-themes: nb-register-theme((
   color-basic-500: #007ee4,
   color-basic-700: white,
 
+  menu-bg: #fbfcfd,
+  menu-item-active-background-color: rgba(121, 179, 165, 0.15),
+  menu-item-active-text-color: #509180,
+  menu-item-icon-active-color: #509180,
+  menu-item-hover-background-color: #f1f5f9,
+  menu-item-hover-text-color: #1e293b,
+  menu-text-font-family: ('Inter', sans-serif),
+  menu-submenu-bg: #fbfcfd,
+  menu-submenu-item-hover-background-color: #f1f5f9,
   menu-item-icon-margin: 0 0.5rem 0 0,
 
   header-background-color:color-basic-500,
@@ -151,27 +178,55 @@ $nb-themes: nb-register-theme((
 }
 
 ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
-  display: inline-block;
-  width: 50px;
-  text-align: center;
-  font-size: 1.1em;
+  display: inline-flex !important;
+  width: 32px !important;
+  height: 32px !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 4px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 4px !important;
+  transition: all 0.2s !important;
+  color: #a8acb2 !important;
+
+  &:hover {
+    color: #5dcfe3 !important;
+    border-color: #5dcfe3 !important;
+    background-color: transparent !important;
+  }
+
+  i {
+    font-size: 1.2rem !important;
+  }
 }
 
 ::ng-deep ng2-st-tbody-custom .custom_icon_action {
   font-size: 19px;
 }
 
-::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
-  color: #5dcfe3;
-}
-
 ::ng-deep ng2-st-tbody-edit-delete > a.ng2-smart-action {
-  position:relative !important;
-  top: -10px !important;
-}
+  display: inline-flex !important;
+  width: 32px !important;
+  height: 32px !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 4px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 4px !important;
+  transition: all 0.2s !important;
+  color: #a8acb2 !important;
+  position: relative !important;
+  top: 0 !important;
 
-::ng-deep a.ng2-smart-action:hover {
-  color: #5dcfe3;
+  &:hover {
+    color: #5dcfe3 !important;
+    border-color: #5dcfe3 !important;
+    background-color: transparent !important;
+  }
+
+  i {
+    font-size: 1.2rem !important;
+  }
 }
 
 ::ng-deep .ng-scroll::-webkit-scrollbar {

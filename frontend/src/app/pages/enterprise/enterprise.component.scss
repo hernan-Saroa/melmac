@@ -1,18 +1,77 @@
-::ng-deep .custom_icon_action {
-  font-size: 19px;
-  // color: #a8acb2 !important
-}
-//css para centar los botones de las acciones
-::ng-deep ng2-smart-table > table > tbody > tr > td.ng2-smart-actions{
-  display: flex;
-  justify-content: space-evenly;
-  padding: 2.3rem 0.5rem !important;
+// CSS to perfectly replicate legacy ngx-admin ng2-smart-table aesthetics (Production)
 
-  a.ng2-smart-action {
-    top: 0 !important;
+::ng-deep ng2-smart-table table {
+  /* General Table Structure */
+  border-collapse: collapse;
+  width: 100%;
+  
+  tr {
+    border-bottom: 1px solid #edf1f7;
+  }
+  
+  th, td {
+    padding: 1rem !important;
+    border: none !important;
+  }
+  
+  /* Header Row Styling */
+  thead tr {
+    background-color: #f7f9fc;
+    border-bottom: 2px solid #edf1f7;
+    color: #8f9bb3;
+    font-weight: 600;
   }
 
-  ng2-st-tbody-edit-delete {
-    height: auto !important;
+  /* --- ACTIONS COLUMN --- */
+  
+  /* Header (Add Button) */
+  th.ng2-smart-actions {
+    text-align: center;
+    width: 100px;
+    
+    a.ng2-smart-action-add-add {
+      display: block !important;
+      background-color: #3366ff !important;
+      color: white !important;
+      padding: 0.6rem !important;
+      border-radius: 4px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.2s;
+      
+      i.nb-plus {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      &:hover {
+        background-color: #274bdd !important;
+        text-decoration: none;
+      }
+    }
+  }
+
+  /* Body (Action Icons) */
+  td.ng2-smart-actions {
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+
+    a.ng2-smart-action {
+      color: #8f9bb3 !important;
+      font-size: 1.6rem !important; /* Size identical to production */
+      text-decoration: none !important;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #598bff !important;
+      }
+    }
+
+    ng2-st-tbody-edit-delete {
+      height: auto !important;
+      display: flex;
+      align-items: center;
+    }
   }
 }

@@ -1,5 +1,25 @@
+/* ----------------------------------------------------
+   World-Class Premium Styles 
+------------------------------------------------------*/
+.modern-card {
+  border-radius: 20px !important;
+  border: 1px solid rgba(121, 179, 165, 0.15) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+nb-card-header {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+  font-weight: 700;
+  color: #374151 !important;
+}
 
 ::ng-deep .table-answer {
+  font-family: 'Inter', sans-serif;
+  
   ::ng-deep i[itemprop]:hover::after {
       z-index: 1;
       padding: 5px;
@@ -15,9 +35,9 @@
 
 
 /* Estilo predeterminado para todas las filas */
-/* Estilo para filas con source igual a 1 (azul) */
+/* Estilo para filas con source igual a 1 (azul/naranja) */
 ::ng-deep tr.row-orange {
-  background-color: #ffde90 !important; /* Color anaranjado para filas con source igual a 1 */
+  background-color: #fef3c7 !important; /* Premium Amber pastel */
   td {
     border-left: 0px !important;
     border-right: 0px !important;
@@ -25,27 +45,27 @@
 }
 
 ::ng-deep .ng2-smart-row.selected.row-orange  {
-  background-color: #ffde90 !important;
+  background-color: #fde68a !important;
 }
 
 ::ng-deep .nb-theme-default ng2-smart-table tbody tr.row-orange:hover {
-  background-color: #fcc649 !important;
+  background-color: #fde68a !important;
 }
 
 /* Estilo para filas con source igual a 2 (rojo) */
 ::ng-deep tr.row-red {
-  background-color: #ff9191 !important; /* Color rojo para filas con status_sign igual a 2 */
+  background-color: #fee2e2 !important; /* Premium Red pastel */
   td {
     border-left: 0px !important;
     border-right: 0px !important;
   }
 }
 ::ng-deep .nb-theme-default ng2-smart-table tbody tr.row-red:hover {
-  background-color: #ff6666 !important;
+  background-color: #fecaca !important;
 }
 
 ::ng-deep .ng2-smart-row.selected.row-red  {
-  background-color: #ff9191 !important;
+  background-color: #fecaca !important;
 }
 
 /* Estilo para filas con source por defecto */
@@ -111,6 +131,25 @@
 
 .btn_eraser {
     float: right;
+    border-radius: 50% !important;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(121, 179, 165, 0.2) !important;
+    color: #509180 !important;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background: #79b3a5 !important;
+        color: #ffffff !important;
+        transform: scale(1.08);
+        border-color: #79b3a5 !important;
+        box-shadow: 0 5px 15px rgba(121, 179, 165, 0.3) !important;
+    }
 }
 
 ::ng-deep .table-answer {

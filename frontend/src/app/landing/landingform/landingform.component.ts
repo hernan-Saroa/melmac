@@ -5,9 +5,10 @@ import { ToastService } from '../../usable/toast.service';
 import { LandingService } from '../../services/landing.service';
 
 @Component({
-  selector: 'ngx-landingform',
-  templateUrl: './landingform.component.html',
-  styleUrls: ['./landingform.component.scss']
+    selector: 'ngx-landingform',
+    templateUrl: './landingform.component.html',
+    styleUrls: ['./landingform.component.scss'],
+    standalone: false
 })
 export class LandingformComponent implements OnInit {
 

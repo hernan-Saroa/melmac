@@ -7,9 +7,10 @@ import { EmailComponent } from '../email/email.component';
 
 
 @Component({
-  selector: 'ngx-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+    selector: 'ngx-detail',
+    templateUrl: './detail.component.html',
+    styleUrls: ['./detail.component.scss'],
+    standalone: false
 })
 export class DetailComponent implements OnInit {
 
@@ -246,7 +247,7 @@ export class DetailComponent implements OnInit {
         }
       }, (error) => {
         this.toast.showToast('danger', 'No tienes acceso', error.error.detail);
-        setTimeout(()=>window.location.href = '/pages/dashboard', 500);
+        setTimeout(()=>window.location.href = '/pages/statistics', 500);
       }
     )
   }

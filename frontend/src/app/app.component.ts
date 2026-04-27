@@ -8,9 +8,10 @@ import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
 
 @Component({
-  selector: 'ngx-app',
-  // template: '<base href="/v2/"><router-outlet></router-outlet>',
-  template: '<router-outlet></router-outlet>',
+    selector: 'ngx-app',
+    // template: '<base href="/v2/"><router-outlet></router-outlet>',
+    template: '<router-outlet></router-outlet>',
+    standalone: false
 })
 export class AppComponent implements OnInit {
 

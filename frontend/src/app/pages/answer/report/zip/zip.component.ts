@@ -4,9 +4,10 @@ import { AnswerService } from '../../../../services/answer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from '../../../../services/form.service';
 @Component({
-  selector: 'ngx-zip',
-  templateUrl: './zip.component.html',
-  styleUrls: ['./zip.component.scss']
+    selector: 'ngx-zip',
+    templateUrl: './zip.component.html',
+    styleUrls: ['./zip.component.scss'],
+    standalone: false
 })
 export class ZipComponent implements OnInit {
 

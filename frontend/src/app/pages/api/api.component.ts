@@ -1,13 +1,14 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { NbSelectComponent } from '@nebular/theme';
 import { EnterpriseService } from './../../services/enterprise.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 
 @Component({
-  selector: 'ngx-api',
-  templateUrl: './api.component.html',
-  styleUrls: ['./api.component.scss']
+    selector: 'ngx-api',
+    templateUrl: './api.component.html',
+    styleUrls: ['./api.component.scss'],
+    standalone: false
 })
 export class ApiComponent implements OnInit {
 

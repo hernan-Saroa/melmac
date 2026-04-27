@@ -1,5 +1,5 @@
 import { filter } from 'rxjs/operators';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { AdminService } from './../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { NbDialogRef, NbDialogService, NbGlobalPosition, NbComponentStatus, NbGlobalPhysicalPosition, NbToastrConfig, NbToastrService } from '@nebular/theme';
@@ -8,11 +8,11 @@ import { DeviceService } from '../../services/device.service';
 
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-device",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -25,6 +25,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 
@@ -39,7 +40,7 @@ export class CustomInputTextFilterComponentDevice extends DefaultFilter implemen
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -53,9 +54,10 @@ export class CustomInputTextFilterComponentDevice extends DefaultFilter implemen
 
 
 @Component({
-  selector: 'ngx-type-device',
-  templateUrl: './type_device.component.html',
-  styleUrls: ['./device.component.scss']
+    selector: 'ngx-type-device',
+    templateUrl: './type_device.component.html',
+    styleUrls: ['./device.component.scss'],
+    standalone: false
 })
 export class TypeDeviceComponent implements OnInit {
 
@@ -258,9 +260,10 @@ export class TypeDeviceComponent implements OnInit {
 
 //Componente Dispositivos
 @Component({
-  selector: 'ngx-device',
-  templateUrl: './device.component.html',
-  styleUrls: ['./device.component.scss']
+    selector: 'ngx-device',
+    templateUrl: './device.component.html',
+    styleUrls: ['./device.component.scss'],
+    standalone: false
 })
 export class DeviceComponent implements OnInit {
 
@@ -511,9 +514,10 @@ export class DeviceComponent implements OnInit {
 }
 
 @Component({
-  selector: 'nb-dialog-showcase',
-  templateUrl: './dialog.html',
-  styles: ['nb-layout{width:100%;height:100%;}', 'div .nb-theme-default nb-layout.with-scroll .scrollable-container {height: 200px; max-height:200px; }'],
+    selector: 'nb-dialog-showcase',
+    templateUrl: './dialog.html',
+    styles: ['nb-layout{width:100%;height:100%;}', 'div .nb-theme-default nb-layout.with-scroll .scrollable-container {height: 200px; max-height:200px; }'],
+    standalone: false
 })
 export class DialogComponent implements OnInit{
 

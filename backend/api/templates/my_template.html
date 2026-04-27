@@ -11,6 +11,21 @@
         @page {
             size: A4;
             margin: 1.5cm;
+            @frame watermark {
+                margin: auto;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                -pdf-frame-content: watermark_content;
+            }
+            @frame footer {
+                -pdf-frame-content: footer_content;
+                bottom: 1cm;
+                margin-left: 1.5cm;
+                margin-right: 1.5cm;
+                height: 1cm;
+                text-align: center;
+            }
         }
         .title {
             padding: 1rem 1.5rem;
@@ -99,6 +114,26 @@
         background-color: #2b80f0;
         }
 
+        .watermark {
+            color: #E2E8F0;
+            font-size: 45px;
+            font-weight: bold;
+            font-family: Open Sans, sans-serif;
+            text-align: center;
+            transform: rotate(-45deg);
+            white-space: nowrap;
+            margin-top: 400px;
+        }
+
+        .footer_text {
+            font-size: 9px;
+            color: #6B7280;
+            font-family: monospace;
+            border-top: 1px solid #E5E7EB;
+            padding-top: 5px;
+            text-align: center;
+        }
+
     </style>
     {% if data_template.theme == 1 %}
     <style>
@@ -126,6 +161,20 @@
     <title>Reporte</title>
 </head>
 <body>
+    <div id="watermark_content">
+        <div class="watermark">
+            EVALUADO<br>CIRCULAR 003 - 2025
+        </div>
+    </div>
+    <div id="footer_content">
+        <div style="float: left; width: 15%; padding-top: 5px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://pta.esap.edu.co/validar/{{ signature_hash|default:'a2e9b0-ESAP-VAL-2025' }}" width="40" height="40" alt="Sello Holografico QR" />
+        </div>
+        <div style="float: right; width: 85%; padding-top: 15px;" class="footer_text">
+            Sello de Aprobación Criptográfico (Circ.003-25): {{ signature_hash|default:"a2e9b0-ESAP-VAL-2025" }} | 
+            Página <pdf:pagenumber> de <pdf:pagecount>
+        </div>
+    </div>
     <div style="text-align: center;">
         {% if data_template.theme != 0 and data_template.logo != '' %}
             <img style="width: 150px;" src="{{data_template.logo}}"  alt="">

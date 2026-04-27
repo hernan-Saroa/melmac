@@ -1,14 +1,15 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormService } from '../../../services/form.service';
 import { ToastService } from '../../../usable/toast.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
+    selector: 'ngx-view',
+    templateUrl: './view.component.html',
+    styleUrls: ['./view.component.scss'],
+    standalone: false
 })
 export class ViewComponent implements OnInit {
   option_form;
@@ -352,8 +353,8 @@ export class ViewComponent implements OnInit {
 
 // Delete
 @Component({
-  selector: 'confirm-dialog',
-  template: `
+    selector: 'confirm-dialog',
+    template: `
     <nb-card>
       <nb-card-header>
         <h4>{{data.title}}</h4>
@@ -377,7 +378,8 @@ export class ViewComponent implements OnInit {
         </button>
       </nb-card-footer>
     </nb-card>`,
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}']
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}'],
+    standalone: false
 })
 export class ConfirmDialog {
   public data: {

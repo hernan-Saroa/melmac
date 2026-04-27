@@ -690,3 +690,66 @@ def get_enterprise_token(request, token):
     except (Enterprise.DoesNotExist):
         pass
     return Response(response, status=status_response)
+
+from api.permissions import IsUserAdminOrHasPermission
+
+class EnterpriseAttempt(APIView):
+    permission_classes = [IsUserAdminOrHasPermission]
+
+    def get(self, request, pk=None, format=None):
+        try:
+            enterprise_req = get_enterprise(request)
+            if enterprise_req != 1 and enterprise_req != int(pk):
+                return Response({'status': False, 'message': 'No authorizado'}, status=403)
+            
+            from api.models import Enterprise_Attempt, Field_Type
+            attempts = Enterprise_Attempt.objects.filter(enterprise_id=pk).order_by('-id')
+            data = []
+            for a in attempts:
+                data.append({
+                    'id': a.id,
+                    'enterprise_id': a.enterprise_id,
+                    'field_type_id': a.field_type_id,
+                    'attempts': a.attempts,
+                    'description': a.description,
+                    'creation_date': a.creation_date.strftime('%Y-%m-%d %H:%M:%S')
+                })
+            
+            allowed_fields = [7, 10, 18, 22]
+            fields = list(Field_Type.objects.filter(id__in=allowed_fields).values('id', 'name'))
+            
+            return Response({'status': True, 'data': data, 'fields': fields})
+        except Exception as e:
+            return Response({'status': False, 'message': str(e)}, status=500)
+
+    def post(self, request, format=None):
+        try:
+            data = request.data
+            ent_id = int(data.get('enterprise_id'))
+            enterprise_req = get_enterprise(request)
+            if enterprise_req != 1 and enterprise_req != ent_id:
+                return Response({'status': False, 'message': 'No authorizado'}, status=403)
+            
+            from api.models import Enterprise_Attempt, Field_Type
+            if 'id' in data and data['id']:
+                att = Enterprise_Attempt.objects.get(id=data['id'], enterprise_id=ent_id)
+                att.attempts = int(data.get('attempts', 0))
+                att.description = data.get('description', '')
+                att.save()
+            else:
+                att = Enterprise_Attempt.objects.create(
+                    enterprise_id=ent_id,
+                    field_type_id=int(data.get('field_type_id')),
+                    attempts=int(data.get('attempts', 0)),
+                    description=data.get('description', '')
+                )
+            
+            return Response({
+                'status': True,
+                'data': {
+                    'id': att.id,
+                    'creation_date': att.creation_date.strftime('%Y-%m-%d %H:%M:%S')
+                }
+            })
+        except Exception as e:
+            return Response({'status': False, 'message': str(e)}, status=500)

@@ -1,20 +1,21 @@
 import { Component, OnInit, Input,OnDestroy } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VisitsService } from '../../../services/visits.service';
 import { DatePipe } from '@angular/common';
-import { ViewCell } from 'ng2-smart-table';
+
 import { SharedService } from '../../answer/shared.service';
 import { NbMenuService } from '@nebular/theme';
 import { filter, map } from "rxjs/operators";
 
 
 @Component({
-  template: `<button (click)="clickMenu()" nbButton [nbContextMenu]="items" nbContextMenuTrigger="click" [nbContextMenuTag]="getTag()">
+    template: `<button (click)="clickMenu()" nbButton [nbContextMenu]="items" nbContextMenuTrigger="click" [nbContextMenuTag]="getTag()">
     <nb-icon icon="more-vertical-outline"></nb-icon>
   </button>`,
+    standalone: false
 })
-export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy {
+export class CustomActionRenderComponent implements  OnInit, OnDestroy {
 
   inactive = false;
   renderValue: string;
@@ -98,9 +99,10 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
 }
 
 @Component({
-  selector: 'ngx-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+    selector: 'ngx-table',
+    templateUrl: './table.component.html',
+    styleUrls: ['./table.component.scss'],
+    standalone: false
 })
 export class TableComponent implements OnInit {
 

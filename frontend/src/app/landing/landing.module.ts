@@ -6,7 +6,6 @@ import { NbThemeModule} from '@nebular/theme';
 import { LandingRoutingModule } from './landing-routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LandingComponent } from './landing.component';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingformComponent } from './landingform/landingform.component';
 
 @NgModule({
@@ -36,7 +35,6 @@ import { LandingformComponent } from './landingform/landingform.component';
         NbFormFieldModule,
         NbStepperModule,
         NbAlertModule,
-        NgbCarouselModule,
         NbDialogModule.forRoot(),
         FormsModule,
         NbRadioModule
@@ -44,9 +42,7 @@ import { LandingformComponent } from './landingform/landingform.component';
     declarations: [
         LandingComponent,
         LandingformComponent
-    ],
-  bootstrap: [LandingComponent],
-
+    ]
   })
   export class LandingModule {
   }

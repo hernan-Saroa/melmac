@@ -7,9 +7,10 @@ import { latLng, Layer, Map, Marker, Polygon, tileLayer, icon } from 'leaflet';
 import { pines } from '../../../usable/pines';
 
 @Component({
-  selector: 'ngx-monitor',
-  templateUrl: './monitor.component.html',
-  styleUrls: ['./monitor.component.scss']
+    selector: 'ngx-monitor',
+    templateUrl: './monitor.component.html',
+    styleUrls: ['./monitor.component.scss'],
+    standalone: false
 })
 export class MonitorComponent implements OnInit {
 

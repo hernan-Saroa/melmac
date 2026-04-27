@@ -2,9 +2,10 @@ import { UserService } from './../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ngx-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+    selector: 'ngx-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.scss'],
+    standalone: false
 })
 export class ProfileComponent implements OnInit {
 

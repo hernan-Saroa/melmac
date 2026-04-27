@@ -5,9 +5,10 @@ import { ToastService } from '../../../usable/toast.service';
 import { NbDialogRef } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-detail-answer',
-  templateUrl: './detail-answer.component.html',
-  styleUrls: ['./detail-answer.component.scss']
+    selector: 'ngx-detail-answer',
+    templateUrl: './detail-answer.component.html',
+    styleUrls: ['./detail-answer.component.scss'],
+    standalone: false
 })
 export class DetailAnswerComponent implements OnInit {
 

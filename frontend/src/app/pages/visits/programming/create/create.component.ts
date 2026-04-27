@@ -9,11 +9,12 @@ import { ToastService } from '../../../../usable/toast.service';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'ngx-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'example-height-60' },
+    selector: 'ngx-create',
+    templateUrl: './create.component.html',
+    styleUrls: ['./create.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { class: 'example-height-60' },
+    standalone: false
 })
 
 export class CreateComponent implements OnInit {
@@ -460,8 +461,8 @@ export class Articulo {
 
 /*Modal de creacion de tarea*/
 @Component({
-  selector: 'confirm-dialog',
-  template: `
+    selector: 'confirm-dialog',
+    template: `
   <div class="row">
   <div class="col-md-12" style="width: 1000px;">
     <div class="col-md-12 mx-auto container">
@@ -486,6 +487,7 @@ export class Articulo {
   </div>
 </div>
 `,
+    standalone: false
 })
 
 export class ConfirmDialogC {

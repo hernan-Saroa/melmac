@@ -675,8 +675,21 @@ def validate_token(request):
             phone = data['phone']
         try:
             # Valida si existe el token
+            if ent and 'trace_token' in data and data['trace_token']:
+                from django.core.cache import cache
+                from api.models import Enterprise_Attempt
+                cache_key = f"attempt_22_{ent}_{phone}"
+                limit_obj = Enterprise_Attempt.objects.filter(enterprise_id=ent, field_type_id=22).first()
+                if limit_obj and limit_obj.attempts > 0:
+                    attempts = cache.get(cache_key, 0)
+                    if attempts >= limit_obj.attempts:
+                        response['message'] = 'Firma bloqueada por exceso de intentos fallidos. Posible fraude.'
+                        return Response(response, status=status.HTTP_200_OK)
+
             token_val = Sms_Token.objects.get(token=token, phone_user=phone)
             if(token_val.state == 0):
+                if ent and 'trace_token' in data and data['trace_token'] and limit_obj and limit_obj.attempts > 0:
+                    cache.delete(cache_key)
                 Sms_Token.objects.filter(phone_user=phone, token=token).update(state=1)
                 response['status'] = True
                 response['message'] = 'Token valido!'
@@ -758,6 +771,9 @@ def validate_token(request):
                 create_traceability(content)
 
         except Sms_Token.DoesNotExist:
+            if ent and 'trace_token' in data and data['trace_token']:
+                if limit_obj and limit_obj.attempts > 0:
+                    cache.set(cache_key, cache.get(cache_key, 0) + 1, timeout=86400)
             response['message'] = 'Token no existe!'
 
     except KeyError:

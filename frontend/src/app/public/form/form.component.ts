@@ -25,9 +25,10 @@ import { BioComponent } from './sign/bio/bio.component';
 import { OtpComponent } from './sign/otp/otp.component';
 
 @Component({
-  selector: 'ngx-form',
-  templateUrl: '../../pages/form/answer/answer.component.html',
-  styleUrls: ['../../pages/form/answer/answer.component.scss']
+    selector: 'ngx-form',
+    templateUrl: '../../pages/form/answer/answer.component.html',
+    styleUrls: ['../../pages/form/answer/answer.component.scss'],
+    standalone: false
 })
 export class FormComponent implements OnInit {
 
@@ -98,7 +99,7 @@ export class FormComponent implements OnInit {
   array_ani = [];
 
   // Firma
-  // @ViewChild(SignaturePad) signaturePad: SignaturePad;
+  // @ViewChild(SignaturePadComponent) signaturePad: SignaturePadComponent;
   private signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
     'minWidth': 0.5,
     'Width': 0.5,
@@ -157,18 +158,17 @@ export class FormComponent implements OnInit {
   ) {
     this.token_link = this.activatedRoute.snapshot.paramMap.get('token');
 
-    // Repsonsive Firma
-    let contet_layput = document.getElementsByClassName('scrollable-container');
-    if (contet_layput[0].parentElement.offsetWidth <= 540) {
-      this.signaturePadOptions['canvasWidth'] = 330;
-      this.signaturePadOptions['canvasHeight'] = 165;
-    }
+    // ============================================================
+    // REDIRECT: Enviar al nuevo formulario público World-Class (React)
+    // El micro-frontend React corre en puerto 4300 durante desarrollo.
+    // En producción, cambiar esta URL al dominio definitivo.
+    // ============================================================
+    const REACT_PUBLIC_FORM_URL = 'http://localhost:4300';
+    window.location.href = `${REACT_PUBLIC_FORM_URL}/${this.token_link}`;
+    return; // Detener ejecución del componente Angular
 
-    this.country = country;
+    // --- Código original (preservado pero no ejecutado) ---
 
-    this.getDataEnterprise();
-    this.getDataToken();
-    this.isActiveTab=false;
   }
 
   get status_bar() {

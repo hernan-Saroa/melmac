@@ -6,7 +6,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { FormService } from '../../../services/form.service';
 import { DigitalService } from '../../../services/digital.service';
 import { ToastService } from '../../../usable/toast.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { NbPopoverDirective, NbPosition, NbTrigger } from '@nebular/theme';
@@ -16,9 +16,10 @@ import { pines } from './pines';
 // import { runInThisContext } from 'vm';
 
 @Component({
-  selector: 'ngx-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+    selector: 'ngx-create',
+    templateUrl: './create.component.html',
+    styleUrls: ['./create.component.scss'],
+    standalone: false
 })
 export class CreateComponent implements OnInit, OnDestroy {
 
@@ -34,6 +35,7 @@ export class CreateComponent implements OnInit, OnDestroy {
   input_process = false;
   pdf_process = false;
   end_process = false;
+  metadataCollapsed = false;
 
   loading = false;
 
@@ -436,15 +438,16 @@ export class CreateComponent implements OnInit, OnDestroy {
           } else {
             setTimeout(() => {
               this.loading = false;
-              next_first.hostElement.nativeElement.click();
+              this.toastService.showToast('success', 'Documento', 'Documento guardado. Ahora puedes agregar campos.');
+              this.metadataCollapsed = true; // Auto-collapse to give space to field builder
               // Siguiente paso
               if (this.consecutive) {
-                this.create_process = false;
+                this.create_process = true;
                 this.form_process = false;
                 this.drag_process = true;
                 this.pdf_process = false;
               } else {
-                this.create_process = false;
+                this.create_process = true;
                 this.form_process = true;
                 this.drag_process = false;
                 this.pdf_process = false;
@@ -508,6 +511,7 @@ export class CreateComponent implements OnInit, OnDestroy {
           // this.form = new Object({components: response['form']['fields']});
           // this.form_content = {components: JSON.parse(JSON.stringify(response['form']['fields']))};
           this.loading = false;
+          this.metadataCollapsed = true; // Auto-collapse for existing docs
         }
       }
     );
@@ -2131,9 +2135,10 @@ export class CreateComponent implements OnInit, OnDestroy {
 
 
 @Component({
-  selector: 'ngx-location-dialog',
-  templateUrl: 'dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', 'nb-select {width:100%;}']
+    selector: 'ngx-location-dialog',
+    templateUrl: 'dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', 'nb-select {width:100%;}'],
+    standalone: false
 })
 export class FieldDialogComponent implements OnInit{
 
@@ -3032,9 +3037,10 @@ export class FieldDialogComponent implements OnInit{
 
 // Modal condfiguración adicional
 @Component({
-  selector: 'ngx-modal-additional',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+    selector: 'ngx-modal-additional',
+    templateUrl: './modal.component.html',
+    styleUrls: ['./modal.component.scss'],
+    standalone: false
 })
 export class ModalAdditionalComponent implements OnInit {
 

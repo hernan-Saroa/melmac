@@ -1,15 +1,16 @@
 import { UserService } from './../../../services/user.service';
 import { ToastService } from './../../../usable/toast.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { NbMenuService, NbComponentStatus, NbDialogService } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
 import { ErrorComponent } from '../error/error.component';
 
 @Component({
-  selector: 'ngx-user',
-  templateUrl: './massive.component.html',
-  styleUrls: ['./massive.component.scss']
+    selector: 'ngx-user',
+    templateUrl: './massive.component.html',
+    styleUrls: ['./massive.component.scss'],
+    standalone: false
 })
 export class UserMassiveComponent implements OnInit {
 

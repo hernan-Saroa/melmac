@@ -1,0 +1,7 @@
+*.sql
+*.tar.gz
+*.zip
+frontend/.angular/
+node_modules/
+__pycache__/
+*.pyc

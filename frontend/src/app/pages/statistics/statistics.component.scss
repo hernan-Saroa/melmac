@@ -1,0 +1,229 @@
+/* Modern SaaS "World Class" Aesthetics */
+
+.filters {
+  nb-select {
+    min-width: 200px;
+  }
+}
+
+.modern-card {
+  border-radius: 20px !important;
+  border: 1px solid rgba(121, 179, 165, 0.15) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  background-color: #ffffff;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.08) !important;
+  }
+}
+
+.metric-card-body {
+  padding: 1.5rem 1.5rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+  .top-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    
+    .title {
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .icon-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      nb-icon {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1;
+    letter-spacing: -1.5px;
+  }
+}
+
+/* Custom Melmac Tints Monochromatic */
+.tint-melmac-1 { background-color: rgba(121, 179, 165, 0.15); color: #79b3a5; }
+.tint-melmac-2 { background-color: rgba(80, 145, 128, 0.15);  color: #509180; }
+.tint-melmac-3 { background-color: rgba(54, 110, 96, 0.15);   color: #366e60; }
+.tint-melmac-4 { background-color: rgba(165, 209, 198, 0.25); color: #79b3a5; }
+
+/* Improve headers for cards */
+nb-card-header {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.5px;
+  color: #374151 !important;
+}
+
+/* Filter Bar Refinement - World Class Search Pill */
+.page-super-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  color: var(--text-basic-color);
+  margin-bottom: 0;
+}
+
+.search-pill-container {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 50px; /* The core pill shape */
+  border: 1px solid var(--border-basic-color-2);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+  padding: 0.4rem 1rem;
+  width: fit-content;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-wrap: wrap; /* in case of small screens */
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Target internal nebular components to remove their hard boundaries */
+  nb-select button, 
+  input[nbInput], 
+  button[nbButton] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 44px !important;
+    font-size: 0.95rem;
+    color: var(--text-basic-color);
+  }
+
+  nb-select button {
+    min-width: 220px;
+    padding-left: 15px;
+    font-weight: 600;
+  }
+
+  input[nbInput] {
+    text-align: center;
+    width: 140px;
+    font-weight: 600;
+    
+    &:focus {
+      background: rgba(0,0,0,0.03) !important;
+      border-radius: 8px; /* Slight background highlight */
+    }
+  }
+
+  .pill-divider {
+    width: 1px;
+    height: 28px;
+    background-color: var(--border-basic-color-3);
+    margin: 0 10px;
+  }
+
+  /* Subtle shape for Ghost Buttons inside the pill */
+  button[nbButton][ghost] {
+    border-radius: 50% !important;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-hint-color) !important;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: var(--border-basic-color-2) !important;
+      color: var(--text-basic-color) !important;
+    }
+    
+    &[status="primary"]:hover { color: var(--color-primary-default) !important; }
+    &[status="success"]:hover { color: var(--color-success-default) !important; }
+  }
+}
+
+
+.modern-badge-row {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-basic-color-2);
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+nb-card.size-medium {
+  height: 420px;
+}
+
+.echart {
+  height: 320px;
+  width: 100%;
+}
+
+.badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  color: white;
+}
+.badge-primary { background-color: #3366ff; }
+.badge-danger { background-color: #ff3d71; }
+
+nb-card.size-medium {
+  height: 400px;
+}
+
+.echart {
+  height: 300px;
+  width: 100%;
+}
+
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  color: white;
+}
+.badge-primary { background-color: #3366ff; }
+.badge-danger { background-color: #ff3d71; }
+
+/* ========================================================
+   PILAR B: WORLD CLASS DASHBOARD UPGRADES (TEXT GRADIENTS & RESIZING)
+   ======================================================== */
+
+.value {
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  letter-spacing: -2px !important;
+  padding-bottom: 5px;
+}
+
+/* Ensure Canvas Echarts scale down on mobile without overflowing the card */
+.echart, echarts {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 250px !important;
+}
+

@@ -6,12 +6,12 @@ import { NbDialogService } from '@nebular/theme';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-user",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -24,6 +24,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 
@@ -38,7 +39,7 @@ export class CustomInputTextFilterComponentUser extends DefaultFilter implements
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -50,9 +51,10 @@ export class CustomInputTextFilterComponentUser extends DefaultFilter implements
   }
 }
 @Component({
-  selector: 'ngx-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+    selector: 'ngx-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss'],
+    standalone: false
 })
 export class UserComponent {
   data;

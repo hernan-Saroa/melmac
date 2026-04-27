@@ -1,15 +1,15 @@
 import { ToastService } from '../../usable/toast.service';
 import { NgModule } from '@angular/core';
 import { NbAccordionModule, NbActionsModule, NbAutocompleteModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbContextMenuModule, NbIconModule, NbInfiniteListDirective, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbStepperModule, NbToggleModule, NbTooltipModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { GeoportalComponent } from './geoportal.component';
 import { GeoportalRoutingModule } from './geoportal-routing.module';
 import { CommonModule } from '@angular/common';
 import { AddressInfoDialogComponent, PointComponent } from './point/point.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GeoportalService } from '../../services/geoportal.service';
-import { LeafletMarkerClusterModule } from "@asymmetrik/ngx-leaflet-markercluster";
+import { LeafletMarkerClusterModule } from "@bluehalo/ngx-leaflet-markercluster";
 import { FormService } from '../../services/form.service';
 
 @NgModule({
@@ -25,7 +25,7 @@ import { FormService } from '../../services/form.service';
     NbIconModule,
     NbInputModule,
     NbButtonModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     LeafletModule,
     NbLayoutModule,
     NbSidebarModule,

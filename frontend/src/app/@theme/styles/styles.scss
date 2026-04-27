@@ -5,13 +5,60 @@
 @import 'themes';
 
 // framework component themes (styles tied to theme variables)
-@import '~@nebular/theme/styles/globals';
-@import '~@nebular/auth/styles/globals';
+@import '@nebular/theme/styles/globals';
+@import '@nebular/auth/styles/globals';
 
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
-@import '~bootstrap/scss/grid';
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/grid';
+
+@import './material/angular-material';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+@import './material/material-overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  @include angular-material();
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+  @include material-overrides();
+};
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.fa-window-restore::after{
+  display: none !important;
+}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,800&display=swap');
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '@nebular/theme/styles/globals';
+@import '@nebular/auth/styles/globals';
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/grid';
 
 @import './material/angular-material';
 
@@ -49,4 +96,348 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
+
+/* OVERRIDE NEBULAR FONTS PATH FOR LOCALHOST */
+$nebular-icons-font-path: '/fonts';
+@import '../../../../node_modules/nebular-icons/scss/nebular-icons';
+
+/* --- RESTORE NG2-SMART-TABLE PRODUCTION AESTHETICS GLOBALLY --- */
+angular2-smart-table table {
+    border-collapse: collapse;
+    width: 100%;
+}
+angular2-smart-table table tr {
+    border-bottom: 1px solid #edf1f7;
+}
+angular2-smart-table table th, angular2-smart-table table td {
+    padding: 1rem !important;
+    border: none !important;
+}
+angular2-smart-table table thead tr {
+    background-color: #f7f9fc;
+    border-bottom: 2px solid #edf1f7;
+    color: #8f9bb3;
+    font-weight: bold;
+}
+
+/* Add Button */
+angular2-smart-table .angular2-smart-action-add-add {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.75rem !important;
+    padding: .375rem .5rem !important;
+    border-color: #3366ff !important;
+    background-color: #3366ff !important;
+    color: #fff !important;
+    border-radius: .375rem !important;
+    text-decoration: none !important;
+    margin: 0 auto;
+    width: 90%;
+}
+angular2-smart-table .angular2-smart-action-add-add:hover {
+    background-color: #274bdd !important;
+    color: #fff !important;
+}
+
+/* Action Icons Container (td and th) */
+angular2-smart-table .angular2-smart-actions {
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    padding: 1.5rem 0.5rem !important;
+}
+
+/* Base Action Icons */
+angular2-smart-table .angular2-smart-action {
+    color: #8f9bb3 !important;
+    font-size: 1.6rem !important;
+    text-decoration: none !important;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+angular2-smart-table .angular2-smart-action:hover {
+    color: #598bff !important;
+}
+
+angular2-smart-table angular2-st-tbody-edit-delete {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Search Pill Dropdown Curving */
+.search-pill-dropdown {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1) !important;
+  border: 1px solid var(--border-basic-color-2) !important;
+  overflow: hidden !important;
+}
+
+
+
+/* --- WORLD CLASS SIDEBAR MENU STYLING --- */
+nb-menu .menu-item a {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  margin: 4px 12px !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+nb-menu .menu-item .menu-icon {
+  width: 1.5rem !important;
+  text-align: center !important;
+  margin-right: 1rem !important;
+  font-size: 1.4rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+nb-menu .menu-item a:hover {
+  background-color: rgba(51, 102, 255, 0.08) !important;
+}
+
+nb-menu .menu-item.active > a,
+nb-menu .menu-item a.active {
+  background-color: rgba(51, 102, 255, 0.15) !important;
+  color: #3366ff !important;
+  font-weight: 600 !important;
+}
+
+nb-menu .menu-item.active > a .menu-icon,
+nb-menu .menu-item a.active .menu-icon {
+  color: #3366ff !important;
+}
+
+/* Fix alignment when the sidebar is collapsed */
+nb-sidebar.compacted nb-menu .menu-item a,
+nb-sidebar.collapsed nb-menu .menu-item a {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  justify-content: center !important;
+  margin: 4px 8px !important;
+}
+
+nb-sidebar.compacted nb-menu .menu-item .menu-icon,
+nb-sidebar.collapsed nb-menu .menu-item .menu-icon {
+  margin-right: 0 !important;
+}
+
+
+
+/* --- PREMIUM CONTEXT MENUS (Header Dropdowns) --- */
+.cdk-overlay-container nb-context-menu, 
+.cdk-overlay-container .context-menu {
+  border-radius: 12px !important;
+  border: 1px solid rgba(121, 179, 165, 0.2) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+  padding: 8px 0 !important;
+  background-color: #ffffff !important;
+
+  /* Override Menu inside Context Menu */
+  ul.menu-items {
+    padding: 0 !important;
+    
+    li.menu-item {
+      > a {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 14px !important;
+        color: #475569 !important;
+        border-radius: 6px !important;
+        margin: 2px 8px !important;
+        padding: 10px 16px !important;
+        transition: all 0.2s ease !important;
+
+        &:hover {
+          background-color: #f1f5f9 !important;
+          color: #1e293b !important;
+          transform: translateX(2px);
+          
+          nb-icon { color: #509180 !important; }
+        }
+      }
+    }
+  }
+}
+
+/* Make User Header Name better */
+nb-user .user-name {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+}
+
+
+/* Cleaned out styles.scss failed sidebar blocks */
+
+/* ========================================================
+   GLOBAL PLATFORM RESPONSIVENESS (MOBILE SWIPE & GRIDS)
+   ======================================================== */
+
+@media (max-width: 992px) { /* Tablets and blow */
+  
+  /* 1. FORCE HORIZONTAL SWIPE ON SMART TABLES */
+  angular2-smart-table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important; /* The magic swipe */
+    -webkit-overflow-scrolling: touch !important; /* Native iOS momentum */
+    border-radius: 8px; /* Smooth clipping */
+  }
+
+  /* Make sure the internal table forces width so it overflows instead of squishing */
+  angular2-smart-table table {
+    min-width: 800px !important; /* Force overflow trigger */
+    width: 100% !important;
+  }
+
+  /* Shrink enormous padding inside cells to fit more */
+  angular2-smart-table table th, 
+  angular2-smart-table table td {
+    padding: 0.6rem !important;
+    font-size: 13px !important;
+  }
+
+  /* 2. OPTIMIZE GLOBAL CARDS PADDING */
+  nb-card-body {
+    padding: 0.75rem !important; /* Default is massive 1.5rem */
+  }
+
+  nb-card-header {
+    padding: 1rem 0.75rem !important;
+  }
+
+  /* 3. OPTIMIZE MODALS EN MOBILE */
+  nb-dialog-container {
+    width: 95vw !important; /* Maximize modal width */
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 576px) { /* Strict Phones */
+  /* Remove page container padding to give 100% width to forms */
+  .layout-container {
+    padding: 0 !important;
+  }
+  
+  nb-card-body {
+    padding: 0.5rem !important;
+  }
+}
+
+/* ========================================================
+   PHASE 3: WORLD CLASS INPUTS, BUTTONS & MICRO-INTERACTIONS
+   ======================================================== */
+
+::ng-deep input.input-control, ::ng-deep nb-select button.select-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 8px !important;
+}
+
+/* The Magic Focus Ring (Apple/Google Style) */
+::ng-deep input.input-control:focus, ::ng-deep nb-select.status-primary button.select-button:focus {
+  border-color: #509180 !important; /* Melmac Emerald */
+  box-shadow: 0 0 0 4px rgba(80, 145, 128, 0.15) !important;
+  outline: none !important;
+}
+
+/* Button Micro-Interactions */
+::ng-deep button.btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep button.btn:active {
+  transform: scale(0.96) !important; /* Native button depress feel */
+}
+
+@media (max-width: 576px) {
+  /* Mobile Hit-Box Accessibility Guidelines */
+  ::ng-deep input.input-control, ::ng-deep button.btn, ::ng-deep nb-select button.select-button {
+    min-height: 48px !important; /* Forces physically large enough hit area for human thumbs */
+    font-size: 15px !important; /* Prevents iOS auto-zoom on inputs */
+  }
+}
+
+
+/* ========================================================
+   PHASE 4 & 5: PERCEPTUAL PERFORMANCE & MOBILE ACCESSIBILITY
+   ======================================================== */
+
+/* 1. Eliminate 300ms tap delay on mobile completely */
+* {
+  touch-action: manipulation;
+}
+
+/* 2. Global Skeleton Loader Class (World-Class UX) */
+.skeleton-loader {
+  position: relative !important;
+  overflow: hidden !important;
+  background-color: #e2e8f0 !important;
+  border-radius: 4px;
+}
+
+.skeleton-loader::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: skeletonShimmer 2s infinite;
+}
+
+@keyframes skeletonShimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* 3. GeoPortal Protect (Prevent page jumping when dragging maps on phone) */
+.leaflet-container {
+  touch-action: none !important; /* Forces the map to swallow touches, not the page scroll */
+}
+
+
+/* ========================================================
+   PHASE C: WORLD CLASS EMPTY STATES & FEEDBACK
+   ======================================================== */
+
+angular2-smart-table tbody tr.ng-star-inserted td[colspan] {
+  position: relative;
+  padding: 60px 20px !important;
+  text-align: center;
+  color: #64748b !important; /* Muted Slate */
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  border: none !important;
+}
+
+/* Inject beautiful empty box illustration via CSS */
+angular2-smart-table tbody tr.ng-star-inserted td[colspan]::before {
+  content: '';
+  display: block;
+  margin: 0 auto 16px auto;
+  width: 120px;
+  height: 120px;
+  opacity: 0.8;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+

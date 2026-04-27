@@ -7,9 +7,10 @@ import { ToastService } from '../../../../usable/toast.service';
 
 
 @Component({
-  selector: 'ngx-modals-proyect',
-  templateUrl: './modals-proyect.component.html',
-  styleUrls: ['./modals-proyect.component.scss']
+    selector: 'ngx-modals-proyect',
+    templateUrl: './modals-proyect.component.html',
+    styleUrls: ['./modals-proyect.component.scss'],
+    standalone: false
 })
 export class ModalsProyectComponent implements OnInit {
   data;

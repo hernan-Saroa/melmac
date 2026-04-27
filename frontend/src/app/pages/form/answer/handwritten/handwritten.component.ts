@@ -8,9 +8,10 @@ import { timer } from 'rxjs';
 
 
 @Component({
-  selector: 'ngx-handwritten',
-  templateUrl: './handwritten.component.html',
-  styleUrls: ['./handwritten.component.scss']
+    selector: 'ngx-handwritten',
+    templateUrl: './handwritten.component.html',
+    styleUrls: ['./handwritten.component.scss'],
+    standalone: false
 })
 export class HandwrittenComponent implements OnInit {
 

@@ -939,3 +939,352 @@ nb-card-body {
   border-color: #3366ff;
   color: #3366ff;
 }
+
+/* ========================================================
+   PILAR A: WORLD CLASS FORMS & DRAG-AND-DROP EXPERIENCE
+   ======================================================== */
+
+/* 1. Glass & Modern Lists (The Drop Zones) */
+.example-list, ::ng-deep .selected-list, .form-field-list, .type-list {
+  border: 2px dashed #cbd5e1 !important; /* Soft dashed border for drop zones */
+  border-radius: 12px !important;
+  background: #f8fafc !important;
+  padding: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.example-list.cdk-drop-list-dragging, ::ng-deep .selected-list.cdk-drop-list-dragging {
+  background: #f1f5f9 !important; /* Slight darkening when actively dragging over */
+  border-color: #94a3b8 !important;
+}
+
+/* 2. Sleek Draggable Items (Pill-Cards) */
+.example-box, .type-box, .form-field-box, ::ng-deep .select-item {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  margin: 6px 0 !important;
+  padding: 12px 16px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+  transition: box-shadow 0.2s, transform 0.2s !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+.example-box:hover, .type-box:hover, .form-field-box:hover, ::ng-deep .select-item:hover {
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 3. The 'Ghost' or actively dragged element floating in the air */
+::ng-deep .cdk-drag-preview {
+  background-color: #ffffff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important; /* Huge aggressive shadow for floating illusion */
+  border: 2px solid #509180 !important; /* Emerald pulse border to identify the flying element */
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  opacity: 0.9 !important;
+}
+
+/* 4. The Placeholder (where the item will land) */
+.cdk-drag-placeholder, ::ng-deep .select-custom-placeholder {
+  opacity: 0.3 !important; /* Translucent */
+  border: 2px dashed #94a3b8 !important;
+  background-color: #e2e8f0 !important;
+  border-radius: 8px !important;
+}
+
+/* 5. Clean The Old Theme Overrides */
+::ng-deep body.nb-theme-default .type-box, ::ng-deep body.nb-theme-corporate .type-box {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Dark Mode Support for the new Glass Elements */
+::ng-deep body.nb-theme-dark, ::ng-deep body.nb-theme-cosmic {
+  .example-list, ::ng-deep .selected-list, .form-field-list, .type-list {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+  }
+  .example-box, .type-box, .form-field-box, ::ng-deep .select-item {
+    background-color: #0f172a !important;
+    border-color: #1e293b !important;
+    color: #e2e8f0 !important;
+  }
+  ::ng-deep .cdk-drag-preview {
+    background-color: #0f172a !important;
+    border-color: #10b981 !important;
+    color: #ffffff !important;
+  }
+}
+
+// ======================================================
+// Separador de Sección (field_type 27) - Builder
+// ======================================================
+.section-separator-builder {
+  width: 100%;
+  margin: 4px 0;
+}
+
+.section-separator-bar-builder {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #e8f5f0 0%, #d4ede5 100%);
+  border-left: 4px solid #509180;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 1px 2px rgba(80, 145, 128, 0.15);
+}
+
+.section-separator-title-builder {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d5a4e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+::ng-deep body.nb-theme-dark, ::ng-deep body.nb-theme-cosmic {
+  .section-separator-bar-builder {
+    background: linear-gradient(135deg, #1a2f2a 0%, #1e3a32 100%);
+    border-left-color: #6db5a0;
+  }
+  .section-separator-title-builder {
+    color: #a0d8c8;
+  }
+}
+// ============ WORLD-CLASS UNIFIED VIEW ============
+
+// --- Main card ---
+.wc-doc-card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+// --- Compact Header (like Google Workspace toolbar) ---
+.wc-compact-header {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px !important;
+  min-height: 48px;
+  border-bottom: 1px solid #edf1f7;
+}
+
+.wc-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.wc-h-icon {
+  font-size: 1.2rem;
+  color: #509180;
+  flex-shrink: 0;
+}
+
+.wc-h-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222b45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wc-h-version {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #509180;
+  background: #e8f5f0;
+  padding: 2px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.wc-h-saved {
+  color: #509180;
+  font-size: 1rem;
+  flex-shrink: 0;
+  animation: wc-pulse 2s ease-in-out;
+}
+
+@keyframes wc-pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.wc-header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.wc-save-btn {
+  border-radius: 6px !important;
+  font-size: 0.8rem !important;
+  padding: 4px 12px !important;
+}
+
+// --- Compact Metadata Body ---
+.wc-meta-body {
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #edf1f7;
+}
+
+.wc-compact-form {
+  margin-bottom: 0 !important;
+}
+
+.wc-compact-form > * {
+  margin-top: 0 !important;
+}
+
+.wc-inline-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+// Notion-style title input
+.wc-title-input {
+  width: 100%;
+  font-size: 1rem !important;
+  font-weight: 600;
+  padding: 6px 10px !important;
+  border: 1px solid transparent !important;
+  background: #f7f9fc;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  min-height: auto !important;
+  height: 38px;
+
+  &:focus {
+    border-color: #509180 !important;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(80, 145, 128, 0.1);
+  }
+
+  &::placeholder {
+    color: #c5cee0;
+    font-weight: 400;
+  }
+}
+
+// Slim description input
+.wc-desc-input {
+  width: 100%;
+  font-size: 0.85rem !important;
+  padding: 6px 10px !important;
+  border: 1px solid transparent !important;
+  background: #f7f9fc;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  min-height: 32px !important;
+  max-height: 32px;
+
+  &:focus {
+    border-color: #509180 !important;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(80, 145, 128, 0.1);
+    max-height: 80px;
+  }
+
+  &::placeholder {
+    color: #c5cee0;
+    font-weight: 400;
+  }
+}
+
+// --- Options Toolbar ---
+.wc-options-toolbar {
+  padding-top: 8px;
+  border-top: 1px dashed #edf1f7;
+  margin-top: 4px;
+  margin-bottom: 0;
+
+  .label {
+    font-size: 0.75rem !important;
+    color: #8f9bb3;
+    margin-bottom: 2px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .select-form {
+    margin-bottom: 8px !important;
+  }
+}
+
+// --- Responsive ---
+@media (max-width: 768px) {
+  .wc-inline-fields {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .wc-title-input, .wc-desc-input {
+    width: 100%;
+  }
+
+  .wc-options-toolbar {
+    flex-direction: column;
+
+    .col-12, .col-md-4 {
+      max-width: 100%;
+      padding: 0;
+    }
+  }
+
+  .wc-compact-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .wc-header-left {
+    flex: 1;
+  }
+}
+
+// --- Dark theme support ---
+::ng-deep body.nb-theme-dark, ::ng-deep body.nb-theme-cosmic {
+  .wc-compact-header {
+    border-bottom-color: #1a2e35;
+  }
+
+  .wc-h-title {
+    color: #edf1f7;
+  }
+
+  .wc-h-version {
+    background: #1a2e35;
+    color: #6db5a0;
+  }
+
+  .wc-title-input, .wc-desc-input {
+    background: #192038;
+    color: #edf1f7;
+
+    &:focus {
+      background: #222b45;
+    }
+  }
+
+  .wc-options-toolbar {
+    border-top-color: #1a2e35;
+
+    .label {
+      color: #8f9bb3;
+    }
+  }
+
+  .wc-meta-body {
+    border-bottom-color: #1a2e35;
+  }
+}
+

@@ -5,9 +5,10 @@ import { SwitchService } from '../../../../services/switch.service';
 import { ToastService } from '../../../../usable/toast.service';
 
 @Component({
-  selector: 'ngx-main-container',
-  templateUrl: './main-container.component.html',
-  styleUrls: ['./main-container.component.scss']
+    selector: 'ngx-main-container',
+    templateUrl: './main-container.component.html',
+    styleUrls: ['./main-container.component.scss'],
+    standalone: false
 })
 export class MainContainerComponent implements OnInit {
   massive_values=[];

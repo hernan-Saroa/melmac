@@ -13,5 +13,11 @@ if (environment.production) {
   enableProdMode();
 }
 
+console.log('--- MAIN.TS IS EXECUTING ---');
+
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  .then(() => console.log('--- BOOTSTRAP SUCCESS ---'))
+  .catch(err => {
+    console.error('--- BOOTSTRAP FATAL ERROR ---');
+    console.error(err);
+  });

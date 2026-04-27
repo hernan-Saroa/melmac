@@ -7,9 +7,10 @@ import { ToastService } from '../../usable/toast.service';
 import { ModalComponent } from "../modal/modal.component";
 
 @Component({
-  selector: 'ngx-verified',
-  templateUrl: './verified.component.html',
-  styleUrls: ['./verified.component.scss']
+    selector: 'ngx-verified',
+    templateUrl: './verified.component.html',
+    styleUrls: ['./verified.component.scss'],
+    standalone: false
 })
 export class VerifiedComponent implements OnInit {
 

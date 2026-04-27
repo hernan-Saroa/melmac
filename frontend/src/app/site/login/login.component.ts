@@ -7,9 +7,10 @@ import { ToastService } from '../../usable/toast.service';
 import { NbAuthService } from '@nebular/auth';
 
 @Component({
-  selector: 'ngx-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'ngx-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: false
 })
 @Injectable()
 export class LoginComponent extends NbLoginComponent implements OnInit {
@@ -36,7 +37,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
     const user = JSON.parse(localStorage.getItem('session')) || null;
     if (user) {
       const permits:number[] = user.permission;
-      const view:string =  permits.includes(62) ? '/pages/dashboard' : '/pages/inbox';
+      const view:string =  permits.includes(62) ? '/pages/statistics' : '/pages/inbox';
       this.router.navigate([view, {}]);
     }else {
       let env = sessionStorage.getItem('environment');
@@ -99,7 +100,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
             }
           } else {
             const permits:number[] = response['data']['parameters']['permission'];
-            const view:string =  permits.includes(62) ? '/pages/dashboard' : '/pages/inbox';
+            const view:string =  permits.includes(62) ? '/pages/statistics' : '/pages/inbox';
             this.router.navigate([ view, {}]);
           }
         }

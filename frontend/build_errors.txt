@@ -1,0 +1,1320 @@
+
+> ngx-admin@8.0.0 build
+> ng build
+
+Node.js version v25.8.1 detected.
+Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, please see https://nodejs.org/en/about/releases/.
+One or more browsers which are configured in the project's Browserslist configuration will be ignored as ES5 output is not supported by the Angular CLI.
+Ignored browsers: ie 11, kaios 2.5, op_mini all
+- Generating browser application bundles (phase: setup)...
+    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browerslist configuration. For more information, see https://angular.io/guide/build#configuring-browser-compatibility
+    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+src\app\pages\answer\report\main-container\main-container.component.scss 79:33  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+src\app\pages\answer\report\main-container\main-container.component.scss 80:36  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+src\app\pages\answer\report\main-container\main-container.component.scss 90:34  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+src\app\pages\answer\report\main-container\main-container.component.scss 91:37  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div(100, $howManySteps) or calc(100 / $howManySteps)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+src\app\pages\answer\report\main-container\main-container.component.scss 120:21  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+7 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+null
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\@nebular\eva-icons\fesm2022\nebular-eva-icons.mjs depends on 'eva-icons'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'rgbcolor'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet-polylinedecorator'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet.markercluster'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+
+
+./src/app/pages/answer/shared.service.ts:3:0-39 - Error: Module not found: Error: "./Subject" is not exported under the conditions ["es2020","es2015","import","module","webpack","development","browser"] from package C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\rxjs (see exports field in C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\rxjs\package.json)
+
+./src/app/@theme/styles/styles.scss - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\@theme\styles\styles.scss 5:9                   root stylesheet
+
+./src/app/@theme/components/footer/footer.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\@theme\components\footer\footer.component.scss 1:9  root stylesheet
+
+./src/app/@theme/components/header/header.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\@theme\components\header\header.component.scss 3:9  root stylesheet
+
+./src/app/@theme/components/switcher/switcher.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\@theme\components\switcher\switcher.component.scss 1:9  root stylesheet
+
+./src/app/@theme/components/toggle-settings-button/toggle-settings-button.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9                                      @import
+  src\app\@theme\styles\themes.scss 6:9                                                       @import
+  src\app\@theme\components\toggle-settings-button\toggle-settings-button.component.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/one-column/one-column.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9        @import
+  src\app\@theme\styles\themes.scss 6:9                         @import
+  src\app\@theme\layouts\one-column\one-column.layout.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/three-columns/three-columns.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9              @import
+  src\app\@theme\styles\themes.scss 6:9                               @import
+  src\app\@theme\layouts\three-columns\three-columns.layout.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/two-columns/two-columns.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\@theme\layouts\two-columns\two-columns.layout.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/echarts/echarts.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\pages\dashboard\echarts\echarts.component.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/echarts/solar/solar.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\pages\dashboard\echarts\solar\solar.component.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/status-card/status-card.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9              @import
+  src\app\@theme\styles\themes.scss 6:9                               @import
+  src\app\pages\dashboard\status-card\status-card.component.scss 1:9  root stylesheet
+
+./src/app/pages/enterprise/detail/detail.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9     @import
+  src\app\@theme\styles\themes.scss 6:9                      @import
+  src\app\pages\enterprise\detail\detail.component.scss 1:9  root stylesheet
+
+./src/app/pages/folder/folder.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: "+" and "-" must be surrounded by whitespace in calculations.
+    ╷
+430 │     width: calc(100%-15vw);
+    │                     ^
+    ╵
+  src\app\pages\folder\folder.component.scss 430:21  root stylesheet
+
+./src/app/pages/pages.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\pages\pages.component.scss 1:9                  root stylesheet
+
+./src/app/pages/user/user.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\pages\user\user.component.scss 1:9              root stylesheet
+
+./src/app/@theme/styles/styles.scss?ngGlobalStyle - Error: Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\@theme\styles\styles.scss 5:9                   root stylesheet
+
+./node_modules/@nebular/theme/fesm2022/nebular-theme.mjs:4699:21-29 - Error: export 'DOCUMENT' (imported as 'DOCUMENT') was not found in '@angular/core' (possible exports: ANALYZE_FOR_ENTRY_COMPONENTS, ANIMATION_MODULE_TYPE, APP_BOOTSTRAP_LISTENER, APP_ID, APP_INITIALIZER, ApplicationInitStatus, ApplicationModule, ApplicationRef, Attribute, COMPILER_OPTIONS, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, CompilerFactory, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, ContentChild, ContentChildren, DEFAULT_CURRENCY_CODE, DebugElement, DebugEventListener, DebugNode, DefaultIterableDiffer, Directive, ENVIRONMENT_INITIALIZER, ElementRef, EmbeddedViewRef, EnvironmentInjector, ErrorHandler, EventEmitter, Host, HostBinding, HostListener, INJECTOR, Inject, InjectFlags, Injectable, InjectionToken, Injector, Input, IterableDiffers, KeyValueDiffers, LOCALE_ID, MissingTranslationStrategy, ModuleWithComponentFactories, NO_ERRORS_SCHEMA, NgModule, NgModuleFactory, NgModuleRef, NgProbeToken, NgZone, Optional, Output, PACKAGE_ROOT_URL, PLATFORM_ID, PLATFORM_INITIALIZER, Pipe, PlatformRef, Query, QueryList, ReflectiveInjector, ReflectiveKey, Renderer2, RendererFactory2, RendererStyleFlags2, ResolvedReflectiveFactory, Sanitizer, SecurityContext, Self, SimpleChange, SkipSelf, TRANSLATIONS, TRANSLATIONS_FORMAT, TemplateRef, Testability, TestabilityRegistry, Type, VERSION, Version, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation, ViewRef, asNativeElements, assertPlatform, createComponent, createEnvironmentInjector, createNgModule, createNgModuleRef, createPlatform, createPlatformFactory, defineInjectable, destroyPlatform, enableProdMode, forwardRef, getDebugNode, getModuleFactory, getNgModuleById, getPlatform, importProvidersFrom, inject, isDevMode, isStandalone, makeEnvironmentProviders, platformCore, reflectComponentType, resolveForwardRef, setTestabilityGetter, ɵALLOW_MULTIPLE_PLATFORMS, ɵAPP_ID_RANDOM_PROVIDER, ɵComponentFactory, ɵConsole, ɵDEFAULT_LOCALE_ID, ɵINJECTOR_SCOPE, ɵLContext, ɵLifecycleHooksFeature, ɵLocaleDataIndex, ɵNG_COMP_DEF, ɵNG_DIR_DEF, ɵNG_ELEMENT_ID, ɵNG_INJ_DEF, ɵNG_MOD_DEF, ɵNG_PIPE_DEF, ɵNG_PROV_DEF, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR, ɵNO_CHANGE, ɵNgModuleFactory, ɵNoopNgZone, ɵReflectionCapabilities, ɵRender3ComponentFactory, ɵRender3ComponentRef, ɵRender3NgModuleRef, ɵRuntimeError, ɵTESTABILITY, ɵTESTABILITY_GETTER, ɵViewRef, ɵXSS_SECURITY_URL, ɵ_sanitizeHtml, ɵ_sanitizeUrl, ɵallowSanitizationBypassAndThrow, ɵbypassSanitizationTrustHtml, ɵbypassSanitizationTrustResourceUrl, ɵbypassSanitizationTrustScript, ɵbypassSanitizationTrustStyle, ɵbypassSanitizationTrustUrl, ɵclearResolutionOfComponentResourcesQueue, ɵcoerceToBoolean, ɵcompileComponent, ɵcompileDirective, ɵcompileNgModule, ɵcompileNgModuleDefs, ɵcompileNgModuleFactory, ɵcompilePipe, ɵconvertToBitFlags, ɵcreateInjector, ɵdefaultIterableDiffers, ɵdefaultKeyValueDiffers, ɵdetectChanges, ɵdevModeEqual, ɵfindLocaleData, ɵflushModuleScopingQueueAsMuchAsPossible, ɵformatRuntimeError, ɵgetDebugNode, ɵgetDebugNodeR2, ɵgetDirectives, ɵgetHostElement, ɵgetInjectableDef, ɵgetLContext, ɵgetLocaleCurrencyCode, ɵgetLocalePluralCase, ɵgetSanitizationBypassType, ɵgetUnknownElementStrictMode, ɵgetUnknownPropertyStrictMode, ɵglobal, ɵinjectChangeDetectorRef, ɵinternalCreateApplication, ɵisBoundToModule, ɵisEnvironmentProviders, ɵisInjectable, ɵisNgModule, ɵisObservable, ɵisPromise, ɵisSubscribable, ɵmakeDecorator, ɵnoSideEffects, ɵpatchComponentDefWithScope, ɵpublishDefaultGlobalUtils, ɵpublishGlobalUtil, ɵregisterLocaleData, ɵresetCompiledComponents, ɵresetJitOptions, ɵresolveComponentResources, ɵsetAllowDuplicateNgModuleIdsForTest, ɵsetClassMetadata, ɵsetCurrentInjector, ɵsetDocument, ɵsetLocaleId, ɵsetUnknownElementStrictMode, ɵsetUnknownPropertyStrictMode, ɵstore, ɵstringify, ɵtransitiveScopesFor, ɵunregisterLocaleData, ɵunwrapSafeValue, ɵɵCopyDefinitionFeature, ɵɵFactoryTarget, ɵɵHostDirectivesFeature, ɵɵInheritDefinitionFeature, ɵɵNgOnChangesFeature, ɵɵProvidersFeature, ɵɵStandaloneFeature, ɵɵadvance, ɵɵattribute, ɵɵattributeInterpolate1, ɵɵattributeInterpolate2, ɵɵattributeInterpolate3, ɵɵattributeInterpolate4, ɵɵattributeInterpolate5, ɵɵattributeInterpolate6, ɵɵattributeInterpolate7, ɵɵattributeInterpolate8, ɵɵattributeInterpolateV, ɵɵclassMap, ɵɵclassMapInterpolate1, ɵɵclassMapInterpolate2, ɵɵclassMapInterpolate3, ɵɵclassMapInterpolate4, ɵɵclassMapInterpolate5, ɵɵclassMapInterpolate6, ɵɵclassMapInterpolate7, ɵɵclassMapInterpolate8, ɵɵclassMapInterpolateV, ɵɵclassProp, ɵɵcontentQuery, ɵɵdefineComponent, ɵɵdefineDirective, ɵɵdefineInjectable, ɵɵdefineInjector, ɵɵdefineNgModule, ɵɵdefinePipe, ɵɵdirectiveInject, ɵɵdisableBindings, ɵɵelement, ɵɵelementContainer, ɵɵelementContainerEnd, ɵɵelementContainerStart, ɵɵelementEnd, ɵɵelementStart, ɵɵenableBindings, ɵɵgetCurrentView, ɵɵgetInheritedFactory, ɵɵhostProperty, ɵɵi18n, ɵɵi18nApply, ɵɵi18nAttributes, ɵɵi18nEnd, ɵɵi18nExp, ɵɵi18nPostprocess, ɵɵi18nStart, ɵɵinject, ɵɵinjectAttribute, ɵɵinvalidFactory, ɵɵinvalidFactoryDep, ɵɵlistener, ɵɵloadQuery, ɵɵnamespaceHTML, ɵɵnamespaceMathML, ɵɵnamespaceSVG, ɵɵnextContext, ɵɵngDeclareClassMetadata, ɵɵngDeclareComponent, ɵɵngDeclareDirective, ɵɵngDeclareFactory, ɵɵngDeclareInjectable, ɵɵngDeclareInjector, ɵɵngDeclareNgModule, ɵɵngDeclarePipe, ɵɵpipe, ɵɵpipeBind1, ɵɵpipeBind2, ɵɵpipeBind3, ɵɵpipeBind4, ɵɵpipeBindV, ɵɵprojection, ɵɵprojectionDef, ɵɵproperty, ɵɵpropertyInterpolate, ɵɵpropertyInterpolate1, ɵɵpropertyInterpolate2, ɵɵpropertyInterpolate3, ɵɵpropertyInterpolate4, ɵɵpropertyInterpolate5, ɵɵpropertyInterpolate6, ɵɵpropertyInterpolate7, ɵɵpropertyInterpolate8, ɵɵpropertyInterpolateV, ɵɵpureFunction0, ɵɵpureFunction1, ɵɵpureFunction2, ɵɵpureFunction3, ɵɵpureFunction4, ɵɵpureFunction5, ɵɵpureFunction6, ɵɵpureFunction7, ɵɵpureFunction8, ɵɵpureFunctionV, ɵɵqueryRefresh, ɵɵreference, ɵɵregisterNgModuleType, ɵɵresetView, ɵɵresolveBody, ɵɵresolveDocument, ɵɵresolveWindow, ɵɵrestoreView, ɵɵsanitizeHtml, ɵɵsanitizeResourceUrl, ɵɵsanitizeScript, ɵɵsanitizeStyle, ɵɵsanitizeUrl, ɵɵsanitizeUrlOrResourceUrl, ɵɵsetComponentScope, ɵɵsetNgModuleScope, ɵɵstyleMap, ɵɵstyleMapInterpolate1, ɵɵstyleMapInterpolate2, ɵɵstyleMapInterpolate3, ɵɵstyleMapInterpolate4, ɵɵstyleMapInterpolate5, ɵɵstyleMapInterpolate6, ɵɵstyleMapInterpolate7, ɵɵstyleMapInterpolate8, ɵɵstyleMapInterpolateV, ɵɵstyleProp, ɵɵstylePropInterpolate1, ɵɵstylePropInterpolate2, ɵɵstylePropInterpolate3, ɵɵstylePropInterpolate4, ɵɵstylePropInterpolate5, ɵɵstylePropInterpolate6, ɵɵstylePropInterpolate7, ɵɵstylePropInterpolate8, ɵɵstylePropInterpolateV, ɵɵsyntheticHostListener, ɵɵsyntheticHostProperty, ɵɵtemplate, ɵɵtemplateRefExtractor, ɵɵtext, ɵɵtextInterpolate, ɵɵtextInterpolate1, ɵɵtextInterpolate2, ɵɵtextInterpolate3, ɵɵtextInterpolate4, ɵɵtextInterpolate5, ɵɵtextInterpolate6, ɵɵtextInterpolate7, ɵɵtextInterpolate8, ɵɵtextInterpolateV, ɵɵtrustConstantHtml, ɵɵtrustConstantResourceUrl, ɵɵvalidateIframeAttribute, ɵɵviewQuery)
+
+Error: node_modules/@asymmetrik/ngx-leaflet-markercluster/dist/leaflet-markercluster/leaflet-markercluster.directive.d.ts:8:27 - error TS2694: Namespace '"C:/Users/Hernan_Buitrago/Documents/SuperApp ESAP/melmac/frontend/node_modules/@types/leaflet/index"' has no exported member 'MarkerClusterGroup'.
+
+8     markerClusterGroup: L.MarkerClusterGroup;
+                            ~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@asymmetrik/ngx-leaflet-markercluster/dist/leaflet-markercluster/leaflet-markercluster.directive.d.ts:10:29 - error TS2694: Namespace '"C:/Users/Hernan_Buitrago/Documents/SuperApp ESAP/melmac/frontend/node_modules/@types/leaflet/index"' has no exported member 'MarkerClusterGroupOptions'.
+
+10     markerClusterOptions: L.MarkerClusterGroupOptions;
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@asymmetrik/ngx-leaflet-markercluster/dist/leaflet-markercluster/leaflet-markercluster.directive.d.ts:11:40 - error TS2694: Namespace '"C:/Users/Hernan_Buitrago/Documents/SuperApp ESAP/melmac/frontend/node_modules/@types/leaflet/index"' has no exported member 'MarkerClusterGroup'.
+
+11     markerClusterReady: EventEmitter<L.MarkerClusterGroup>;
+                                          ~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/security/types/nebular-security.d.ts:111:90 - error TS2344: Type '{ nbIsGranted: { alias: "nbIsGranted"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"nbIsGranted"' is incompatible with index signature.
+    Type '{ alias: "nbIsGranted"; required: false; }' is not assignable to type 'string'.
+
+111     static ɵdir: i0.ɵɵDirectiveDeclaration<NbIsGrantedDirective, "[nbIsGranted]", never, { "nbIsGranted": { "alias": "nbIsGranted"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2:270 - error TS2305: Module '"@angular/core"' has no exported member 'DestroyableInjector'.
+
+2 import { InjectionToken, ModuleWithProviders, OnChanges, OnInit, ElementRef, Renderer2, EventEmitter, Type, SimpleChanges, ViewContainerRef, AfterContentChecked, AfterViewInit, ChangeDetectorRef, NgZone, QueryList, TemplateRef, ComponentRef, Injector, EmbeddedViewRef, DestroyableInjector, OnDestroy, DoCheck, PipeTransform, AfterContentInit, SimpleChange, Provider, IterableDiffers, AfterViewChecked } from '@angular/core';
+                                                                                                                                                                                                                                                                               ~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:619:79 - error TS2344: Type '{ size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; accent: { alias: "accent"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+619     static ɵcmp: i0.ɵɵComponentDeclaration<NbCardComponent, "nb-card", never, { "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; "accent": { "alias": "accent"; "required": false; }; }, {}, never, ["nb-card-header", "nb-card-body", "*", "nb-card-footer"], false, never>;
+                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:689:92 - error TS2344: Type '{ revealed: { alias: "revealed"; required: false; }; showToggleButton: { alias: "showToggleButton"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"revealed"' is incompatible with index signature.
+    Type '{ alias: "revealed"; required: false; }' is not assignable to type 'string'.
+
+689     static ɵcmp: i0.ɵɵComponentDeclaration<NbRevealCardComponent, "nb-reveal-card", never, { "revealed": { "alias": "revealed"; "required": false; }; "showToggleButton": { "alias": "showToggleButton"; "required": false; }; }, {}, never, ["nb-card-front", "nb-card-back"], false, never>;
+                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:760:88 - error TS2344: Type '{ flipped: { alias: "flipped"; required: false; }; showToggleButton: { alias: "showToggleButton"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"flipped"' is incompatible with index signature.
+    Type '{ alias: "flipped"; required: false; }' is not assignable to type 'string'.
+
+760     static ɵcmp: i0.ɵɵComponentDeclaration<NbFlipCardComponent, "nb-flip-card", never, { "flipped": { "alias": "flipped"; "required": false; }; "showToggleButton": { "alias": "showToggleButton"; "required": false; }; }, {}, never, ["nb-card-front", "nb-card-back"], false, never>;
+                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1045:79 - error TS2344: Type '{ icon: { alias: "icon"; required: false; }; pack: { alias: "pack"; required: false; }; options: { alias: "options"; required: false; }; status: { alias: "status"; required: false; }; config: { alias: "config"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"icon"' is incompatible with index signature.
+    Type '{ alias: "icon"; required: false; }' is not assignable to type 'string'.
+
+1045     static ɵcmp: i0.ɵɵComponentDeclaration<NbIconComponent, "nb-icon", never, { "icon": { "alias": "icon"; "required": false; }; "pack": { "alias": "pack"; "required": false; }; "options": { "alias": "options"; "required": false; }; "status": { "alias": "status"; "required": false; }; "config": { "alias": "config"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1358:92 - error TS2344: Type '{ boundingMonth: { alias: "boundingMonth"; required: false; }; startView: { alias: "startView"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; filter: { ...; }; ... 9 more ...; firstDayOfWeek: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"boundingMonth"' is incompatible with index signature.
+    Type '{ alias: "boundingMonth"; required: false; }' is not assignable to type 'string'.
+
+1358     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarComponent<any>, "nb-calendar", never, { "boundingMonth": { "alias": "boundingMonth"; "required": false; }; "startView": { "alias": "startView"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "dayCellComponent": { "alias": "dayCellComponent"; "required": false; }; "monthCellComponent": { "alias": "monthCellComponent"; "required": false; }; "yearCellComponent": { "alias": "yearCellComponent"; "required": false; }; "size": { "alias": "size"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "showNavigation": { "alias": "showNavigation"; "required": false; }; "date": { "alias": "date"; "required": false; }; "showWeekNumber": { "alias": "showWeekNumber"; "required": false; }; "weekNumberSymbol": { "alias": "weekNumberSymbol"; "required": false; }; "firstDayOfWeek": { "alias": "firstDayOfWeek"; "required": false; }; }, { "dateChange": "dateChange"; }, never, never, false, never>;
+                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1678:106 - error TS2344: Type '{ boundingMonth: { alias: "boundingMonth"; required: false; }; activeViewMode: { alias: "startView"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; ... 10 more ...; firstDayOfWeek: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"boundingMonth"' is incompatible with index signature.
+    Type '{ alias: "boundingMonth"; required: false; }' is not assignable to type 'string'.
+
+1678     static ɵcmp: i0.ɵɵComponentDeclaration<NbBaseCalendarComponent<any, any>, "nb-base-calendar", never, { "boundingMonth": { "alias": "boundingMonth"; "required": false; }; "activeViewMode": { "alias": "startView"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "dayCellComponent": { "alias": "dayCellComponent"; "required": false; }; "monthCellComponent": { "alias": "monthCellComponent"; "required": false; }; "yearCellComponent": { "alias": "yearCellComponent"; "required": false; }; "size": { "alias": "size"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "showNavigation": { "alias": "showNavigation"; "required": false; }; "date": { "alias": "date"; "required": false; }; "showWeekNumber": { "alias": "showWeekNumber"; "required": false; }; "weekNumberSymbol": { "alias": "weekNumberSymbol"; "required": false; }; "firstDayOfWeek": { "alias": "firstDayOfWeek"; "required": false; }; }, { "dateChange": "dateChange"; }, never, never, false, never>;
+                                                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1694:110 - error TS2344: Type '{ date: { alias: "date"; required: false; }; viewMode: { alias: "viewMode"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+1694     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarViewModeComponent<any>, "nb-calendar-view-mode", never, { "date": { "alias": "date"; "required": false; }; "viewMode": { "alias": "viewMode"; "required": false; }; }, { "changeMode": "changeMode"; }, never, never, false, never>;
+                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1737:112 - error TS2344: Type '{ size: { alias: "size"; required: false; }; firstDayOfWeek: { alias: "firstDayOfWeek"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+1737     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarDaysNamesComponent<any>, "nb-calendar-days-names", never, { "size": { "alias": "size"; "required": false; }; "firstDayOfWeek": { "alias": "firstDayOfWeek"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1765:114 - error TS2344: Type '{ date: { alias: "date"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; filter: { alias: "filter"; required: false; }; _cellComponent: { alias: "cellComponent"; required: false; }; size: { ...; }; year: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+1765     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarYearPickerComponent<any>, "nb-calendar-year-picker", never, { "date": { "alias": "date"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "_cellComponent": { "alias": "cellComponent"; "required": false; }; "size": { "alias": "size"; "required": false; }; "year": { "alias": "year"; "required": false; }; }, { "yearChange": "yearChange"; }, never, never, false, never>;
+                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1801:121 - error TS2344: Type '{ min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; filter: { alias: "filter"; required: false; }; size: { alias: "size"; required: false; }; month: { alias: "month"; required: false; }; date: { ...; }; _cellComponent: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"min"' is incompatible with index signature.
+    Type '{ alias: "min"; required: false; }' is not assignable to type 'string'.
+
+1801     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarMonthPickerComponent<any, any>, "nb-calendar-month-picker", never, { "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "size": { "alias": "size"; "required": false; }; "month": { "alias": "month"; "required": false; }; "date": { "alias": "date"; "required": false; }; "_cellComponent": { "alias": "cellComponent"; "required": false; }; }, { "monthChange": "monthChange"; }, never, never, false, never>;
+                                                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1902:117 - error TS2344: Type '{ visibleDate: { alias: "visibleDate"; required: false; }; boundingMonths: { alias: "boundingMonths"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; ... 6 more ...; firstDayOfWeek: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"visibleDate"' is incompatible with index signature.
+    Type '{ alias: "visibleDate"; required: false; }' is not assignable to type 'string'.
+
+1902     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarDayPickerComponent<any, any>, "nb-calendar-day-picker", never, { "visibleDate": { "alias": "visibleDate"; "required": false; }; "boundingMonths": { "alias": "boundingMonths"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "setCellComponent": { "alias": "cellComponent"; "required": false; }; "size": { "alias": "size"; "required": false; }; "date": { "alias": "date"; "required": false; }; "showWeekNumber": { "alias": "showWeekNumber"; "required": false; }; "weekNumberSymbol": { "alias": "weekNumberSymbol"; "required": false; }; "firstDayOfWeek": { "alias": "firstDayOfWeek"; "required": false; }; }, { "dateChange": "dateChange"; }, never, never, false, never>;
+                                                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1936:108 - error TS2344: Type '{ date: { alias: "date"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; visibleDate: { alias: "visibleDate"; required: false; }; min: { alias: "min"; required: false; }; max: { ...; }; filter: { ...; }; size: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+1936     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarDayCellComponent<any>, "nb-calendar-day-cell", never, { "date": { "alias": "date"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1950:102 - error TS2344: Type '{ applyButtonText: { alias: "applyButtonText"; required: false; }; currentTimeButtonText: { alias: "currentTimeButtonText"; required: false; }; showCurrentTimeButton: { alias: "showCurrentTimeButton"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"applyButtonText"' is incompatible with index signature.
+    Type '{ alias: "applyButtonText"; required: false; }' is not assignable to type 'string'.
+
+1950     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarActionsComponent, "nb-calendar-actions", never, { "applyButtonText": { "alias": "applyButtonText"; "required": false; }; "currentTimeButtonText": { "alias": "currentTimeButtonText"; "required": false; }; "showCurrentTimeButton": { "alias": "showCurrentTimeButton"; "required": false; }; }, { "setCurrentTime": "setCurrentTime"; "saveValue": "saveValue"; }, never, never, false, never>;
+                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:1981:112 - error TS2344: Type '{ date: { alias: "date"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; size: { alias: "size"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+1981     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarMonthCellComponent<any>, "nb-calendar-month-cell", never, { "date": { "alias": "date"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2012:110 - error TS2344: Type '{ date: { alias: "date"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; size: { alias: "size"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+2012     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarYearCellComponent<any>, "nb-calendar-year-cell", never, { "date": { "alias": "date"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2036:117 - error TS2344: Type '{ row: { alias: "row"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; visibleDate: { alias: "visibleDate"; required: false; }; component: { alias: "component"; required: false; }; min: { ...; }; max: { ...; }; filter: { ...; }; size: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"row"' is incompatible with index signature.
+    Type '{ alias: "row"; required: false; }' is not assignable to type 'string'.
+
+2036     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarPickerRowComponent<any, any>, "nb-calendar-picker-row", never, { "row": { "alias": "row"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "component": { "alias": "component"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2058:110 - error TS2344: Type '{ data: { alias: "data"; required: false; }; visibleDate: { alias: "visibleDate"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; cellComponent: { alias: "cellComponent"; required: false; }; min: { ...; }; max: { ...; }; filter: { ...; }; size: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"data"' is incompatible with index signature.
+    Type '{ alias: "data"; required: false; }' is not assignable to type 'string'.
+
+2058     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarPickerComponent<any, any>, "nb-calendar-picker", never, { "data": { "alias": "data"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "cellComponent": { "alias": "cellComponent"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2076:115 - error TS2344: Type '{ weeks: { alias: "weeks"; required: false; }; size: { alias: "size"; required: false; }; weekNumberSymbol: { alias: "weekNumberSymbol"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"weeks"' is incompatible with index signature.
+    Type '{ alias: "weeks"; required: false; }' is not assignable to type 'string'.
+
+2076     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarWeekNumberComponent<any>, "nb-calendar-week-numbers", never, { "weeks": { "alias": "weeks"; "required": false; }; "size": { "alias": "size"; "required": false; }; "weekNumberSymbol": { "alias": "weekNumberSymbol"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2165:68 - error TS2344: Type '{ size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; shape: { alias: "shape"; required: false; }; appearance: { alias: "appearance"; required: false; }; filled: { alias: "filled"; required: false; }; ... 4 more ...; tabIndex: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+2165     static ɵdir: i0.ɵɵDirectiveDeclaration<NbButton, never, never, { "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; "shape": { "alias": "shape"; "required": false; }; "appearance": { "alias": "appearance"; "required": false; }; "filled": { "alias": "filled"; "required": false; }; "outline": { "alias": "outline"; "required": false; }; "ghost": { "alias": "ghost"; "required": false; }; "fullWidth": { "alias": "fullWidth"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "tabIndex": { "alias": "tabIndex"; "required": false; }; }, {}, ["icons"], never, true, never>;
+                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2710:168 - error TS2344: Type '{ hero: { alias: "hero"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"hero"' is incompatible with index signature.
+    Type '{ alias: "hero"; required: false; }' is not assignable to type 'string'.
+
+2710     static ɵcmp: i0.ɵɵComponentDeclaration<NbButtonComponent, "button[nbButton],a[nbButton],input[type=\"button\"][nbButton],input[type=\"submit\"][nbButton]", never, { "hero": { "alias": "hero"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                                                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:2986:103 - error TS2344: Type '{ boundingMonth: { alias: "boundingMonth"; required: false; }; startView: { alias: "startView"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; filter: { ...; }; ... 10 more ...; firstDayOfWeek: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"boundingMonth"' is incompatible with index signature.
+    Type '{ alias: "boundingMonth"; required: false; }' is not assignable to type 'string'.
+
+2986     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarRangeComponent<any>, "nb-calendar-range", never, { "boundingMonth": { "alias": "boundingMonth"; "required": false; }; "startView": { "alias": "startView"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "_cellComponent": { "alias": "dayCellComponent"; "required": false; }; "_monthCellComponent": { "alias": "monthCellComponent"; "required": false; }; "monthCellComponent": { "alias": "monthCellComponent"; "required": false; }; "_yearCellComponent": { "alias": "yearCellComponent"; "required": false; }; "size": { "alias": "size"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "showNavigation": { "alias": "showNavigation"; "required": false; }; "range": { "alias": "range"; "required": false; }; "showWeekNumber": { "alias": "showWeekNumber"; "required": false; }; "weekNumberSymbol": { "alias": "weekNumberSymbol"; "required": false; }; "firstDayOfWeek": { "alias": "firstDayOfWeek"; "required": false; }; }, { "rangeChange": "rangeChange"; }, never, never, false, never>;
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:3036:119 - error TS2344: Type '{ date: { alias: "date"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; visibleDate: { alias: "visibleDate"; required: false; }; min: { alias: "min"; required: false; }; max: { ...; }; filter: { ...; }; size: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+3036     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarRangeDayCellComponent<any>, "nb-calendar-range-day-cell", never, { "date": { "alias": "date"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:3072:121 - error TS2344: Type '{ date: { alias: "date"; required: false; }; min: { alias: "min"; required: false; }; max: { alias: "max"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; size: { alias: "size"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+3072     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarRangeYearCellComponent<any>, "nb-calendar-range-year-cell", never, { "date": { "alias": "date"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:3109:123 - error TS2344: Type '{ date: { alias: "date"; required: false; }; visibleDate: { alias: "visibleDate"; required: false; }; selectedValue: { alias: "selectedValue"; required: false; }; min: { alias: "min"; required: false; }; max: { ...; }; size: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+3109     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarRangeMonthCellComponent<any>, "nb-calendar-range-month-cell", never, { "date": { "alias": "date"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "selectedValue": { "alias": "selectedValue"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "size": { "alias": "size"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:3604:107 - error TS2344: Type '{ timeFormat: { alias: "timeFormat"; required: false; }; twelveHoursFormat: { alias: "twelveHoursFormat"; required: false; }; showAmPmLabel: { alias: "showAmPmLabel"; required: false; }; withSeconds: { ...; }; ... 9 more ...; currentTimeButtonText: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"timeFormat"' is incompatible with index signature.
+    Type '{ alias: "timeFormat"; required: false; }' is not assignable to type 'string'.
+
+3604     static ɵcmp: i0.ɵɵComponentDeclaration<NbTimePickerComponent<any>, "nb-timepicker", ["nbTimepicker"], { "timeFormat": { "alias": "timeFormat"; "required": false; }; "twelveHoursFormat": { "alias": "twelveHoursFormat"; "required": false; }; "showAmPmLabel": { "alias": "showAmPmLabel"; "required": false; }; "withSeconds": { "alias": "withSeconds"; "required": false; }; "singleColumn": { "alias": "singleColumn"; "required": false; }; "step": { "alias": "step"; "required": false; }; "date": { "alias": "date"; "required": false; }; "showFooter": { "alias": "showFooter"; "required": false; }; "applyButtonText": { "alias": "applyButtonText"; "required": false; }; "hoursText": { "alias": "hoursText"; "required": false; }; "minutesText": { "alias": "minutesText"; "required": false; }; "secondsText": { "alias": "secondsText"; "required": false; }; "ampmText": { "alias": "ampmText"; "required": false; }; "currentTimeButtonText": { "alias": "currentTimeButtonText"; "required": false; }; }, { "onSelectTime": "onSelectTime"; }, never, never, false, never>;
+                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:3660:110 - error TS2344: Type '{ visibleDate: { alias: "visibleDate"; required: false; }; twelveHoursFormat: { alias: "twelveHoursFormat"; required: false; }; showAmPmLabel: { alias: "showAmPmLabel"; required: false; }; withSeconds: { ...; }; ... 6 more ...; showCurrentTimeButton: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"visibleDate"' is incompatible with index signature.
+    Type '{ alias: "visibleDate"; required: false; }' is not assignable to type 'string'.
+
+3660     static ɵcmp: i0.ɵɵComponentDeclaration<NbCalendarWithTimeComponent<any>, "nb-calendar-with-time", never, { "visibleDate": { "alias": "visibleDate"; "required": false; }; "twelveHoursFormat": { "alias": "twelveHoursFormat"; "required": false; }; "showAmPmLabel": { "alias": "showAmPmLabel"; "required": false; }; "withSeconds": { "alias": "withSeconds"; "required": false; }; "singleColumn": { "alias": "singleColumn"; "required": false; }; "step": { "alias": "step"; "required": false; }; "timeFormat": { "alias": "timeFormat"; "required": false; }; "title": { "alias": "title"; "required": false; }; "applyButtonText": { "alias": "applyButtonText"; "required": false; }; "currentTimeButtonText": { "alias": "currentTimeButtonText"; "required": false; }; "showCurrentTimeButton": { "alias": "showCurrentTimeButton"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:3687:99 - error TS2344: Type '{ position: { alias: "position"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"position"' is incompatible with index signature.
+    Type '{ alias: "position"; required: false; }' is not assignable to type 'string'.
+
+3687     static ɵcmp: i0.ɵɵComponentDeclaration<NbPositionedContainerComponent, "ng-component", never, { "position": { "alias": "position"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4013:102 - error TS2344: Type '{ setPicker: { alias: "nbDatepicker"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"setPicker"' is incompatible with index signature.
+    Type '{ alias: "nbDatepicker"; required: false; }' is not assignable to type 'string'.
+
+4013     static ɵdir: i0.ɵɵDirectiveDeclaration<NbDatepickerDirective<any>, "input[nbDatepicker]", never, { "setPicker": { "alias": "nbDatepicker"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4269:105 - error TS2344: Type '{ format: { alias: "format"; required: false; }; boundingMonth: { alias: "boundingMonth"; required: false; }; startView: { alias: "startView"; required: false; }; min: { alias: "min"; required: false; }; ... 13 more ...; adjustment: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"format"' is incompatible with index signature.
+    Type '{ alias: "format"; required: false; }' is not assignable to type 'string'.
+
+4269     static ɵcmp: i0.ɵɵComponentDeclaration<NbBasePickerComponent<any, any, any>, "ng-component", never, { "format": { "alias": "format"; "required": false; }; "boundingMonth": { "alias": "boundingMonth"; "required": false; }; "startView": { "alias": "startView"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "filter": { "alias": "filter"; "required": false; }; "dayCellComponent": { "alias": "dayCellComponent"; "required": false; }; "monthCellComponent": { "alias": "monthCellComponent"; "required": false; }; "yearCellComponent": { "alias": "yearCellComponent"; "required": false; }; "size": { "alias": "size"; "required": false; }; "visibleDate": { "alias": "visibleDate"; "required": false; }; "hideOnSelect": { "alias": "hideOnSelect"; "required": false; }; "showNavigation": { "alias": "showNavigation"; "required": false; }; "weekNumberSymbol": { "alias": "weekNumberSymbol"; "required": false; }; "showWeekNumber": { "alias": "showWeekNumber"; "required": false; }; "firstDayOfWeek": { "alias": "firstDayOfWeek"; "required": false; }; "overlayOffset": { "alias": "overlayOffset"; "required": false; }; "adjustment": { "alias": "adjustment"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4290:96 - error TS2344: Type '{ date: { alias: "date"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"date"' is incompatible with index signature.
+    Type '{ alias: "date"; required: false; }' is not assignable to type 'string'.
+
+4290     static ɵcmp: i0.ɵɵComponentDeclaration<NbDatepickerComponent<any>, "nb-datepicker", never, { "date": { "alias": "date"; "required": false; }; }, { "dateChange": "dateChange"; }, never, never, false, never>;
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4312:98 - error TS2344: Type '{ range: { alias: "range"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"range"' is incompatible with index signature.
+    Type '{ alias: "range"; required: false; }' is not assignable to type 'string'.
+
+4312     static ɵcmp: i0.ɵɵComponentDeclaration<NbRangepickerComponent<any>, "nb-rangepicker", never, { "range": { "alias": "range"; "required": false; }; }, { "rangeChange": "rangeChange"; }, never, never, false, never>;
+                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4373:105 - error TS2344: Type '{ step: { alias: "step"; required: false; }; title: { alias: "title"; required: false; }; applyButtonText: { alias: "applyButtonText"; required: false; }; currentTimeButtonText: { alias: "currentTimeButtonText"; required: false; }; ... 4 more ...; singleColumn: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"step"' is incompatible with index signature.
+    Type '{ alias: "step"; required: false; }' is not assignable to type 'string'.
+
+4373     static ɵcmp: i0.ɵɵComponentDeclaration<NbDateTimePickerComponent<any>, "nb-date-timepicker", never, { "step": { "alias": "step"; "required": false; }; "title": { "alias": "title"; "required": false; }; "applyButtonText": { "alias": "applyButtonText"; "required": false; }; "currentTimeButtonText": { "alias": "currentTimeButtonText"; "required": false; }; "showCurrentTimeButton": { "alias": "showCurrentTimeButton"; "required": false; }; "twelveHoursFormat": { "alias": "twelveHoursFormat"; "required": false; }; "showAmPmLabel": { "alias": "showAmPmLabel"; "required": false; }; "withSeconds": { "alias": "withSeconds"; "required": false; }; "singleColumn": { "alias": "singleColumn"; "required": false; }; }, { "dateTimeChange": "dateTimeChange"; }, never, never, false, never>;
+                                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4637:83 - error TS2344: Type '{ center: { alias: "center"; required: false; }; windowMode: { alias: "windowMode"; required: false; }; withScroll: { alias: "withScroll"; required: false; }; restoreScrollTop: { alias: "restoreScrollTop"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"center"' is incompatible with index signature.
+    Type '{ alias: "center"; required: false; }' is not assignable to type 'string'.
+
+4637     static ɵcmp: i0.ɵɵComponentDeclaration<NbLayoutComponent, "nb-layout", never, { "center": { "alias": "center"; "required": false; }; "windowMode": { "alias": "windowMode"; "required": false; }; "withScroll": { "alias": "withScroll"; "required": false; }; "restoreScrollTop": { "alias": "restoreScrollTop"; "required": false; }; }, {}, never, ["nb-layout-header:not([subheader])", "nb-sidebar", "nb-layout-header[subheader]", "nb-layout-column", "nb-layout-footer"], false, never>;
+                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4665:96 - error TS2344: Type '{ left: { alias: "left"; required: false; }; start: { alias: "start"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"left"' is incompatible with index signature.
+    Type '{ alias: "left"; required: false; }' is not assignable to type 'string'.
+
+4665     static ɵcmp: i0.ɵɵComponentDeclaration<NbLayoutColumnComponent, "nb-layout-column", never, { "left": { "alias": "left"; "required": false; }; "start": { "alias": "start"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4718:96 - error TS2344: Type '{ fixed: { alias: "fixed"; required: false; }; subheader: { alias: "subheader"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"fixed"' is incompatible with index signature.
+    Type '{ alias: "fixed"; required: false; }' is not assignable to type 'string'.
+
+4718     static ɵcmp: i0.ɵɵComponentDeclaration<NbLayoutHeaderComponent, "nb-layout-header", never, { "fixed": { "alias": "fixed"; "required": false; }; "subheader": { "alias": "subheader"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4750:96 - error TS2344: Type '{ fixed: { alias: "fixed"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"fixed"' is incompatible with index signature.
+    Type '{ alias: "fixed"; required: false; }' is not assignable to type 'string'.
+
+4750     static ɵcmp: i0.ɵɵComponentDeclaration<NbLayoutFooterComponent, "nb-layout-footer", never, { "fixed": { "alias": "fixed"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:4931:81 - error TS2344: Type '{ text: { alias: "text"; required: false; }; position: { alias: "position"; required: false; }; dotMode: { alias: "dotMode"; required: false; }; status: { alias: "status"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"text"' is incompatible with index signature.
+    Type '{ alias: "text"; required: false; }' is not assignable to type 'string'.
+
+4931     static ɵcmp: i0.ɵɵComponentDeclaration<NbBadgeComponent, "nb-badge", never, { "text": { "alias": "text"; "required": false; }; "position": { "alias": "position"; "required": false; }; "dotMode": { "alias": "dotMode"; "required": false; }; "status": { "alias": "status"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:5152:88 - error TS2344: Type '{ menuItem: { alias: "menuItem"; required: false; }; badge: { alias: "badge"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"menuItem"' is incompatible with index signature.
+    Type '{ alias: "menuItem"; required: false; }' is not assignable to type 'string'.
+
+5152     static ɵcmp: i0.ɵɵComponentDeclaration<NbMenuItemComponent, "[nbMenuItem]", never, { "menuItem": { "alias": "menuItem"; "required": false; }; "badge": { "alias": "badge"; "required": false; }; }, { "hoverItem": "hoverItem"; "toggleSubMenu": "toggleSubMenu"; "selectItem": "selectItem"; "itemClick": "itemClick"; }, never, never, false, never>;
+                                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:5302:79 - error TS2344: Type '{ tag: { alias: "tag"; required: false; }; items: { alias: "items"; required: false; }; autoCollapse: { alias: "autoCollapse"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"tag"' is incompatible with index signature.
+    Type '{ alias: "tag"; required: false; }' is not assignable to type 'string'.
+
+5302     static ɵcmp: i0.ɵɵComponentDeclaration<NbMenuComponent, "nb-menu", never, { "tag": { "alias": "tag"; "required": false; }; "items": { "alias": "items"; "required": false; }; "autoCollapse": { "alias": "autoCollapse"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:5438:94 - error TS2344: Type '{ tabs: { alias: "tabs"; required: false; }; activeLinkOptions: { alias: "activeLinkOptions"; required: false; }; fullWidth: { alias: "fullWidth"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"tabs"' is incompatible with index signature.
+    Type '{ alias: "tabs"; required: false; }' is not assignable to type 'string'.
+
+5438     static ɵcmp: i0.ɵɵComponentDeclaration<NbRouteTabsetComponent, "nb-route-tabset", never, { "tabs": { "alias": "tabs"; "required": false; }; "activeLinkOptions": { "alias": "activeLinkOptions"; "required": false; }; "fullWidth": { "alias": "fullWidth"; "required": false; }; }, { "changeTab": "changeTab"; }, never, never, false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:5768:85 - error TS2344: Type '{ right: { alias: "right"; required: false; }; left: { alias: "left"; required: false; }; start: { alias: "start"; required: false; }; end: { alias: "end"; required: false; }; fixed: { alias: "fixed"; required: false; }; ... 5 more ...; collapsedBreakpoints: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"right"' is incompatible with index signature.
+    Type '{ alias: "right"; required: false; }' is not assignable to type 'string'.
+
+5768     static ɵcmp: i0.ɵɵComponentDeclaration<NbSidebarComponent, "nb-sidebar", never, { "right": { "alias": "right"; "required": false; }; "left": { "alias": "left"; "required": false; }; "start": { "alias": "start"; "required": false; }; "end": { "alias": "end"; "required": false; }; "fixed": { "alias": "fixed"; "required": false; }; "containerFixed": { "alias": "containerFixed"; "required": false; }; "state": { "alias": "state"; "required": false; }; "responsive": { "alias": "responsive"; "required": false; }; "tag": { "alias": "tag"; "required": false; }; "compactedBreakpoints": { "alias": "compactedBreakpoints"; "required": false; }; "collapsedBreakpoints": { "alias": "collapsedBreakpoints"; "required": false; }; }, { "stateChange": "stateChange"; "responsiveStateChange": "responsiveStateChange"; }, never, ["nb-sidebar-header", "*", "nb-sidebar-footer"], false, never>;
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:5901:77 - error TS2344: Type '{ tabTitle: { alias: "tabTitle"; required: false; }; tabId: { alias: "tabId"; required: false; }; badgeDot: { alias: "badgeDot"; required: false; }; tabIcon: { alias: "tabIcon"; required: false; }; disabled: { ...; }; ... 6 more ...; badgePosition: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"tabTitle"' is incompatible with index signature.
+    Type '{ alias: "tabTitle"; required: false; }' is not assignable to type 'string'.
+
+5901     static ɵcmp: i0.ɵɵComponentDeclaration<NbTabComponent, "nb-tab", never, { "tabTitle": { "alias": "tabTitle"; "required": false; }; "tabId": { "alias": "tabId"; "required": false; }; "badgeDot": { "alias": "badgeDot"; "required": false; }; "tabIcon": { "alias": "tabIcon"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "responsive": { "alias": "responsive"; "required": false; }; "route": { "alias": "route"; "required": false; }; "active": { "alias": "active"; "required": false; }; "lazyLoad": { "alias": "lazyLoad"; "required": false; }; "badgeText": { "alias": "badgeText"; "required": false; }; "badgeStatus": { "alias": "badgeStatus"; "required": false; }; "badgePosition": { "alias": "badgePosition"; "required": false; }; }, {}, ["tabContentDirective", "tabTitleDirective"], ["*"], false, never>;
+                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:6037:83 - error TS2344: Type '{ fullWidth: { alias: "fullWidth"; required: false; }; routeParam: { alias: "routeParam"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"fullWidth"' is incompatible with index signature.
+    Type '{ alias: "fullWidth"; required: false; }' is not assignable to type 'string'.
+
+6037     static ɵcmp: i0.ɵɵComponentDeclaration<NbTabsetComponent, "nb-tabset", never, { "fullWidth": { "alias": "fullWidth"; "required": false; }; "routeParam": { "alias": "routeParam"; "required": false; }; }, { "changeTab": "changeTab"; }, ["tabs"], ["nb-tab"], false, never>;
+                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:6234:79 - error TS2344: Type '{ name: { alias: "name"; required: false; }; title: { alias: "title"; required: false; }; picture: { alias: "picture"; required: false; }; color: { alias: "color"; required: false; }; size: { alias: "size"; required: false; }; ... 7 more ...; badgePosition: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"name"' is incompatible with index signature.
+    Type '{ alias: "name"; required: false; }' is not assignable to type 'string'.
+
+6234     static ɵcmp: i0.ɵɵComponentDeclaration<NbUserComponent, "nb-user", never, { "name": { "alias": "name"; "required": false; }; "title": { "alias": "title"; "required": false; }; "picture": { "alias": "picture"; "required": false; }; "color": { "alias": "color"; "required": false; }; "size": { "alias": "size"; "required": false; }; "shape": { "alias": "shape"; "required": false; }; "showName": { "alias": "showName"; "required": false; }; "showTitle": { "alias": "showTitle"; "required": false; }; "showInitials": { "alias": "showInitials"; "required": false; }; "onlyPicture": { "alias": "onlyPicture"; "required": false; }; "badgeText": { "alias": "badgeText"; "required": false; }; "badgeStatus": { "alias": "badgeStatus"; "required": false; }; "badgePosition": { "alias": "badgePosition"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:6303:83 - error TS2344: Type '{ link: { alias: "link"; required: false; }; href: { alias: "href"; required: false; }; title: { alias: "title"; required: false; }; icon: { alias: "icon"; required: false; }; disabled: { alias: "disabled"; required: false; }; badgeDot: { ...; }; badgeText: { ...; }; badgeStatus: { ...; }; badgePosition: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"link"' is incompatible with index signature.
+    Type '{ alias: "link"; required: false; }' is not assignable to type 'string'.
+
+6303     static ɵcmp: i0.ɵɵComponentDeclaration<NbActionComponent, "nb-action", never, { "link": { "alias": "link"; "required": false; }; "href": { "alias": "href"; "required": false; }; "title": { "alias": "title"; "required": false; }; "icon": { "alias": "icon"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "badgeDot": { "alias": "badgeDot"; "required": false; }; "badgeText": { "alias": "badgeText"; "required": false; }; "badgeStatus": { "alias": "badgeStatus"; "required": false; }; "badgePosition": { "alias": "badgePosition"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:6400:85 - error TS2344: Type '{ size: { alias: "size"; required: false; }; fullWidth: { alias: "fullWidth"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+6400     static ɵcmp: i0.ɵɵComponentDeclaration<NbActionsComponent, "nb-actions", never, { "size": { "alias": "size"; "required": false; }; "fullWidth": { "alias": "fullWidth"; "required": false; }; }, {}, never, ["nb-action"], false, never>;
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:6518:94 - error TS2344: Type '{ type: { alias: "type"; required: false; }; placeholder: { alias: "placeholder"; required: false; }; hint: { alias: "hint"; required: false; }; show: { alias: "show"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"type"' is incompatible with index signature.
+    Type '{ alias: "type"; required: false; }' is not assignable to type 'string'.
+
+6518     static ɵcmp: i0.ɵɵComponentDeclaration<NbSearchFieldComponent, "nb-search-field", never, { "type": { "alias": "type"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "hint": { "alias": "hint"; "required": false; }; "show": { "alias": "show"; "required": false; }; }, { "close": "close"; "search": "search"; "searchInput": "searchInput"; }, never, never, false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:6617:83 - error TS2344: Type '{ tag: { alias: "tag"; required: false; }; placeholder: { alias: "placeholder"; required: false; }; hint: { alias: "hint"; required: false; }; type: { alias: "type"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"tag"' is incompatible with index signature.
+    Type '{ alias: "tag"; required: false; }' is not assignable to type 'string'.
+
+6617     static ɵcmp: i0.ɵɵComponentDeclaration<NbSearchComponent, "nb-search", never, { "tag": { "alias": "tag"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "hint": { "alias": "hint"; "required": false; }; "type": { "alias": "type"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:6926:87 - error TS2344: Type '{ checked: { alias: "checked"; required: false; }; disabled: { alias: "disabled"; required: false; }; status: { alias: "status"; required: false; }; indeterminate: { alias: "indeterminate"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"checked"' is incompatible with index signature.
+    Type '{ alias: "checked"; required: false; }' is not assignable to type 'string'.
+
+6926     static ɵcmp: i0.ɵɵComponentDeclaration<NbCheckboxComponent, "nb-checkbox", never, { "checked": { "alias": "checked"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "status": { "alias": "status"; "required": false; }; "indeterminate": { "alias": "indeterminate"; "required": false; }; }, { "checkedChange": "checkedChange"; }, never, ["*"], false, never>;
+                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7085:85 - error TS2344: Type '{ content: { alias: "content"; required: false; }; context: { alias: "context"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"content"' is incompatible with index signature.
+    Type '{ alias: "content"; required: false; }' is not assignable to type 'string'.
+
+7085     static ɵcmp: i0.ɵɵComponentDeclaration<NbPopoverComponent, "nb-popover", never, { "content": { "alias": "content"; "required": false; }; "context": { "alias": "context"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7239:94 - error TS2344: Type '{ content: { alias: "nbPopover"; required: false; }; context: { alias: "nbPopoverContext"; required: false; }; position: { alias: "nbPopoverPlacement"; required: false; }; adjustment: { alias: "nbPopoverAdjustment"; required: false; }; trigger: { ...; }; offset: { ...; }; disabled: { ...; }; popoverClass: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"content"' is incompatible with index signature.
+    Type '{ alias: "nbPopover"; required: false; }' is not assignable to type 'string'.
+
+7239     static ɵdir: i0.ɵɵDirectiveDeclaration<NbPopoverDirective, "[nbPopover]", ["nbPopover"], { "content": { "alias": "nbPopover"; "required": false; }; "context": { "alias": "nbPopoverContext"; "required": false; }; "position": { "alias": "nbPopoverPlacement"; "required": false; }; "adjustment": { "alias": "nbPopoverAdjustment"; "required": false; }; "trigger": { "alias": "nbPopoverTrigger"; "required": false; }; "offset": { "alias": "nbPopoverOffset"; "required": false; }; "disabled": { "alias": "nbTooltipDisabled"; "required": false; }; "popoverClass": { "alias": "nbPopoverClass"; "required": false; }; }, { "nbPopoverShowStateChange": "nbPopoverShowStateChange"; }, never, never, false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7405:94 - error TS2344: Type '{ position: { alias: "nbContextMenuPlacement"; required: false; }; adjustment: { alias: "nbContextMenuAdjustment"; required: false; }; tag: { alias: "nbContextMenuTag"; required: false; }; items: { ...; }; trigger: { ...; }; contextMenuClass: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"position"' is incompatible with index signature.
+    Type '{ alias: "nbContextMenuPlacement"; required: false; }' is not assignable to type 'string'.
+
+7405     static ɵdir: i0.ɵɵDirectiveDeclaration<NbContextMenuDirective, "[nbContextMenu]", never, { "position": { "alias": "nbContextMenuPlacement"; "required": false; }; "adjustment": { "alias": "nbContextMenuAdjustment"; "required": false; }; "tag": { "alias": "nbContextMenuTag"; "required": false; }; "items": { "alias": "nbContextMenu"; "required": false; }; "trigger": { "alias": "nbContextMenuTrigger"; "required": false; }; "contextMenuClass": { "alias": "nbContextMenuClass"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7436:94 - error TS2344: Type '{ items: { alias: "items"; required: false; }; tag: { alias: "tag"; required: false; }; context: { alias: "context"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"items"' is incompatible with index signature.
+    Type '{ alias: "items"; required: false; }' is not assignable to type 'string'.
+
+7436     static ɵcmp: i0.ɵɵComponentDeclaration<NbContextMenuComponent, "nb-context-menu", never, { "items": { "alias": "items"; "required": false; }; "tag": { "alias": "tag"; "required": false; }; "context": { "alias": "context"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7562:94 - error TS2344: Type '{ value: { alias: "value"; required: false; }; status: { alias: "status"; required: false; }; size: { alias: "size"; required: false; }; displayValue: { alias: "displayValue"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"value"' is incompatible with index signature.
+    Type '{ alias: "value"; required: false; }' is not assignable to type 'string'.
+
+7562     static ɵcmp: i0.ɵɵComponentDeclaration<NbProgressBarComponent, "nb-progress-bar", never, { "value": { "alias": "value"; "required": false; }; "status": { "alias": "status"; "required": false; }; "size": { "alias": "size"; "required": false; }; "displayValue": { "alias": "displayValue"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7743:81 - error TS2344: Type '{ size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; accent: { alias: "accent"; required: false; }; outline: { alias: "outline"; required: false; }; closable: { alias: "closable"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+7743     static ɵcmp: i0.ɵɵComponentDeclaration<NbAlertComponent, "nb-alert", never, { "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; "accent": { "alias": "accent"; "required": false; }; "outline": { "alias": "outline"; "required": false; }; "closable": { "alias": "closable"; "required": false; }; }, { "close": "close"; }, never, ["*"], false, never>;
+                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7855:88 - error TS2344: Type '{ message: { alias: "message"; required: false; }; messagePlaceholder: { alias: "messagePlaceholder"; required: false; }; buttonTitle: { alias: "buttonTitle"; required: false; }; buttonIcon: { alias: "buttonIcon"; required: false; }; showButton: { ...; }; dropFiles: { ...; }; dropFilePlaceholder: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"message"' is incompatible with index signature.
+    Type '{ alias: "message"; required: false; }' is not assignable to type 'string'.
+
+7855     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatFormComponent, "nb-chat-form", never, { "message": { "alias": "message"; "required": false; }; "messagePlaceholder": { "alias": "messagePlaceholder"; "required": false; }; "buttonTitle": { "alias": "buttonTitle"; "required": false; }; "buttonIcon": { "alias": "buttonIcon"; "required": false; }; "showButton": { "alias": "showButton"; "required": false; }; "dropFiles": { "alias": "dropFiles"; "required": false; }; "dropFilePlaceholder": { "alias": "dropFilePlaceholder"; "required": false; }; }, { "send": "send"; "onInputChange": "onInputChange"; }, never, never, false, never>;
+                                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7908:103 - error TS2344: Type '{ message: { alias: "message"; required: false; }; sender: { alias: "sender"; required: false; }; date: { alias: "date"; required: false; }; dateFormat: { alias: "dateFormat"; required: false; }; files: { alias: "files"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"message"' is incompatible with index signature.
+    Type '{ alias: "message"; required: false; }' is not assignable to type 'string'.
+
+7908     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatMessageFileComponent, "nb-chat-message-file", never, { "message": { "alias": "message"; "required": false; }; "sender": { "alias": "sender"; "required": false; }; "date": { "alias": "date"; "required": false; }; "dateFormat": { "alias": "dateFormat"; "required": false; }; "files": { "alias": "files"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:7952:102 - error TS2344: Type '{ nbCustomMessage: { alias: "nbCustomMessage"; required: false; }; nbCustomMessageNoStyles: { alias: "nbCustomMessageNoStyles"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"nbCustomMessage"' is incompatible with index signature.
+    Type '{ alias: "nbCustomMessage"; required: false; }' is not assignable to type 'string'.
+
+7952     static ɵdir: i0.ɵɵDirectiveDeclaration<NbChatCustomMessageDirective, "[nbCustomMessage]", never, { "nbCustomMessage": { "alias": "nbCustomMessage"; "required": false; }; "nbCustomMessageNoStyles": { "alias": "nbCustomMessageNoStyles"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8100:94 - error TS2344: Type '{ reply: { alias: "reply"; required: false; }; message: { alias: "message"; required: false; }; sender: { alias: "sender"; required: false; }; date: { alias: "date"; required: false; }; dateFormat: { alias: "dateFormat"; required: false; }; ... 6 more ...; customMessageData: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"reply"' is incompatible with index signature.
+    Type '{ alias: "reply"; required: false; }' is not assignable to type 'string'.
+
+8100     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatMessageComponent, "nb-chat-message", never, { "reply": { "alias": "reply"; "required": false; }; "message": { "alias": "message"; "required": false; }; "sender": { "alias": "sender"; "required": false; }; "date": { "alias": "date"; "required": false; }; "dateFormat": { "alias": "dateFormat"; "required": false; }; "files": { "alias": "files"; "required": false; }; "quote": { "alias": "quote"; "required": false; }; "latitude": { "alias": "latitude"; "required": false; }; "longitude": { "alias": "longitude"; "required": false; }; "avatar": { "alias": "avatar"; "required": false; }; "type": { "alias": "type"; "required": false; }; "customMessageData": { "alias": "customMessageData"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8108:90 - error TS2344: Type '{ context: { alias: "context"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"context"' is incompatible with index signature.
+    Type '{ alias: "context"; required: false; }' is not assignable to type 'string'.
+
+8108     static ɵdir: i0.ɵɵDirectiveDeclaration<NbChatTitleDirective, "[nbChatTitle]", never, { "context": { "alias": "context"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8372:79 - error TS2344: Type '{ title: { alias: "title"; required: false; }; size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; noMessagesPlaceholder: { alias: "noMessagesPlaceholder"; required: false; }; scrollBottom: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"title"' is incompatible with index signature.
+    Type '{ alias: "title"; required: false; }' is not assignable to type 'string'.
+
+8372     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatComponent, "nb-chat", never, { "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; "noMessagesPlaceholder": { "alias": "noMessagesPlaceholder"; "required": false; }; "scrollBottom": { "alias": "scrollBottom"; "required": false; }; }, {}, ["chatForm", "titleTemplate", "messages"], ["nb-chat-message", "nb-chat-form"], false, never>;
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8426:101 - error TS2344: Type '{ message: { alias: "message"; required: false; }; sender: { alias: "sender"; required: false; }; date: { alias: "date"; required: false; }; dateFormat: { alias: "dateFormat"; required: false; }; latitude: { ...; }; longitude: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"message"' is incompatible with index signature.
+    Type '{ alias: "message"; required: false; }' is not assignable to type 'string'.
+
+8426     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatMessageMapComponent, "nb-chat-message-map", never, { "message": { "alias": "message"; "required": false; }; "sender": { "alias": "sender"; "required": false; }; "date": { "alias": "date"; "required": false; }; "dateFormat": { "alias": "dateFormat"; "required": false; }; "latitude": { "alias": "latitude"; "required": false; }; "longitude": { "alias": "longitude"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8459:105 - error TS2344: Type '{ message: { alias: "message"; required: false; }; sender: { alias: "sender"; required: false; }; date: { alias: "date"; required: false; }; dateFormat: { alias: "dateFormat"; required: false; }; quote: { alias: "quote"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"message"' is incompatible with index signature.
+    Type '{ alias: "message"; required: false; }' is not assignable to type 'string'.
+
+8459     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatMessageQuoteComponent, "nb-chat-message-quote", never, { "message": { "alias": "message"; "required": false; }; "sender": { "alias": "sender"; "required": false; }; "date": { "alias": "date"; "required": false; }; "dateFormat": { "alias": "dateFormat"; "required": false; }; "quote": { "alias": "quote"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8487:103 - error TS2344: Type '{ sender: { alias: "sender"; required: false; }; message: { alias: "message"; required: false; }; date: { alias: "date"; required: false; }; dateFormat: { alias: "dateFormat"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"sender"' is incompatible with index signature.
+    Type '{ alias: "sender"; required: false; }' is not assignable to type 'string'.
+
+8487     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatMessageTextComponent, "nb-chat-message-text", never, { "sender": { "alias": "sender"; "required": false; }; "message": { "alias": "message"; "required": false; }; "date": { "alias": "date"; "required": false; }; "dateFormat": { "alias": "dateFormat"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8495:92 - error TS2344: Type '{ initials: { alias: "initials"; required: false; }; avatarStyle: { alias: "avatarStyle"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"initials"' is incompatible with index signature.
+    Type '{ alias: "initials"; required: false; }' is not assignable to type 'string'.
+
+8495     static ɵcmp: i0.ɵɵComponentDeclaration<NbChatAvatarComponent, "nb-chat-avatar", never, { "initials": { "alias": "initials"; "required": false; }; "avatarStyle": { "alias": "avatarStyle"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8780:105 - error TS2344: Type '{ fieldSize: { alias: "fieldSize"; required: false; }; status: { alias: "status"; required: false; }; shape: { alias: "shape"; required: false; }; fullWidth: { alias: "fullWidth"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"fieldSize"' is incompatible with index signature.
+    Type '{ alias: "fieldSize"; required: false; }' is not assignable to type 'string'.
+
+8780     static ɵdir: i0.ɵɵDirectiveDeclaration<NbInputDirective, "input[nbInput],textarea[nbInput]", never, { "fieldSize": { "alias": "fieldSize"; "required": false; }; "status": { "alias": "status"; "required": false; }; "shape": { "alias": "shape"; "required": false; }; "fullWidth": { "alias": "fullWidth"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8873:85 - error TS2344: Type '{ message: { alias: "message"; required: false; }; size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"message"' is incompatible with index signature.
+    Type '{ alias: "message"; required: false; }' is not assignable to type 'string'.
+
+8873     static ɵcmp: i0.ɵɵComponentDeclaration<NbSpinnerComponent, "nb-spinner", never, { "message": { "alias": "message"; "required": false; }; "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:8952:86 - error TS2344: Type '{ spinnerMessage: { alias: "nbSpinnerMessage"; required: false; }; spinnerStatus: { alias: "nbSpinnerStatus"; required: false; }; spinnerSize: { alias: "nbSpinnerSize"; required: false; }; nbSpinner: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"spinnerMessage"' is incompatible with index signature.
+    Type '{ alias: "nbSpinnerMessage"; required: false; }' is not assignable to type 'string'.
+
+8952     static ɵdir: i0.ɵɵDirectiveDeclaration<NbSpinnerDirective, "[nbSpinner]", never, { "spinnerMessage": { "alias": "nbSpinnerMessage"; "required": false; }; "spinnerStatus": { "alias": "nbSpinnerStatus"; "required": false; }; "spinnerSize": { "alias": "nbSpinnerSize"; "required": false; }; "nbSpinner": { "alias": "nbSpinner"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9024:79 - error TS2344: Type '{ stepControl: { alias: "stepControl"; required: false; }; label: { alias: "label"; required: false; }; hidden: { alias: "hidden"; required: false; }; completed: { alias: "completed"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"stepControl"' is incompatible with index signature.
+    Type '{ alias: "stepControl"; required: false; }' is not assignable to type 'string'.
+
+9024     static ɵcmp: i0.ɵɵComponentDeclaration<NbStepComponent, "nb-step", never, { "stepControl": { "alias": "stepControl"; "required": false; }; "label": { "alias": "label"; "required": false; }; "hidden": { "alias": "hidden"; "required": false; }; "completed": { "alias": "completed"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9193:85 - error TS2344: Type '{ selectedIndex: { alias: "selectedIndex"; required: false; }; disableStepNavigation: { alias: "disableStepNavigation"; required: false; }; selected: { alias: "selected"; required: false; }; orientation: { ...; }; linear: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"selectedIndex"' is incompatible with index signature.
+    Type '{ alias: "selectedIndex"; required: false; }' is not assignable to type 'string'.
+
+9193     static ɵcmp: i0.ɵɵComponentDeclaration<NbStepperComponent, "nb-stepper", never, { "selectedIndex": { "alias": "selectedIndex"; "required": false; }; "disableStepNavigation": { "alias": "disableStepNavigation"; "required": false; }; "selected": { "alias": "selected"; "required": false; }; "orientation": { "alias": "orientation"; "required": false; }; "linear": { "alias": "linear"; "required": false; }; }, { "stepChange": "stepChange"; }, ["steps"], ["nb-step"], false, never>;
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9202:100 - error TS2344: Type '{ type: { alias: "type"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"type"' is incompatible with index signature.
+    Type '{ alias: "type"; required: false; }' is not assignable to type 'string'.
+
+9202     static ɵdir: i0.ɵɵDirectiveDeclaration<NbStepperNextDirective, "button[nbStepperNext]", never, { "type": { "alias": "type"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9210:108 - error TS2344: Type '{ type: { alias: "type"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"type"' is incompatible with index signature.
+    Type '{ alias: "type"; required: false; }' is not assignable to type 'string'.
+
+9210     static ɵdir: i0.ɵɵDirectiveDeclaration<NbStepperPreviousDirective, "button[nbStepperPrevious]", never, { "type": { "alias": "type"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9295:89 - error TS2344: Type '{ multi: { alias: "multi"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"multi"' is incompatible with index signature.
+    Type '{ alias: "multi"; required: false; }' is not assignable to type 'string'.
+
+9295     static ɵcmp: i0.ɵɵComponentDeclaration<NbAccordionComponent, "nb-accordion", never, { "multi": { "alias": "multi"; "required": false; }; }, {}, never, ["nb-accordion-item"], false, never>;
+                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9358:98 - error TS2344: Type '{ collapsed: { alias: "collapsed"; required: false; }; expanded: { alias: "expanded"; required: false; }; disabled: { alias: "disabled"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"collapsed"' is incompatible with index signature.
+    Type '{ alias: "collapsed"; required: false; }' is not assignable to type 'string'.
+
+9358     static ɵcmp: i0.ɵɵComponentDeclaration<NbAccordionItemComponent, "nb-accordion-item", never, { "collapsed": { "alias": "collapsed"; "required": false; }; "expanded": { "alias": "expanded"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "collapsedChange": "collapsedChange"; }, never, ["nb-accordion-item-header", "nb-accordion-item-body"], false, never>;
+                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9468:115 - error TS2344: Type '{ appearance: { alias: "appearance"; required: false; }; value: { alias: "value"; required: false; }; pressed: { alias: "pressed"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"appearance"' is incompatible with index signature.
+    Type '{ alias: "appearance"; required: false; }' is not assignable to type 'string'.
+
+9468     static ɵdir: i0.ɵɵDirectiveDeclaration<NbButtonToggleDirective, "button[nbButtonToggle]", ["nbButtonToggle"], { "appearance": { "alias": "appearance"; "required": false; }; "value": { "alias": "value"; "required": false; }; "pressed": { "alias": "pressed"; "required": false; }; }, { "pressedChange": "pressedChange"; }, never, never, false, never>;
+                                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9614:94 - error TS2344: Type '{ size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; shape: { alias: "shape"; required: false; }; appearance: { alias: "appearance"; required: false; }; disabled: { alias: "disabled"; required: false; }; multiple: { ...; }; filled: { ...; }; outline: { ...; }; ghost: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+9614     static ɵcmp: i0.ɵɵComponentDeclaration<NbButtonGroupComponent, "nb-button-group", never, { "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; "shape": { "alias": "shape"; "required": false; }; "appearance": { "alias": "appearance"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "multiple": { "alias": "multiple"; "required": false; }; "filled": { "alias": "filled"; "required": false; }; "outline": { "alias": "outline"; "required": false; }; "ghost": { "alias": "ghost"; "required": false; }; }, { "valueChange": "valueChange"; }, ["buttons"], ["*"], false, never>;
+                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9676:79 - error TS2344: Type '{ role: { alias: "role"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"role"' is incompatible with index signature.
+    Type '{ alias: "role"; required: false; }' is not assignable to type 'string'.
+
+9676     static ɵcmp: i0.ɵɵComponentDeclaration<NbListComponent, "nb-list", never, { "role": { "alias": "role"; "required": false; }; }, {}, never, ["nb-list-item"], false, never>;
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9690:88 - error TS2344: Type '{ role: { alias: "role"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"role"' is incompatible with index signature.
+    Type '{ alias: "role"; required: false; }' is not assignable to type 'string'.
+
+9690     static ɵcmp: i0.ɵɵComponentDeclaration<NbListItemComponent, "nb-list-item", never, { "role": { "alias": "role"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9724:102 - error TS2344: Type '{ pageSize: { alias: "pageSize"; required: false; }; startPage: { alias: "startPage"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"pageSize"' is incompatible with index signature.
+    Type '{ alias: "pageSize"; required: false; }' is not assignable to type 'string'.
+
+9724     static ɵdir: i0.ɵɵDirectiveDeclaration<NbListPageTrackerDirective, "[nbListPageTracker]", never, { "pageSize": { "alias": "pageSize"; "required": false; }; "startPage": { "alias": "startPage"; "required": false; }; }, { "pageChange": "pageChange"; }, ["listItems"], never, false, never>;
+                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9807:96 - error TS2344: Type '{ threshold: { alias: "threshold"; required: false; }; throttleTime: { alias: "throttleTime"; required: false; }; listenWindowScroll: { alias: "listenWindowScroll"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"threshold"' is incompatible with index signature.
+    Type '{ alias: "threshold"; required: false; }' is not assignable to type 'string'.
+
+9807     static ɵdir: i0.ɵɵDirectiveDeclaration<NbInfiniteListDirective, "[nbInfiniteList]", never, { "threshold": { "alias": "threshold"; "required": false; }; "throttleTime": { "alias": "throttleTime"; "required": false; }; "listenWindowScroll": { "alias": "listenWindowScroll"; "required": false; }; }, { "bottomThreshold": "bottomThreshold"; "topThreshold": "topThreshold"; }, ["listItems"], never, false, never>;
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9912:90 - error TS2344: Type '{ name: { alias: "nbColumnDef"; required: false; }; sticky: { alias: "sticky"; required: false; }; stickyEnd: { alias: "stickyEnd"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"name"' is incompatible with index signature.
+    Type '{ alias: "nbColumnDef"; required: false; }' is not assignable to type 'string'.
+
+9912     static ɵdir: i0.ɵɵDirectiveDeclaration<NbColumnDefDirective, "[nbColumnDef]", never, { "name": { "alias": "nbColumnDef"; "required": false; }; "sticky": { "alias": "sticky"; "required": false; }; "stickyEnd": { "alias": "stickyEnd"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9970:96 - error TS2344: Type '{ columns: { alias: "nbHeaderRowDef"; required: false; }; sticky: { alias: "nbHeaderRowDefSticky"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"columns"' is incompatible with index signature.
+    Type '{ alias: "nbHeaderRowDef"; required: false; }' is not assignable to type 'string'.
+
+9970     static ɵdir: i0.ɵɵDirectiveDeclaration<NbHeaderRowDefDirective, "[nbHeaderRowDef]", never, { "columns": { "alias": "nbHeaderRowDef"; "required": false; }; "sticky": { "alias": "nbHeaderRowDefSticky"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9987:96 - error TS2344: Type '{ columns: { alias: "nbFooterRowDef"; required: false; }; sticky: { alias: "nbFooterRowDefSticky"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"columns"' is incompatible with index signature.
+    Type '{ alias: "nbFooterRowDef"; required: false; }' is not assignable to type 'string'.
+
+9987     static ɵdir: i0.ɵɵDirectiveDeclaration<NbFooterRowDefDirective, "[nbFooterRowDef]", never, { "columns": { "alias": "nbFooterRowDef"; "required": false; }; "sticky": { "alias": "nbFooterRowDefSticky"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:9998:89 - error TS2344: Type '{ columns: { alias: "nbRowDefColumns"; required: false; }; when: { alias: "nbRowDefWhen"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"columns"' is incompatible with index signature.
+    Type '{ alias: "nbRowDefColumns"; required: false; }' is not assignable to type 'string'.
+
+9998     static ɵdir: i0.ɵɵDirectiveDeclaration<NbRowDefDirective<any>, "[nbRowDef]", never, { "columns": { "alias": "nbRowDefColumns"; "required": false; }; "when": { "alias": "nbRowDefWhen"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:10469:81 - error TS2344: Type '{ toast: { alias: "toast"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"toast"' is incompatible with index signature.
+    Type '{ alias: "toast"; required: false; }' is not assignable to type 'string'.
+
+10469     static ɵcmp: i0.ɵɵComponentDeclaration<NbToastComponent, "nb-toast", never, { "toast": { "alias": "toast"; "required": false; }; }, { "destroy": "destroy"; "toastClick": "toastClick"; }, never, never, false, never>;
+                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:10492:102 - error TS2344: Type '{ content: { alias: "content"; required: false; }; context: { alias: "context"; required: false; }; position: { alias: "position"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"content"' is incompatible with index signature.
+    Type '{ alias: "content"; required: false; }' is not assignable to type 'string'.
+
+10492     static ɵcmp: i0.ɵɵComponentDeclaration<NbToastrContainerComponent, "nb-toastr-container", never, { "content": { "alias": "content"; "required": false; }; "context": { "alias": "context"; "required": false; }; "position": { "alias": "position"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:10741:85 - error TS2344: Type '{ content: { alias: "content"; required: false; }; position: { alias: "position"; required: false; }; context: { alias: "context"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"content"' is incompatible with index signature.
+    Type '{ alias: "content"; required: false; }' is not assignable to type 'string'.
+
+10741     static ɵcmp: i0.ɵɵComponentDeclaration<NbTooltipComponent, "nb-tooltip", never, { "content": { "alias": "content"; "required": false; }; "position": { "alias": "position"; "required": false; }; "context": { "alias": "context"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:10850:94 - error TS2344: Type '{ content: { alias: "nbTooltip"; required: false; }; position: { alias: "nbTooltipPlacement"; required: false; }; adjustment: { alias: "nbTooltipAdjustment"; required: false; }; tooltipClass: { alias: "nbTooltipClass"; required: false; }; ... 4 more ...; disabled: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"content"' is incompatible with index signature.
+    Type '{ alias: "nbTooltip"; required: false; }' is not assignable to type 'string'.
+
+10850     static ɵdir: i0.ɵɵDirectiveDeclaration<NbTooltipDirective, "[nbTooltip]", ["nbTooltip"], { "content": { "alias": "nbTooltip"; "required": false; }; "position": { "alias": "nbTooltipPlacement"; "required": false; }; "adjustment": { "alias": "nbTooltipAdjustment"; "required": false; }; "tooltipClass": { "alias": "nbTooltipClass"; "required": false; }; "icon": { "alias": "nbTooltipIcon"; "required": false; }; "status": { "alias": "nbTooltipStatus"; "required": false; }; "trigger": { "alias": "nbTooltipTrigger"; "required": false; }; "offset": { "alias": "nbTooltipOffset"; "required": false; }; "disabled": { "alias": "nbTooltipDisabled"; "required": false; }; }, { "nbTooltipShowStateChange": "nbTooltipShowStateChange"; }, never, never, false, never>;
+                                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:10969:88 - error TS2344: Type '{ value: { alias: "value"; required: false; }; disabled: { alias: "disabled"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"value"' is incompatible with index signature.
+    Type '{ alias: "value"; required: false; }' is not assignable to type 'string'.
+
+10969     static ɵcmp: i0.ɵɵComponentDeclaration<NbOptionComponent<any>, "nb-option", never, { "value": { "alias": "value"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "selectionChange": "selectionChange"; }, never, ["*"], false, never>;
+                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:11664:83 - error TS2344: Type '{ size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; shape: { alias: "shape"; required: false; }; appearance: { alias: "appearance"; required: false; }; optionsListClass: { ...; }; ... 12 more ...; scrollStrategy: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+11664     static ɵcmp: i0.ɵɵComponentDeclaration<NbSelectComponent, "nb-select", never, { "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; "shape": { "alias": "shape"; "required": false; }; "appearance": { "alias": "appearance"; "required": false; }; "optionsListClass": { "alias": "optionsListClass"; "required": false; }; "optionsPanelClass": { "alias": "optionsPanelClass"; "required": false; }; "optionsWidth": { "alias": "optionsWidth"; "required": false; }; "outline": { "alias": "outline"; "required": false; }; "filled": { "alias": "filled"; "required": false; }; "hero": { "alias": "hero"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "fullWidth": { "alias": "fullWidth"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "compareWith": { "alias": "compareWith"; "required": false; }; "selected": { "alias": "selected"; "required": false; }; "multiple": { "alias": "multiple"; "required": false; }; "optionsOverlayOffset": { "alias": "optionsOverlayOffset"; "required": false; }; "scrollStrategy": { "alias": "scrollStrategy"; "required": false; }; }, { "selectedChange": "selectedChange"; }, ["customLabel", "options"], ["nb-select-label", "nb-option, nb-option-group"], false, never>;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:11694:97 - error TS2344: Type '{ size: { alias: "size"; required: false; }; position: { alias: "position"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+11694     static ɵcmp: i0.ɵɵComponentDeclaration<NbOptionListComponent<any>, "nb-option-list", never, { "size": { "alias": "size"; "required": false; }; "position": { "alias": "position"; "required": false; }; }, {}, never, ["*"], false, never>;
+                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:11731:94 - error TS2344: Type '{ title: { alias: "title"; required: false; }; disabled: { alias: "disabled"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"title"' is incompatible with index signature.
+    Type '{ alias: "title"; required: false; }' is not assignable to type 'string'.
+
+11731     static ɵcmp: i0.ɵɵComponentDeclaration<NbOptionGroupComponent, "nb-option-group", never, { "title": { "alias": "title"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, {}, ["options"], ["nb-option, ng-container"], false, never>;
+                                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:12038:117 - error TS2344: Type '{ size: { alias: "size"; required: false; }; status: { alias: "status"; required: false; }; shape: { alias: "shape"; required: false; }; appearance: { alias: "appearance"; required: false; }; optionsListClass: { ...; }; ... 13 more ...; withOptionsAutocomplete: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+12038     static ɵcmp: i0.ɵɵComponentDeclaration<NbSelectWithAutocompleteComponent, "nb-select-with-autocomplete", never, { "size": { "alias": "size"; "required": false; }; "status": { "alias": "status"; "required": false; }; "shape": { "alias": "shape"; "required": false; }; "appearance": { "alias": "appearance"; "required": false; }; "optionsListClass": { "alias": "optionsListClass"; "required": false; }; "optionsPanelClass": { "alias": "optionsPanelClass"; "required": false; }; "optionsWidth": { "alias": "optionsWidth"; "required": false; }; "outline": { "alias": "outline"; "required": false; }; "filled": { "alias": "filled"; "required": false; }; "hero": { "alias": "hero"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "fullWidth": { "alias": "fullWidth"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "compareWith": { "alias": "compareWith"; "required": false; }; "selected": { "alias": "selected"; "required": false; }; "multiple": { "alias": "multiple"; "required": false; }; "optionsOverlayOffset": { "alias": "optionsOverlayOffset"; "required": false; }; "scrollStrategy": { "alias": "scrollStrategy"; "required": false; }; "withOptionsAutocomplete": { "alias": "withOptionsAutocomplete"; "required": false; }; }, { "selectedChange": "selectedChange"; "selectOpen": "selectOpen"; "selectClose": "selectClose"; "optionsAutocompleteInputChange": "optionsAutocompleteInputChange"; }, ["customLabel", "options"], ["nb-select-label", "nb-option, nb-option-group"], false, never>;
+                                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:12192:100 - error TS2344: Type '{ handleDisplayFn: { alias: "handleDisplayFn"; required: false; }; size: { alias: "size"; required: false; }; activeFirst: { alias: "activeFirst"; required: false; }; optionsListClass: { alias: "optionsListClass"; required: false; }; optionsPanelClass: { ...; }; optionsWidth: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"handleDisplayFn"' is incompatible with index signature.
+    Type '{ alias: "handleDisplayFn"; required: false; }' is not assignable to type 'string'.
+
+12192     static ɵcmp: i0.ɵɵComponentDeclaration<NbAutocompleteComponent<any>, "nb-autocomplete", never, { "handleDisplayFn": { "alias": "handleDisplayFn"; "required": false; }; "size": { "alias": "size"; "required": false; }; "activeFirst": { "alias": "activeFirst"; "required": false; }; "optionsListClass": { "alias": "optionsListClass"; "required": false; }; "optionsPanelClass": { "alias": "optionsPanelClass"; "required": false; }; "optionsWidth": { "alias": "optionsWidth"; "required": false; }; }, { "selectedChange": "selectedChange"; }, ["options"], ["nb-option, nb-option-group"], false, never>;
+                                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:12324:106 - error TS2344: Type '{ autocomplete: { alias: "nbAutocomplete"; required: false; }; overlayOffset: { alias: "overlayOffset"; required: false; }; scrollStrategy: { alias: "scrollStrategy"; required: false; }; customOverlayHost: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"autocomplete"' is incompatible with index signature.
+    Type '{ alias: "nbAutocomplete"; required: false; }' is not assignable to type 'string'.
+
+12324     static ɵdir: i0.ɵɵDirectiveDeclaration<NbAutocompleteDirective<any>, "input[nbAutocomplete]", never, { "autocomplete": { "alias": "nbAutocomplete"; "required": false; }; "overlayOffset": { "alias": "overlayOffset"; "required": false; }; "scrollStrategy": { "alias": "scrollStrategy"; "required": false; }; "customOverlayHost": { "alias": "customOverlayHost"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:12630:100 - error TS2344: Type '{ selected: { alias: "selected"; required: false; }; value: { alias: "value"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"selected"' is incompatible with index signature.
+    Type '{ alias: "selected"; required: false; }' is not assignable to type 'string'.
+
+12630     static ɵcmp: i0.ɵɵComponentDeclaration<NbTimePickerCellComponent, "nb-timepicker-cell", never, { "selected": { "alias": "selected"; "required": false; }; "value": { "alias": "value"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+                                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:12868:102 - error TS2344: Type '{ timepicker: { alias: "nbTimepicker"; required: false; }; overlayOffset: { alias: "overlayOffset"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"timepicker"' is incompatible with index signature.
+    Type '{ alias: "nbTimepicker"; required: false; }' is not assignable to type 'string'.
+
+12868     static ɵdir: i0.ɵɵDirectiveDeclaration<NbTimePickerDirective<any>, "input[nbTimepicker]", never, { "timepicker": { "alias": "nbTimepicker"; "required": false; }; "overlayOffset": { "alias": "overlayOffset"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13143:81 - error TS2344: Type '{ name: { alias: "name"; required: false; }; checked: { alias: "checked"; required: false; }; value: { alias: "value"; required: false; }; disabled: { alias: "disabled"; required: false; }; status: { alias: "status"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"name"' is incompatible with index signature.
+    Type '{ alias: "name"; required: false; }' is not assignable to type 'string'.
+
+13143     static ɵcmp: i0.ɵɵComponentDeclaration<NbRadioComponent, "nb-radio", never, { "name": { "alias": "name"; "required": false; }; "checked": { "alias": "checked"; "required": false; }; "value": { "alias": "value"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "status": { "alias": "status"; "required": false; }; }, { "valueChange": "valueChange"; "blur": "blur"; }, never, ["*"], false, never>;
+                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13230:92 - error TS2344: Type '{ value: { alias: "value"; required: false; }; name: { alias: "name"; required: false; }; disabled: { alias: "disabled"; required: false; }; status: { alias: "status"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"value"' is incompatible with index signature.
+    Type '{ alias: "value"; required: false; }' is not assignable to type 'string'.
+
+13230     static ɵcmp: i0.ɵɵComponentDeclaration<NbRadioGroupComponent, "nb-radio-group", never, { "value": { "alias": "value"; "required": false; }; "name": { "alias": "name"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "status": { "alias": "status"; "required": false; }; }, { "valueChange": "valueChange"; }, ["radios"], ["nb-radio"], false, never>;
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13510:81 - error TS2344: Type '{ text: { alias: "text"; required: false; }; selected: { alias: "selected"; required: false; }; removable: { alias: "removable"; required: false; }; appearance: { alias: "appearance"; required: false; }; status: { ...; }; size: { ...; }; role: { ...; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"text"' is incompatible with index signature.
+    Type '{ alias: "text"; required: false; }' is not assignable to type 'string'.
+
+13510     static ɵcmp: i0.ɵɵComponentDeclaration<NbTagComponent, "nb-tag", ["nbTag"], { "text": { "alias": "text"; "required": false; }; "selected": { "alias": "selected"; "required": false; }; "removable": { "alias": "removable"; "required": false; }; "appearance": { "alias": "appearance"; "required": false; }; "status": { "alias": "status"; "required": false; }; "size": { "alias": "size"; "required": false; }; "role": { "alias": "role"; "required": false; }; }, { "remove": "remove"; "selectedChange": "selectedChange"; }, never, never, false, never>;
+                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13566:102 - error TS2344: Type '{ separatorKeys: { alias: "separatorKeys"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"separatorKeys"' is incompatible with index signature.
+    Type '{ alias: "separatorKeys"; required: false; }' is not assignable to type 'string'.
+
+13566     static ɵdir: i0.ɵɵDirectiveDeclaration<NbTagInputDirective, "input[nbTagInput]", ["nbTagInput"], { "separatorKeys": { "alias": "separatorKeys"; "required": false; }; }, { "tagAdd": "tagAdd"; }, never, never, false, never>;
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13657:94 - error TS2344: Type '{ size: { alias: "size"; required: false; }; tabIndex: { alias: "tabIndex"; required: false; }; role: { alias: "role"; required: false; }; multiple: { alias: "multiple"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"size"' is incompatible with index signature.
+    Type '{ alias: "size"; required: false; }' is not assignable to type 'string'.
+
+13657     static ɵcmp: i0.ɵɵComponentDeclaration<NbTagListComponent, "nb-tag-list", ["nbTagList"], { "size": { "alias": "size"; "required": false; }; "tabIndex": { "alias": "tabIndex"; "required": false; }; "role": { "alias": "role"; "required": false; }; "multiple": { "alias": "multiple"; "required": false; }; }, { "tagRemove": "tagRemove"; }, ["tagInput", "autocompleteDirective", "tags"], ["nb-tag, input[nbTagInput]"], false, never>;
+                                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13696:80 - error TS2344: Type '{ sortable: { alias: "nbSort"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"sortable"' is incompatible with index signature.
+    Type '{ alias: "nbSort"; required: false; }' is not assignable to type 'string'.
+
+13696     static ɵdir: i0.ɵɵDirectiveDeclaration<NbSortDirective, "[nbSort]", never, { "sortable": { "alias": "nbSort"; "required": false; }; }, { "sort": "sort"; }, never, never, false, never>;
+                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13719:88 - error TS2344: Type '{ direction: { alias: "direction"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"direction"' is incompatible with index signature.
+    Type '{ alias: "direction"; required: false; }' is not assignable to type 'string'.
+
+13719     static ɵcmp: i0.ɵɵComponentDeclaration<NbSortIconComponent, "nb-sort-icon", never, { "direction": { "alias": "direction"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13751:92 - error TS2344: Type '{ direction: { alias: "nbSortHeader"; required: false; }; disabled: { alias: "disabled"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"direction"' is incompatible with index signature.
+    Type '{ alias: "nbSortHeader"; required: false; }' is not assignable to type 'string'.
+
+13751     static ɵcmp: i0.ɵɵComponentDeclaration<NbSortHeaderComponent, "[nbSortHeader]", never, { "direction": { "alias": "nbSortHeader"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, {}, ["sortIcon"], ["*"], false, never>;
+                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13898:96 - error TS2344: Type '{ doubleClickDelay: { alias: "doubleClickDelay"; required: false; }; clickToToggle: { alias: "clickToToggle"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"doubleClickDelay"' is incompatible with index signature.
+    Type '{ alias: "doubleClickDelay"; required: false; }' is not assignable to type 'string'.
+
+13898     static ɵcmp: i0.ɵɵComponentDeclaration<NbTreeGridRowComponent, "tr[nbTreeGridRow]", never, { "doubleClickDelay": { "alias": "doubleClickDelay"; "required": false; }; "clickToToggle": { "alias": "clickToToggle"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:13937:106 - error TS2344: Type '{ name: { alias: "nbTreeGridColumnDef"; required: false; }; hideOn: { alias: "hideOn"; required: false; }; showOn: { alias: "showOn"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"name"' is incompatible with index signature.
+    Type '{ alias: "nbTreeGridColumnDef"; required: false; }' is not assignable to type 'string'.
+
+13937     static ɵdir: i0.ɵɵDirectiveDeclaration<NbTreeGridColumnDefDirective, "[nbTreeGridColumnDef]", never, { "name": { "alias": "nbTreeGridColumnDef"; "required": false; }; "hideOn": { "alias": "hideOn"; "required": false; }; "showOn": { "alias": "showOn"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14137:98 - error TS2344: Type '{ source: { alias: "nbTreeGrid"; required: false; }; levelPadding: { alias: "levelPadding"; required: false; }; equalColumnsWidth: { alias: "equalColumnsWidth"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"source"' is incompatible with index signature.
+    Type '{ alias: "nbTreeGrid"; required: false; }' is not assignable to type 'string'.
+
+14137     static ɵcmp: i0.ɵɵComponentDeclaration<NbTreeGridComponent<any>, "table[nbTreeGrid]", never, { "source": { "alias": "nbTreeGrid"; "required": false; }; "levelPadding": { "alias": "levelPadding"; "required": false; }; "equalColumnsWidth": { "alias": "equalColumnsWidth"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14163:105 - error TS2344: Type '{ columns: { alias: "nbTreeGridRowDefColumns"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"columns"' is incompatible with index signature.
+    Type '{ alias: "nbTreeGridRowDefColumns"; required: false; }' is not assignable to type 'string'.
+
+14163     static ɵdir: i0.ɵɵDirectiveDeclaration<NbTreeGridRowDefDirective<any>, "[nbTreeGridRowDef]", never, { "columns": { "alias": "nbTreeGridRowDefColumns"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14180:112 - error TS2344: Type '{ columns: { alias: "nbTreeGridHeaderRowDef"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"columns"' is incompatible with index signature.
+    Type '{ alias: "nbTreeGridHeaderRowDef"; required: false; }' is not assignable to type 'string'.
+
+14180     static ɵdir: i0.ɵɵDirectiveDeclaration<NbTreeGridHeaderRowDefDirective, "[nbTreeGridHeaderRowDef]", never, { "columns": { "alias": "nbTreeGridHeaderRowDef"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14197:112 - error TS2344: Type '{ columns: { alias: "nbTreeGridFooterRowDef"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"columns"' is incompatible with index signature.
+    Type '{ alias: "nbTreeGridFooterRowDef"; required: false; }' is not assignable to type 'string'.
+
+14197     static ɵdir: i0.ɵɵDirectiveDeclaration<NbTreeGridFooterRowDefDirective, "[nbTreeGridFooterRowDef]", never, { "columns": { "alias": "nbTreeGridFooterRowDef"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14228:84 - error TS2344: Type '{ filterable: { alias: "nbFilter"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"filterable"' is incompatible with index signature.
+    Type '{ alias: "nbFilter"; required: false; }' is not assignable to type 'string'.
+
+14228     static ɵdir: i0.ɵɵDirectiveDeclaration<NbFilterDirective, "[nbFilter]", never, { "filterable": { "alias": "nbFilter"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14246:94 - error TS2344: Type '{ filterable: { alias: "nbFilterInput"; required: false; }; debounceTime: { alias: "debounceTime"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"filterable"' is incompatible with index signature.
+    Type '{ alias: "nbFilterInput"; required: false; }' is not assignable to type 'string'.
+
+14246     static ɵdir: i0.ɵɵDirectiveDeclaration<NbFilterInputDirective, "[nbFilterInput]", never, { "filterable": { "alias": "nbFilterInput"; "required": false; }; "debounceTime": { "alias": "debounceTime"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14271:108 - error TS2344: Type '{ expanded: { alias: "expanded"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"expanded"' is incompatible with index signature.
+    Type '{ alias: "expanded"; required: false; }' is not assignable to type 'string'.
+
+14271     static ɵcmp: i0.ɵɵComponentDeclaration<NbTreeGridRowToggleComponent, "nb-tree-grid-row-toggle", never, { "expanded": { "alias": "expanded"; "required": false; }; }, {}, never, never, false, never>;
+                                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@nebular/theme/types/nebular-theme.d.ts:14578:83 - error TS2344: Type '{ checked: { alias: "checked"; required: false; }; disabled: { alias: "disabled"; required: false; }; status: { alias: "status"; required: false; }; labelPosition: { alias: "labelPosition"; required: false; }; }' does not satisfy the constraint '{ [key: string]: string; }'.
+  Property '"checked"' is incompatible with index signature.
+    Type '{ alias: "checked"; required: false; }' is not assignable to type 'string'.
+
+14578     static ɵcmp: i0.ɵɵComponentDeclaration<NbToggleComponent, "nb-toggle", never, { "checked": { "alias": "checked"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "status": { "alias": "status"; "required": false; }; "labelPosition": { "alias": "labelPosition"; "required": false; }; }, { "checkedChange": "checkedChange"; }, never, ["*"], false, never>;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@types/jasmine/index.d.ts:836:15 - error TS2430: Interface 'FunctionMatchers<Fn>' incorrectly extends interface 'Matchers<any>'.
+  The types returned by 'toHaveBeenCalledWith(...)' are incompatible between these types.
+    Type 'void' is not assignable to type 'Promise<void>'.
+
+836     interface FunctionMatchers<Fn extends Func> extends Matchers<any> {
+                  ~~~~~~~~~~~~~~~~
+
+
+Error: node_modules/@types/leaflet.markercluster/node_modules/@types/leaflet/index.d.ts:1800:26 - error TS2694: Namespace '"C:/Users/Hernan_Buitrago/Documents/SuperApp ESAP/melmac/frontend/node_modules/@types/leaflet/index"' has no exported member 'Coords'.
+
+1800     getTileUrl(coords: L.Coords): string;
+                              ~~~~~~
+
+
+Error: node_modules/@types/leaflet.markercluster/node_modules/@types/leaflet/index.d.ts:1802:35 - error TS2694: Namespace '"C:/Users/Hernan_Buitrago/Documents/SuperApp ESAP/melmac/frontend/node_modules/@types/leaflet/index"' has no exported member 'DoneCallback'.
+
+1802     protected _tileOnLoad(done: L.DoneCallback, tile: HTMLElement): void;
+                                       ~~~~~~~~~~~~
+
+
+Error: node_modules/@types/leaflet.markercluster/node_modules/@types/leaflet/index.d.ts:1803:36 - error TS2694: Namespace '"C:/Users/Hernan_Buitrago/Documents/SuperApp ESAP/melmac/frontend/node_modules/@types/leaflet/index"' has no exported member 'DoneCallback'.
+
+1803     protected _tileOnError(done: L.DoneCallback, tile: HTMLElement, e: Error): void;
+                                        ~~~~~~~~~~~~
+
+
+Error: node_modules/@types/ws/index.d.ts:334:18 - error TS2315: Type 'Server' is not generic.
+
+334         server?: HTTPServer<V> | HTTPSServer<V> | undefined;
+                     ~~~~~~~~~~~~~
+
+
+Error: node_modules/@types/ws/index.d.ts:334:34 - error TS2315: Type 'Server' is not generic.
+
+334         server?: HTTPServer<V> | HTTPSServer<V> | undefined;
+                                     ~~~~~~~~~~~~~~
+
+
+Error: src/app/@core/utils/layout.service.ts:14:22 - error TS2554: Expected 1 arguments, but got 0.
+
+14     this.layoutSize$.next();
+                        ~~~~~~
+
+  node_modules/rxjs/dist/types/internal/Subject.d.ts:31:10
+    31     next(value: T): void;
+                ~~~~~~~~
+    An argument for 'value' was not provided.
+
+
+Error: src/app/pages/admin/role/role.component.ts:443:9 - error TS2839: This condition will always return 'true' since JavaScript compares objects by reference, not value.
+
+443     if (this.permissions != []) {
+            ~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/pages/answer/report/report.component.ts:676:13 - error TS2741: Property 'close' is missing in type '{ minimize: boolean; maximize: boolean; fullScreen: boolean; }' but required in type 'NbWindowControlButtonsConfig'.
+
+676       const buttonsConfig: NbWindowControlButtonsConfig = {
+                ~~~~~~~~~~~~~
+
+  node_modules/@nebular/theme/types/nebular-theme.d.ts:12346:5
+    12346     close: boolean;
+              ~~~~~
+    'close' is declared here.
+
+
+Error: src/app/pages/answer/shared.service.ts:2:25 - error TS2307: Cannot find module 'rxjs/Subject' or its corresponding type declarations.
+
+2 import { Subject } from "rxjs/Subject";
+                          ~~~~~~~~~~~~~~
+
+
+

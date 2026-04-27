@@ -161,6 +161,12 @@ export const types = [
       icon: '',
       values: [],
       group: 2,
+    },
+    {
+      label: 'Separador de Sección',
+      field_type: '27',
+      icon: '',
+      group: 4,
     }
 ]
 

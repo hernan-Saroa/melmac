@@ -14,7 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'ngx-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  standalone: false
 })
 
 export class SearchComponent implements OnInit, OnDestroy {
@@ -136,9 +137,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     this.http.get<{}>(path, { headers: reqHeader }).toPromise().then(response => {
-        console.log(response)
-        value = response
-        let tam = opt == 1 ? value.data.length: value.data_unidad.length;
+        console.log(response);
+        if (!response || !response['status']) return;
+        value = response;
+        let tam = 0;
+        if (opt == 1 && value.data) tam = value.data.length;
+        if (opt == 2 && value.data_unidad) tam = value.data_unidad.length;
+        
         for (let index = 0; index < tam; index++) {
           if(opt == 1){
             const element = value.data[index];
@@ -491,6 +496,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
 @Component({
   selector: 'confirm-dialog',
+  standalone: false,
   template: `
     <nb-card>
       <nb-card-header>

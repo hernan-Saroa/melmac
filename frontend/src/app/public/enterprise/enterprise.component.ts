@@ -6,10 +6,11 @@ import { ToastService } from '../../usable/toast.service';
 import { NbTagComponent, NbTagInputAddEvent } from '@nebular/theme';
 
 @Component({
-  selector: 'ngx-enterprise',
-  templateUrl: './enterprise.component.html',
-  styleUrls: ['./enterprise.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ngx-enterprise',
+    templateUrl: './enterprise.component.html',
+    styleUrls: ['./enterprise.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EnterpriseComponent implements OnInit {
 

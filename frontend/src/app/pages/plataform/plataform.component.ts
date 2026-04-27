@@ -3,9 +3,10 @@ import { ToastService } from '../../usable/toast.service';
 import { PlataformService } from '../../services/plataform.service';
 
 @Component({
-  selector: 'ngx-plataform',
-  templateUrl: './plataform.component.html',
-  styleUrls: ['./plataform.component.scss']
+    selector: 'ngx-plataform',
+    templateUrl: './plataform.component.html',
+    styleUrls: ['./plataform.component.scss'],
+    standalone: false
 })
 export class PlataformComponent implements OnInit {
   

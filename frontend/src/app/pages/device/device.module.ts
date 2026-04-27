@@ -3,7 +3,7 @@ import { AdminModule } from './../admin/admin.module';
 
 import { NgModule } from '@angular/core';
 import { NbCardModule, NbIconModule, NbInputModule, NbSpinnerModule, NbTreeGridModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
 
@@ -20,7 +20,7 @@ import { DeviceService } from '../../services/device.service';
     NbInputModule,
     NbSpinnerModule,
     ThemeModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     MatDialogModule,
     MatButtonModule,
     AdminModule,
@@ -32,7 +32,6 @@ import { DeviceService } from '../../services/device.service';
     DeviceService,
     AdminService,
   ],
-  entryComponents: [
-  ]
+  
 })
 export class DeviceModule { }

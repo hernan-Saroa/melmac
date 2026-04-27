@@ -4,9 +4,10 @@ import { blobToURL, urlToBlob, fromBlob, fromURL } from 'image-resize-compress';
 
 
 @Component({
-  selector: 'ngx-handwritten',
-  templateUrl: './handwritten.component.html',
-  styleUrls: ['./handwritten.component.scss']
+    selector: 'ngx-handwritten',
+    templateUrl: './handwritten.component.html',
+    styleUrls: ['./handwritten.component.scss'],
+    standalone: false
 })
 export class HandwrittenComponent implements OnInit {
 

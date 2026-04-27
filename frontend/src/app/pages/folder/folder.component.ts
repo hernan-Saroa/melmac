@@ -50,9 +50,10 @@ export interface User {
 }
 
 @Component({
-  selector: "ngx-folder",
-  templateUrl: "./folder.component.html",
-  styleUrls: ["./folder.component.scss"],
+    selector: "ngx-folder",
+    templateUrl: "./folder.component.html",
+    styleUrls: ["./folder.component.scss"],
+    standalone: false
 })
 export class FolderComponent implements OnInit, OnDestroy {
   id = null;
@@ -1193,14 +1194,15 @@ export class FolderComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-  selector: "ngx-upload-dialog",
-  templateUrl: "dialog-upload.html",
-  styles: [
-    "nb-card-footer { text-align:end}",
-    "button {margin:5px}",
-    "nb-checkbox {margin:5px 0px}",
-    "nb-select {width:100%;}",
-  ],
+    selector: "ngx-upload-dialog",
+    templateUrl: "dialog-upload.html",
+    styles: [
+        "nb-card-footer { text-align:end}",
+        "button {margin:5px}",
+        "nb-checkbox {margin:5px 0px}",
+        "nb-select {width:100%;}",
+    ],
+    standalone: false
 })
 export class UploadDialogComponent implements OnInit {
   loading;

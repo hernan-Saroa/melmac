@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'ngx-not-found',
-  styleUrls: ['./not-found.component.scss'],
-  templateUrl: './not-found.component.html',
+    selector: 'ngx-not-found',
+    styleUrls: ['./not-found.component.scss'],
+    templateUrl: './not-found.component.html',
+    standalone: false
 })
 export class NotFoundComponent {
 

@@ -14,9 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 declare var MediaRecorder: any;
 
 @Component({
-  selector: 'ngx-bio',
-  templateUrl: './bio.component.html',
-  styleUrls: ['./bio.component.scss']
+    selector: 'ngx-bio',
+    templateUrl: './bio.component.html',
+    styleUrls: ['./bio.component.scss'],
+    standalone: false
 })
 export class BioComponent implements OnInit {
 

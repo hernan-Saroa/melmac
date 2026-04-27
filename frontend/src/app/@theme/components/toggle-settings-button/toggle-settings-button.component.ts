@@ -5,13 +5,14 @@ import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'ngx-toggle-settings-button',
-  styleUrls: ['./toggle-settings-button.component.scss'],
-  template: `
+    selector: 'ngx-toggle-settings-button',
+    styleUrls: ['./toggle-settings-button.component.scss'],
+    template: `
     <button nbButton appearance="outline" class="toggle-settings" (click)="toggleSettings()">
       <nb-icon class="icon" [class.icon-pulse]="enablePulse" icon="settings-2-outline" pack="eva"></nb-icon>
     </button>
   `,
+    standalone: false
 })
 export class ToggleSettingsButtonComponent implements OnInit, OnDestroy {
 

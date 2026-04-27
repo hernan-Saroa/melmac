@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared.service';
 
 @Component({
-  selector: 'ngx-trace',
-  templateUrl: './trace.component.html',
-  styleUrls: ['./trace.component.scss']
+    selector: 'ngx-trace',
+    templateUrl: './trace.component.html',
+    styleUrls: ['./trace.component.scss'],
+    standalone: false
 })
 export class TraceComponent implements OnInit {
 

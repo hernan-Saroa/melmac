@@ -1,8 +1,8 @@
 import { ToastService } from '../../usable/toast.service';
 import { NgModule } from '@angular/core';
 import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { PlataformComponent } from './plataform.component';
 import { PlataformRoutingModule } from './plataform-routing.module';
 
@@ -16,7 +16,7 @@ import { PlataformRoutingModule } from './plataform-routing.module';
     NbIconModule,
     NbInputModule,
     NbButtonModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     LeafletModule
   ],
   providers:[

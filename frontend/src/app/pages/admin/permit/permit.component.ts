@@ -1,4 +1,4 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { AdminService } from '../../../services/admin.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { NbComponentStatus, NbDialogRef, NbDialogService, NbGlobalPhysicalPosition, NbGlobalPosition, NbToastrConfig, NbToastrService } from '@nebular/theme';
@@ -6,12 +6,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-permit",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -24,6 +24,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 
@@ -38,7 +39,7 @@ export class CustomInputTextFilterComponentPermit extends DefaultFilter implemen
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -52,9 +53,10 @@ export class CustomInputTextFilterComponentPermit extends DefaultFilter implemen
 
 
 @Component({
-  selector: 'ngx-permit',
-  templateUrl: './permit.component.html',
-  styleUrls: ['./permit.component.scss']
+    selector: 'ngx-permit',
+    templateUrl: './permit.component.html',
+    styleUrls: ['./permit.component.scss'],
+    standalone: false
 })
 export class PermitComponent implements OnInit {
 

@@ -12,9 +12,10 @@ import { HttpClient } from '@angular/common/http';
 declare var MediaRecorder: any;
 
 @Component({
-  selector: 'ngx-bio',
-  templateUrl: './bio.component.html',
-  styleUrls: ['./bio.component.scss']
+    selector: 'ngx-bio',
+    templateUrl: './bio.component.html',
+    styleUrls: ['./bio.component.scss'],
+    standalone: false
 })
 export class BioComponent implements OnInit {
 

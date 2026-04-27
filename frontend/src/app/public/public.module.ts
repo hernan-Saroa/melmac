@@ -6,7 +6,7 @@ import { ThemeModule } from '../@theme/theme.module';
 import { PublicRoutingModule } from './public-routing.module';
 import { PublicComponent } from './public.component';
 import { FormComponent } from './form/form.component';
-import { SignaturePadModule } from 'angular2-signaturepad';
+import { SignaturePadComponent } from '@almothafar/angular-signature-pad';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,8 +23,8 @@ import { EnvelopeComponent } from './envelope/envelope.component';
 import { HandwrittenComponent as EnvelopeHandwrittenComponent } from './envelope/handwritten/handwritten.component';
 import { ModalComponent } from './modal/modal.component';
 import { VerifiedComponent } from './verified/verified.component';
-import { Ng2TelInputModule } from 'ng2-tel-input';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { CustomInputDateFilterComponentAnswer, CustomInputTextFilterComponentAnswer, HistorialComponent } from './historial/historial.component';
 import { AddressComponent } from './form/address/address.component';
 import { BioComponent } from './form/sign/bio/bio.component';
@@ -43,7 +43,7 @@ import { DocComponent as iFrame_DocComponent } from './services/sign/doc/doc.com
     NbLayoutModule,
     NbSidebarModule, // NbSidebarModule.forRoot(), //if this is your app.module
     FormsModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbDatepickerModule,
     NbButtonModule,
     NbCardModule,
@@ -51,7 +51,7 @@ import { DocComponent as iFrame_DocComponent } from './services/sign/doc/doc.com
     NbIconModule,
     NbSpinnerModule,
     NbActionsModule,
-    SignaturePadModule,
+    SignaturePadComponent,
     PdfViewerModule,
     NbButtonGroupModule,
     NbRadioModule,
@@ -68,7 +68,7 @@ import { DocComponent as iFrame_DocComponent } from './services/sign/doc/doc.com
     ReactiveFormsModule,
     NbStepperModule,
     NbAlertModule,
-    Ng2TelInputModule.forRoot(),
+    
     NbProgressBarModule
   ],
   declarations: [

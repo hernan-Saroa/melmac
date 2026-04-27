@@ -12,22 +12,23 @@ import { TableComponent } from './table/table.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: "ngx-field-dialog",
-  templateUrl: "field-dialog.component.html",
-  styleUrls: ["field-dialog.component.scss"],
-  animations: [
-    trigger('tooltipAnimation', [
-      state('show', style({
-        opacity: 1
-      })),
-      state('hide', style({
-        opacity: 0
-      })),
-      transition('show <=> hide', [
-        animate('0.5s')
-      ]),
-    ]),
-  ]
+    selector: "ngx-field-dialog",
+    templateUrl: "field-dialog.component.html",
+    styleUrls: ["field-dialog.component.scss"],
+    animations: [
+        trigger('tooltipAnimation', [
+            state('show', style({
+                opacity: 1
+            })),
+            state('hide', style({
+                opacity: 0
+            })),
+            transition('show <=> hide', [
+                animate('0.5s')
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class FieldDialogComponent implements OnInit{
 
@@ -1729,9 +1730,10 @@ export class FieldDialogComponent implements OnInit{
 }
 
 @Component({
-  selector: "ngx-dialog-info",
-  templateUrl: "dialog-info.html",
-  styleUrls: ["dialog-info.scss"],
+    selector: "ngx-dialog-info",
+    templateUrl: "dialog-info.html",
+    styleUrls: ["dialog-info.scss"],
+    standalone: false
 })
 export class DialogInfoComponent implements OnInit {
 

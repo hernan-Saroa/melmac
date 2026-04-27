@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 import { HttpClient  } from '@angular/common/http';
 
 @Component({
-  selector: 'ngx-legal',
-  templateUrl: './legal.component.html',
-  styleUrls: ['./legal.component.scss']
+    selector: 'ngx-legal',
+    templateUrl: './legal.component.html',
+    styleUrls: ['./legal.component.scss'],
+    standalone: false
 })
 export class LegalComponent extends NbResetPasswordComponent {
 

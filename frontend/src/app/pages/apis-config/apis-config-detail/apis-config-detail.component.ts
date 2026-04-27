@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ApisConfigService } from '../../../services/apis-config.service';
 import { ToastService } from '../../../usable/toast.service';
 
 @Component({
-  selector: 'ngx-apis-config-detail',
-  templateUrl: './apis-config-detail.component.html',
-  styleUrls: ['./apis-config-detail.component.scss']
+    selector: 'ngx-apis-config-detail',
+    templateUrl: './apis-config-detail.component.html',
+    styleUrls: ['./apis-config-detail.component.scss'],
+    standalone: false
 })
 export class ApisConfigDetailComponent implements OnInit {
 

@@ -1,6 +1,8 @@
 import { FormService } from './../../services/form.service';
 import { AfterViewInit, Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { from, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { NbSelectComponent, NbSidebarService } from '@nebular/theme';
 import { icon, latLng, Layer, Map, tileLayer, Marker, Polyline } from 'leaflet';
 import { AnswerService } from '../../services/answer.service';
@@ -12,6 +14,9 @@ import { Papa } from 'ngx-papaparse';
 import * as L from "leaflet";
 import "leaflet.markercluster";
 import "leaflet-polylinedecorator";
+import * as localforage from 'localforage';
+import * as SuperclusterModule from 'supercluster';
+const Supercluster = (SuperclusterModule as any).default || SuperclusterModule;
 import { WsSendService } from '../../services/ws-send.service';
 import { AssociateService } from '../../services/associate.service';
 import { UserService } from '../../services/user.service';
@@ -26,7 +31,8 @@ interface GeoportalMarker{
 @Component({
   selector: 'ngx-geoportal',
   templateUrl: './geoportal.component.html',
-  styleUrls: ['./geoportal.component.scss']
+  styleUrls: ['./geoportal.component.scss'],
+  standalone: false
 })
 export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -117,7 +123,7 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   options = {
     layers: [
-      tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: ' &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors' }),
+      tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>' }),
     ],
     zoom: 10,
     center: latLng(4.600868, -74.08175)
@@ -130,9 +136,10 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
 
   markerData;
 
-  markerCluster:L.MarkerClusterGroup;
+  markerCluster: any;
+  clusterIndex: any;
 
-  markerClusterOptions:L.MarkerClusterGroupOptions = {
+  markerClusterOptions: any = {
     maxClusterRadius: 100,
     iconCreateFunction: (cluster) => {
       let markers = cluster.getAllChildMarkers();
@@ -335,8 +342,13 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('this.answer_stop');
     console.log(this.answer_stop);
     if (!this.answer_stop){
-      this.geoportalService.listAnswer(this.answer_position, this.filter_options).subscribe(
-        response => {
+      const cacheKey = `geoportal_answer_${this.answer_position}_${JSON.stringify(this.filter_options)}`;
+      this.geoportalService.listAnswer(this.answer_position, this.filter_options).pipe(
+        tap((res: any) => localforage.setItem(cacheKey, res)),
+        catchError((error) => from(localforage.getItem(cacheKey)))
+      ).subscribe(
+        (response: any) => {
+          if (!response) return;
           // console.log("geoportal4444444");
           // console.log(response);
           if (response['status']) {
@@ -451,8 +463,16 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loading = true;
     let position = this.user_data.map((user) => ''+user.id).indexOf(user);
 
-    this.geoportalService.listUserPath(user, date).subscribe(
-      response => {
+    const cacheKey = `geoportal_user_path_${user}_${date}`;
+    this.geoportalService.listUserPath(user, date).pipe(
+      tap((res: any) => localforage.setItem(cacheKey, res)),
+      catchError((error) => from(localforage.getItem(cacheKey)))
+    ).subscribe(
+      (response: any) => {
+        if (!response) {
+          this.loading = false;
+          return;
+        }
         // console.log("geoportal55555555");
         // console.log(response);
         if (response['status']) {
@@ -582,10 +602,30 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  onDataUser(first?) {
+  async onDataUser(first?) {
     this.loading = true;
-    this.geoportalService.listUser(this.follow_options).subscribe(
-      response => {
+    const cacheKey = 'geoportal_user_data_' + JSON.stringify(this.follow_options);
+    try {
+      const cached = await localforage.getItem(cacheKey);
+      if (cached) {
+         this.processDataUser(cached, first);
+      }
+    } catch(e) {}
+
+    if (navigator.onLine) {
+      this.geoportalService.listUser(this.follow_options).subscribe(
+        async (response: any) => {
+          await localforage.setItem(cacheKey, response);
+          this.processDataUser(response, first);
+        },
+        error => { this.loading = false; }
+      );
+    } else {
+      this.loading = false;
+    }
+  }
+
+  processDataUser(response: any, first?: any) {
         // console.log("geoportal6666666");
         // console.log(response);
         if (response['status']) {
@@ -668,20 +708,15 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
 
           this.user_load = false;
         }
-
-      }, null, ()=>{
-        this.loading = false;
-
+        this.updatePathsShown();
         this.updateMarkersShown();
-      }
-    );
-  }
+    }
 
   onMapReady(map:Map){
     this.map = map;
   }
 
-  markerClusterReady(event:L.MarkerClusterGroup){
+  markerClusterReady(event: any){
     this.markerCluster = event;
   }
 
@@ -757,11 +792,57 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
-      if (this.markerData != projects.concat(answers, devices, path_markers, users)){
-        this.markerData = projects.concat(answers, devices, path_markers, users);
+      let all_markers = projects.concat(answers, devices, path_markers, users).filter(m => m && typeof m.getLatLng === 'function');
+
+      if (this.group) {
+         if (!this.clusterIndex) {
+            // @ts-ignore
+            this.clusterIndex = new Supercluster({
+                radius: 60,
+                maxZoom: 16
+            });
+         }
+         const features = all_markers.map((m, i) => ({
+             type: 'Feature',
+             geometry: { type: 'Point', coordinates: [m.getLatLng().lng, m.getLatLng().lat] },
+             properties: { index: i, originalMarker: m }
+         }));
+         this.clusterIndex.load(features);
+         this.refreshSupercluster();
+      } else {
+         if (this.markerData != all_markers){
+           this.markerData = all_markers;
+         }
       }
       this.loading = false;
     }, 300);
+  }
+
+  refreshSupercluster() {
+      if (!this.map || !this.clusterIndex || !this.group) return;
+      const bounds = this.map.getBounds();
+      let bbox = [bounds.getWest() - 0.5, bounds.getSouth() - 0.5, bounds.getEast() + 0.5, bounds.getNorth() + 0.5];
+      const zoom = this.map.getZoom();
+      const clusters = this.clusterIndex.getClusters(bbox, zoom);
+      
+      const newMarkers = clusters.map((c: any) => {
+          if (c.properties.cluster) {
+              const count = c.properties.point_count_abbreviated;
+              let secondary_class = c.properties.point_count < 50 ? 'marker-cluster-small' : (c.properties.point_count < 200) ? 'marker-cluster-medium' : 'marker-cluster-large';
+              let n = '<div><span>'+count+'</span></div>';
+              
+              const icon = L.divIcon({ html: n, className: 'leaflet-marker-icon marker-cluster leaflet-zoom-animated leaflet-interactive ' + secondary_class , iconSize: L.point(40, 40) });
+              const m = new L.Marker([c.geometry.coordinates[1], c.geometry.coordinates[0]], { icon });
+              
+              m.on('click', () => {
+                  this.map.flyTo([c.geometry.coordinates[1], c.geometry.coordinates[0]], this.map.getZoom() + 2);
+              });
+              return m;
+          } else {
+              return c.properties.originalMarker;
+          }
+      });
+      this.markerData = newMarkers;
   }
 
   updatePathsShown(){
@@ -772,9 +853,9 @@ export class GeoportalComponent implements OnInit, AfterViewInit, OnDestroy {
       let date = parts[1];
       let follow = this.follow_data[user];
       if (follow && follow[date] && follow[date]['map'].length == 4){
-        var decorator = L.polylineDecorator(follow[date]['map'][2], {
+        var decorator = (L as any).polylineDecorator(follow[date]['map'][2], {
           patterns: [
-              {offset: 0, repeat: 100, symbol: L.Symbol.arrowHead({pixelSize: 10, polygon: false, pathOptions: {stroke: true, color: follow[date]['map'][2].options.color}})}
+              {offset: 0, repeat: 100, symbol: (L as any).Symbol.arrowHead({pixelSize: 10, polygon: false, pathOptions: {stroke: true, color: follow[date]['map'][2].options.color}})}
           ]
         });
         this.markers.timeline.push(

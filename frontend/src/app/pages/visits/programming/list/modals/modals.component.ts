@@ -3,9 +3,10 @@ import { SwitchService } from '../../../../../services/switch.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-modals',
-  templateUrl: './modals.component.html',
-  styleUrls: ['./modals.component.scss']
+    selector: 'ngx-modals',
+    templateUrl: './modals.component.html',
+    styleUrls: ['./modals.component.scss'],
+    standalone: false
 })
 export class ModalsComponent implements OnInit {
 

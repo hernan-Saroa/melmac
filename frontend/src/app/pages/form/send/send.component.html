@@ -37,11 +37,7 @@
     </div>
   </div>
 </div>
-<div id="content-chart" class="row">
-  <div class="col-xs-12 col-md-4" *ngFor="let chartData of totalChart">
-    <ngx-solar [chartData]="chartData"></ngx-solar>
-  </div>
-</div>
+
 <nb-card>
   <nb-card-header *ngIf="!validate_check" class="container" >
     <div class="row">
@@ -71,6 +67,6 @@
         <option *ngFor="let op of perPage" [selected]="settings.pager.perPage" [value]="op">{{op}}</option>
       </select>
     </div> -->
-    <ng2-smart-table id="table-send" #table [settings]="settings" [source]="list_send" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
+    <angular2-smart-table id="table-send" #table [settings]="settings" [source]="list_send" (userRowSelect)="onRowSelect($event)"></angular2-smart-table>
   </nb-card-body>
 </nb-card>

@@ -1,4 +1,4 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { AdminService } from './../../../services/admin.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { NbComponentStatus, NbDialogRef, NbDialogService, NbGlobalPhysicalPosition, NbGlobalPosition, NbToastrConfig, NbToastrService } from '@nebular/theme';
@@ -6,12 +6,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-role",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -24,6 +24,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 export class CustomInputTextFilterComponent extends DefaultFilter implements OnInit, OnChanges {
@@ -37,7 +38,7 @@ export class CustomInputTextFilterComponent extends DefaultFilter implements OnI
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -50,9 +51,10 @@ export class CustomInputTextFilterComponent extends DefaultFilter implements OnI
 }
 
 @Component({
-  selector: 'ngx-role',
-  templateUrl: './role.component.html',
-  styleUrls: ['./role.component.scss']
+    selector: 'ngx-role',
+    templateUrl: './role.component.html',
+    styleUrls: ['./role.component.scss'],
+    standalone: false
 })
 export class RoleComponent implements OnInit {
 
@@ -242,9 +244,10 @@ export class RoleComponent implements OnInit {
 }
 
 @Component({
-  selector: 'ngx-role-dialog',
-  templateUrl: 'dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}']
+    selector: 'ngx-role-dialog',
+    templateUrl: 'dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}'],
+    standalone: false
 })
 export class RoleDialogComponent implements OnInit{
 
@@ -310,7 +313,7 @@ export class RoleDialogComponent implements OnInit{
         } else {
           name = this.inputNameNgModel.trim();
         }
-        if (!undefined == this.descriptionNgModel || !("undefined" == ('' + this.descriptionNgModel).trim())){
+        if (this.descriptionNgModel !== undefined && "undefined" != ('' + this.descriptionNgModel).trim()){
           descrip = this.descriptionNgModel.trim();
         }
         if (!errors) {
@@ -357,7 +360,7 @@ export class RoleDialogComponent implements OnInit{
         } else {
           name = this.inputNameNgModel.trim();
         }
-        if (!undefined == this.descriptionNgModel || !("undefined" == ('' + this.descriptionNgModel).trim())){
+        if (this.descriptionNgModel !== undefined && "undefined" != ('' + this.descriptionNgModel).trim()){
           descrip = this.descriptionNgModel.trim();
         }
         if (!errors) {
@@ -440,7 +443,7 @@ export class RoleDialogComponent implements OnInit{
 
   validAll(permissions) {
     let all = true;
-    if (this.permissions != []) {
+    if (this.permissions.length != 0) {
       Object.keys(this.permissions).forEach(element => {
         this.permissions[element].forEach(permit => {
           if (!permissions.includes(permit['id'])) {
@@ -493,9 +496,10 @@ export class RoleDialogComponent implements OnInit{
 
 
 @Component({
-  selector: 'confirm-dialog',
-  templateUrl: 'confirm_dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}']
+    selector: 'confirm-dialog',
+    templateUrl: 'confirm_dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}'],
+    standalone: false
 })
 export class ConfirmDialog {
 

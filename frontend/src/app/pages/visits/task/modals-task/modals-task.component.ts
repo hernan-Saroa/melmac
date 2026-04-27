@@ -7,9 +7,10 @@ import { GeoportalService } from '../../../../services/geoportal.service';
 import { AnswerService } from '../../../../services/answer.service';
 import {formatCurrency, getCurrencySymbol} from '@angular/common';
 @Component({
-  selector: 'ngx-modals-task',
-  templateUrl: './modals-task.component.html',
-  styleUrls: ['./modals-task.component.scss']
+    selector: 'ngx-modals-task',
+    templateUrl: './modals-task.component.html',
+    styleUrls: ['./modals-task.component.scss'],
+    standalone: false
 })
 export class ModalsTaskComponent implements OnInit {
   data;

@@ -10,7 +10,6 @@ import { AnswerComponent } from './answer/answer.component';
 import { EnterpriseComponent } from './enterprise/enterprise.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AnswerViewComponent } from './answer/view/view.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AnswerHistoricalComponent } from './answer/historical/historical.component';
 import { DetailComponent } from './enterprise/detail/detail.component';
 import { TraceabilityComponent } from './traceability/traceability.component';
@@ -27,13 +26,14 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
-      path: 'dashboard',
-      component: DashboardComponent,
+      path: '',
+      redirectTo: 'statistics',
+      pathMatch: 'full',
     },
     {
-      path: '',
-      redirectTo: 'dashboard',
-      pathMatch: 'full',
+      path: 'statistics',
+      loadChildren: () => import('./statistics/statistics.module')
+         .then(m => m.StatisticsModule),
     },
     {
       path: 'admin',

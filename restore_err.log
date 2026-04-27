@@ -1,0 +1,573 @@
+pg_restore: error: COPY failed for table "api_address_locality": ERROR:  duplicate key value violates unique constraint "api_address_locality_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_address_locality, line 1
+pg_restore: error: COPY failed for table "api_address_neighborhood": ERROR:  duplicate key value violates unique constraint "api_address_neighborhood_pkey"
+DETAIL:  Key (id)=(3) already exists.
+CONTEXT:  COPY api_address_neighborhood, line 1
+pg_restore: error: COPY failed for table "api_address_order": ERROR:  duplicate key value violates unique constraint "api_address_order_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_address_order, line 1
+pg_restore: error: COPY failed for table "api_address_upz": ERROR:  duplicate key value violates unique constraint "api_address_upz_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_address_upz, line 1
+pg_restore: error: COPY failed for table "api_address_zone": ERROR:  duplicate key value violates unique constraint "api_address_zone_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_address_zone, line 1
+pg_restore: error: COPY failed for table "api_ani_lyn_melmac": ERROR:  duplicate key value violates unique constraint "api_ani_lyn_melmac_pkey"
+DETAIL:  Key (id)=(5) already exists.
+CONTEXT:  COPY api_ani_lyn_melmac, line 1
+pg_restore: error: COPY failed for table "api_answer_envelope": ERROR:  duplicate key value violates unique constraint "api_answer_envelope_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_envelope, line 1
+pg_restore: error: COPY failed for table "api_answer_envelope_approve": ERROR:  duplicate key value violates unique constraint "api_answer_envelope_approve_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_envelope_approve, line 1
+pg_restore: error: COPY failed for table "api_answer_envelope_checker": ERROR:  duplicate key value violates unique constraint "api_answer_envelope_checker_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_envelope_checker, line 1
+pg_restore: error: COPY failed for table "api_answer_envelope_extend": ERROR:  duplicate key value violates unique constraint "api_answer_envelope_extend_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_envelope_extend, line 1
+pg_restore: error: COPY failed for table "api_answer_envelope_field": ERROR:  duplicate key value violates unique constraint "api_answer_envelope_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_envelope_field, line 1
+pg_restore: error: COPY failed for table "api_answer_envelope_user": ERROR:  duplicate key value violates unique constraint "api_answer_envelope_user_pkey"
+DETAIL:  Key (id)=(15) already exists.
+CONTEXT:  COPY api_answer_envelope_user, line 1
+pg_restore: error: COPY failed for table "api_answer_envelope_verified": ERROR:  duplicate key value violates unique constraint "api_answer_envelope_verified_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_envelope_verified, line 1
+pg_restore: error: COPY failed for table "api_answer_field": ERROR:  duplicate key value violates unique constraint "api_answer_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_field, line 1
+pg_restore: error: COPY failed for table "api_answer_form": ERROR:  duplicate key value violates unique constraint "api_answer_form_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_answer_form, line 1
+pg_restore: error: COPY failed for table "api_api_detail": ERROR:  duplicate key value violates unique constraint "api_api_detail_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_api_detail, line 1
+pg_restore: error: COPY failed for table "api_api_registry": ERROR:  duplicate key value violates unique constraint "api_api_registry_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_api_registry, line 1
+pg_restore: error: COPY failed for table "api_api_usage": ERROR:  duplicate key value violates unique constraint "api_api_usage_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_api_usage, line 1
+pg_restore: error: COPY failed for table "api_city": ERROR:  duplicate key value violates unique constraint "api_city_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_city, line 1
+pg_restore: error: COPY failed for table "api_country": ERROR:  duplicate key value violates unique constraint "api_country_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_country, line 1
+pg_restore: error: COPY failed for table "api_device_info_movil": ERROR:  duplicate key value violates unique constraint "api_device_info_movil_pkey"
+DETAIL:  Key (id)=(4) already exists.
+CONTEXT:  COPY api_device_info_movil, line 1
+pg_restore: error: COPY failed for table "api_digital_field": ERROR:  null value in column "form_field_id" of relation "api_digital_field" violates not-null constraint
+DETAIL:  Failing row contains (388, 1, 570.9900207519531, 0, Arial, 9, #000000, f, f, f, 0, 0, 0, null, 2024-02-29 14:32:59.135289+00, 2024-02-29 14:32:59.135311+00, t, 136, null, null, 1, , 1).
+CONTEXT:  COPY api_digital_field, line 388: "388	1	570.9900207519531	0	Arial	9	#000000	f	f	f	0	0	0	\N	2024-02-29 09:32:59.135289-05	2024-02-29 09..."
+pg_restore: error: COPY failed for table "api_document_identification": ERROR:  duplicate key value violates unique constraint "api_document_identification_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_document_identification, line 1
+pg_restore: error: COPY failed for table "api_document_without_sing": ERROR:  duplicate key value violates unique constraint "api_document_without_sing_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_document_without_sing, line 1
+pg_restore: error: COPY failed for table "api_element_type_config": ERROR:  duplicate key value violates unique constraint "api_element_type_config_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_element_type_config, line 1
+pg_restore: error: COPY failed for table "api_enterprise_process_state": ERROR:  duplicate key value violates unique constraint "api_enterprise_process_state_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_enterprise_process_state, line 1
+pg_restore: error: COPY failed for table "api_enterprise_processs": ERROR:  duplicate key value violates unique constraint "api_enterprise_processs_enterprise_id_name_bd4e2eaf_uniq"
+DETAIL:  Key (enterprise_id, name)=(1, MENSAJERIA) already exists.
+CONTEXT:  COPY api_enterprise_processs, line 1
+pg_restore: error: COPY failed for table "api_env_digital_element": ERROR:  duplicate key value violates unique constraint "api_env_digital_element_pkey"
+DETAIL:  Key (id)=(3) already exists.
+CONTEXT:  COPY api_env_digital_element, line 1
+pg_restore: error: COPY failed for table "api_env_digital_field": ERROR:  duplicate key value violates unique constraint "api_env_digital_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_env_digital_field, line 1
+pg_restore: error: COPY failed for table "api_env_form_field": ERROR:  duplicate key value violates unique constraint "api_env_form_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_env_form_field, line 1
+pg_restore: error: COPY failed for table "api_env_form_field_parameter": ERROR:  duplicate key value violates unique constraint "api_env_form_field_parameter_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_env_form_field_parameter, line 1
+pg_restore: error: COPY failed for table "api_env_list_field": ERROR:  duplicate key value violates unique constraint "api_env_list_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_env_list_field, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_profile_document" does not exist
+Command was: ALTER TABLE public.api_env_profile_document DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_profile_document" does not exist
+Command was: COPY public.api_env_profile_document (id, name, identification, email, phone, lookout_count, creation_date, modify_date, state, type_user, "user", token_autorization, restrictive_lists, token_url, hash_info, qr_file, answer_id, enterprise_id, type_identification_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_profile_document" does not exist
+Command was: ALTER TABLE public.api_env_profile_document ENABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_otp_document" does not exist
+Command was: ALTER TABLE public.api_env_sign_otp_document DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_otp_document" does not exist
+Command was: COPY public.api_env_sign_otp_document (id, email, token_url, hash_info, qr_file, token_registry, date, answer_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_otp_document" does not exist
+Command was: ALTER TABLE public.api_env_sign_otp_document ENABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_profile_document" does not exist
+Command was: ALTER TABLE public.api_env_sign_profile_document DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_profile_document" does not exist
+Command was: COPY public.api_env_sign_profile_document (id, token_url, hash_info, qr_file, restrictive_lists, token_registry, date, answer_id, profile_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_profile_document" does not exist
+Command was: ALTER TABLE public.api_env_sign_profile_document ENABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_signed_document" does not exist
+Command was: ALTER TABLE public.api_env_signed_document DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_signed_document" does not exist
+Command was: COPY public.api_env_signed_document (id, pdf_path, date, status, answer_envelope_id, created_by_id, envelope_version_form_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_signed_document" does not exist
+Command was: ALTER TABLE public.api_env_signed_document ENABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_traceability_user" does not exist
+Command was: ALTER TABLE public.api_env_traceability_user DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_traceability_user" does not exist
+Command was: COPY public.api_env_traceability_user (id, type_user, "user", action, element, description, creation_date, extra, envelope_version_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_traceability_user" does not exist
+Command was: ALTER TABLE public.api_env_traceability_user ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_envelope_enterprise": ERROR:  duplicate key value violates unique constraint "api_envelope_enterprise_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_envelope_enterprise, line 1
+pg_restore: error: COPY failed for table "api_envelope_user": ERROR:  duplicate key value violates unique constraint "api_envelope_user_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_envelope_user, line 1
+pg_restore: error: COPY failed for table "api_envelope_user_verified": ERROR:  duplicate key value violates unique constraint "api_envelope_user_verified_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_envelope_user_verified, line 1
+pg_restore: error: COPY failed for table "api_envelope_version": ERROR:  duplicate key value violates unique constraint "api_envelope_version_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_envelope_version, line 1
+pg_restore: error: COPY failed for table "api_envelope_version_form": ERROR:  duplicate key value violates unique constraint "api_envelope_version_form_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_envelope_version_form, line 1
+pg_restore: error: COPY failed for table "api_external_user": ERROR:  duplicate key value violates unique constraint "api_external_user_pkey"
+DETAIL:  Key (id)=(2) already exists.
+CONTEXT:  COPY api_external_user, line 1
+pg_restore: error: COPY failed for table "api_field_condition": ERROR:  duplicate key value violates unique constraint "api_field_condition_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_field_condition, line 1
+pg_restore: error: COPY failed for table "api_field_type": ERROR:  duplicate key value violates unique constraint "api_field_type_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_field_type, line 1
+pg_restore: error: COPY failed for table "api_field_user": ERROR:  duplicate key value violates unique constraint "api_field_user_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_field_user, line 1
+pg_restore: error: COPY failed for table "api_follow_user": ERROR:  duplicate key value violates unique constraint "api_follow_user_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_follow_user, line 1
+pg_restore: error: COPY failed for table "api_follow_user_offline": ERROR:  duplicate key value violates unique constraint "api_follow_user_offline_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_follow_user_offline, line 1
+pg_restore: error: COPY failed for table "api_form_answer_task": ERROR:  duplicate key value violates unique constraint "api_form_answer_task_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_form_answer_task, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_data_additional" does not exist
+Command was: ALTER TABLE public.api_form_data_additional DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_data_additional" does not exist
+Command was: COPY public.api_form_data_additional (id, template, json_data, json_head, state, form_enterprise_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_data_additional" does not exist
+Command was: ALTER TABLE public.api_form_data_additional ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_form_digital": ERROR:  duplicate key value violates unique constraint "api_form_digital_pkey"
+DETAIL:  Key (id)=(45) already exists.
+CONTEXT:  COPY api_form_digital, line 1
+pg_restore: error: COPY failed for table "api_form_enterprise": ERROR:  duplicate key value violates unique constraint "api_form_enterprise_pkey"
+DETAIL:  Key (id)=(31) already exists.
+CONTEXT:  COPY api_form_enterprise, line 1
+pg_restore: error: COPY failed for table "api_form_field": ERROR:  duplicate key value violates unique constraint "api_form_field_pkey"
+DETAIL:  Key (id)=(2) already exists.
+CONTEXT:  COPY api_form_field, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_field_data" does not exist
+Command was: ALTER TABLE public.api_form_field_data DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_field_data" does not exist
+Command was: COPY public.api_form_field_data (id, template, json_data, json_head, state, form_field_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_field_data" does not exist
+Command was: ALTER TABLE public.api_form_field_data ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_form_field_parameter": ERROR:  duplicate key value violates unique constraint "api_form_field_parameter_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_form_field_parameter, line 1
+pg_restore: error: COPY failed for table "api_form_link": ERROR:  duplicate key value violates unique constraint "api_form_link_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_form_link, line 1
+pg_restore: error: COPY failed for table "api_form_temporal_digital": ERROR:  duplicate key value violates unique constraint "api_form_temporal_digital_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_form_temporal_digital, line 1
+pg_restore: error: COPY failed for table "api_form_version": ERROR:  duplicate key value violates unique constraint "api_form_version_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_form_version, line 1
+pg_restore: error: COPY failed for table "api_geo_portal": ERROR:  duplicate key value violates unique constraint "api_geo_portal_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_geo_portal, line 1
+pg_restore: error: COPY failed for table "api_history_create_share_documents": ERROR:  duplicate key value violates unique constraint "api_history_create_share_documents_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_history_create_share_documents, line 1
+pg_restore: error: COPY failed for table "api_home_items": ERROR:  duplicate key value violates unique constraint "api_home_items_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_home_items, line 1
+pg_restore: error: COPY failed for table "api_list_field": ERROR:  duplicate key value violates unique constraint "api_list_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_list_field, line 1
+pg_restore: error: COPY failed for table "api_logs_form": ERROR:  duplicate key value violates unique constraint "api_logs_form_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_logs_form, line 1
+pg_restore: error: COPY failed for table "api_massive_errors": ERROR:  duplicate key value violates unique constraint "api_massive_errors_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_massive_errors, line 1
+pg_restore: error: COPY failed for table "api_massive_file": ERROR:  duplicate key value violates unique constraint "api_massive_file_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_massive_file, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_neural_network" does not exist
+Command was: ALTER TABLE public.api_neural_network DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_neural_network" does not exist
+Command was: COPY public.api_neural_network (id, module, name_button, time_stamp, user_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_neural_network" does not exist
+Command was: ALTER TABLE public.api_neural_network ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_option": ERROR:  duplicate key value violates unique constraint "api_option_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_option, line 1
+pg_restore: error: COPY failed for table "api_option_field": ERROR:  duplicate key value violates unique constraint "api_option_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_option_field, line 1
+pg_restore: error: COPY failed for table "api_option_list_field": ERROR:  duplicate key value violates unique constraint "api_option_list_field_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_option_list_field, line 1
+pg_restore: error: COPY failed for table "api_parameter": ERROR:  duplicate key value violates unique constraint "api_parameter_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_parameter, line 1
+pg_restore: error: COPY failed for table "api_parameter_enterprise": ERROR:  duplicate key value violates unique constraint "api_parameter_enterprise_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_parameter_enterprise, line 1
+pg_restore: error: COPY failed for table "api_parameter_validate": ERROR:  duplicate key value violates unique constraint "api_parameter_validate_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_parameter_validate, line 1
+pg_restore: error: COPY failed for table "api_permit": ERROR:  duplicate key value violates unique constraint "api_permit_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_permit, line 1
+pg_restore: error: COPY failed for table "api_permit_enterprise": ERROR:  duplicate key value violates unique constraint "api_permit_enterprise_enterprise_id_permit_typ_ffda2c3a_uniq"
+DETAIL:  Key (enterprise_id, permit_type_id)=(7, 1) already exists.
+CONTEXT:  COPY api_permit_enterprise, line 1
+pg_restore: error: COPY failed for table "api_permit_role": ERROR:  duplicate key value violates unique constraint "api_permit_role_pkey"
+DETAIL:  Key (id)=(23) already exists.
+CONTEXT:  COPY api_permit_role, line 1
+pg_restore: error: COPY failed for table "api_profile": ERROR:  duplicate key value violates unique constraint "api_profile_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_profile, line 1
+pg_restore: error: COPY failed for table "api_profile_document": ERROR:  duplicate key value violates unique constraint "api_profile_document_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_profile_document, line 1
+pg_restore: error: COPY failed for table "api_profile_enterprise": ERROR:  duplicate key value violates unique constraint "api_profile_enterprise_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_profile_enterprise, line 1
+pg_restore: error: COPY failed for table "api_profile_image": ERROR:  duplicate key value violates unique constraint "api_profile_image_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_profile_image, line 1
+pg_restore: error: COPY failed for table "api_project_task": ERROR:  duplicate key value violates unique constraint "api_project_task_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_project_task, line 1
+pg_restore: error: COPY failed for table "api_region": ERROR:  duplicate key value violates unique constraint "api_region_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_region, line 1
+pg_restore: error: COPY failed for table "api_role": ERROR:  duplicate key value violates unique constraint "api_role_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_role, line 1
+pg_restore: error: COPY failed for table "api_role_enterprise": ERROR:  duplicate key value violates unique constraint "api_role_enterprise_pkey"
+DETAIL:  Key (id)=(2) already exists.
+CONTEXT:  COPY api_role_enterprise, line 1
+pg_restore: error: COPY failed for table "api_role_form": ERROR:  duplicate key value violates unique constraint "api_role_form_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_role_form, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_send_email" does not exist
+Command was: ALTER TABLE public.api_send_email DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_send_email" does not exist
+Command was: COPY public.api_send_email (id, category, creation_date, count_send, code_response, extra, email, modify_date, serial_number_send, status, time_stamp, type_supplier, "Answer_Form_id", root_file) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_send_email" does not exist
+Command was: ALTER TABLE public.api_send_email ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_serial_number": ERROR:  duplicate key value violates unique constraint "api_serial_number_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_serial_number, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score" does not exist
+Command was: ALTER TABLE public.api_service_score DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score" does not exist
+Command was: COPY public.api_service_score (id, token, use, service, response, score, creation_date, enterprise_id, user_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score" does not exist
+Command was: ALTER TABLE public.api_service_score ENABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score_answer_field" does not exist
+Command was: ALTER TABLE public.api_service_score_answer_field DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score_answer_field" does not exist
+Command was: COPY public.api_service_score_answer_field (id, score, answer_field_id, token, profile_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score_answer_field" does not exist
+Command was: ALTER TABLE public.api_service_score_answer_field ENABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_attempts" does not exist
+Command was: ALTER TABLE public.api_sign_attempts DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_attempts" does not exist
+Command was: COPY public.api_sign_attempts (id, enterprise_id, field_type_id, attempts, creation_date, description) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_attempts" does not exist
+Command was: ALTER TABLE public.api_sign_attempts ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_sign_email": ERROR:  duplicate key value violates unique constraint "api_sign_email_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_sign_email, line 1
+pg_restore: error: COPY failed for table "api_sign_otp_document": ERROR:  duplicate key value violates unique constraint "api_sign_otp_document_pkey"
+DETAIL:  Key (id)=(19) already exists.
+CONTEXT:  COPY api_sign_otp_document, line 1
+pg_restore: error: COPY failed for table "api_sign_profile_document": ERROR:  duplicate key value violates unique constraint "api_sign_profile_document_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_sign_profile_document, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_service_api" does not exist
+Command was: ALTER TABLE public.api_sign_service_api DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_service_api" does not exist
+Command was: COPY public.api_sign_service_api (id, service_score_token, hash_info, state, date, sign_profile_document_id, user_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_service_api" does not exist
+Command was: ALTER TABLE public.api_sign_service_api ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_signed_document": ERROR:  duplicate key value violates unique constraint "api_signed_document_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_signed_document, line 1
+pg_restore: error: COPY failed for table "api_sms_token": ERROR:  duplicate key value violates unique constraint "api_sms_token_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_sms_token, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_state_answer" does not exist
+Command was: ALTER TABLE public.api_state_answer DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_state_answer" does not exist
+Command was: COPY public.api_state_answer (id, status, anomaly, creation_date, answer_field_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_state_answer" does not exist
+Command was: ALTER TABLE public.api_state_answer ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_subproject": ERROR:  duplicate key value violates unique constraint "api_subproject_pkey"
+DETAIL:  Key (id)=(8) already exists.
+CONTEXT:  COPY api_subproject, line 1
+pg_restore: error: COPY failed for table "api_subproject_parameters": ERROR:  duplicate key value violates unique constraint "api_subproject_parameters_pkey"
+DETAIL:  Key (id)=(2) already exists.
+CONTEXT:  COPY api_subproject_parameters, line 1
+pg_restore: error: COPY failed for table "api_system_log": ERROR:  duplicate key value violates unique constraint "api_system_log_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_system_log, line 1
+pg_restore: error: COPY failed for table "api_task": ERROR:  duplicate key value violates unique constraint "api_task_pkey"
+DETAIL:  Key (id)=(38) already exists.
+CONTEXT:  COPY api_task, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_temp_massive_zip_file" does not exist
+Command was: ALTER TABLE public.api_temp_massive_zip_file DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_temp_massive_zip_file" does not exist
+Command was: COPY public.api_temp_massive_zip_file (id, template_folder, template_zip, date, amount, user_id, filters, massive_zip_pdf_id, name, status) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_temp_massive_zip_file" does not exist
+Command was: ALTER TABLE public.api_temp_massive_zip_file ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_theme": ERROR:  duplicate key value violates unique constraint "api_theme_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_theme, line 1
+pg_restore: error: COPY failed for table "api_traceability_user": ERROR:  duplicate key value violates unique constraint "api_traceability_user_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_traceability_user, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_trazability_service_api" does not exist
+Command was: ALTER TABLE public.api_trazability_service_api DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_trazability_service_api" does not exist
+Command was: COPY public.api_trazability_service_api (id, creation_date, code_state_response, message_response, extra, api_service_id, enterprise_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_trazability_service_api" does not exist
+Command was: ALTER TABLE public.api_trazability_service_api ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_type_identification": ERROR:  duplicate key value violates unique constraint "api_type_identification_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_type_identification, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_unique_answer" does not exist
+Command was: ALTER TABLE public.api_unique_answer DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_unique_answer" does not exist
+Command was: COPY public.api_unique_answer (id, unique_str, answer_form_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_unique_answer" does not exist
+Command was: ALTER TABLE public.api_unique_answer ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_user_enterprise": ERROR:  duplicate key value violates unique constraint "api_user_enterprise_pkey"
+DETAIL:  Key (id)=(3) already exists.
+CONTEXT:  COPY api_user_enterprise, line 1
+pg_restore: error: COPY failed for table "api_user_form": ERROR:  duplicate key value violates unique constraint "api_user_form_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_user_form, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_user_token_factor_double" does not exist
+Command was: ALTER TABLE public.api_user_token_factor_double DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_user_token_factor_double" does not exist
+Command was: COPY public.api_user_token_factor_double (id, creation_date, modify_date, data, state, user_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_user_token_factor_double" does not exist
+Command was: ALTER TABLE public.api_user_token_factor_double ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_validate_answer_form": ERROR:  duplicate key value violates unique constraint "api_validate_answer_form_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_validate_answer_form, line 1
+pg_restore: error: COPY failed for table "api_value_parameter": ERROR:  duplicate key value violates unique constraint "api_value_parameter_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_value_parameter, line 1
+pg_restore: error: COPY failed for table "api_variable_plataform": ERROR:  duplicate key value violates unique constraint "api_variable_plataform_pkey"
+DETAIL:  Key (id)=(4) already exists.
+CONTEXT:  COPY api_variable_plataform, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_video_sign_profile_doc" does not exist
+Command was: ALTER TABLE public.api_video_sign_profile_doc DISABLE TRIGGER ALL;
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_video_sign_profile_doc" does not exist
+Command was: COPY public.api_video_sign_profile_doc (id, video_file, action, creation_date, sign_profile_doc_id) FROM stdin;
+pg_restore: error: could not execute query: ERROR:  relation "public.api_video_sign_profile_doc" does not exist
+Command was: ALTER TABLE public.api_video_sign_profile_doc ENABLE TRIGGER ALL;
+
+pg_restore: error: COPY failed for table "api_visit_task_answer_form": ERROR:  duplicate key value violates unique constraint "api_visit_task_answer_form_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY api_visit_task_answer_form, line 1
+pg_restore: error: COPY failed for table "auth_permission": ERROR:  duplicate key value violates unique constraint "auth_permission_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY auth_permission, line 1
+pg_restore: error: COPY failed for table "auth_user": ERROR:  duplicate key value violates unique constraint "auth_user_pkey"
+DETAIL:  Key (id)=(13) already exists.
+CONTEXT:  COPY auth_user, line 1
+pg_restore: error: COPY failed for table "authtoken_token": ERROR:  duplicate key value violates unique constraint "authtoken_token_pkey"
+DETAIL:  Key (key)=(465fcfbbd895c50a24748b60e340f7641fe1d3b1) already exists.
+CONTEXT:  COPY authtoken_token, line 1
+pg_restore: error: COPY failed for table "django_content_type": ERROR:  duplicate key value violates unique constraint "django_content_type_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY django_content_type, line 1
+pg_restore: error: COPY failed for table "django_migrations": ERROR:  duplicate key value violates unique constraint "django_migrations_pkey"
+DETAIL:  Key (id)=(1) already exists.
+CONTEXT:  COPY django_migrations, line 1
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_profile_document_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_env_profile_document_id...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_env_profile_document_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_otp_document_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_env_sign_otp_document_i...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_env_sign_otp_document_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_sign_profile_document_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_env_sign_profile_docume...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_env_sign_profile_document_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_signed_document_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_env_signed_document_id_...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_env_signed_document_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_env_traceability_user_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_env_traceability_user_i...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_env_traceability_user_id_seq', 226, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_data_additional_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_form_data_additional_id...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_form_data_additional_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_form_field_data_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_form_field_data_id_seq'...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_form_field_data_id_seq', 15, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_neural_network_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_neural_network_id_seq',...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_neural_network_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_route_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_route_id_seq', 1, false...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_route_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_send_email_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_send_email_id_seq', 73,...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_send_email_id_seq', 73, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score_answer_field_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_service_score_answer_fi...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_service_score_answer_field_id_seq', 35, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_service_score_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_service_score_id_seq', ...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_service_score_id_seq', 295, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_attempts_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_sign_attempts_id_seq', ...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_sign_attempts_id_seq', 1, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_sign_service_api_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_sign_service_api_id_seq...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_sign_service_api_id_seq', 1, false);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_state_answer_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_state_answer_id_seq', 8...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_state_answer_id_seq', 828, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_temp_massive_zip_file_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_temp_massive_zip_file_i...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_temp_massive_zip_file_id_seq', 1246, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_trazability_service_api_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_trazability_service_api...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_trazability_service_api_id_seq', 25, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_unique_answer_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_unique_answer_id_seq', ...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_unique_answer_id_seq', 59, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_user_token_factor_double_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_user_token_factor_doubl...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_user_token_factor_double_id_seq', 4, true);
+
+
+pg_restore: error: could not execute query: ERROR:  relation "public.api_video_sign_profile_doc_id_seq" does not exist
+LINE 1: SELECT pg_catalog.setval('public.api_video_sign_profile_doc_...
+                                 ^
+Command was: SELECT pg_catalog.setval('public.api_video_sign_profile_doc_id_seq', 48, true);
+
+
+pg_restore: warning: errors ignored on restore: 177

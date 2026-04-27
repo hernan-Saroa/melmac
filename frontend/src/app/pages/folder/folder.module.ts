@@ -25,8 +25,9 @@ import {
   NbToggleModule,
   NbDatepickerModule,
 } from "@nebular/theme";
+import { NbMomentDateModule } from '@nebular/moment';
 
-import { Ng2SmartTableModule } from "ng2-smart-table";
+import { Angular2SmartTableModule } from "angular2-smart-table";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ThemeModule } from "../../@theme/theme.module";
@@ -36,7 +37,7 @@ import { FormsModule as ngFormsModule } from "@angular/forms";
 
 import { DragDropModule } from "@angular/cdk/drag-drop";
 
-import { SignaturePadModule } from "angular2-signaturepad";
+import { SignaturePadComponent } from '@almothafar/angular-signature-pad';
 import { PdfViewerModule } from "ng2-pdf-viewer";
 
 import { ClipboardModule } from "@angular/cdk/clipboard";
@@ -44,7 +45,7 @@ import { CodeInputModule } from "angular-code-input";
 import { FolderComponent, UploadDialogComponent } from "./folder.component";
 import { FolderRoutingModule } from "./folder-routing.module";
 import { RadioComponent } from "./radio/radio.component";
-import { Ng2TelInputModule } from "ng2-tel-input";
+
 import { DigitalService } from "../../services/digital.service";
 import { NgxCommonModule } from "../common/common.module";
 import { UserDialogComponent } from "./user/user.component";
@@ -61,7 +62,7 @@ import { MatTableModule } from "@angular/material/table";
     NbInputModule,
     NbButtonModule,
     ngFormsModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbStepperModule,
     FormsModule,
     ReactiveFormsModule,
@@ -72,7 +73,7 @@ import { MatTableModule } from "@angular/material/table";
     NbSpinnerModule,
     NbActionsModule,
     NbDialogModule.forChild(),
-    SignaturePadModule,
+    SignaturePadComponent,
     PdfViewerModule,
     NbButtonGroupModule,
     NbRadioModule,
@@ -88,11 +89,12 @@ import { MatTableModule } from "@angular/material/table";
     NbTimepickerModule.forChild(),
     NbListModule,
     NbAlertModule,
-    Ng2TelInputModule.forRoot(),
+    
     NbToggleModule,
     NgxCommonModule,
     NbDatepickerModule.forRoot(),
     NbPopoverModule,
+    NbMomentDateModule,
     MatTableModule
   ],
   declarations: [

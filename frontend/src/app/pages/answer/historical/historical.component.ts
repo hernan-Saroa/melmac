@@ -1,14 +1,15 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AnswerService } from '../../../services/answer.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'ngx-historical',
-  templateUrl: './historical.component.html',
-  styleUrls: ['./historical.component.scss']
+    selector: 'ngx-historical',
+    templateUrl: './historical.component.html',
+    styleUrls: ['./historical.component.scss'],
+    standalone: false
 })
 export class AnswerHistoricalComponent implements OnInit {
 

@@ -8,9 +8,10 @@ import { timer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'ngx-otp',
-  templateUrl: './otp.component.html',
-  styleUrls: ['./otp.component.scss']
+    selector: 'ngx-otp',
+    templateUrl: './otp.component.html',
+    styleUrls: ['./otp.component.scss'],
+    standalone: false
 })
 export class OtpComponent implements OnInit {
   loading = false;

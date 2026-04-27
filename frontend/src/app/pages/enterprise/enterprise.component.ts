@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'ngx-enterprise',
   templateUrl: './enterprise.component.html',
-  styleUrls: ['./enterprise.component.scss']
+  styleUrls: ['./enterprise.component.scss'],
+  standalone: false
 })
 export class EnterpriseComponent implements OnInit {
 

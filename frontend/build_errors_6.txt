@@ -1,0 +1,308 @@
+
+> ngx-admin@8.0.0 build
+> ng build
+
+Node.js version v25.8.1 detected.
+Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, please see https://nodejs.org/en/about/previous-releases/.
+[1m[33mWorkspace extension with invalid name (defaultProject) found.[39m[22m
+[1m[33mOne or more browsers which are configured in the project's Browserslist configuration will be ignored as ES5 output is not supported by the Angular CLI.
+Ignored browsers: ie 11, kaios 2.5, op_mini all[39m[22m
+- Generating browser application bundles (phase: setup)...
+[1m[33m    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browserslist configuration. For more information, see https://angular.dev/tools/cli/build#configuring-browser-compatibility
+    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.[39m[22m
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+[1m[33m
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 78, column 32 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:78:32:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+78 |       border-top-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 79:33  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 79, column 35 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:79:35:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+79 |       border-bottom-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 80:36  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 89, column 33 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:89:33:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+89 |         border-top-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 90:34  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 90, column 36 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:90:36:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+90 |         border-bottom-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 91:37  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 119, column 20 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:119:20:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div(100, $howManySteps) or calc(100 / $howManySteps)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+119 |     $stepName: ($i*(100 / $howManySteps));
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 120:21  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+7 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\@nebular\eva-icons\fesm2022\nebular-eva-icons.mjs depends on 'eva-icons'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'rgbcolor'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet-polylinedecorator'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet.markercluster'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+[39m[22m
+[1m[31m
+./src/app/@theme/styles/styles.scss - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\@theme\styles\styles.scss 5:9                   root stylesheet
+
+./src/app/@theme/components/footer/footer.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\@theme\components\footer\footer.component.scss 1:9  root stylesheet
+
+./src/app/@theme/components/header/header.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\@theme\components\header\header.component.scss 3:9  root stylesheet
+
+./src/app/@theme/components/switcher/switcher.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\@theme\components\switcher\switcher.component.scss 1:9  root stylesheet
+
+./src/app/@theme/components/toggle-settings-button/toggle-settings-button.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9                                      @import
+  src\app\@theme\styles\themes.scss 6:9                                                       @import
+  src\app\@theme\components\toggle-settings-button\toggle-settings-button.component.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/one-column/one-column.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9        @import
+  src\app\@theme\styles\themes.scss 6:9                         @import
+  src\app\@theme\layouts\one-column\one-column.layout.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/three-columns/three-columns.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9              @import
+  src\app\@theme\styles\themes.scss 6:9                               @import
+  src\app\@theme\layouts\three-columns\three-columns.layout.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/two-columns/two-columns.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\@theme\layouts\two-columns\two-columns.layout.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/echarts/echarts.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\pages\dashboard\echarts\echarts.component.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/echarts/solar/solar.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\pages\dashboard\echarts\solar\solar.component.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/status-card/status-card.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9              @import
+  src\app\@theme\styles\themes.scss 6:9                               @import
+  src\app\pages\dashboard\status-card\status-card.component.scss 1:9  root stylesheet
+
+./src/app/pages/enterprise/detail/detail.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9     @import
+  src\app\@theme\styles\themes.scss 6:9                      @import
+  src\app\pages\enterprise\detail\detail.component.scss 1:9  root stylesheet
+
+./src/app/pages/folder/folder.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+"+" and "-" must be surrounded by whitespace in calculations.
+    ╷
+430 │     width: calc(100%-15vw);
+    │                     ^
+    ╵
+  src\app\pages\folder\folder.component.scss 430:21  root stylesheet
+
+./src/app/pages/pages.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\pages\pages.component.scss 1:9                  root stylesheet
+
+./src/app/pages/user/user.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\pages\user\user.component.scss 1:9              root stylesheet
+
+./src/app/@theme/styles/styles.scss?ngGlobalStyle - Error: Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\@theme\styles\styles.scss 5:9                   root stylesheet
+
+[39m[22m

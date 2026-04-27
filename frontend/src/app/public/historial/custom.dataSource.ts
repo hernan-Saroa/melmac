@@ -1,25 +1,26 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ServerDataSource } from 'ng2-smart-table';
-import { ServerSourceConf } from 'ng2-smart-table/lib/lib/data-source/server/server-source.conf';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { ServerDataSource } from 'angular2-smart-table';
 import { Observable } from 'rxjs-compat/Observable';
-
+import { HistorialComponent } from './historial.component';
+import { getHeaders } from '../../services/site.service';
 
 
 export class CustomDataSource extends ServerDataSource {
   max_page;
+  chart;
+  datas;
 
-  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}, private parent) {
+  constructor(protected http: HttpClient, conf: any = {}, private parent) {
     super(http, conf);
   }
 
-  protected requestElements(): Observable<any> {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Token ' + this.parent.token_link, 
-    });
-    let httpParams = this.createRequesParams();
+  protected requestElements(filtered?: boolean, sorted?: boolean, paginated?: boolean): Observable<any> {
+    let httpParams = new HttpParams();
+    if (filtered) httpParams = this.addFilterRequestParams(httpParams);
+    if (sorted) httpParams = this.addSortRequestParams(httpParams);
+    if (paginated) httpParams = this.addPagerRequestParams(httpParams);
     this.parent.loading = true;
-    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response', headers: reqHeader });
+    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response', headers: getHeaders() });
   }
 
   protected extractDataFromResponse(res: any): Array<any> {

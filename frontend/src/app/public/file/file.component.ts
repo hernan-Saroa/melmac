@@ -4,9 +4,10 @@ import { FormService } from '../../services/form.service';
 import { SharedService } from '../shared.service';
 
 @Component({
-  selector: 'ngx-file',
-  templateUrl: './file.component.html',
-  styleUrls: ['./file.component.scss']
+    selector: 'ngx-file',
+    templateUrl: './file.component.html',
+    styleUrls: ['./file.component.scss'],
+    standalone: false
 })
 export class FileComponent implements OnInit {
 

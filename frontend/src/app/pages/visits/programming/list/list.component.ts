@@ -6,9 +6,10 @@ import { SwitchService } from '../../../../services/switch.service';
 import { ModalsComponent } from './modals/modals.component';
 
 @Component({
-  selector: 'ngx-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'ngx-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class ListComponent implements OnInit {
 

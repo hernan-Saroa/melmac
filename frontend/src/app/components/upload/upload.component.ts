@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 
 @Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+    selector: 'app-upload',
+    templateUrl: './upload.component.html',
+    styleUrls: ['./upload.component.scss'],
+    standalone: false
 })
 export class UploadComponent {
   constructor(private searchService: SearchService) {}

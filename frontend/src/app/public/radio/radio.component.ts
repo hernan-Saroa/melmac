@@ -6,9 +6,10 @@ interface RadioExtraOptions{
 }
 
 @Component({
-  selector: 'mel-radio',
-  templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.scss']
+    selector: 'mel-radio',
+    templateUrl: './radio.component.html',
+    styleUrls: ['./radio.component.scss'],
+    standalone: false
 })
 export class RadioComponent implements OnInit {
 

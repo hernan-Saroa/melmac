@@ -9,9 +9,10 @@ import { timer } from 'rxjs';
 declare var MediaRecorder: any;
 
 @Component({
-  selector: 'ngx-biometric',
-  templateUrl: './biometric.component.html',
-  styleUrls: ['./biometric.component.scss']
+    selector: 'ngx-biometric',
+    templateUrl: './biometric.component.html',
+    styleUrls: ['./biometric.component.scss'],
+    standalone: false
 })
 export class BiometricComponent implements OnInit {
 

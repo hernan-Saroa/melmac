@@ -11,9 +11,10 @@ import { GeoportalService } from '../../../services/geoportal.service';
 import { AnswerService } from '../../../services/answer.service';
 import { FormService } from '../../../services/form.service';
 @Component({
-  selector: 'ngx-ticket',
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss']
+    selector: 'ngx-ticket',
+    templateUrl: './ticket.component.html',
+    styleUrls: ['./ticket.component.scss'],
+    standalone: false
 })
 export class TicketComponent implements OnInit {
 
@@ -363,8 +364,8 @@ export class TicketComponent implements OnInit {
 /*Modal de creacion de tarea*/
 
 @Component({
-  selector: 'confirm-dialog',
-  template: `
+    selector: 'confirm-dialog',
+    template: `
   <div class="row">
   <div class="col-md-12" style="width: 1000px;">
     <div class="col-md-12 mx-auto container">
@@ -443,6 +444,7 @@ export class TicketComponent implements OnInit {
   </div>
 </div>
 `,
+    standalone: false
 })
 
 export class ConfirmDialog {

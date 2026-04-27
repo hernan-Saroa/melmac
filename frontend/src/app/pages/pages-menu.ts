@@ -10,8 +10,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Estadísticas',
-    icon: 'grid',
-    link: '/pages/dashboard',
+    icon: 'bar-chart-2-outline',
+    link: '/pages/statistics',
     home: true,
     data: 62,
   },
@@ -193,6 +193,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Administración',
     group: true,
+    data: -1,
+  },
+  {
+    title: 'Estadísticas Globales',
+    icon: 'bar-chart-2-outline',
+    link: '/pages/statistics',
     data: -1,
   },
   {

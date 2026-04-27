@@ -1,17 +1,17 @@
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ParameterService } from '../../../services/parameter.service';
 import { ToastService } from '../../../usable/toast.service';
 
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-parameter",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -24,6 +24,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 
@@ -38,7 +39,7 @@ export class CustomInputTextFilterComponentParameter extends DefaultFilter imple
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -50,9 +51,10 @@ export class CustomInputTextFilterComponentParameter extends DefaultFilter imple
   }
 }
 @Component({
-  selector: 'ngx-parameter',
-  templateUrl: './parameter.component.html',
-  styleUrls: ['./parameter.component.scss']
+    selector: 'ngx-parameter',
+    templateUrl: './parameter.component.html',
+    styleUrls: ['./parameter.component.scss'],
+    standalone: false
 })
 export class ParameterComponent implements OnInit {
 
@@ -142,9 +144,10 @@ export class ParameterComponent implements OnInit {
 }
 
 @Component({
-  selector: 'ngx-location-dialog',
-  templateUrl: 'dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', 'nb-select {width:100%;}']
+    selector: 'ngx-location-dialog',
+    templateUrl: 'dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', 'nb-select {width:100%;}'],
+    standalone: false
 })
 export class ParameterDialogComponent implements OnInit{
 

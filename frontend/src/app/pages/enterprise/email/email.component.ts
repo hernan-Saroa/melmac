@@ -4,9 +4,10 @@ import { ToastService } from '../../../usable/toast.service';
 import { EnterpriseService } from './../../../services/enterprise.service';
 
 @Component({
-  selector: 'ngx-email',
-  templateUrl: './email.component.html',
-  styleUrls: ['./email.component.scss']
+    selector: 'ngx-email',
+    templateUrl: './email.component.html',
+    styleUrls: ['./email.component.scss'],
+    standalone: false
 })
 export class EmailComponent implements OnInit {
 

@@ -30,14 +30,6 @@ export const THEMES = [
     value: 2,
     name: 'Dark',
   },
-  {
-    value: 3,
-    name: 'Material-Light',
-  },
-  {
-    value: 4,
-    name: 'Corporate',
-  },
 ];
 
 
@@ -71,6 +63,7 @@ const USER_MENU = [
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
+  standalone: false
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -103,7 +96,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
                     // Inicio
                     {id:71, root:'/pages/home'},
                     // Estadisticas
-                    {id:62, root:'/pages/dashboard'},
+                    {id:62, root:'/pages/statistics'},
                     // Geoportal
                     {id:60, root:'/pages/geoportal'},
                     // Recibidos
@@ -331,7 +324,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         break;
       default:
         theme_name = 'default';
-        this.image_theme = './assets/images/logo_melmac_doc.png'
+        this.image_theme = './assets/images/landing/logo_definitivo.png'
         break;
     }
     this.themeService.changeTheme(theme_name);

@@ -3,12 +3,9 @@
         <nb-card>
             <nb-card-body>
                 <nb-stepper class="stepper-digital" #stepper disableStepNavigation>
-                    <nb-step [stepControl]="createForm" label="Asunto">
+                    <nb-step [stepControl]="createForm" label="Creación">
                         <button nbButton nbStepperNext [disabled]="!createForm.valid" #next_first >Siguiente</button>
-                    </nb-step>
-                    <nb-step [stepControl]="buildForm" label="Campos">
-                        <button nbButton nbStepperPrevious>Volver</button>
-                        <button nbButton nbStepperNext #next_second>Siguiente</button>
+                        <button nbButton nbStepperNext #next_second style="display:none;">Siguiente2</button>
                     </nb-step>
                     <nb-step [stepControl]="pdfForm" label="Plantilla">
                         <button nbButton nbStepperPrevious #prev_third>Volver</button>
@@ -25,41 +22,56 @@
         </nb-card>
     </div>
 
-    <div class="col-12" *ngIf="create_process">
-        <nb-card>
-            <nb-card-header>
-                {{ title_component }} <label *ngIf="version!=null"><b> - Versión Actual #{{ version }}</b></label>
+    <div class="col-12" *ngIf="create_process || form_process">
+        <nb-card class="wc-doc-card">
+            <nb-card-header class="wc-compact-header">
+                <div class="wc-header-left">
+                    <nb-icon icon="file-text-outline" class="wc-h-icon"></nb-icon>
+                    <span class="wc-h-title">{{ title_component }}</span>
+                    <span *ngIf="version!=null" class="wc-h-version">v{{ version }}</span>
+                    <span *ngIf="id" class="wc-h-saved"><nb-icon icon="checkmark-circle-2-outline"></nb-icon></span>
+                </div>
+                <div class="wc-header-right">
+                    <button nbButton size="small" ghost status="basic" type="button"
+                        (click)="metadataCollapsed = !metadataCollapsed"
+                        nbTooltip="{{ metadataCollapsed ? 'Expandir configuración avanzada' : 'Ocultar configuración avanzada' }}">
+                        <nb-icon [icon]="metadataCollapsed ? 'settings-2-outline' : 'minus-outline'"></nb-icon>
+                    </button>
+                    <button nbButton size="small" status="primary" class="wc-save-btn"
+                        (click)="onFirstSubmit(next_first)"
+                        [disabled]="!createForm.valid || loading"
+                        [nbSpinner]="loading" nbSpinnerStatus="control">
+                        <nb-icon icon="save-outline"></nb-icon> {{ id ? 'Actualizar' : 'Guardar' }}
+                    </button>
+                </div>
             </nb-card-header>
+            
             <nb-card-body [hidden]="!process_digital_ia">
               <div class="col-12 col-md-6 offset-md-3" [nbSpinner]="loading" nbSpinnerStatus="primary">
                 <div class="IA-loading">
                   <nb-icon icon="loader-outline"></nb-icon>
-                  <div style="width: 100%;">
-                    <h1>IA</h1>
-                  </div>
-                  <div style="width: 100%; padding: 10px;">
-                    Se activo la deneración automática del documento por medio de IA
-                  </div>
+                  <div style="width: 100%;"><h1>IA</h1></div>
+                  <div style="width: 100%; padding: 10px;">Se activo la generación automática por IA</div>
                   <div style="width: 100%; padding: 10px; font-weight: 100;">
-                    <label for="">¡Este proceso puede tardar un tiempo, puedes esperar o volver luego y revisar tu documento!</label>
+                    <label>¡Puedes esperar o volver luego!</label>
                   </div>
                 </div>
               </div>
             </nb-card-body>
-            <nb-card-body [hidden]="process_digital_ia">
+            
+            <nb-card-body [hidden]="process_digital_ia" class="wc-meta-body">
                 <form [formGroup]="createForm" (ngSubmit)="onFirstSubmit(next_first)" class="step-container">
-                    <p class="lorem">
-                        Nombre, descripción y/o archivo PDF para la creación del documento.
-                    </p>
-                    <div class="content-data">
-                        <input type="text" placeholder="Título del documento" class="form-control" formControlName="name"
-                            fullWidth maxlength="100"
-                            [ngClass]="{'form-control-danger': createForm.invalid && (createForm.dirty || createForm.touched)}">
-
-                        <textarea rows="3" placeholder="Descripción general del documento" class="form-control"
-                            formControlName="description" fullWidth maxlength="1000"
-                            style="resize: none;" required>
-                        </textarea>
+                    <div class="content-data wc-compact-form">
+                    
+                        <!-- TITLE AND DESC ALWAYS VISIBLE -->
+                        <div class="wc-inline-fields">
+                            <input type="text" placeholder="Nombre de este Formulario/Documento..." class="form-control wc-title-input" formControlName="name"
+                                fullWidth maxlength="100"
+                                [ngClass]="{'form-control-danger': createForm.invalid && (createForm.dirty || createForm.touched)}">
+                            <textarea rows="1" placeholder="Añade una descripción (opcional)..." class="form-control wc-desc-input"
+                                formControlName="description" fullWidth maxlength="1000"
+                                style="resize: none;" required></textarea>
+                        </div>
 
                         <input type="file" (change)="onFileSelected($event, 'template')"
                             class="file-input" formControlName="template"
@@ -69,75 +81,45 @@
                             class="file-input" formControlName="logo"
                             accept="image/png, image/jpeg" #logoUpload>
 
-                        <div class="row">
+                        <!-- ADVANCED OPTIONS TOOLBAR (COLLAPSIBLE) -->
+                        <div class="row wc-options-toolbar" [hidden]="metadataCollapsed">
                             <div [hidden]="is_digital" class="col-12 col-md-4">
                                 <label class="label">Plantilla</label>
-                                <nb-select fullWidth [disabled]="digital" [(ngModel)]="template_option" formControlName="template_option"
+                                <nb-select fullWidth [disabled]="digital" [(ngModel)]="template_option" [ngModelOptions]="{standalone: true}"
                                     style="margin-bottom: 15px;" class="select-form" placeholder="Seleccionar Plantilla">
                                     <nb-option value="0">Plantilla Predeterminada</nb-option>
                                     <nb-option value="1">Plantilla 1</nb-option>
                                     <nb-option value="2">Plantilla 2</nb-option>
                                 </nb-select>
                                 <div style="position: relative;" *ngIf="template_option != '0' && !digital">
-
                                     <label class="label">Color Plantilla</label><br>
                                     <input style="margin-bottom: 15px;"
-                                        [(ngModel)]="template_color" formControlName="template_color"
+                                        [(ngModel)]="template_color" [ngModelOptions]="{standalone: true}"
                                         type="color" nbInput fieldSize="small" nbInput
                                         placeholder="Color">
-
                                     <button nbButton size="tiny" type="button" outline status="primary" class="logo-btn"
-                                        (click)="logoUpload.click()">
-                                        Logo <nb-icon icon="cloud-upload"></nb-icon>
-                                    </button> {{ logo_name }}
-
-                                    <button *ngIf="template_option != '' && !digital"
-                                        style="position: absolute; top: 0px; right: 0px;"
-                                        nbButton type="button" outline status="info" class="upload-btn" ghost
-                                        [nbPopover]="template" [nbPopoverPlacement]="position" [nbPopoverTrigger]="trigger"><nb-icon icon="eye"></nb-icon>
-                                    </button>
+                                        (click)="logoUpload.click()">Logo <nb-icon icon="cloud-upload"></nb-icon></button>
+                                    {{ logo_name }}
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
-                                <div class="row">
-                                    <label class="label">Estabelcer Pin</label><br>
-                                    <!-- <nb-checkbox  [checked]="is_pin" (checkedChange)="toggle_pin($event)" status="primary">Estabelcer Pin</nb-checkbox> -->
-                                    <!-- <br> -->
-                                    <nb-select fullWidth formControlName="pin_color"
-                                    style="margin-bottom: 15px;" class="select-form" [(ngModel)]="pin_color" placeholder="Seleccionar Pin">
+                                <label class="label">Establecer Pin</label><br>
+                                <nb-select fullWidth
+                                    style="margin-bottom: 15px;" class="select-form" [(ngModel)]="pin_color" [ngModelOptions]="{standalone: true}" placeholder="Seleccionar Pin">
                                     <nb-option value="">Aleatorio</nb-option>
-                                    <nb-option *ngFor="let pin of pines; let i=index;"
-                                                [value]="pin">Pin-{{ i+1 }}</nb-option>
-                                    </nb-select>
-                                    <button *ngIf="pin_color != ''"
-                                        style="position: absolute; top: -15px; right: 0px;"
-                                        nbButton type="button" outline status="info" class="upload-btn" ghost
-                                        [nbPopover]="templatePin" [nbPopoverPlacement]="position" [nbPopoverTrigger]="trigger"><nb-icon icon="eye"></nb-icon>
-                                    </button>
-                                </div>
+                                    <nb-option *ngFor="let pin of pines; let i=index;" [value]="pin">Pin-{{ i+1 }}</nb-option>
+                                </nb-select>
                             </div>
                             <div class="col-12 col-md-4">
-                              <div class="row">
-                                <div class="col-8 col-md-6">
-                                  <div class="file-upload">
-                                      <nb-checkbox [hidden]="is_digital" [checked]="digital" status="primary" (checkedChange)="toggle($event)">Con plantilla PDF</nb-checkbox>
-                                      <br>
-                                      <button [disabled]="!digital" nbButton type="button" outline status="primary" class="upload-btn"
-                                          (click)="fileUpload.click()">
-                                          Plantilla PDF <nb-icon icon="cloud-upload"></nb-icon>
-                                      </button>
-                                      {{ file_name }}
-                                  </div>
+                                <div class="file-upload">
+                                    <nb-checkbox [hidden]="is_digital" [checked]="digital" status="primary" (checkedChange)="toggle($event)">Con plantilla PDF</nb-checkbox><br>
+                                    <button [disabled]="!digital" nbButton type="button" outline status="primary" class="upload-btn"
+                                        (click)="fileUpload.click()">Plantilla PDF <nb-icon icon="cloud-upload"></nb-icon></button>
+                                    {{ file_name }}
                                 </div>
-                                <div [hidden]="id" class="col-4 col-md-6">
-                                  <div [class]="'IA-select ' + (digital ? 'IA-select-digital ' : '') + (digital && digital_ia ? 'IA-select-check' : '')" (click)="toggleIA()"
-                                    nbTooltip="Generación automática del documento por medio de IA" nbTooltipStatus="primary">
-                                    <div [disabled]="!digital" outline status="primary" class="upload-btn">
-                                      IA
-                                    </div>
-                                  </div>
+                                <div [hidden]="id" class="IA-select mt-2" (click)="toggleIA()">
+                                    <div [class.disabled]="!digital" class="upload-btn"> IA </div>
                                 </div>
-                              </div>
                             </div>
                         </div>
                     </div>
@@ -145,19 +127,8 @@
             </nb-card-body>
         </nb-card>
     </div>
-    <div class="col-12" [hidden]="process_digital_ia" *ngIf="create_process">
-        <nb-card>
-            <nb-card-body>
-                <button nbButton size="small" status="primary"
-                    (click)="onFirstSubmit(next_first)"
-                    [disabled]="!createForm.valid || loading"
-                    [nbSpinner]="loading" nbSpinnerStatus="success">
-                    Siguiente
-                </button>
-            </nb-card-body>
-        </nb-card>
-    </div>
-</div>
+
+
 
 <ng-template #template>
     <nb-card style="width: 430px;" class="margin-bottom-0">
@@ -185,8 +156,11 @@
     </nb-card>
 </ng-template>
 
-<div class="row" *ngIf="form_process">
+<div class="col-12" *ngIf="create_process || form_process">
+    <div class="row">
     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+    <div class="col-12" *ngIf="create_process || form_process">
+</div>
         <div class="menu-content-out" [nbSpinner]="loading" nbSpinnerStatus="primary">
             <nb-accordion multi>
                 <nb-accordion-item expanded>
@@ -231,7 +205,13 @@
             <nb-card-body>
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <div cdkDropList #fieldList="cdkDropList" [cdkDropListData]="form_field"
+
+                        <div *ngIf="!id" class="wc-empty-state" style="text-align: center; padding: 50px 20px; border: 2px dashed #edf1f7; border-radius: 8px; margin-bottom: 20px;">
+                            <nb-icon icon="lock-outline" style="font-size: 3rem; color: #c5cee0;"></nb-icon>
+                            <h5 style="margin-top: 15px; color: #8f9bb3;">Guarda el documento para habilitar el constructor</h5>
+                        </div>
+                        <div *ngIf="id" cdkDropList #fieldList="cdkDropList" [cdkDropListData]="form_field"
+
                             [cdkDropListConnectedTo]="[typeList]" class="form-field-list"
                             (cdkDropListDropped)="dropField($event)" id="form-field-list">
                             <div *ngIf="form_field.length == 0" class="form-null">
@@ -241,7 +221,7 @@
                               [hidden]="field.field_type == 21 || field.field_type == 11 && field.label=='Número de documento a validar biometricamente'"
                               cdkDrag [cdkDragDisabled]="param_visit && i <= 2">
                                 <div *ngIf="field.field_type != 21 && !(field.field_type == 11 && field.label=='Número de documento a validar biometricamente')" style="width: 100%;">
-                                    <label nbTooltip="{{ nameField(field.field_type) }}" nbTooltipStatus="primary" *ngIf="field.field_type != 14" for="inputField-{{ i }}" class="label name-field">{{ i + 1 }} - {{ field.label }}
+                                    <label nbTooltip="{{ nameField(field.field_type) }}" nbTooltipStatus="primary" *ngIf="field.field_type != 14 && field.field_type != 27" for="inputField-{{ i }}" class="label name-field">{{ i + 1 }} - {{ field.label }}
                                     <span *ngIf="field.required">*</span></label>
                                     <button *ngIf="!field.obligatory_visit" nbTooltip="Eliminar" nbTooltipStatus="danger" (click)="onDeleteField(i)" size="small" style="float: right;" nbButton ghost status="danger"><nb-icon icon="trash-outline"></nb-icon>
                                     </button>
@@ -459,8 +439,15 @@
                                         Validar
                                     </button>
                                 </div> -->
+                                <!-- Separador de Sección -->
+                                <div *ngIf="field.field_type == 27" class="section-separator-builder">
+                                    <div class="section-separator-bar-builder">
+                                        <nb-icon icon="layers-outline" style="margin-right: 8px; color: #509180; font-size: 1.2rem;"></nb-icon>
+                                        <span class="section-separator-title-builder">{{ field.label }}</span>
+                                    </div>
+                                </div>
                                 <!-- End Type -->
-                                <label style="width: 100%;" *ngIf="field.field_type != 14 && field.field_type != 21" for="inputField-{{ i }}" class="label">
+                                <label style="width: 100%;" *ngIf="field.field_type != 14 && field.field_type != 21 && field.field_type != 27" for="inputField-{{ i }}" class="label">
                                     <span class="span-field">{{ field.description }}</span>
                                 </label>
                             </div>
@@ -604,7 +591,7 @@
                                 {{ i + 1 }} - {{ form.name }}
                             </nb-accordion-item-header>
                             <nb-accordion-item-body>
-                                <ng2-smart-table [settings]="settings_field" [source]="form.fields"></ng2-smart-table>
+                                <angular2-smart-table [settings]="settings_field" [source]="form.fields"></angular2-smart-table>
                             </nb-accordion-item-body>
                         </nb-accordion-item>
                     </nb-accordion>
@@ -662,7 +649,7 @@
                           [ngModel]="field"
                           (ngModelChange)="fieldChange($event)"
                           name="field">
-                          <nb-radio [hidden]="field['field_type']=='8' || field['field_type']=='14' || (field['label'] == 'Número de documento a validar biometricamente')"
+                          <nb-radio [hidden]="field['field_type']=='8' || field['field_type']=='14' || field['field_type']=='27' || (field['label'] == 'Número de documento a validar biometricamente')"
                             *ngFor="let field of form['fields']; let i=index;"
                               [value]="field" [class]="mouseClass(1, field.field)">
                               {{ getKeyField(field) }}. {{ field.label }}
@@ -1087,6 +1074,8 @@
             </nb-card-body>
         </nb-card>
     </div>
+    </div>
+</div>
 
     <div class="col-12" *ngIf="end_process">
         <nb-card>

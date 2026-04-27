@@ -7,7 +7,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { RoutingService } from '../../../services/routing.service';
 import { AdminService } from '../../../services/admin.service';
 import { Observable} from 'rxjs';
-import { Row } from 'ng2-smart-table/lib/lib/data-set/row';
+import { Row } from 'angular2-smart-table';
 import { pines } from '../../../usable/pines';
 
 const html2canvas = require('../../../../../node_modules/html2canvas');
@@ -26,9 +26,10 @@ interface FSEntry {
 }
 
 @Component({
-  selector: 'ngx-load',
-  templateUrl: './load.component.html',
-  styleUrls: ['./load.component.scss']
+    selector: 'ngx-load',
+    templateUrl: './load.component.html',
+    styleUrls: ['./load.component.scss'],
+    standalone: false
 })
 export class LoadComponent implements OnInit {
 
@@ -402,7 +403,7 @@ export class LoadComponent implements OnInit {
   }
 
   onSecondSubmit(next_second) {
-    if (this.inputMessagersModel < 1){
+    if (Number(this.inputMessagersModel) < 1){
       this.secondForm.markAsDirty();
     } else {
       this.loading = true;
@@ -752,9 +753,10 @@ export class LoadComponent implements OnInit {
 }
 
 @Component({
-  selector: 'ngx-role-dialog',
-  templateUrl: './dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', '.info-address-modal{max-width: 800px;}', 'input {margin: 10px 0;}', '.success-val{color:#00d68f !important}', '.danger-val{color:#ff3d71 !important}']
+    selector: 'ngx-address-info-dialog',
+    templateUrl: './dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', '.info-address-modal{max-width: 800px;}', 'input {margin: 10px 0;}', '.success-val{color:#00d68f !important}', '.danger-val{color:#ff3d71 !important}'],
+    standalone: false
 })
 export class AddressInfoDialogComponent implements OnInit{
 
@@ -780,9 +782,10 @@ export class AddressInfoDialogComponent implements OnInit{
 
 
 @Component({
-  selector: 'ngx-role-dialog',
-  templateUrl: './dialog_addre_route.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', '.info-address-modal{max-width: 800px;}', 'input {margin: 10px 0;}', '.success-val{color:#00d68f !important}', '.danger-val{color:#ff3d71 !important}']
+    selector: 'ngx-address-route-dialog',
+    templateUrl: './dialog_addre_route.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', '.info-address-modal{max-width: 800px;}', 'input {margin: 10px 0;}', '.success-val{color:#00d68f !important}', '.danger-val{color:#ff3d71 !important}'],
+    standalone: false
 })
 export class AddressRouteDialogComponent implements OnInit{
 

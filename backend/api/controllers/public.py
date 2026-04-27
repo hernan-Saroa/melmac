@@ -230,24 +230,23 @@ def get_user_geo(request):
         mobile_values = Device_Info_Movil.objects.filter(
             user__enterprise_id=user_val.enterprise_id,
         ).order_by(
-            'last_update'
+            '-last_update'
         ).values(
             'user_id', 'brand', 'model', 'version', 'battery', 'gps', 'last_update', 'version_app', 'last_conection'
         )
-        mobile_list = {k: list(g) for k, g in itertools.groupby(sorted(mobile_values, key=get_attr), get_attr)}
 
         user_values = list(user_values)
-        for user_id in (mobile_list).keys():
-            if mobile_list[user_id]:
-                item = mobile_list[user_id][0]
-                for index in [i for i, user in enumerate(user_values) if user['id'] == user_id]:
-                    user_values[index]['mobile'] = mobile_list[user_id][0]
+        user_dict = {user['id']: user for user in user_values}
 
-        data_offline = data_offline.values('user_id', 'creation_date__date',
-        ).annotate(count=Count('user_id'), count_2=Count('creation_date__date'),)
+        for m in mobile_values:
+            uid = m['user_id']
+            if uid in user_dict:
+                if 'mobile' not in user_dict[uid]:
+                    user_dict[uid]['mobile'] = m
 
-        users_active = users_active.values('user_id', 'creation_date__date',
-        ).annotate(count=Count('user_id'), count_2=Count('creation_date__date'),)
+        data_offline = data_offline.values('user_id', 'creation_date__date')
+
+        users_active = users_active.values('user_id', 'creation_date__date')
 
         users_active = users_active.union(data_offline)
         users_active = users_active.order_by('user_id', '-creation_date__date'
@@ -273,26 +272,32 @@ def get_user_geo(request):
             time_start = datetime.now(tz=TZ_INFO) - timedelta(days=1)
             time_start = time_start.replace(hour=0, minute=0, second=0, microsecond=0)
             last_pos = {}
-            for user_id in [el['id'] for el in user_values]:
-                today_pos = Follow_User.objects.filter(
-                    user_id=user_id,
-                    latitude__isnull=False,
-                    longitude__isnull=False,
-                ).order_by(
-                    '-creation_date'
-                ).values(
-                    'latitude',
-                    'longitude',
-                    'creation_date',
-                    'user_id',
-                )[0:1]
-                if len(today_pos):
-                    last_pos[user_id] = today_pos[0]
+            user_ids = [el['id'] for el in user_values]
+
+            all_today_pos = Follow_User.objects.filter(
+                user_id__in=user_ids,
+                latitude__isnull=False,
+                longitude__isnull=False,
+            ).order_by(
+                'user_id', '-creation_date'
+            ).distinct('user_id').values(
+                'latitude',
+                'longitude',
+                'creation_date',
+                'user_id',
+            )
+            last_pos = {pos['user_id']: pos for pos in all_today_pos}
             response['last'] = last_pos
 
         status_response = status.HTTP_200_OK
     except User_Enterprise.DoesNotExist:
         pass
+    except Exception as e:
+        import traceback
+        with open("crash.log", "a") as f:
+            f.write(traceback.format_exc())
+            f.write("\n")
+        raise
     return Response(response, status=status_response)
 
 @api_view(['GET'])
@@ -500,6 +505,20 @@ def get_detail_restritive_list(request):
     return Response(response, status=status_response)
 
 def is_date_between(date, start_date, end_date):
+    if isinstance(date, str):
+        try:
+            date = datetime.strptime(date.split(' ')[0].split('T')[0], '%Y-%m-%d').date()
+        except Exception:
+            pass
+    elif hasattr(date, 'date'):
+        date = date.date()
+    elif isinstance(date, int):
+        from datetime import datetime as dt_temp
+        try:
+            date = dt_temp.fromtimestamp(date).date()
+        except Exception:
+            pass
+
     if start_date is None and end_date is None:
         return True
     elif start_date is None:

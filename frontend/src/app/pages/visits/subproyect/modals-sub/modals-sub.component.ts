@@ -9,10 +9,11 @@ import { NbTagComponent, NbTagInputAddEvent } from '@nebular/theme';
 import { concatMapTo } from 'rxjs/operators';
 
 @Component({
-  selector: 'ngx-modals-sub',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './modals-sub.component.html',
-  styleUrls: ['./modals-sub.component.scss']
+    selector: 'ngx-modals-sub',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './modals-sub.component.html',
+    styleUrls: ['./modals-sub.component.scss'],
+    standalone: false
 })
 export class ModalsSubComponent implements OnInit {
 

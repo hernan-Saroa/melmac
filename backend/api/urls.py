@@ -6,6 +6,7 @@ from api import tests, views
 #from drf_yasg import openapi
 from api.controllers import (
     api as _api,
+    apis_config as _apis_config,
     api_v2 as _external,
     admin,
     answer,
@@ -31,7 +32,8 @@ from api.controllers import (
     plans,
     task,
     visits,
-    contacts
+    contacts,
+    statistics
 )
 
 #schema_view = get_schema_view(
@@ -173,6 +175,7 @@ urlpatterns = [
     path('answer/zip/pdf/list/', answer.get_massive_zip),
     path('answer/unique/validate/', answer.unique_validate),
     path('answer/unique/state/', answer.get_unique_state),
+    path('answer/state_answer/<int:pk>/', answer.get_state_answer),
     # Device
     path('devices/', device.DeviceList.as_view()),
     path('devices/<int:pk>/', device.DeviceDetail.as_view()),
@@ -206,6 +209,8 @@ urlpatterns = [
     path('enterprise/test_email/', enterprise.test_email),
     path('enterprise/test_email_send/', enterprise.test_email_send),
     path('enterprise/save_email/', enterprise.save_email),
+    path('enterprise/attempts/', enterprise.EnterpriseAttempt.as_view()),
+    path('enterprise/attempts/<int:pk>', enterprise.EnterpriseAttempt.as_view()),
     # Enrolment
     path('get_token/', notification.Enrolment.token),
     path('get_video_match/', notification.Enrolment.video_match),
@@ -219,6 +224,19 @@ urlpatterns = [
     # Dashboard
     path('data_statistics/indicator/<int:option>/', dashboard.get_indicator),
     path('data_statistics/graph/<int:option>/', dashboard.get_graph),
+    # Global Statistics (Super Admin Dashboard)
+    path('statistics/summary/', statistics.get_global_statistics),
+    path('statistics/fields/', statistics.get_field_distribution),
+    path('statistics/export/', statistics.export_audit_trail),
+    path('statistics/timeline/', statistics.get_timeline),
+    path('statistics/top_enterprises/', statistics.get_top_enterprises),
+    path('statistics/services/', statistics.get_services),
+    path('statistics/active_plans/', statistics.get_active_plans),
+    path('statistics/user_types/', statistics.get_user_types),
+    path('statistics/document_types/', statistics.get_document_types),
+    path('statistics/shared_documents/', statistics.get_shared_documents),
+    path('statistics/template_metrics/', statistics.get_template_metrics),
+    path('statistics/billable_transactions/', statistics.get_billable_transactions),
     # Routing
     path('routing/normalize_test/', routing.normalizer_test),
     path('routing/download_file/', routing.generate_file_from_route),
@@ -263,6 +281,12 @@ urlpatterns = [
     path('api/', _api.get_api_list),
     path('api/list/', _api.ApiEnterpriseDetail.as_view()),
     path('api/detail/list/', _api.ApiEnterpriseList.as_view()),
+
+    # APIS CONFIG
+    path('apis_config/', _apis_config.ApisConfigList.as_view()),
+    path('apis_config_params/', _apis_config.ApisConfigParamsList.as_view()),
+    path('apis_config_params/<int:config_id>/', _apis_config.ApisConfigParamsList.as_view()),
+    path('apis_config/get_forms/<int:field_type>/<int:enterprise>/', _apis_config.get_forms_for_apis_config),
     path('forward_handwritten_pdf/', form.forward_handwritten_pdf),
     path('list_handwritten_pdf/', form.list_handwritten_pdf),
     # System Log

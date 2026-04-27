@@ -1,13 +1,13 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 
 import { FormControl } from '@angular/forms';
-import { DefaultFilter } from 'ng2-smart-table';
+import { DefaultFilter } from 'angular2-smart-table';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SystemService } from '../../services/system.service';
-import { ViewCell } from 'ng2-smart-table';
+
 
 @Component({
-  template: `
+    template: `
     <div *ngIf="status">
       <nb-alert class="type-table" [status]="status.status">
         <div class="type-text">
@@ -17,8 +17,9 @@ import { ViewCell } from 'ng2-smart-table';
       </nb-alert>
     </div>
   `,
+    standalone: false
 })
-export class CustomRenderComponent implements ViewCell, OnInit {
+export class CustomRenderComponent implements  OnInit {
 
   status_list = [
     {
@@ -78,9 +79,10 @@ export class CustomRenderComponent implements ViewCell, OnInit {
 
 
 @Component({
-  selector: 'ngx-system',
-  templateUrl: './system.component.html',
-  styleUrls: ['./system.component.scss']
+    selector: 'ngx-system',
+    templateUrl: './system.component.html',
+    styleUrls: ['./system.component.scss'],
+    standalone: false
 })
 export class SystemComponent implements OnInit {
 
@@ -139,8 +141,8 @@ export class SystemComponent implements OnInit {
   date_init;
   date_end;
   loading = false;
-  data: any[];
-  filtered_data: any[];
+  data: any[] = [];
+  filtered_data: any[] = [];
   selectedItemNgModel;
   selectedItemNgModel2;
 
@@ -176,7 +178,7 @@ export class SystemComponent implements OnInit {
         type: 'string',
         filter: {
           type: "custom",
-          component: CustomInputTextFilterComponentAnswer,
+          component: CustomInputTextFilterComponentSystem,
         },
         sort: false,
       },
@@ -236,7 +238,7 @@ export class SystemComponent implements OnInit {
     };
 
     this.systemService.getLogs(data_filter).subscribe((response)=>{
-      if (response['status']){
+      if (response && response['status']){
         this.data = response['data'];
         this.filtered_data = response['data'];
         this.status_list.forEach((element, index) => {
@@ -247,7 +249,7 @@ export class SystemComponent implements OnInit {
           this.status_list[element.type].quantity += 1;
         });
       }
-    }, null, ()=>this.loading=false);
+    }, (error) => { this.loading = false; }, ()=>this.loading=false);
   }
 
   filterByType(type){
@@ -265,8 +267,8 @@ export class SystemComponent implements OnInit {
 }
 
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-system",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -279,8 +281,9 @@ export class SystemComponent implements OnInit {
 
     </nb-form-field>
   `,
+    standalone: false
 })
-export class CustomInputTextFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
+export class CustomInputTextFilterComponentSystem extends DefaultFilter implements OnInit, OnChanges {
   inputControl = new FormControl();
 
   constructor() {
@@ -291,7 +294,7 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });

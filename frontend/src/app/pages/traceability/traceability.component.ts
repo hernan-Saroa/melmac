@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { DefaultFilter, LocalDataSource } from 'ng2-smart-table';
+import { DefaultFilter, LocalDataSource } from 'angular2-smart-table';
 import { AnswerService } from '../../services/answer.service';
 import { TraceabilityService } from '../../services/traceability.service';
 import { ToastService } from '../../usable/toast.service';
@@ -10,9 +10,10 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, map } from "rxjs/operators";
 
 @Component({
-  selector: 'ngx-traceability',
-  templateUrl: './traceability.component.html',
-  styleUrls: ['./traceability.component.scss']
+    selector: 'ngx-traceability',
+    templateUrl: './traceability.component.html',
+    styleUrls: ['./traceability.component.scss'],
+    standalone: false
 })
 export class TraceabilityComponent implements OnInit {
 
@@ -155,7 +156,7 @@ export class TraceabilityComponent implements OnInit {
   getTXT() {
     let data = {}
     data['user'] = this.user;
-    let filters = this.trace_send.getFilter().filters
+    let filters = this.trace_send.getFilter()
     if(filters && filters.length > 0) {
       filters.forEach(filter => {
         if(filter['search'] != '') {
@@ -175,8 +176,8 @@ export class TraceabilityComponent implements OnInit {
 }
 
 @Component({
-  selector: "datetime-filter",
-  template: `
+    selector: "datetime-filter",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -195,6 +196,7 @@ export class TraceabilityComponent implements OnInit {
       <nb-rangepicker format="yyyy-MM-dd" #dateTimePicker ></nb-rangepicker>
     </nb-form-field>
   `,
+    standalone: false
 })
 export class CustomInputDateFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
   inputControl = new FormControl();
@@ -206,8 +208,8 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
   }
 
   ngOnInit() {
-    this.delay = 2000;
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       try {
         if (this.inputControl.value == null){
           this.query = '';

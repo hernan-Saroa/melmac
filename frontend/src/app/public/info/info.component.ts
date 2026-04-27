@@ -6,9 +6,10 @@ import { NbThemeService } from '@nebular/theme';
 import { THEMES } from '../../@theme/components';
 
 @Component({
-  selector: 'ngx-info',
-  templateUrl: './info.component.html',
-  styleUrls: ['./info.component.scss']
+    selector: 'ngx-info',
+    templateUrl: './info.component.html',
+    styleUrls: ['./info.component.scss'],
+    standalone: false
 })
 export class InfoComponent implements OnInit {
 

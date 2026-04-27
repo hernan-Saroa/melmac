@@ -260,8 +260,19 @@ class Enrolment():
             image = data['image'] #CC
             image_back = data['image_back'] #CC
             document = data['document']
+            entreprise = data['enterprise']
             user_id = data['user_id'] if 'user_id' in data else None
             user = User_Enterprise.objects.get(id=user_id) if user_id else None
+
+            from django.core.cache import cache
+            from api.models import Enterprise_Attempt
+            cache_key = f"attempt_18_{entreprise}_{document}"
+            limit_obj = Enterprise_Attempt.objects.filter(enterprise_id=entreprise, field_type_id=18).first()
+            if limit_obj and limit_obj.attempts > 0:
+                attempts = cache.get(cache_key, 0)
+                if attempts >= limit_obj.attempts:
+                    response['message'] = 'Firma bloqueada por exceso de intentos fallidos. Posible fraude.'
+                    return Response(response, status=status.HTTP_200_OK)
         except:
             response['message'] = 'Faltan Parametros'
             return Response(response, status.HTTP_200_OK)
@@ -337,10 +348,14 @@ class Enrolment():
                     except IndexError:
                             pass
                 if document_val == '' and result != 0 :
+                    if limit_obj and limit_obj.attempts > 0:
+                        cache.set(cache_key, cache.get(cache_key, 0) + 1, timeout=86400)
                     response['status'] = False
                     response['message'] = 'No se reconocio el número de documento, suba una nueva imagen frontal e intente nuevamente'
                     return Response(response, status=status.HTTP_200_OK)
                 elif result == 0:
+                    if limit_obj and limit_obj.attempts > 0:
+                        cache.set(cache_key, cache.get(cache_key, 0) + 1, timeout=86400)
                     response['status'] = False
                     response['message'] = 'La imagen frontal está de manera vertical, por favor gire la imagen frontal de manera horizontal'
                     return Response(response, status=status.HTTP_200_OK)
@@ -399,10 +414,14 @@ class Enrolment():
                             print(err)
                     # print(fech_nac, lug_nac, fech_exp, lug_exp, gs_rh, sexo)
                     if fech_exp == '' and data['result']['words_block_count']:
+                        if limit_obj and limit_obj.attempts > 0:
+                            cache.set(cache_key, cache.get(cache_key, 0) + 1, timeout=86400)
                         response['status'] = False
                         response['message'] = 'La imagen posterior está de manera vertical, por favor gire la imagen posterior de manera horizontal'
                         return Response(response, status=status.HTTP_200_OK)
                     elif data['result']['words_block_count'] == 0:
+                        if limit_obj and limit_obj.attempts > 0:
+                            cache.set(cache_key, cache.get(cache_key, 0) + 1, timeout=86400)
                         response['status'] = False
                         response['message'] = 'La imagen posterior está de manera vertical, por favor gire la imagen posterior de manera horizontal'
                         return Response(response, status=status.HTTP_200_OK)
@@ -421,6 +440,8 @@ class Enrolment():
 
         try:
             if(int(document) == int(document_val)):
+                if limit_obj and limit_obj.attempts > 0:
+                    cache.delete(cache_key)
                 response['status'] = True
                 response['data'] = {
                     'parameters' : {
@@ -441,6 +462,10 @@ class Enrolment():
                 return Response(response, status=status.HTTP_200_OK)
         except ValueError:
             pass
+        
+        if limit_obj and limit_obj.attempts > 0:
+            cache.set(cache_key, cache.get(cache_key, 0) + 1, timeout=86400)
+            
         response['status'] = False
         response['message'] = 'Datos no coinciden'
         return Response(response, status=status.HTTP_200_OK)
@@ -460,6 +485,16 @@ class Enrolment():
         ipAddress = data['ip_address'] if 'ip_address' in data else None
         document_id = data['document_id']
         user = User_Enterprise.objects.get(id=user_id) if user_id else None
+
+        from django.core.cache import cache
+        from api.models import Enterprise_Attempt
+        cache_key = f"attempt_10_{entreprise}_{document_id}"
+        limit_obj = Enterprise_Attempt.objects.filter(enterprise_id=entreprise, field_type_id=10).first()
+        if limit_obj and limit_obj.attempts > 0:
+            attempts = cache.get(cache_key, 0)
+            if attempts >= limit_obj.attempts:
+                response['message'] = 'Firma bloqueada por exceso de intentos fallidos. Posible fraude.'
+                return Response(response, status=status.HTTP_200_OK)
 
         try:
             profile_val = Profile.objects.filter(identification = data['document_id']).order_by('modify_date').last()
@@ -514,7 +549,9 @@ class Enrolment():
 
             response_service = json.loads(response)
 
-            if response_service['similarity'] > 0.7:
+            if response_service.get('similarity', 0) > 0.7:
+                if limit_obj and limit_obj.attempts > 0:
+                    cache.delete(cache_key)
                 # Registro único para la firma biometrica por respuesta campo.
                 spd_val = Sign_Profile_Document()
                 spd_val.profile_id = profile_val.id
@@ -564,6 +601,11 @@ class Enrolment():
                         )
                     }
                     create_traceability(content)
+
+            else:
+                if 'similarity' in response_service:
+                    if limit_obj and limit_obj.attempts > 0:
+                        cache.set(cache_key, cache.get(cache_key, 0) + 1, timeout=86400)
 
             return Response(response_service, status=status.HTTP_200_OK)
 

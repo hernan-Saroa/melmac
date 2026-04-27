@@ -5,16 +5,17 @@ import { ToastService } from '../../../usable/toast.service';
 import { Location } from '@angular/common';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { CustomDataSource } from '../../../usable/custom.dataSource';
-import { LocalDataSource, Ng2SmartTableComponent, DefaultFilter } from 'ng2-smart-table';
+import { LocalDataSource, Angular2SmartTableComponent, DefaultFilter } from 'angular2-smart-table';
 import { FormControl } from "@angular/forms";
 import { debounceTime, distinctUntilChanged, filter, map } from "rxjs/operators";
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../../../services/site.service';
 
 @Component({
-  selector: 'ngx-send',
-  templateUrl: './send.component.html',
-  styleUrls: ['./send.component.scss']
+    selector: 'ngx-send',
+    templateUrl: './send.component.html',
+    styleUrls: ['./send.component.scss'],
+    standalone: false
 })
 export class SendComponent implements OnInit {
 
@@ -23,7 +24,7 @@ export class SendComponent implements OnInit {
   charts = undefined;
   chart = false;
 
-  @ViewChild('table') table: Ng2SmartTableComponent;
+  @ViewChild('table') table: Angular2SmartTableComponent;
 
   dataChanged = [];
   selectedItems = [];
@@ -554,9 +555,10 @@ export class SendComponent implements OnInit {
 }
 
 @Component({
-  selector: 'resend-confirm-dialog',
-  templateUrl: 'dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}']
+    selector: 'resend-confirm-dialog',
+    templateUrl: 'dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}'],
+    standalone: false
 })
 export class ResendConfirmComponent implements OnInit{
 
@@ -622,8 +624,8 @@ export class ResendConfirmComponent implements OnInit{
 }
 
 @Component({
-  selector: "datetime-filter-send",
-  template: `
+    selector: "datetime-filter-send",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -642,6 +644,7 @@ export class ResendConfirmComponent implements OnInit{
       <nb-rangepicker format="yyyy-MM-dd" #dateTimePicker ></nb-rangepicker>
     </nb-form-field>
   `,
+    standalone: false
 })
 export class CustomInputDateFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
   inputControl = new FormControl();
@@ -653,8 +656,8 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
   }
 
   ngOnInit() {
-    this.delay = 1000;
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       try {
         if (this.inputControl.value == null){
           this.query = '';

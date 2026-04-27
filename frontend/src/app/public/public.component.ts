@@ -4,9 +4,10 @@ import { NbThemeService } from '@nebular/theme';
 import { THEMES } from '../@theme/components';
 
 @Component({
-  selector: 'ngx-public',
-  templateUrl: './public.component.html',
-  styleUrls: ['./public.component.scss']
+    selector: 'ngx-public',
+    templateUrl: './public.component.html',
+    styleUrls: ['./public.component.scss'],
+    standalone: false
 })
 export class PublicComponent implements OnInit {
 @ViewChild('pdfViewer', { static: false }) pdfViewer: ElementRef;

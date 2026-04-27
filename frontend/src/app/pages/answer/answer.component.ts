@@ -1,18 +1,17 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from '../../services/form.service';
 import { AnswerService } from '../../services/answer.service';
 import { ToastService } from '../../usable/toast.service';
 import { NbDialogRef, NbDialogService, NbMenuService } from '@nebular/theme';
 
-import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../../services/site.service';
 import { CustomDataSource } from '../../usable/custom.dataSource';
 import { debounceTime, distinctUntilChanged, filter, map } from "rxjs/operators";
-import { ViewCell } from 'ng2-smart-table';
+
 import { SharedService } from './shared.service';
 import { EnrollService } from '../../services/enroll.service';
 import { SwitchService } from '../../services/switch.service';
@@ -21,15 +20,16 @@ import { DetailAnswerComponent } from './detail-answer/detail-answer.component';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  template: `<button *ngIf="rowData && items.length > 0" (click)="clickMenu()" nbButton [nbContextMenu]="items" nbContextMenuTrigger="click" [nbContextMenuTag]="getTag()">
+    template: `<button (click)="clickMenu()" nbButton ghost [nbContextMenu]="items" nbContextMenuTrigger="click" [nbContextMenuTag]="getTag()">
     <nb-icon icon="more-vertical-outline"></nb-icon>
   </button>`,
+    standalone: false
 })
-export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy {
+export class CustomActionRenderComponent implements OnInit, OnDestroy, OnChanges {
 
   option = 0;
   renderValue: string;
-  items = [];
+  items: any[] = [{ icon: 'file-text-outline', title: 'Ver PDF' }];
   action_active = true;
   menu_service;
 
@@ -42,6 +42,7 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
     private _sharedService: SharedService,
     private modalSS:SwitchService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     config: NgbCarouselConfig
   ) {
     config.showNavigationArrows = true;
@@ -61,41 +62,77 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
     }
   }
 
-  ngOnInit() {
-    if(this.option == 3) return
+  setupItems() {
+    if(!this.rowData || this.option == 3) return
+    let newItems = [];
     if (this.rowData.type == 1) {
       if (![2].includes(this.option)) {
-        this.items = [
-          {
-            icon: 'file-text-outline',
-            title: 'Ver PDF',
-          },{
-            icon: 'file-text-outline',
-            title: 'Ver Excel',
-          }
-        ];
+        newItems.push({ icon: 'file-text-outline', title: 'Ver PDF', });
+        newItems.push({ icon: 'file-text-outline', title: 'Ver Excel', });
       } else {
         const user_data = JSON.parse(localStorage.getItem('session')) || null;
-        if (user_data['permission'].includes(70)) {
-          this.items = [{
+        if (user_data && user_data['permission'] && user_data['permission'].includes(70)) {
+          newItems.push({
             icon: 'edit-outline',
             title: 'Editar',
-          }];
+          });
+        } else {
+          newItems.push({ icon: 'file-text-outline', title: 'Ver PDF' });
         }
       }
 
       if (![1,2].includes(this.option)) {
-        this.onPermit();
+        // Editar
+        const user_data = JSON.parse(localStorage.getItem('session')) || null;
+        if (user_data && user_data['permission']) {
+          if (user_data['permission'].includes(31)) {
+           newItems.push({
+             icon: 'edit-outline',
+             title: 'Editar',
+           });
+          }
+          // Eliminar
+          if (user_data['permission'].includes(32)) {
+            newItems.push({
+              icon: 'trash-outline',
+              title: 'Eliminar',
+            });
+          }
+        }
       }
     } else {
-      this.items = [
-        {
-          icon: 'file-text-outline',
-          title: 'Ver PDF',
-        }
-      ]
+      newItems.push({
+        icon: 'file-text-outline',
+        title: 'Ver PDF',
+      });
+      newItems.push({
+        icon: 'file-text-outline',
+        title: 'Ver Excel',
+      });
+      newItems.push({
+        icon: 'edit-outline',
+        title: 'Editar',
+      });
+      newItems.push({
+        icon: 'trash-outline',
+        title: 'Eliminar',
+      });
     }
 
+    if (newItems.length > 0) {
+      this.items = [...newItems];
+    }
+    this.cdr.detectChanges(); // Force angular 19 to render the ngIf
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['rowData']) {
+      this.setupItems();
+    }
+  }
+
+  ngOnInit() {
+    this.setupItems();
     this.renderValue = this.value == null? "":this.value.toString();
     this.menu_service = this.nbMenuService.onItemClick().pipe(
       filter(({ tag }) => tag === this.getTag()),
@@ -116,6 +153,7 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
   }
 
   getTag(){
+    if (!this.rowData) return 'answer-tag-tmp';
     let name_tag = 'answer-tag-' + this.rowData.id
     if (this.rowData.consecutive) {
       name_tag += '-' + 1
@@ -127,18 +165,20 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
   onPermit() {
     // Editar
     const user_data = JSON.parse(localStorage.getItem('session')) || null;
-    if (user_data['permission'].includes(31)) {
-      this.items.push({
-        icon: 'edit-outline',
-        title: 'Editar',
-      })
-    }
-    // Eliminar
-    if (user_data['permission'].includes(32)) {
-      this.items.push({
-        icon: 'trash-outline',
-        title: 'Eliminar',
-      })
+    if (user_data && user_data['permission']) {
+      if (user_data['permission'].includes(31)) {
+        this.items.push({
+          icon: 'edit-outline',
+          title: 'Editar',
+        })
+      }
+      // Eliminar
+      if (user_data['permission'].includes(32)) {
+        this.items.push({
+          icon: 'trash-outline',
+          title: 'Eliminar',
+        })
+      }
     }
   }
 
@@ -148,8 +188,8 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
 }
 
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-answer",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -162,6 +202,7 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 export class CustomInputTextFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
@@ -172,11 +213,11 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
   }
 
   ngOnInit() {
-    this.delay = 1500;
+    
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -186,8 +227,8 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
 }
 
 @Component({
-  selector: "datetime-filter",
-  template: `
+    selector: "datetime-filter-answer",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -206,6 +247,7 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
       <nb-rangepicker format="yyyy-MM-dd" #dateTimePicker ></nb-rangepicker>
     </nb-form-field>
   `,
+    standalone: false
 })
 export class CustomInputDateFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
   inputControl = new FormControl();
@@ -217,8 +259,8 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
   }
 
   ngOnInit() {
-    this.delay = 2000;
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       try {
         if (this.inputControl.value == null){
           this.query = '';
@@ -274,8 +316,8 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
 }
 
 @Component({
-  selector: "input-button",
-  template: `
+    selector: "input-button",
+    template: `
   <button nbButton fullWidth
     status="primary"
     size="small"
@@ -286,6 +328,7 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
     <i class="nb-compose"></i>
   </button>
   `,
+    standalone: false
 })
 export class CustomButtonFilterComponentAnswer extends DefaultFilter implements OnChanges {
   inputControl = new FormControl();
@@ -302,9 +345,10 @@ export class CustomButtonFilterComponentAnswer extends DefaultFilter implements 
 }
 
 @Component({
-  selector: 'ngx-answer',
-  templateUrl: './answer.component.html',
-  styleUrls: ['./answer.component.scss']
+    selector: 'ngx-answer',
+    templateUrl: './answer.component.html',
+    styleUrls: ['./answer.component.scss'],
+    standalone: false
 })
 export class AnswerComponent implements OnInit, OnDestroy {
 
@@ -358,7 +402,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
           let text = ['Diligenciando','Presenta irregularidades','Presenta fraude','Recibido exitosamente','Cerrado por inactividad','Cerrado por el sistema']
           let i_class = 'gray';
           let icon = 'nb-alert';
-          switch (cell) {
+          switch (Number(cell)) {
             case 1: // Irregularidad
               i_class = 'warning';
               break;
@@ -374,7 +418,8 @@ export class AnswerComponent implements OnInit, OnDestroy {
               i_class = 'purple';
               break;
           }
-          return `<div title="${text[cell]}" class="icon-fill-out"><i class="${icon} ${i_class}"></i></div>`;
+          let text_val = text[Number(cell)] !== undefined ? text[Number(cell)] : 'Desconocido';
+          return `<div title="${text_val}" class="icon-fill-out"><i class="${icon} ${i_class}"></i></div>`;
         },
       },
       id: {
@@ -498,6 +543,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
           component: CustomButtonFilterComponentAnswer,
         },
         renderComponent: CustomActionRenderComponent,
+        componentInitFunction: (instance: any) => {},
       },
     },
     //rowClassFunction: (row) => this.getRowClass(row),
@@ -578,7 +624,6 @@ export class AnswerComponent implements OnInit, OnDestroy {
 
     
     this.activatedRoute.queryParams.subscribe(queryParams => {
-      console.log("parametros recibidos", queryParams['param1']); // Captura parámetros adicionales
       this.params_route = queryParams['param1'];
     });
   }
@@ -588,7 +633,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if(this.params_route != ""){
+    if (this.params_route !== undefined && this.params_route !== null && this.params_route !== "") {
       this.onUserRowSelectInitial(this.params_route);
     }
     const user_data = JSON.parse(localStorage.getItem('session')) || null;
@@ -642,13 +687,13 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   onUserRowSelectInitial(event): void {
-    console.log("parametros de envio", event);
     this.isSelect = true;
       if (this.isSelect) {
         // Resumen
         this.loading = true;
+        let targetId = typeof event === 'object' && event !== null ? event['id'] : event;
         this.index_select = this.list_answer.getData().findIndex((value) => {
-          return value.id == event['id']
+          return value.id == targetId;
         });
         this.is_last = (this.list_answer.getPaging().page-1)*10 + this.index_select + 1 == this.list_answer.getTotalCount();
         this.ani = false;
@@ -783,6 +828,10 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   downLoadFile(data: any, type: string) {
+    if (!data || data.byteLength === 0) {
+      this.toastService.showToast('warning', 'PDF Deshabilitado', 'Entorno sin dependencias gráficas para crear PDFs.');
+      return;
+    }
     this.src = data
     var blob = new Blob([data], { type: type.toString() });
     var url = window.URL.createObjectURL(blob);
@@ -1272,8 +1321,8 @@ export class AnswerComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-  selector: 'confirm-dialog',
-  template: `
+    selector: 'confirm-answer-dialog',
+    template: `
     <nb-card>
       <nb-card-header>
         <h3>{{data.title}}</h3>
@@ -1286,7 +1335,8 @@ export class AnswerComponent implements OnInit, OnDestroy {
         <button nbButton status="danger" (click)="close(true)" cdkFocusInitial color="warn">Aceptar</button>
       </nb-card-footer>
     </nb-card>`,
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}']
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}'],
+    standalone: false
 })
 export class ConfirmAnswerDialog {
   public data: {

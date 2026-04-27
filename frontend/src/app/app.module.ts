@@ -22,7 +22,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NbMomentDateModule } from '@nebular/moment';
 import { LoginNewComponent } from './login-new/login-new.component';
 import { UploadComponent } from './components/upload/upload.component';
 // Módulos de Angular Material
@@ -47,12 +47,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    NbMomentDateModule,
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY ',
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    NgbModule,
     FormsModule,
     MatFormFieldModule, // Agrega este módulo
     MatInputModule,     // Agrega este módulo

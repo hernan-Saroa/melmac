@@ -5,9 +5,10 @@ import { Observable, of } from 'rxjs';
 import { ContentObserver } from '@angular/cdk/observers';
 
 @Component({
-  selector: 'ngx-address',
-  templateUrl: './address.component.html',
-  styleUrls: ['./address.component.scss']
+    selector: 'ngx-address',
+    templateUrl: './address.component.html',
+    styleUrls: ['./address.component.scss'],
+    standalone: false
 })
 export class AddressComponent implements OnInit {
 

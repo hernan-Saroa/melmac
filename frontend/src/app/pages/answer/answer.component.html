@@ -1,5 +1,5 @@
 
-<nb-card *ngIf="permit_view" [nbSpinner]="loading" nbSpinnerStatus="primary" [hidden]="view_option != 0">
+<nb-card class="modern-card" *ngIf="permit_view" [nbSpinner]="loading" nbSpinnerStatus="primary" [hidden]="view_option != 0">
     <nb-card-header>
         <span [hidden]="option != 1">Papelera - </span>
         <label [hidden]="option == 2">Documentos {{option == 3 ? 'Diligenciando' : 'Recibidos'}} {{count}} de {{totCount}} </label>
@@ -37,12 +37,12 @@
 
     </nb-card-header>
     <nb-card-body>
-        <ng2-smart-table class="table-answer" [settings]="settings" (create)="onCreate($event)" [source]="list_answer"
-        (userRowSelect)="onUserRowSelect($event)" (custom)="onCustom($event)"></ng2-smart-table>
+        <angular2-smart-table class="table-answer" [settings]="settings" (create)="onCreate($event)" [source]="list_answer"
+        (userRowSelect)="onUserRowSelect($event)" (custom)="onCustom($event)"></angular2-smart-table>
     </nb-card-body>
 </nb-card>
 
-<nb-card *ngIf="!permit_view">
+<nb-card class="modern-card" *ngIf="!permit_view">
   <nb-card-header>
     <div style="text-align: center;" >
       No tienes permiso para ver esta sección. Contacte al administrador
@@ -53,7 +53,7 @@
 <!-- Resumen -->
 <div [hidden]="view_option != 1">
   <!-- Respuesta -->
-  <nb-card class="actions-card">
+  <nb-card class="modern-card" class="actions-card">
     <nb-card-header>
       <!-- Acciones -->
       <nb-actions size="small" style="float: left;">
@@ -82,7 +82,7 @@
     </nb-card-body>
   </nb-card>
 
-  <nb-card *ngIf="form_value" [hidden]="pdf_view">
+  <nb-card class="modern-card" *ngIf="form_value" [hidden]="pdf_view">
     <nb-card-body>
       <div class="col-xxl-12">
           <div class="row form_value">
@@ -127,7 +127,7 @@
       <div class="col-md-4" *ngFor="let form of status_answer">
         <div class="card-container">
           <ng-container>
-            <nb-card style="border-radius: 3px;">
+            <nb-card class="modern-card" style="border-radius: 3px;">
               <nb-card-header class="modal-title-card-header" *ngIf="form.field_type == 10"> FIRMA BIO-FACIAL: {{form.sign.length}}</nb-card-header>
               <nb-card-header class="modal-title-card-header" *ngIf="form.field_type == 18"> FIRMA CÉDULA: {{form.sign.length}}</nb-card-header>
               <nb-card-header class="modal-title-card-header" *ngIf="form.field_type == 22"> FIRMA OTP: {{form.sign.length}}</nb-card-header>
@@ -141,8 +141,8 @@
                   <img class="size-img" src="./assets/images/icons/melmac/MELMAC_FRAUDE.png">
                 </div>
                 <div *ngIf="form.main_status != 2">
-                  <ngb-carousel *ngIf="form.field_type == 10 || form.field_type == 18 || form.field_type == 22" >
-                    <ng-template ngbSlide>
+                  <div class="custom-carousel" *ngIf="form.field_type == 10 || form.field_type == 18 || form.field_type == 22" >
+                    <div class="custom-slide">
                       <div class="picsum-img-wrapper">
                         <div class="container">
                           <div class="flex-carousel">
@@ -157,8 +157,8 @@
                           </div>
                         </div>
                       </div>
-                    </ng-template>
-                    <ng-template ngbSlide *ngFor="let data of form.sign">
+                    </div>
+                    <div class="custom-slide" *ngFor="let data of form.sign">
                       <div class="picsum-img-wrapper" >
                         <div class="container">
                           <div class="flex-carousel">
@@ -192,8 +192,8 @@
                           </div>
                         </div>
                       </div>
-                    </ng-template>
-                  </ngb-carousel>
+                    </div>
+                  </div>
                 </div>
                 <button class="modal-btn-primary" nbButton outline status="info" size="tiny" (click)="openModal(form, false)" ><nb-icon icon="menu-outline"></nb-icon></button>
               </nb-card-body>
@@ -205,7 +205,7 @@
 
   <div class="row" *ngIf="status_fraud" [hidden]="pdf_view">
     <div class="col-12">
-      <nb-card>
+      <nb-card class="modern-card">
         <nb-card-body >
           <p class="text-info-danger">
             <span class="text-title-info-danger">¡ATENCIÓN!</span>   este documento ha sido cerrado de manera anticipada por sospecha de fraude.</p>
@@ -217,7 +217,7 @@
     </div>
   </div>
 
-  <nb-card *ngFor="let form of list_form; let i=index;" [nbSpinner]="loading || loading_element" [hidden]="pdf_view">
+  <nb-card class="modern-card" *ngFor="let form of list_form; let i=index;" [nbSpinner]="loading || loading_element" [hidden]="pdf_view">
     <nb-card-header id="{{ form.id }}" *ngIf="row_data_select && row_data_select.consecutive">
         Documento: {{ form.name }}
     </nb-card-header>
@@ -233,7 +233,7 @@
         <div class="col-xxl-12">
             <div class="row">
                 <div *ngFor="let field of form.fields; let i=index;" class="col-12 col-md-6" [hidden]="field.type == 14 || (form_value.source == 1 && field.type == 11 && field.name=='Número de documento a validar biometricamente')">
-                    <nb-card >
+                    <nb-card class="modern-card" >
                         <nb-card-header>{{ i + 1 }}) {{ field.name }}</nb-card-header>
                         <nb-card-body *ngIf="(field.type != 11 && field.type != 7 && field.type != 8 && field.type != 9 && field.type != 10 && field.type != 17 && field.type != 18 && field.type != 20 && field.type != 22 && field.type != 23 && field.type != 25 && field.type != 26)">
                             {{ field.answer }}
@@ -297,7 +297,7 @@
 
 <div [hidden]="view_option != 2">
   <!-- Respuesta -->
-  <nb-card class="actions-card" [hidden]="pdf_view">
+  <nb-card class="modern-card" class="actions-card" [hidden]="pdf_view">
     <nb-card-header>
       <!-- Acciones -->
       <nb-actions size="small" style="float: left;">
@@ -312,7 +312,7 @@
     </nb-card-header>
   </nb-card>
 
-  <nb-card *ngIf="enroll_data" [nbSpinner]="loading || loading_element" [hidden]="pdf_view">
+  <nb-card class="modern-card" *ngIf="enroll_data" [nbSpinner]="loading || loading_element" [hidden]="pdf_view">
     <nb-card-header>
       Inscripción {{ enroll_data.name }}
     </nb-card-header>
@@ -408,7 +408,7 @@
 </div>
 
 <!-- VISUALIZADOR DE PDF -->
-<nb-card *ngIf="permit_view" [nbSpinner]="loading" nbSpinnerStatus="primary" [hidden]="!pdf_view" size="giant">
+<nb-card class="modern-card" *ngIf="permit_view" [nbSpinner]="loading" nbSpinnerStatus="primary" [hidden]="!pdf_view" size="giant">
   <nb-card-body>
     <!-- Lista -->
     <div class="full_pdf_view" *ngIf="pdf_view">

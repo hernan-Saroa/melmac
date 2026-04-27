@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomInputTextFilterComponentAnswer, CustomRenderComponent, SystemComponent } from './system.component';
+import { CustomInputTextFilterComponentSystem, CustomRenderComponent, SystemComponent } from './system.component';
 import { SystemService } from '../../services/system.service';
 import { SystemRoutingModule } from './system-routing.module';
 import { NbAlertModule, NbBadgeModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbFormFieldModule, NbIconModule, NbInputModule, NbListModule, NbSpinnerModule,NbSelectModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 
 @NgModule({
   declarations: [
     SystemComponent,
-    CustomInputTextFilterComponentAnswer,
+    CustomInputTextFilterComponentSystem,
     CustomRenderComponent,
   ],
   imports: [
@@ -25,7 +25,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     FormsModule,
     NbInputModule,
     NbButtonModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbSpinnerModule,
     NbFormFieldModule,
     ReactiveFormsModule,

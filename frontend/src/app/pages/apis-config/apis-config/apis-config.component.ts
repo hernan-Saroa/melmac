@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { ApisConfigService } from '../../../services/apis-config.service';
 import { ToastService } from '../../../usable/toast.service';
 import { EnterpriseService } from '../../../services/enterprise.service';
 
 @Component({
-  selector: 'ngx-apis-config',
-  templateUrl: './apis-config.component.html',
-  styleUrls: ['./apis-config.component.scss']
+    selector: 'ngx-apis-config',
+    templateUrl: './apis-config.component.html',
+    styleUrls: ['./apis-config.component.scss'],
+    standalone: false
 })
 export class ApisConfigComponent implements OnInit {
 

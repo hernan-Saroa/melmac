@@ -1,5 +1,5 @@
 import { ToastService } from './../../../usable/toast.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { NbMenuService, NbComponentStatus, NbDialogService } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
@@ -7,9 +7,10 @@ import { ErrorComponent } from '../error/error.component';
 import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'ngx-masive',
-  templateUrl: './masive.component.html',
-  styleUrls: ['./masive.component.scss']
+    selector: 'ngx-masive',
+    templateUrl: './masive.component.html',
+    styleUrls: ['./masive.component.scss'],
+    standalone: false
 })
 export class DeviceMassiveComponent implements OnInit {
 

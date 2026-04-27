@@ -1,13 +1,179 @@
+/* GMAIL V3 TRIGGER */
 @import '../../styles/themes';
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
+@import 'bootstrap/scss/mixins/breakpoints';
+@import '@nebular/theme/styles/global/breakpoints';
 
 @include nb-install-component() {
   .menu-sidebar ::ng-deep .scrollable {
-    padding-top: nb-theme(layout-padding-top);
+    padding-top: 0 !important;
   }
 
   ::ng-deep nb-layout-header{
     overflow-x: auto;
   }
 }
+
+/* --- EXACT GOOGLE WORKSPACE (GMAIL) MATERIAL 3 SIDEBAR CLONE --- */
+::ng-deep nb-sidebar.menu-sidebar {
+  background-color: #f6f8fc !important; /* Authentic Google Workspace Background */
+  border-right: none !important; /* No harsh borders */
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+
+  .main-container-fixed { background-color: transparent !important; border: none !important; }
+  .scrollable { background-color: transparent !important; padding-top: 10px !important; border: none !important; flex-grow: 1 !important; }
+  nb-sidebar-header { background-color: transparent !important; border: none !important; padding: 0 !important; }
+
+  nb-menu {
+    border: none !important;
+    background-color: transparent !important;
+
+    /* Eradicate old styles */
+    .menu-item { border: none !important; }
+    ul.menu-items { padding: 8px 16px 8px 0 !important; border: none !important; } /* Attached to left, padding on right */
+
+    /* Google's Group Headers (e.g. Etiquetas) */
+    .menu-item-group {
+      color: #444746 !important;
+      font-size: 14px !important;
+      letter-spacing: 0.1px !important;
+      text-transform: none !important; /* Google doesn't use all-caps */
+      margin: 16px 0 8px 26px !important;
+      font-weight: 500 !important;
+      border: none !important;
+      font-family: "Google Sans", Roboto, Arial, sans-serif !important;
+    }
+
+    /* The Material 3 Nav Item */
+    .menu-item > a {
+      color: #444746 !important; /* Google Dark Grey */
+      border-radius: 0 50px 50px 0 !important; /* The iconic Google half-pill */
+      margin: 1px 0 !important;
+      padding: 0 12px 0 24px !important;
+      height: 38px !important; /* Strict height */
+      font-weight: 500 !important;
+      font-size: 14px !important;
+      transition: background-color 0.15s ease !important;
+      border: none !important;
+      background-color: transparent !important;
+      font-family: Roboto, Arial, sans-serif !important;
+
+      &:hover {
+        background-color: #e9eef6 !important; /* Hover Grey/Blue */
+        color: #1f1f1f !important;
+        nb-icon { color: #1f1f1f !important; }
+      }
+
+      &.active {
+        background-color: #d3e3fd !important; /* Google Active Blue */
+        color: #041e49 !important; /* Deep Blue Text */
+        font-weight: 600 !important;
+        
+        nb-icon, span.menu-title { 
+          color: #041e49 !important;
+        }
+      }
+    }
+
+    /* Icons */
+    nb-icon {
+      font-size: 18px !important;
+      color: #444746 !important;
+      margin-right: 18px !important;
+      width: 20px !important;
+      text-align: center !important;
+    }
+
+    /* Submenus */
+    .menu-items > .menu-item > .menu-items {
+      margin-top: 1px !important;
+      border: none !important;
+      background: transparent !important;
+      
+      .menu-item > a {
+        padding-left: 60px !important; /* Deeper indent */
+        font-size: 14px !important;
+        color: #444746 !important;
+        
+        &:hover {
+           background-color: #e9eef6 !important;
+           color: #1f1f1f !important;
+        }
+        &.active {
+          background-color: #d3e3fd !important;
+          color: #041e49 !important;
+          font-weight: 600 !important;
+        }
+      }
+    }
+  }
+
+  /* Footer */
+  nb-sidebar-footer {
+    border-top: none !important;
+    background-color: transparent !important;
+    padding: 12px 24px !important;
+
+    .sidebar-footer-wrapper {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      width: 100% !important;
+
+      .copyright-box {
+        display: flex !important;
+        flex-direction: column !important;
+        
+        .p-brand { color: #444746 !important; font-weight: 500 !important; font-size: 12px !important; font-family: Roboto, Arial, sans-serif !important; }
+        .p-version { color: #72777a !important; font-size: 10px !important; font-family: Roboto, Arial, sans-serif !important; }
+      }
+      .sidebar-toggle-btn {
+        background-color: transparent !important;
+        color: #444746 !important;
+        border: none !important;
+        border-radius: 50% !important; /* Circular like Google icons */
+        width: 36px !important;
+        height: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        transition: background-color 0.2s ease !important;
+        
+        &:hover {
+          background-color: #e9eef6 !important;
+          color: #1f1f1f !important;
+        }
+      }
+    }
+  }
+
+  &.compacted {
+    width: 80px !important; /* standard Gmail compact width */
+    
+    nb-menu {
+      ul.menu-items { padding: 8px 16px !important; } 
+      
+      .menu-item > a {
+        padding: 0 !important;
+        margin: 4px auto !important;
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 50px !important; /* Full circles! */
+        justify-content: center !important;
+        
+        nb-icon { margin-right: 0 !important; font-size: 22px !important; }
+      }
+    }
+    
+    nb-sidebar-footer {
+      padding: 12px 0 !important;
+      .sidebar-footer-wrapper {
+        justify-content: center !important;
+        .copyright-box { display: none !important; }
+      }
+    }
+  }
+}
+

@@ -1,17 +1,17 @@
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { AdminService } from './../../../services/admin.service';
 import { ToastService } from './../../../usable/toast.service';
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { Component, OnInit } from '@angular/core';
 
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
-  selector: "input-filter",
-  template: `
+    selector: "input-filter-location",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -24,6 +24,7 @@ import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 
@@ -38,7 +39,7 @@ export class CustomInputTextFilterComponentLocation extends DefaultFilter implem
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -51,9 +52,10 @@ export class CustomInputTextFilterComponentLocation extends DefaultFilter implem
 }
 
 @Component({
-  selector: 'ngx-location',
-  templateUrl: './location.component.html',
-  styleUrls: ['./location.component.scss']
+    selector: 'ngx-location',
+    templateUrl: './location.component.html',
+    styleUrls: ['./location.component.scss'],
+    standalone: false
 })
 export class LocationComponent implements OnInit {
 
@@ -284,9 +286,10 @@ export class LocationComponent implements OnInit {
 
 
 @Component({
-  selector: 'ngx-location-dialog',
-  templateUrl: 'dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', 'nb-select {width:100%;}']
+    selector: 'ngx-location-dialog',
+    templateUrl: 'dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', 'nb-select {width:100%;}'],
+    standalone: false
 })
 export class LocationDialogComponent implements OnInit{
 
@@ -360,15 +363,15 @@ export class LocationDialogComponent implements OnInit{
         } else {
           name = this.name.trim();
         }
-        if (!undefined == this.address || !("undefined" == ('' + this.address).trim())){
+        if (this.address !== undefined || !("undefined" == ('' + this.address).trim())){
           address = this.address.trim();
         }
 
-        if (!undefined == this.city || !("undefined" == ('' + this.city).trim())){
+        if (this.city !== undefined || !("undefined" == ('' + this.city).trim())){
           city = this.city;
         }
 
-        if (!undefined == this.country || !("undefined" == ('' + this.country).trim())){
+        if (this.country !== undefined || !("undefined" == ('' + this.country).trim())){
           country = this.country;
         }
 
@@ -409,15 +412,15 @@ export class LocationDialogComponent implements OnInit{
         } else {
           name = this.name.trim();
         }
-        if (!undefined == this.address || !("undefined" == ('' + this.address).trim())){
+        if (this.address !== undefined || !("undefined" == ('' + this.address).trim())){
           address = this.address.trim();
         }
 
-        if (!undefined == this.city || !("undefined" == ('' + this.city).trim())){
+        if (this.city !== undefined || !("undefined" == ('' + this.city).trim())){
           city = this.city;
         }
 
-        if (!undefined == this.country || !("undefined" == ('' + this.country).trim())){
+        if (this.country !== undefined || !("undefined" == ('' + this.country).trim())){
           country = this.country;
         }
         if (!errors) {

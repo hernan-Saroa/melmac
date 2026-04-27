@@ -1,4 +1,4 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { DatePipe } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,9 +8,10 @@ import { ToastService } from '../../../usable/toast.service';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'ngx-point',
-  templateUrl: './point.component.html',
-  styleUrls: ['./point.component.scss']
+    selector: 'ngx-point',
+    templateUrl: './point.component.html',
+    styleUrls: ['./point.component.scss'],
+    standalone: false
 })
 export class PointComponent implements OnInit {
 
@@ -273,9 +274,10 @@ export class PointComponent implements OnInit {
 
 
 @Component({
-  selector: 'ngx-role-dialog',
-  templateUrl: './dialog.html',
-  styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', '.info-address-modal{max-width: 800px;}', 'input {margin: 10px 0;}', '.success-val{color:#00d68f !important}', '.danger-val{color:#ff3d71 !important}']
+    selector: 'ngx-point-address-info-dialog',
+    templateUrl: './dialog.html',
+    styles: ['nb-card-footer { text-align:end}', 'button {margin:5px}', 'nb-checkbox {margin:5px 0px}', '.info-address-modal{max-width: 800px;}', 'input {margin: 10px 0;}', '.success-val{color:#00d68f !important}', '.danger-val{color:#ff3d71 !important}'],
+    standalone: false
 })
 export class AddressInfoDialogComponent implements OnInit{
 

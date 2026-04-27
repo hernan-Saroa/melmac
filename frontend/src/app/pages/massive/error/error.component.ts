@@ -1,13 +1,14 @@
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'angular2-smart-table';
 import { DeviceService } from './../../../services/device.service';
 import { NbDialogRef } from '@nebular/theme';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'ngx-error',
-  templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss']
+    selector: 'ngx-error',
+    templateUrl: './error.component.html',
+    styleUrls: ['./error.component.scss'],
+    standalone: false
 })
 export class ErrorComponent implements OnInit {
 

@@ -9,14 +9,15 @@ import { map } from 'rxjs/operators';
 import { ContactsService } from '../../../services/contacts.service';
 
 @Component({
-  selector: 'ngx-user',
-  templateUrl: "dialog-user.html",
-  styles: [
-    "nb-card-footer { text-align:end}",
-    "button {margin:5px}",
-    "nb-checkbox {margin:5px 0px}",
-    "nb-select {width:100%;}",
-  ],
+    selector: 'ngx-user',
+    templateUrl: "dialog-user.html",
+    styles: [
+        "nb-card-footer { text-align:end}",
+        "button {margin:5px}",
+        "nb-checkbox {margin:5px 0px}",
+        "nb-select {width:100%;}",
+    ],
+    standalone: false
 })
 export class UserDialogComponent implements OnInit {
   loading;

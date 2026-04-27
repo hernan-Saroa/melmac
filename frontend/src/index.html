@@ -9,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpVhQiwAllg1RAFaxMWSpQruuGARy0Y1k&libraries=places"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpVhQiwAllg1RAFaxMWSpQruuGARy0Y1k&libraries=places&loading=async"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+  <script async defer type="text/javascript" src="https://apis.google.com/js/api.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11203362150"></script>
   <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-11203362150'); </script>
@@ -21,15 +21,88 @@
 <body class="mat-typography" style="min-width: 0!important;">
   <ngx-app>Loading...</ngx-app>
 
-  <style>@-webkit-keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@-moz-keyframes spin{0%{-moz-transform:rotate(0)}100%{-moz-transform:rotate(360deg)}}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.spinner{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1003;background: #000000;overflow:hidden}  .spinner div:first-child{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;box-shadow:0 3px 3px 0 rgba(255,56,106,1);transform:translate3d(0,0,0);animation:spin 2s linear infinite}  .spinner div:first-child:after,.spinner div:first-child:before{content:'';position:absolute;border-radius:50%}  .spinner div:first-child:before{top:5px;left:5px;right:5px;bottom:5px;box-shadow:0 3px 3px 0 rgb(255, 228, 32);-webkit-animation:spin 3s linear infinite;animation:spin 3s linear infinite}  .spinner div:first-child:after{top:15px;left:15px;right:15px;bottom:15px;box-shadow:0 3px 3px 0 rgba(61, 175, 255,1);animation:spin 1.5s linear infinite}</style>
-  <div id="nb-global-spinner" class="spinner">
-    <div class="blob blob-0"></div>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="blob blob-4"></div>
-    <div class="blob blob-5"></div>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+    .loader-screen {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #ffffff; z-index: 99999;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    /* The ring + logo assembly */
+    .ring-container {
+      position: relative;
+      width: 180px; height: 180px;
+      margin-bottom: 32px;
+    }
+    /* SVG progress ring */
+    .ring-container svg {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      transform: rotate(-90deg); /* Start from top */
+    }
+    .ring-bg {
+      fill: none;
+      stroke: #f1f5f9;
+      stroke-width: 2;
+    }
+    .ring-fill {
+      fill: none;
+      stroke: #509180; /* Melmac Emerald */
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-dasharray: 502; /* 2 * PI * 80 */
+      stroke-dashoffset: 502;
+      transition: stroke-dashoffset 0.25s ease-out;
+    }
+    /* Logo sits perfectly centered inside the ring */
+    .ring-container img {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110px;
+    }
+    /* Small, graceful percentage text */
+    .loader-percent {
+      font-size: 13px;
+      font-weight: 300;
+      color: #94a3b8;
+      letter-spacing: 2px;
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+  <div id="nb-global-spinner" class="loader-screen">
+    <div class="ring-container">
+      <svg viewBox="0 0 180 180">
+        <circle class="ring-bg" cx="90" cy="90" r="80"></circle>
+        <circle class="ring-fill" id="progress-ring" cx="90" cy="90" r="80"></circle>
+      </svg>
+      <img src="assets/images/logo_melmac_cursive.png" alt="Melmac" />
+    </div>
+    <span class="loader-percent" id="loader-pct">0%</span>
   </div>
+
+  <script>
+    (function() {
+      var pct = 0;
+      var ring = document.getElementById('progress-ring');
+      var label = document.getElementById('loader-pct');
+      var circumference = 2 * Math.PI * 80; // ~502
+
+      setInterval(function() {
+        // Logarithmic easing: fast start, slow towards 99%
+        var step = Math.max(1, Math.floor((98 - pct) / 6));
+        if (Math.random() > 0.3) pct += step;
+        if (pct > 99) pct = 99;
+
+        if (ring && label) {
+          var offset = circumference - (pct / 100) * circumference;
+          ring.style.strokeDashoffset = offset;
+          label.textContent = pct + '%';
+        }
+      }, 100);
+    })();
+  </script>
 
 </body>
 </html>

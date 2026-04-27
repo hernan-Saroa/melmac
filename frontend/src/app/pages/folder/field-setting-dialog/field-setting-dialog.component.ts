@@ -8,9 +8,10 @@ import { FieldDialogComponent } from '../field-dialog/field-dialog.component';
 import { FolderComponent } from '../folder.component';
 
 @Component({
-  selector: 'ngx-location-dialog',
-  templateUrl: 'field-setting-dialog.component.html',
-  styleUrls: ["field-setting-dialog.component.scss"]
+    selector: 'ngx-location-dialog',
+    templateUrl: 'field-setting-dialog.component.html',
+    styleUrls: ["field-setting-dialog.component.scss"],
+    standalone: false
 })
 export class FieldSettingDialogComponent implements OnInit{
 

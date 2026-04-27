@@ -5,9 +5,10 @@ import { Component,ChangeDetectorRef } from '@angular/core';
 import { NbResetPasswordComponent, NbAuthService } from '@nebular/auth';
 
 @Component({
-  selector: 'ngx-recover',
-  templateUrl: './recover.component.html',
-  styleUrls: ['./recover.component.scss']
+    selector: 'ngx-recover',
+    templateUrl: './recover.component.html',
+    styleUrls: ['./recover.component.scss'],
+    standalone: false
 })
 export class RecoverComponent extends NbResetPasswordComponent {
   confirmPassword = '';

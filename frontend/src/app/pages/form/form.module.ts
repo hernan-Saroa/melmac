@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import {
   NbActionsModule,
   NbAccordionModule,
@@ -26,7 +26,7 @@ import {
   NbProgressBarModule,
   NbDatepickerModule
 } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -44,7 +44,7 @@ import { AssociateComponent, AssociateDialogComponent } from './associate/associ
 
 import { CreateComponent as CreateDigitalComponent, FieldDialogComponent, ModalAdditionalComponent } from './create/create.component';
 
-import { SignaturePadModule } from 'angular2-signaturepad';
+import { SignaturePadComponent } from '@almothafar/angular-signature-pad';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ConfirmAnswerDialog } from '../answer/answer.component';
 //import { CustomButtonFilterComponentAnswer } from '../answer/answer.component';
@@ -56,11 +56,10 @@ import { HandwrittenComponent } from './answer/handwritten/handwritten.component
 import { ModalComponent } from './answer/modal/modal.component';
 import { AddressComponent } from './answer/address/address.component';
 import { SendComponent, ResendConfirmComponent, CustomInputDateFilterComponentAnswer } from './send/send.component';
-import { Ng2TelInputModule } from 'ng2-tel-input';
+
 import { BioComponent } from './answer/sign/bio/bio.component';
 import { DocComponent } from './answer/sign/doc/doc.component';
 import { OtpComponent } from './answer/sign/otp/otp.component';
-import { SolarComponent } from '../dashboard/echarts/solar/solar.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { MatButtonModule } from '@angular/material/button';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -75,7 +74,7 @@ import { SharedModule } from '../../shared/shared.module';
     NbButtonModule,
     FormRoutingModule,
     ngFormsModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     NbStepperModule,
     FormsModule,
     ReactiveFormsModule,
@@ -86,7 +85,7 @@ import { SharedModule } from '../../shared/shared.module';
     NbSpinnerModule,
     NbActionsModule,
     NbDialogModule.forChild(),
-    SignaturePadModule,
+    SignaturePadComponent,
     PdfViewerModule,
     NbButtonGroupModule,
     NbRadioModule,
@@ -100,11 +99,13 @@ import { SharedModule } from '../../shared/shared.module';
     CodeInputModule,
     NbFormFieldModule,
     NbTimepickerModule.forRoot(),
-    Ng2TelInputModule.forRoot(),
+    
     NbListModule,
     NbAlertModule,
     NbProgressBarModule,
-    NgxEchartsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
     NbDatepickerModule,
     MatButtonModule,
     NbEvaIconsModule,
@@ -132,11 +133,11 @@ import { SharedModule } from '../../shared/shared.module';
     BioComponent,
     DocComponent,
     OtpComponent,
-    SolarComponent,
     CamDetectComponent
   ],
   providers: [
     UserService
   ],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class FormModule { }

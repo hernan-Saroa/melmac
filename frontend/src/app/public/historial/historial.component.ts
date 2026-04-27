@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AnswerService } from '../../services/answer.service';
 import { OnChanges, SimpleChanges } from "@angular/core";
 import { FormControl} from "@angular/forms";
-import { DefaultFilter } from "ng2-smart-table";
+import { DefaultFilter } from "angular2-smart-table";
 import { debounceTime, distinctUntilChanged} from "rxjs/operators";
-import { ViewCell } from 'ng2-smart-table';
+
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../../services/site.service';
 import { CustomDataSource } from './custom.dataSource';
@@ -13,11 +13,12 @@ import { SharedService } from '../shared.service';
 
 
 @Component({
-  template: `<button *ngIf="rowData" (click)="clickMenu()" nbButton [nbContextMenu]="items" nbContextMenuTrigger="click" [nbContextMenuTag]="getTag()">
+    template: `<button *ngIf="rowData" (click)="clickMenu()" nbButton [nbContextMenu]="items" nbContextMenuTrigger="click" [nbContextMenuTag]="getTag()">
     <nb-icon icon="more-vertical-outline"></nb-icon>
   </button>`,
+    standalone: false
 })
-export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy {
+export class CustomActionRenderComponent implements  OnInit, OnDestroy {
 
   inactive = false;
   renderValue: string;
@@ -56,8 +57,8 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
 }
 
 @Component({
-  selector: "input-filter-historial",
-  template: `
+    selector: "input-filter-historial",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -70,6 +71,7 @@ export class CustomActionRenderComponent implements ViewCell, OnInit, OnDestroy 
 
     </nb-form-field>
   `,
+    standalone: false
 })
 
 export class CustomInputTextFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
@@ -80,11 +82,11 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
   }
 
   ngOnInit() {
-    this.delay = 1500;
+    
     if (this.query) {
       this.inputControl.setValue(this.query);
     }
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       this.query = this.inputControl.value;
       this.setFilter();
     });
@@ -94,8 +96,8 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
 }
 
 @Component({
-  selector: "datetime-filter-historial",
-  template: `
+    selector: "datetime-filter-historial",
+    template: `
     <nb-form-field>
       <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
       <input
@@ -114,6 +116,7 @@ export class CustomInputTextFilterComponentAnswer extends DefaultFilter implemen
       <nb-rangepicker format="yyyy-MM-dd" #dateTimePicker ></nb-rangepicker>
     </nb-form-field>
   `,
+    standalone: false
 })
 export class CustomInputDateFilterComponentAnswer extends DefaultFilter implements OnInit, OnChanges {
   inputControl = new FormControl();
@@ -125,8 +128,8 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
   }
 
   ngOnInit() {
-    this.delay = 2000;
-    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+    
+    this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe((value: string) => {
       try {
         if (this.inputControl.value == null){
           this.query = '';
@@ -182,9 +185,10 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
 }
 
 @Component({
-  selector: "input-button",
-  template: `
+    selector: "input-button",
+    template: `
   `,
+    standalone: false
 })
 export class CustomButtonFilterComponentAnswer extends DefaultFilter implements OnChanges {
   inputControl = new FormControl();
@@ -197,9 +201,10 @@ export class CustomButtonFilterComponentAnswer extends DefaultFilter implements 
 }
 
 @Component({
-  selector: 'ngx-historial',
-  templateUrl: './historial.component.html',
-  styleUrls: ['./historial.component.scss']
+    selector: 'ngx-historial',
+    templateUrl: './historial.component.html',
+    styleUrls: ['./historial.component.scss'],
+    standalone: false
 })
 export class HistorialComponent implements OnInit {
   token_link = '';

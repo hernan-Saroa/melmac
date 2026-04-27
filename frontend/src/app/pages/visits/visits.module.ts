@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { VisitsRoutingModule } from './visits-routing.module';
 import { ThemeModule } from '../../@theme/theme.module';
 import { NbIconModule, NbInputModule, NbCardModule, NbAccordionModule, NbCheckboxModule, NbDialogModule, NbButtonModule, NbSelectModule, NbToggleModule, NbLayoutModule, NbSpinnerModule, NbFormFieldModule, NbTooltipModule, NbTimepickerModule, NbDatepickerModule,NbCalendarModule,NbRadioModule,NbBadgeModule,NbAlertModule,NbListModule,NbAutocompleteModule,NbActionsModule,NbTabsetModule,NbSidebarModule,NbMenuModule } from '@nebular/theme';
@@ -24,7 +24,7 @@ import { ConfirmDialogC } from './programming/create/create.component';
 import { CustomActionRenderComponent, TableComponent } from './table/table.component';
 
 
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { NbTreeGridModule, NbContextMenuModule,NbTagModule } from '@nebular/theme';
 
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -64,7 +64,7 @@ import { DetailVisitComponent } from './detail-visit/detail-visit.component';
     NbLayoutModule,
     NbToggleModule,
     ThemeModule,
-    Ng2SmartTableModule,
+    Angular2SmartTableModule,
     VisitsRoutingModule,
     MatDialogModule,
     MatButtonModule,

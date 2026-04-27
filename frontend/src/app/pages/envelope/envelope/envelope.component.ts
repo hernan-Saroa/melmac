@@ -6,9 +6,10 @@ import { EnvelopeService } from '../../../services/envelope.service';
 import { ToastService } from '../../../usable/toast.service';
 
 @Component({
-  selector: 'ngx-envelope',
-  templateUrl: './envelope.component.html',
-  styleUrls: ['./envelope.component.scss']
+    selector: 'ngx-envelope',
+    templateUrl: './envelope.component.html',
+    styleUrls: ['./envelope.component.scss'],
+    standalone: false
 })
 export class EnvelopeComponent implements OnInit, OnDestroy {
   searchTerm;

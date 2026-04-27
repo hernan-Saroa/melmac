@@ -4,9 +4,10 @@ import { AnswerService } from '../../../../services/answer.service';
 import { DigitalService } from '../../../../services/digital.service';
 
 @Component({
-  selector: 'ngx-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+    selector: 'ngx-detail',
+    templateUrl: './detail.component.html',
+    styleUrls: ['./detail.component.scss'],
+    standalone: false
 })
 export class DetailComponent implements OnInit {
 

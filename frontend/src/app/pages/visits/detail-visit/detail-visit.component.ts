@@ -6,9 +6,10 @@ import { DatePipe } from '@angular/common';
 import { ToastService } from '../../../usable/toast.service';
 
 @Component({
-  selector: 'ngx-detail-visit',
-  templateUrl: './detail-visit.component.html',
-  styleUrls: ['./detail-visit.component.scss']
+    selector: 'ngx-detail-visit',
+    templateUrl: './detail-visit.component.html',
+    styleUrls: ['./detail-visit.component.scss'],
+    standalone: false
 })
 export class DetailVisitComponent implements OnInit {
   idTask;

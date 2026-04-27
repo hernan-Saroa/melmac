@@ -9,9 +9,10 @@ import { embedDashboard } from "@superset-ui/embedded-sdk";
 import { SupersetService } from '../superset.service';
 
 @Component({
-  selector: 'ngx-superset',
-  templateUrl: './superset.component.html',
-  styleUrls: ['./superset.component.scss']
+    selector: 'ngx-superset',
+    templateUrl: './superset.component.html',
+    styleUrls: ['./superset.component.scss'],
+    standalone: false
 })
 export class SupersetComponent implements OnInit {
 

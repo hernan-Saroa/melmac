@@ -6,9 +6,10 @@ import { ToastService } from '../../../usable/toast.service';
 import { country } from '../../form/data';
 
 @Component({
-  selector: 'ngx-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
+    selector: 'ngx-view',
+    templateUrl: './view.component.html',
+    styleUrls: ['./view.component.scss'],
+    standalone: false
 })
 export class AnswerViewComponent implements OnInit {
 

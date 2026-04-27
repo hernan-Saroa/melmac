@@ -7,9 +7,10 @@ import { DialogMassiveComponent } from '../dialog-massive/dialog-massive.compone
 import { IContextDialog, IResponseDialog, IResponseDialogData } from '../../../core/models/dialog.model';
 
 @Component({
-  selector: 'ng-input-share-document',
-  templateUrl: './input-share-document.component.html',
-  styleUrls: ['./input-share-document.component.scss']
+    selector: 'ng-input-share-document',
+    templateUrl: './input-share-document.component.html',
+    styleUrls: ['./input-share-document.component.scss'],
+    standalone: false
 })
 export class InputShareDocumentComponent implements OnInit {
 

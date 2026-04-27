@@ -11,10 +11,24 @@ import { HttpClient } from '@angular/common/http';
 
 declare var MediaRecorder: any;
 
+interface SpeechRecognition extends EventTarget {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  start(): void;
+  stop(): void;
+  onresult: (event: any) => void;
+  onend: () => void;
+}
+interface SpeechRecognitionEvent {
+  results: any[][];
+}
+
 @Component({
-  selector: 'ngx-doc',
-  templateUrl: './doc.component.html',
-  styleUrls: ['./doc.component.scss']
+    selector: 'ngx-doc',
+    templateUrl: './doc.component.html',
+    styleUrls: ['./doc.component.scss'],
+    standalone: false
 })
 export class DocComponent implements OnInit {
 
@@ -813,7 +827,7 @@ export class DocComponent implements OnInit {
 
   async startCamera2() {
     //console.log("25A")
-    navigator.permissions.query({ name: 'camera' }).then((permissionStatus) => {
+    navigator.permissions.query({ name: 'camera' as any }).then((permissionStatus) => {
       //console.log(permissionStatus.state)
       if (permissionStatus.state === 'denied') {
         // Mostrar un mensaje al usuario sobre cómo habilitar manualmente el permiso

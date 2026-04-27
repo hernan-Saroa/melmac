@@ -4,9 +4,10 @@ import { EnterpriseService } from '../../../services/enterprise.service';
 import { ToastService } from '../../../usable/toast.service';
 
 @Component({
-  selector: 'ngx-attempts',
-  templateUrl: './attempts.component.html',
-  styleUrls: ['./attempts.component.scss']
+    selector: 'ngx-attempts',
+    templateUrl: './attempts.component.html',
+    styleUrls: ['./attempts.component.scss'],
+    standalone: false
 })
 export class AttemptsComponent implements OnInit {
 

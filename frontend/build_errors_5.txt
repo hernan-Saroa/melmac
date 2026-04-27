@@ -1,0 +1,316 @@
+
+> ngx-admin@8.0.0 build
+> ng build
+
+Node.js version v25.8.1 detected.
+Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, please see https://nodejs.org/en/about/previous-releases/.
+[1m[33mWorkspace extension with invalid name (defaultProject) found.[39m[22m
+[1m[33mOne or more browsers which are configured in the project's Browserslist configuration will be ignored as ES5 output is not supported by the Angular CLI.
+Ignored browsers: ie 11, kaios 2.5, op_mini all[39m[22m
+- Generating browser application bundles (phase: setup)...
+[1m[33m    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browserslist configuration. For more information, see https://angular.dev/tools/cli/build#configuring-browser-compatibility
+    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.[39m[22m
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+[1m[33m
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 78, column 32 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:78:32:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+78 |       border-top-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 79:33  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 79, column 35 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:79:35:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+79 |       border-bottom-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 80:36  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 89, column 33 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:89:33:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+89 |         border-top-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 90:34  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 90, column 36 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:90:36:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+90 |         border-bottom-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 91:37  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 119, column 20 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:119:20:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div(100, $howManySteps) or calc(100 / $howManySteps)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+119 |     $stepName: ($i*(100 / $howManySteps));
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 120:21  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+7 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\@asymmetrik\ngx-leaflet\dist\leaflet\core\leaflet.directive.js depends on 'leaflet'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\@nebular\eva-icons\fesm2022\nebular-eva-icons.mjs depends on 'eva-icons'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'rgbcolor'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\dashboard\echarts\echarts.component.ts depends on 'html2canvas'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet-polylinedecorator'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet.markercluster'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+[39m[22m
+[1m[31m
+./src/app/@theme/styles/styles.scss - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\@theme\styles\styles.scss 5:9                   root stylesheet
+
+./src/app/@theme/components/footer/footer.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\@theme\components\footer\footer.component.scss 1:9  root stylesheet
+
+./src/app/@theme/components/header/header.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\@theme\components\header\header.component.scss 3:9  root stylesheet
+
+./src/app/@theme/components/switcher/switcher.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\@theme\components\switcher\switcher.component.scss 1:9  root stylesheet
+
+./src/app/@theme/components/toggle-settings-button/toggle-settings-button.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9                                      @import
+  src\app\@theme\styles\themes.scss 6:9                                                       @import
+  src\app\@theme\components\toggle-settings-button\toggle-settings-button.component.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/one-column/one-column.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9        @import
+  src\app\@theme\styles\themes.scss 6:9                         @import
+  src\app\@theme\layouts\one-column\one-column.layout.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/three-columns/three-columns.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9              @import
+  src\app\@theme\styles\themes.scss 6:9                               @import
+  src\app\@theme\layouts\three-columns\three-columns.layout.scss 1:9  root stylesheet
+
+./src/app/@theme/layouts/two-columns/two-columns.layout.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\@theme\layouts\two-columns\two-columns.layout.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/echarts/echarts.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9      @import
+  src\app\@theme\styles\themes.scss 6:9                       @import
+  src\app\pages\dashboard\echarts\echarts.component.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/echarts/solar/solar.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9          @import
+  src\app\@theme\styles\themes.scss 6:9                           @import
+  src\app\pages\dashboard\echarts\solar\solar.component.scss 1:9  root stylesheet
+
+./src/app/pages/dashboard/status-card/status-card.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9              @import
+  src\app\@theme\styles\themes.scss 6:9                               @import
+  src\app\pages\dashboard\status-card\status-card.component.scss 1:9  root stylesheet
+
+./src/app/pages/enterprise/detail/detail.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9     @import
+  src\app\@theme\styles\themes.scss 6:9                      @import
+  src\app\pages\enterprise\detail\detail.component.scss 1:9  root stylesheet
+
+./src/app/pages/folder/folder.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+"+" and "-" must be surrounded by whitespace in calculations.
+    ╷
+430 │     width: calc(100%-15vw);
+    │                     ^
+    ╵
+  src\app\pages\folder\folder.component.scss 430:21  root stylesheet
+
+./src/app/pages/pages.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\pages\pages.component.scss 1:9                  root stylesheet
+
+./src/app/pages/user/user.component.scss?ngResource - Error: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\pages\user\user.component.scss 1:9              root stylesheet
+
+./src/app/@theme/styles/styles.scss?ngGlobalStyle - Error: Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+HookWebpackError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+Can't find stylesheet to import.
+  ╷
+7 │ @import '@nebular/theme/styles/core/functions';
+  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  src\app\@theme\styles\material\_material-dark.scss 7:9  @import
+  src\app\@theme\styles\themes.scss 6:9                   @import
+  src\app\@theme\styles\styles.scss 5:9                   root stylesheet
+
+./node_modules/@nebular/theme/fesm2022/nebular-theme.mjs:4660:21-29 - Error: export 'DOCUMENT' (imported as 'DOCUMENT') was not found in '@angular/core' (possible exports: ANIMATION_MODULE_TYPE, APP_BOOTSTRAP_LISTENER, APP_ID, APP_INITIALIZER, AfterRenderPhase, ApplicationInitStatus, ApplicationModule, ApplicationRef, Attribute, COMPILER_OPTIONS, CSP_NONCE, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, CompilerFactory, Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, ContentChild, ContentChildren, DEFAULT_CURRENCY_CODE, DebugElement, DebugEventListener, DebugNode, DefaultIterableDiffer, DestroyRef, Directive, ENVIRONMENT_INITIALIZER, ElementRef, EmbeddedViewRef, EnvironmentInjector, ErrorHandler, EventEmitter, ExperimentalPendingTasks, HOST_TAG_NAME, Host, HostAttributeToken, HostBinding, HostListener, INJECTOR, Inject, InjectFlags, Injectable, InjectionToken, Injector, Input, IterableDiffers, KeyValueDiffers, LOCALE_ID, MissingTranslationStrategy, ModuleWithComponentFactories, NO_ERRORS_SCHEMA, NgModule, NgModuleFactory, NgModuleRef, NgProbeToken, NgZone, Optional, Output, OutputEmitterRef, PACKAGE_ROOT_URL, PLATFORM_ID, PLATFORM_INITIALIZER, Pipe, PlatformRef, Query, QueryList, Renderer2, RendererFactory2, RendererStyleFlags2, Sanitizer, SecurityContext, Self, SimpleChange, SkipSelf, TRANSLATIONS, TRANSLATIONS_FORMAT, TemplateRef, Testability, TestabilityRegistry, TransferState, Type, VERSION, Version, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation, ViewRef, afterNextRender, afterRender, asNativeElements, assertInInjectionContext, assertNotInReactiveContext, assertPlatform, booleanAttribute, computed, contentChild, contentChildren, createComponent, createEnvironmentInjector, createNgModule, createNgModuleRef, createPlatform, createPlatformFactory, defineInjectable, destroyPlatform, effect, enableProdMode, forwardRef, getDebugNode, getModuleFactory, getNgModuleById, getPlatform, importProvidersFrom, inject, input, isDevMode, isSignal, isStandalone, makeEnvironmentProviders, makeStateKey, mergeApplicationConfig, model, numberAttribute, output, platformCore, provideExperimentalCheckNoChangesForDebug, provideExperimentalZonelessChangeDetection, provideZoneChangeDetection, reflectComponentType, resolveForwardRef, runInInjectionContext, setTestabilityGetter, signal, untracked, viewChild, viewChildren, ɵALLOW_MULTIPLE_PLATFORMS, ɵAfterRenderManager, ɵCONTAINER_HEADER_OFFSET, ɵChangeDetectionScheduler, ɵChangeDetectionSchedulerImpl, ɵComponentFactory, ɵConsole, ɵDEFAULT_LOCALE_ID, ɵDEFER_BLOCK_CONFIG, ɵDEFER_BLOCK_DEPENDENCY_INTERCEPTOR, ɵDeferBlockBehavior, ɵDeferBlockState, ɵEffectScheduler, ɵIMAGE_CONFIG, ɵIMAGE_CONFIG_DEFAULTS, ɵINJECTOR_SCOPE, ɵINPUT_SIGNAL_BRAND_WRITE_TYPE, ɵINTERNAL_APPLICATION_ERROR_HANDLER, ɵIS_HYDRATION_DOM_REUSE_ENABLED, ɵJSACTION_EVENT_CONTRACT, ɵLContext, ɵLifecycleHooksFeature, ɵLocaleDataIndex, ɵNG_COMP_DEF, ɵNG_DIR_DEF, ɵNG_ELEMENT_ID, ɵNG_INJ_DEF, ɵNG_MOD_DEF, ɵNG_PIPE_DEF, ɵNG_PROV_DEF, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR, ɵNO_CHANGE, ɵNgModuleFactory, ɵNoopNgZone, ɵPROVIDED_NG_ZONE, ɵPendingTasks, ɵReflectionCapabilities, ɵRender3ComponentFactory, ɵRender3ComponentRef, ɵRender3NgModuleRef, ɵRuntimeError, ɵSIGNAL, ɵSSR_CONTENT_INTEGRITY_MARKER, ɵTESTABILITY, ɵTESTABILITY_GETTER, ɵUSE_RUNTIME_DEPS_TRACKER_FOR_JIT, ɵViewRef, ɵXSS_SECURITY_URL, ɵZONELESS_ENABLED, ɵ_sanitizeHtml, ɵ_sanitizeUrl, ɵallowSanitizationBypassAndThrow, ɵannotateForHydration, ɵbypassSanitizationTrustHtml, ɵbypassSanitizationTrustResourceUrl, ɵbypassSanitizationTrustScript, ɵbypassSanitizationTrustStyle, ɵbypassSanitizationTrustUrl, ɵclearResolutionOfComponentResourcesQueue, ɵcompileComponent, ɵcompileDirective, ɵcompileNgModule, ɵcompileNgModuleDefs, ɵcompileNgModuleFactory, ɵcompilePipe, ɵconvertToBitFlags, ɵcreateInjector, ɵdefaultIterableDiffers, ɵdefaultKeyValueDiffers, ɵdepsTracker, ɵdetectChangesInViewIfRequired, ɵdevModeEqual, ɵfindLocaleData, ɵflushModuleScopingQueueAsMuchAsPossible, ɵformatRuntimeError, ɵgenerateStandaloneInDeclarationsError, ɵgetAsyncClassMetadataFn, ɵgetDebugNode, ɵgetDeferBlocks, ɵgetDirectives, ɵgetHostElement, ɵgetInjectableDef, ɵgetLContext, ɵgetLocaleCurrencyCode, ɵgetLocalePluralCase, ɵgetOutputDestroyRef, ɵgetSanitizationBypassType, ɵgetUnknownElementStrictMode, ɵgetUnknownPropertyStrictMode, ɵglobal, ɵinjectChangeDetectorRef, ɵinternalCreateApplication, ɵinternalProvideZoneChangeDetection, ɵisBoundToModule, ɵisComponentDefPendingResolution, ɵisEnvironmentProviders, ɵisInjectable, ɵisNgModule, ɵisPromise, ɵisSubscribable, ɵnoSideEffects, ɵpatchComponentDefWithScope, ɵperformanceMarkFeature, ɵreadHydrationInfo, ɵregisterLocaleData, ɵrenderDeferBlockState, ɵresetCompiledComponents, ɵresetJitOptions, ɵresolveComponentResources, ɵrestoreComponentResolutionQueue, ɵsetAllowDuplicateNgModuleIdsForTest, ɵsetAlternateWeakRefImpl, ɵsetClassDebugInfo, ɵsetClassMetadata, ɵsetClassMetadataAsync, ɵsetCurrentInjector, ɵsetDocument, ɵsetInjectorProfilerContext, ɵsetLocaleId, ɵsetUnknownElementStrictMode, ɵsetUnknownPropertyStrictMode, ɵstore, ɵstringify, ɵtransitiveScopesFor, ɵtriggerResourceLoading, ɵtruncateMiddle, ɵunregisterLocaleData, ɵunwrapSafeValue, ɵunwrapWritableSignal, ɵwhenStable, ɵwithDomHydration, ɵwithEventReplay, ɵwithI18nSupport, ɵɵCopyDefinitionFeature, ɵɵFactoryTarget, ɵɵHostDirectivesFeature, ɵɵInheritDefinitionFeature, ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature, ɵɵProvidersFeature, ɵɵStandaloneFeature, ɵɵadvance, ɵɵattribute, ɵɵattributeInterpolate1, ɵɵattributeInterpolate2, ɵɵattributeInterpolate3, ɵɵattributeInterpolate4, ɵɵattributeInterpolate5, ɵɵattributeInterpolate6, ɵɵattributeInterpolate7, ɵɵattributeInterpolate8, ɵɵattributeInterpolateV, ɵɵclassMap, ɵɵclassMapInterpolate1, ɵɵclassMapInterpolate2, ɵɵclassMapInterpolate3, ɵɵclassMapInterpolate4, ɵɵclassMapInterpolate5, ɵɵclassMapInterpolate6, ɵɵclassMapInterpolate7, ɵɵclassMapInterpolate8, ɵɵclassMapInterpolateV, ɵɵclassProp, ɵɵcomponentInstance, ɵɵconditional, ɵɵcontentQuery, ɵɵcontentQuerySignal, ɵɵdeclareLet, ɵɵdefer, ɵɵdeferEnableTimerScheduling, ɵɵdeferOnHover, ɵɵdeferOnIdle, ɵɵdeferOnImmediate, ɵɵdeferOnInteraction, ɵɵdeferOnTimer, ɵɵdeferOnViewport, ɵɵdeferPrefetchOnHover, ɵɵdeferPrefetchOnIdle, ɵɵdeferPrefetchOnImmediate, ɵɵdeferPrefetchOnInteraction, ɵɵdeferPrefetchOnTimer, ɵɵdeferPrefetchOnViewport, ɵɵdeferPrefetchWhen, ɵɵdeferWhen, ɵɵdefineComponent, ɵɵdefineDirective, ɵɵdefineInjectable, ɵɵdefineInjector, ɵɵdefineNgModule, ɵɵdefinePipe, ɵɵdirectiveInject, ɵɵdisableBindings, ɵɵelement, ɵɵelementContainer, ɵɵelementContainerEnd, ɵɵelementContainerStart, ɵɵelementEnd, ɵɵelementStart, ɵɵenableBindings, ɵɵgetComponentDepsFactory, ɵɵgetCurrentView, ɵɵgetInheritedFactory, ɵɵhostProperty, ɵɵi18n, ɵɵi18nApply, ɵɵi18nAttributes, ɵɵi18nEnd, ɵɵi18nExp, ɵɵi18nPostprocess, ɵɵi18nStart, ɵɵinject, ɵɵinjectAttribute, ɵɵinvalidFactory, ɵɵinvalidFactoryDep, ɵɵlistener, ɵɵloadQuery, ɵɵnamespaceHTML, ɵɵnamespaceMathML, ɵɵnamespaceSVG, ɵɵnextContext, ɵɵngDeclareClassMetadata, ɵɵngDeclareClassMetadataAsync, ɵɵngDeclareComponent, ɵɵngDeclareDirective, ɵɵngDeclareFactory, ɵɵngDeclareInjectable, ɵɵngDeclareInjector, ɵɵngDeclareNgModule, ɵɵngDeclarePipe, ɵɵpipe, ɵɵpipeBind1, ɵɵpipeBind2, ɵɵpipeBind3, ɵɵpipeBind4, ɵɵpipeBindV, ɵɵprojection, ɵɵprojectionDef, ɵɵproperty, ɵɵpropertyInterpolate, ɵɵpropertyInterpolate1, ɵɵpropertyInterpolate2, ɵɵpropertyInterpolate3, ɵɵpropertyInterpolate4, ɵɵpropertyInterpolate5, ɵɵpropertyInterpolate6, ɵɵpropertyInterpolate7, ɵɵpropertyInterpolate8, ɵɵpropertyInterpolateV, ɵɵpureFunction0, ɵɵpureFunction1, ɵɵpureFunction2, ɵɵpureFunction3, ɵɵpureFunction4, ɵɵpureFunction5, ɵɵpureFunction6, ɵɵpureFunction7, ɵɵpureFunction8, ɵɵpureFunctionV, ɵɵqueryAdvance, ɵɵqueryRefresh, ɵɵreadContextLet, ɵɵreference, ɵɵregisterNgModuleType, ɵɵrepeater, ɵɵrepeaterCreate, ɵɵrepeaterTrackByIdentity, ɵɵrepeaterTrackByIndex, ɵɵresetView, ɵɵresolveBody, ɵɵresolveDocument, ɵɵresolveWindow, ɵɵrestoreView, ɵɵsanitizeHtml, ɵɵsanitizeResourceUrl, ɵɵsanitizeScript, ɵɵsanitizeStyle, ɵɵsanitizeUrl, ɵɵsanitizeUrlOrResourceUrl, ɵɵsetComponentScope, ɵɵsetNgModuleScope, ɵɵstoreLet, ɵɵstyleMap, ɵɵstyleMapInterpolate1, ɵɵstyleMapInterpolate2, ɵɵstyleMapInterpolate3, ɵɵstyleMapInterpolate4, ɵɵstyleMapInterpolate5, ɵɵstyleMapInterpolate6, ɵɵstyleMapInterpolate7, ɵɵstyleMapInterpolate8, ɵɵstyleMapInterpolateV, ɵɵstyleProp, ɵɵstylePropInterpolate1, ɵɵstylePropInterpolate2, ɵɵstylePropInterpolate3, ɵɵstylePropInterpolate4, ɵɵstylePropInterpolate5, ɵɵstylePropInterpolate6, ɵɵstylePropInterpolate7, ɵɵstylePropInterpolate8, ɵɵstylePropInterpolateV, ɵɵsyntheticHostListener, ɵɵsyntheticHostProperty, ɵɵtemplate, ɵɵtemplateRefExtractor, ɵɵtext, ɵɵtextInterpolate, ɵɵtextInterpolate1, ɵɵtextInterpolate2, ɵɵtextInterpolate3, ɵɵtextInterpolate4, ɵɵtextInterpolate5, ɵɵtextInterpolate6, ɵɵtextInterpolate7, ɵɵtextInterpolate8, ɵɵtextInterpolateV, ɵɵtrustConstantHtml, ɵɵtrustConstantResourceUrl, ɵɵtwoWayBindingSet, ɵɵtwoWayListener, ɵɵtwoWayProperty, ɵɵvalidateIframeAttribute, ɵɵviewQuery, ɵɵviewQuerySignal)
+
+[39m[22m

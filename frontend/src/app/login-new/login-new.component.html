@@ -31,50 +31,46 @@
         <!-- =================== -->
         <!--  LOGIN VIEW         -->
         <!-- =================== -->
-        <div class="form-content fade-in text-center" *ngIf="login_form == true">
-          <div class="form-header" style="text-align: center;">
-            <img src="./assets/images/landing/logo_definitivo.png" alt="Melmac Gestión Documental Logo" style="display: block; margin: 0 auto 3rem auto; max-width: 80%; max-height: 120px; object-fit: contain;">
-            <h2 class="title">¡HOLA!</h2>
-            <p class="subtitle">Bienvenido a MELMAC</p>
-            <p class="greeting" style="font-size: 0.9em;">¡Gracias por confiar en nuestro acompañamiento!</p>
+        <div class="form-content fade-in" *ngIf="login_form == true">
+          <div class="form-header text-center">
+            <img src="./assets/images/landing/logo_definitivo.png" alt="Melmac" class="brand-logo">
+            <h2 class="auth-title">Bienvenido de nuevo</h2>
+            <p class="auth-subtitle">Ingresa tus credenciales para continuar</p>
           </div>
 
           <form [nbSpinner]="loading" nbSpinnerStatus="success" #form="ngForm">
             <!-- Email -->
-            <div class="form-control-group floating-group">
-              <input class="input-modern floating-input" nbInput [(ngModel)]="email" name="email" pattern=".+@.+\..+"
-                     #emailModel="ngModel" placeholder=" " autocomplete="off" autofocus required="true"
-                     [status]="emailModel.touched ? (emailModel.invalid ? 'danger' : 'basic') : 'basic'">
-              <label class="floating-label">Email electrónico</label>
-              <ng-container *ngIf="emailModel.invalid && emailModel.touched">
-                  <p class="caption status-danger" *ngIf="emailModel.errors?.required" style="color: #ef4444; font-size: 0.8rem; margin-top: 5px;">¡El correo es obligatorio!</p>
-                  <p class="caption status-danger" *ngIf="emailModel.errors?.pattern" style="color: #ef4444; font-size: 0.8rem; margin-top: 5px;">¡No es un correo electrónico válido!</p>
-              </ng-container>
+            <div class="modern-input-group" [class.has-error]="emailModel.invalid && emailModel.touched">
+              <input type="email" class="modern-input" nbInput [(ngModel)]="email" name="email" pattern=".+@.+\..+"
+                     #emailModel="ngModel" placeholder=" " autocomplete="off" autofocus required="true">
+              <label class="modern-label">Correo electrónico</label>
+              <div class="error-msg" *ngIf="emailModel.errors?.pattern && emailModel.touched">
+                <nb-icon icon="alert-circle-outline" pack="eva"></nb-icon>
+                <span *ngIf="emailModel.errors?.pattern">Formato de correo inválido</span>
+              </div>
             </div>
 
             <!-- Password -->
-            <div class="form-control-group floating-group">
-              <div style="position: relative; display: flex; align-items: center; width: 100%;">
-                <input class="input-modern floating-input" placeholder=" " nbInput [(ngModel)]="password" #passwordModel="ngModel" [type]="getInputType()"
-                       name="password" fullWidth
-                       [status]="passwordModel.dirty ? (passwordModel.invalid  ? 'danger' : 'basic') : 'basic'"
-                       required (keydown)="pulsar($event)">
-                <label class="floating-label">Contraseña</label>
-                <button nbSuffix nbButton ghost (click)="toggleShowPassword()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); padding: 5px; background: transparent; z-index: 3;" tabindex="-1">
-                  <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'" pack="eva" style="color: #6b7280;"></nb-icon>
-                </button>
-              </div>
-              <ng-container *ngIf="passwordModel.invalid && passwordModel.touched">
-                  <p class="caption status-danger" style="color: #ef4444; font-size: 0.8rem; margin-top: 5px;">¡La contraseña es obligatoria!</p>
-              </ng-container>
-              <a href="/site/recover-pass" class="forgot-pwd">¿Olvidaste tu contraseña?</a>
+            <div class="modern-input-group" [class.has-error]="passwordModel.invalid && passwordModel.touched">
+              <input [type]="getInputType()" class="modern-input pr-5" placeholder=" " nbInput [(ngModel)]="password" #passwordModel="ngModel"
+                     name="password" required (keydown)="pulsar($event)">
+              <label class="modern-label">Contraseña</label>
+              <button type="button" class="password-toggle" (click)="toggleShowPassword()" tabindex="-1">
+                <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'" pack="eva"></nb-icon>
+              </button>
+              
             </div>
 
-            <div class="form-control-group mt-4">
-              <button class="modern-button" [disabled]="!form.valid" (click)="login($event)">Iniciar sesión</button>
+            <div class="forgot-password-container">
+              <a href="/site/recover-pass" class="forgot-pwd-link">¿Olvidaste tu contraseña?</a>
             </div>
 
-            <div class="bottom-links text-left">
+            <button class="btn-primary-modern mt-3" [disabled]="!form.valid" (click)="login($event)">
+              <span>Iniciar sesión</span>
+              <nb-icon icon="arrow-forward-outline" pack="eva"></nb-icon>
+            </button>
+
+            <div class="legal-links mt-4">
               <a href="/assets/legal/TERMINOS-Y-CONDICIONES.pdf" target="_blank">Términos y Condiciones</a>
               <a href="/legal" target="_blank">Política de privacidad y Tratamiento de Datos</a>
               <a href="/assets/legal/ELIMINACIÓN-DE-USUARIOS-APLICACIONES.pdf" target="_blank">Eliminación de datos y usuarios</a>
@@ -85,87 +81,103 @@
         <!-- =================== -->
         <!--  REGISTER VIEW      -->
         <!-- =================== -->
-        <div *ngIf="login_form == false">
+        <div *ngIf="login_form == false" class="fade-in">
           <div class="auth-header">
-            <h2 class="title">¡HOLA! <br><span class="subtitle">Bienvenido a MELMAC</span></h2>
-            <p class="text-muted">Empecemos escribiendo tu nombre completo. Se utilizará para tus configuraciones de firma.</p>
+            <h2 class="auth-title">Crear Cuenta</h2>
+            <p class="auth-subtitle">Empecemos escribiendo tus datos básicos.</p>
           </div>
 
           <!-- STEP 1 -->
           <div *ngIf="step == 1">
             <div class="row">
-              <div class="col-6 mb-3 pr-2 floating-group">
-                <input class="input-modern floating-input" nbInput [(ngModel)]="name" name="name" placeholder=" " pattern="[a-zA-Z ]+"
-                       #namemodel="ngModel" [status]="namemodel.touched ? (namemodel.invalid ? 'danger' : 'basic') : 'basic'" required autocomplete="off" autofocus>
-                <label class="floating-label">Nombre</label>
+              <div class="col-6 mb-3 pr-2">
+                <div class="modern-input-group" [class.has-error]="namemodel.invalid && namemodel.touched">
+                  <input class="modern-input" nbInput [(ngModel)]="name" name="name" placeholder=" " pattern="[a-zA-Z ]+"
+                         #namemodel="ngModel" required autocomplete="off" autofocus>
+                  <label class="modern-label">Nombre</label>
+                </div>
               </div>
-              <div class="col-6 mb-3 pl-2 floating-group">
-                <input class="input-modern floating-input" nbInput [(ngModel)]="last_name" name="last_name" placeholder=" " pattern="[a-zA-Z ]+"
-                       #lastnamemodel="ngModel" [status]="lastnamemodel.touched ? (lastnamemodel.invalid ? 'danger' : 'basic') : 'basic'" required autocomplete="off">
-                <label class="floating-label">Apellido</label>
+              <div class="col-6 mb-3 pl-2">
+                <div class="modern-input-group" [class.has-error]="lastnamemodel.invalid && lastnamemodel.touched">
+                  <input class="modern-input" nbInput [(ngModel)]="last_name" name="last_name" placeholder=" " pattern="[a-zA-Z ]+"
+                         #lastnamemodel="ngModel" required autocomplete="off">
+                  <label class="modern-label">Apellido</label>
+                </div>
               </div>
             </div>
 
-            <div class="form-control-group mb-3 floating-group">
-              <input class="input-modern floating-input" nbInput [(ngModel)]="email" name="email" pattern=".+@.+\..+"
-                     #emailModel="ngModel" fullWidth placeholder=" " required autocomplete="off"
-                     [status]="emailModel.touched ? (emailModel.invalid ? 'danger' : 'basic') : 'basic'">
-              <label class="floating-label">Email</label>
+            <div class="modern-input-group mb-3" [class.has-error]="emailModel.invalid && emailModel.touched">
+              <input class="modern-input" type="email" nbInput [(ngModel)]="email" name="email" pattern=".+@.+\..+"
+                     #emailModel="ngModel" placeholder=" " required autocomplete="off">
+              <label class="modern-label">Correo electrónico</label>
             </div>
 
             <div class="row">
-              <div class="col-6 mb-3 pr-2 floating-group">
-                <input class="input-modern floating-input" nbInput [(ngModel)]="document" name="document" placeholder=" " pattern="[0-9]+"
-                       #documentmodel="ngModel" [status]="documentmodel.touched ? (documentmodel.invalid ? 'danger' : 'basic') : 'basic'"
-                       minlength="7" maxlength="12" required autocomplete="off">
-                <label class="floating-label">Documento</label>
+              <div class="col-6 mb-3 pr-2">
+                <div class="modern-input-group" [class.has-error]="documentmodel.invalid && documentmodel.touched">
+                  <input class="modern-input" nbInput [(ngModel)]="document" name="document" placeholder=" " pattern="[0-9]+"
+                         #documentmodel="ngModel" minlength="7" maxlength="12" required autocomplete="off">
+                  <label class="modern-label">Documento</label>
+                </div>
               </div>
-              <div class="col-6 mb-3 pl-2 floating-group">
-                <input class="input-modern floating-input" nbInput [(ngModel)]="phone" name="phone" placeholder=" " pattern="[0-9]+"
-                       #phonemodel="ngModel" [status]="phonemodel.touched ? (phonemodel.invalid ? 'danger' : 'basic') : 'basic'"
-                       minlength="10" maxlength="10" required autocomplete="off">
-                <label class="floating-label">Celular</label>
+              <div class="col-6 mb-3 pl-2">
+                <div class="modern-input-group" [class.has-error]="phonemodel.invalid && phonemodel.touched">
+                  <input class="modern-input" nbInput [(ngModel)]="phone" name="phone" placeholder=" " pattern="[0-9]+"
+                         #phonemodel="ngModel" minlength="10" maxlength="10" required autocomplete="off">
+                  <label class="modern-label">Celular</label>
+                </div>
               </div>
             </div>
 
-            <div class="form-control-group mb-4 mt-2">
+            <div class="terms-checkbox mb-3 mt-1">
               <nb-checkbox (checkedChange)="toggleTerms($event)" status="basic">
-                <span style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #6b7280;">
-                  Acepto las <a href="/assets/legal/TERMINOS-Y-CONDICIONES.pdf" target="_blank" style="color:#412378; font-weight: 500;">condiciones de servicio</a>
-                </span>
+                <span>Acepto las <a href="/assets/legal/TERMINOS-Y-CONDICIONES.pdf" target="_blank">condiciones de servicio</a></span>
               </nb-checkbox>
             </div>
 
-            <button class="modern-button" (click)="onSunmit(emailModel, namemodel, lastnamemodel, documentmodel, phonemodel)">
-                Crear tu cuenta
+            <button class="btn-primary-modern" (click)="onSunmit(emailModel, namemodel, lastnamemodel, documentmodel, phonemodel)">
+                <span>Continuar</span>
+                <nb-icon icon="arrow-forward-outline" pack="eva"></nb-icon>
             </button>
           </div>
 
           <!-- STEP 2 (OTP) -->
           <div *ngIf="step == 2 && (code_sent && !code_valid)">
-            <div class="form-control-group">
-                <label class="label">Token de confirmación enviado a tu correo</label>
-                <code-input class="token mt-2" id="code" #codeInput *ngIf="code_sent" [isCodeHidden]="false" [codeLength]="6"
-                            (codeCompleted)="onCodeCompleted($event, codeInput)">
-                </code-input>
+            <div class="auth-header">
+              <h2 class="auth-title">Verificación</h2>
+              <p class="auth-subtitle">Ingresa el token enviado a tu correo.</p>
             </div>
+            <code-input class="token mt-3 mb-4" id="code" #codeInput *ngIf="code_sent" [isCodeHidden]="false" [codeLength]="6"
+                        (codeCompleted)="onCodeCompleted($event, codeInput)">
+            </code-input>
           </div>
 
           <!-- STEP 3 (NEW PASSWORD) -->
           <div *ngIf="step == 2 && (code_sent && code_valid)">
-            <div class="form-control-group mb-3 floating-group">
-                <input class="input-modern floating-input" nbInput [(ngModel)]="new_password" #password="ngModel" [type]="getInputType()"
-                       name="password" fullWidth required minlength="8" maxlength="20" placeholder=" "
-                       [status]="password.dirty ? (password.invalid ? 'danger' : 'basic') : 'basic'" (keydown)="pulsar($event)">
-                <label class="floating-label">Crea tu contraseña</label>
+            <div class="auth-header">
+              <h2 class="auth-title">Crea tu Contraseña</h2>
+              <p class="auth-subtitle">Asegúrate de que sea segura.</p>
             </div>
-            <div class="form-control-group mb-4 floating-group">
-                <input class="input-modern floating-input" nbInput [(ngModel)]="confirmPassword" #rePass="ngModel" [type]="getInputType()"
-                       name="rePass" fullWidth required placeholder=" "
-                       [status]="rePass.touched ? (rePass.invalid || password.value != rePass.value ? 'danger' : 'basic') : 'basic'" (keydown)="pulsar($event)">
-                <label class="floating-label">Confirma tu contraseña</label>
+            
+            <div class="modern-input-group mb-3" [class.has-error]="password.invalid && password.dirty">
+                <input class="modern-input pr-5" nbInput [(ngModel)]="new_password" #password="ngModel" [type]="getInputType()"
+                       name="password" required minlength="8" maxlength="20" placeholder=" " (keydown)="pulsar($event)">
+                <label class="modern-label">Nueva contraseña</label>
+                <button type="button" class="password-toggle" (click)="toggleShowPassword()" tabindex="-1">
+                  <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'" pack="eva"></nb-icon>
+                </button>
             </div>
-            <button class="modern-button" type="button" (click)="changePassword(password.invalid)">Establecer Contraseña</button>
+
+            <div class="modern-input-group mb-4" [class.has-error]="rePass.touched && (rePass.invalid || password.value != rePass.value)">
+                <input class="modern-input pr-5" nbInput [(ngModel)]="confirmPassword" #rePass="ngModel" [type]="getInputType()"
+                       name="rePass" required placeholder=" " (keydown)="pulsar($event)">
+                <label class="modern-label">Confirma contraseña</label>
+            </div>
+
+            <button class="btn-primary-modern" type="button" (click)="changePassword(password.invalid)">
+              <span>Establecer Contraseña</span>
+              <nb-icon icon="checkmark-circle-outline" pack="eva"></nb-icon>
+            </button>
           </div>
           
         </div>

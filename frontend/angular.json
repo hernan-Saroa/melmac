@@ -85,7 +85,12 @@
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "aot": false
+            "aot": false,
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -167,7 +172,12 @@
                 "input": "node_modules/leaflet/dist/images",
                 "output": "/assets/img/markers"
               }
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            }
           }
         },
         "lint": {

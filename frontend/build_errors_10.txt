@@ -1,0 +1,1419 @@
+
+> ngx-admin@8.0.0 build
+> ng build
+
+[1m[33mWorkspace extension with invalid name (defaultProject) found.[39m[22m
+[1m[33mOne or more browsers which are configured in the project's Browserslist configuration will be ignored as ES5 output is not supported by the Angular CLI.
+Ignored browsers: ie 11, kaios 2.5, op_mini all[39m[22m
+- Generating browser application bundles (phase: setup)...
+[1m[33m    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browserslist configuration. For more information, see https://angular.dev/tools/cli/build#configuring-browser-compatibility
+    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.[39m[22m
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+[1m[33m
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 78, column 32 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:78:32:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+78 |       border-top-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 79:33  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 79, column 35 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:79:35:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+79 |       border-bottom-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 80:36  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 89, column 33 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:89:33:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+89 |         border-top-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 90:34  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 90, column 36 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:90:36:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+90 |         border-bottom-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 91:37  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 119, column 20 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:119:20:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div(100, $howManySteps) or calc(100 / $howManySteps)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+119 |     $stepName: ($i*(100 / $howManySteps));
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 120:21  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+7 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\@nebular\eva-icons\fesm2022\nebular-eva-icons.mjs depends on 'eva-icons'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'rgbcolor'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\dashboard\echarts\echarts.component.ts depends on 'html2canvas'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet-polylinedecorator'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet.markercluster'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+[39m[22m
+[1m[31m
+./src/app/pages/answer/answer.component.ts - Error: Module build failed (from ./node_modules/@angular-devkit/build-angular/src/tools/babel/webpack-loader.js):
+SyntaxError: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\answer\answer.component.ts: Unexpected reserved word 'private'. (43:16)
+
+[0m [90m 41 |[31m     value[33m:[31m string [33m|[31m number[33m;[31m
+ [90m 42 |[31m     rowData[33m:[31m any[33m;[31m
+[31m[1m>[22m[1m[31m[90m 43 |[31m     constructor([36mprivate[31m[33m,[31m nbMenuService[33m,[31m [33mNbMenuService[31m[33m,[31m [36mprivate[31m[33m,[31m activatedRoute[33m,[31m [33mActivatedRoute[31m[33m,[31m [36mprivate[31m[33m,[31m _sharedService[33m,[31m [33mSharedService[31m[33m,[31m [36mprivate[31m[33m,[31m modalSS[33m,[31m [33mSwitchService[31m[33m,[31m [36mprivate[31m[33m,[31m router[33m,[31m [33mRouter[31m[33m,[31m config[33m,[31m [33mNgbCarouselConfig[31m)[33m;[31m
+ [90m    |[31m                 [31m[1m^[22m[1m[31m
+ [90m 44 |[31m     {
+ [90m 45 |[31m         config[33m.[31mshowNavigationArrows [33m=[31m [36mtrue[31m[33m;[31m
+ [90m 46 |[31m         config[33m.[31mshowNavigationIndicators [33m=[31m [36mfalse[31m[33m;[31m[0m
+
+./src/app/pages/visits/table/table.component.ts - Error: Module build failed (from ./node_modules/@angular-devkit/build-angular/src/tools/babel/webpack-loader.js):
+SyntaxError: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\visits\table\table.component.ts: Unexpected reserved word 'private'. (31:16)
+
+[0m [90m 29 |[31m     value[33m:[31m string [33m|[31m number[33m;[31m
+ [90m 30 |[31m     rowData[33m:[31m any[33m;[31m
+[31m[1m>[22m[1m[31m[90m 31 |[31m     constructor([36mprivate[31m[33m,[31m nbMenuService[33m,[31m [33mNbMenuService[31m[33m,[31m [36mprivate[31m[33m,[31m activatedRoute[33m,[31m [33mActivatedRoute[31m[33m,[31m [36mprivate[31m[33m,[31m _sharedService[33m,[31m [33mSharedService[31m)[33m;[31m
+ [90m    |[31m                 [31m[1m^[22m[1m[31m
+ [90m 32 |[31m     {
+ [90m 33 |[31m         [36mthis[31m[33m.[31mactivatedRoute[33m.[31mdata[33m.[31msubscribe(data [33m=>[31m {
+ [90m 34 |[31m             [36mif[31m (data[[32m'inactive'[31m]) {[0m
+
+./src/app/public/historial/historial.component.ts - Error: Module build failed (from ./node_modules/@angular-devkit/build-angular/src/tools/babel/webpack-loader.js):
+SyntaxError: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\public\historial\historial.component.ts: Unexpected reserved word 'private'. (32:16)
+
+[0m [90m 30 |[31m     value[33m:[31m string [33m|[31m number[33m;[31m
+ [90m 31 |[31m     rowData[33m:[31m any[33m;[31m
+[31m[1m>[22m[1m[31m[90m 32 |[31m     constructor([36mprivate[31m[33m,[31m activatedRoute[33m,[31m [33mActivatedRoute[31m)[33m;[31m
+ [90m    |[31m                 [31m[1m^[22m[1m[31m
+ [90m 33 |[31m     {
+ [90m 34 |[31m         [36mthis[31m[33m.[31mactivatedRoute[33m.[31mdata[33m.[31msubscribe(data [33m=>[31m {
+ [90m 35 |[31m             [36mif[31m (data[[32m'inactive'[31m]) {[0m
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m27[0m:[93m42[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m27[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                         ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m27[0m:[93m44[0m - [91merror[0m[90m TS2693: [0m'OnInit' only refers to a type, but is being used as a value here.
+
+[7m27[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                           ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m27[0m:[93m44[0m - [91merror[0m[90m TS2695: [0mLeft side of comma operator is unused and has no side effects.
+
+[7m27[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                           ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m27[0m:[93m52[0m - [91merror[0m[90m TS2693: [0m'OnDestroy' only refers to a type, but is being used as a value here.
+
+[7m27[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                                   ~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m27[0m:[93m62[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m27[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                                             ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m29[0m:[93m3[0m - [91merror[0m[90m TS2552: [0mCannot find name 'option'. Did you mean 'Option'?
+
+[7m29[0m   option = 0;
+[7m  [0m [91m  ~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m27369[0m:[93m13[0m
+    [7m27369[0m declare var Option: {
+    [7m     [0m [96m            ~~~~~~[0m
+    'Option' is declared here.
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m30[0m:[93m16[0m - [91merror[0m[90m TS2693: [0m'string' only refers to a type, but is being used as a value here.
+
+[7m30[0m   renderValue: string;
+[7m  [0m [91m               ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m31[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'items'.
+
+[7m31[0m   items = [];
+[7m  [0m [91m  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m32[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'action_active'.
+
+[7m32[0m   action_active = true;
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m33[0m:[93m3[0m - [91merror[0m[90m TS2552: [0mCannot find name 'menu_service'. Did you mean 'NbMenuService'?
+
+[7m33[0m   menu_service;
+[7m  [0m [91m  ~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m35[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m35[0m   @Input() value: string | number;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m35[0m:[93m19[0m - [91merror[0m[90m TS2693: [0m'string' only refers to a type, but is being used as a value here.
+
+[7m35[0m   @Input() value: string | number;
+[7m  [0m [91m                  ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m35[0m:[93m28[0m - [91merror[0m[90m TS2693: [0m'number' only refers to a type, but is being used as a value here.
+
+[7m35[0m   @Input() value: string | number;
+[7m  [0m [91m                           ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m36[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m36[0m   @Input() rowData: any;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m36[0m:[93m21[0m - [91merror[0m[90m TS2693: [0m'any' only refers to a type, but is being used as a value here.
+
+[7m36[0m   @Input() rowData: any;
+[7m  [0m [91m                    ~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m38[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'constructor'.
+
+[7m38[0m   constructor(
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m39[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m39[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m39[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m39[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m            ~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m39[0m:[93m13[0m - [91merror[0m[90m TS2552: [0mCannot find name 'nbMenuService'. Did you mean 'NbMenuService'?
+
+[7m39[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m            ~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m39[0m:[93m26[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m39[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m                         ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m40[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m40[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m40[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m40[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m40[0m:[93m13[0m - [91merror[0m[90m TS2552: [0mCannot find name 'activatedRoute'. Did you mean 'ActivatedRoute'?
+
+[7m40[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m40[0m:[93m27[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m40[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m                          ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m41[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m41[0m     private _sharedService: SharedService,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m41[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m41[0m     private _sharedService: SharedService,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m41[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name '_sharedService'.
+
+[7m41[0m     private _sharedService: SharedService,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m41[0m:[93m27[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m41[0m     private _sharedService: SharedService,
+[7m  [0m [91m                          ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m42[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m42[0m     private modalSS:SwitchService,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m42[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m42[0m     private modalSS:SwitchService,
+[7m  [0m [91m            ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m42[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'modalSS'.
+
+[7m42[0m     private modalSS:SwitchService,
+[7m  [0m [91m            ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m42[0m:[93m20[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m42[0m     private modalSS:SwitchService,
+[7m  [0m [91m                   ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m43[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m43[0m     private router: Router,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m43[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m43[0m     private router: Router,
+[7m  [0m [91m            ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m43[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'router'.
+
+[7m43[0m     private router: Router,
+[7m  [0m [91m            ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m43[0m:[93m19[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m43[0m     private router: Router,
+[7m  [0m [91m                  ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m44[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'config'.
+
+[7m44[0m     config: NgbCarouselConfig
+[7m  [0m [91m    ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m44[0m:[93m11[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m44[0m     config: NgbCarouselConfig
+[7m  [0m [91m          ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m45[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m45[0m   ) {
+[7m  [0m [91m    ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m46[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'config'.
+
+[7m46[0m     config.showNavigationArrows = true;
+[7m  [0m [91m    ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m47[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'config'.
+
+[7m47[0m   config.showNavigationIndicators = false;
+[7m  [0m [91m  ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m48[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m48[0m     this.activatedRoute.data.subscribe(data => {
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m50[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m50[0m         this.option = data['option'];
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m55[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ngOnDestroy'.
+
+[7m55[0m   ngOnDestroy() {
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m55[0m:[93m17[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m55[0m   ngOnDestroy() {
+[7m  [0m [91m                ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m57[0m:[93m7[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m57[0m       this.menu_service.unsubscribe();
+[7m  [0m [91m      ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m63[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ngOnInit'.
+
+[7m63[0m   ngOnInit() {
+[7m  [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m63[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m63[0m   ngOnInit() {
+[7m  [0m [91m             ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m64[0m:[93m8[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m64[0m     if(this.option == 3) return
+[7m  [0m [91m       ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m65[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m65[0m     if (this.rowData.type == 1) {
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m66[0m:[93m25[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m66[0m       if (![2].includes(this.option)) {
+[7m  [0m [91m                        ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m67[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m67[0m         this.items = [
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m79[0m:[93m11[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m79[0m           this.items = [{
+[7m  [0m [91m          ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m86[0m:[93m27[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m86[0m       if (![1,2].includes(this.option)) {
+[7m  [0m [91m                          ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m87[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m87[0m         this.onPermit();
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m90[0m:[93m7[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m90[0m       this.items = [
+[7m  [0m [91m      ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m98[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m98[0m     this.renderValue = this.value == null? "":this.value.toString();
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m98[0m:[93m24[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m98[0m     this.renderValue = this.value == null? "":this.value.toString();
+[7m  [0m [91m                       ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m98[0m:[93m47[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m98[0m     this.renderValue = this.value == null? "":this.value.toString();
+[7m  [0m [91m                                              ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m99[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m99[0m     this.menu_service = this.nbMenuService.onItemClick().pipe(
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m99[0m:[93m25[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m99[0m     this.menu_service = this.nbMenuService.onItemClick().pipe(
+[7m  [0m [91m                        ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m100[0m:[93m35[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m100[0m       filter(({ tag }) => tag === this.getTag()),
+[7m   [0m [91m                                  ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m105[0m:[93m11[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m105[0m           this._sharedService.emitChange({'action': 'pdf', 'data': this.rowData});
+[7m   [0m [91m          ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m105[0m:[93m68[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m105[0m           this._sharedService.emitChange({'action': 'pdf', 'data': this.rowData});
+[7m   [0m [91m                                                                   ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m107[0m:[93m11[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m107[0m           this._sharedService.emitChange({'action': 'excel', 'data': this.rowData});
+[7m   [0m [91m          ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m107[0m:[93m70[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m107[0m           this._sharedService.emitChange({'action': 'excel', 'data': this.rowData});
+[7m   [0m [91m                                                                     ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m109[0m:[93m11[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m109[0m           this._sharedService.emitChange({'action': 'edit', 'data': this.rowData});
+[7m   [0m [91m          ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m109[0m:[93m69[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m109[0m           this._sharedService.emitChange({'action': 'edit', 'data': this.rowData});
+[7m   [0m [91m                                                                    ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m111[0m:[93m11[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m111[0m           this._sharedService.emitChange({'action': 'delete', 'data': this.rowData});
+[7m   [0m [91m          ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m111[0m:[93m71[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m111[0m           this._sharedService.emitChange({'action': 'delete', 'data': this.rowData});
+[7m   [0m [91m                                                                      ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m117[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'getTag'.
+
+[7m117[0m   getTag(){
+[7m   [0m [91m  ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m117[0m:[93m11[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m117[0m   getTag(){
+[7m   [0m [91m          ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m118[0m:[93m36[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m118[0m     let name_tag = 'answer-tag-' + this.rowData.id
+[7m   [0m [91m                                   ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m119[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m119[0m     if (this.rowData.consecutive) {
+[7m   [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m122[0m:[93m23[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m122[0m     name_tag += '-' + this.rowData.type
+[7m   [0m [91m                      ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m126[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'onPermit'.
+
+[7m126[0m   onPermit() {
+[7m   [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m126[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m126[0m   onPermit() {
+[7m   [0m [91m             ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m130[0m:[93m7[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m130[0m       this.items.push({
+[7m   [0m [91m      ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m137[0m:[93m7[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m137[0m       this.items.push({
+[7m   [0m [91m      ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m144[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'clickMenu'.
+
+[7m144[0m   clickMenu() {
+[7m   [0m [91m  ~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m144[0m:[93m15[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m144[0m   clickMenu() {
+[7m   [0m [91m              ~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m145[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m145[0m     this._sharedService.emitChange({'action': 'click', 'data': this.rowData});
+[7m   [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m145[0m:[93m64[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m145[0m     this._sharedService.emitChange({'action': 'click', 'data': this.rowData});
+[7m   [0m [91m                                                               ~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m174[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m174[0m     this.delay = 1500;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m178[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m178[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m219[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m219[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m220[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m220[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/form/send/send.component.ts[0m:[93m656[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m656[0m     this.delay = 1000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/form/send/send.component.ts[0m:[93m657[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m657[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m20[0m:[93m36[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m20[0m export class CustomRenderComponent , OnInit {
+[7m  [0m [91m                                   ~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m20[0m:[93m38[0m - [91merror[0m[90m TS1434: [0mUnexpected keyword or identifier.
+
+[7m20[0m export class CustomRenderComponent , OnInit {
+[7m  [0m [91m                                     ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m20[0m:[93m38[0m - [91merror[0m[90m TS2693: [0m'OnInit' only refers to a type, but is being used as a value here.
+
+[7m20[0m export class CustomRenderComponent , OnInit {
+[7m  [0m [91m                                     ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m21[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'delay'.
+
+[7m21[0m   delay = 300;
+[7m  [0m [91m  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m24[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'status_list'.
+
+[7m24[0m   status_list = [
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m70[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m70[0m   @Input() value: number;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m70[0m:[93m19[0m - [91merror[0m[90m TS2693: [0m'number' only refers to a type, but is being used as a value here.
+
+[7m70[0m   @Input() value: number;
+[7m  [0m [91m                  ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m71[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m71[0m   @Input() rowData: any;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m71[0m:[93m21[0m - [91merror[0m[90m TS2693: [0m'any' only refers to a type, but is being used as a value here.
+
+[7m71[0m   @Input() rowData: any;
+[7m  [0m [91m                    ~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m73[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ngOnInit'.
+
+[7m73[0m   ngOnInit() {
+[7m  [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m73[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m73[0m   ngOnInit() {
+[7m  [0m [91m             ~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m74[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m74[0m     if (this.value)
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m75[0m:[93m7[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m75[0m       this.status = this.status_list[this.value];
+[7m  [0m [91m      ~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m75[0m:[93m21[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m75[0m       this.status = this.status_list[this.value];
+[7m  [0m [91m                    ~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m75[0m:[93m38[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m75[0m       this.status = this.status_list[this.value];
+[7m  [0m [91m                                     ~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m295[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m295[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/traceability/traceability.component.ts[0m:[93m209[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m209[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/traceability/traceability.component.ts[0m:[93m210[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m210[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m16[0m:[93m42[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m16[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                         ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m16[0m:[93m44[0m - [91merror[0m[90m TS2693: [0m'OnInit' only refers to a type, but is being used as a value here.
+
+[7m16[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                           ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m16[0m:[93m44[0m - [91merror[0m[90m TS2695: [0mLeft side of comma operator is unused and has no side effects.
+
+[7m16[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                           ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m16[0m:[93m52[0m - [91merror[0m[90m TS2693: [0m'OnDestroy' only refers to a type, but is being used as a value here.
+
+[7m16[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                                   ~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m16[0m:[93m62[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m16[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                                             ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m18[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'inactive'.
+
+[7m18[0m   inactive = false;
+[7m  [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m19[0m:[93m16[0m - [91merror[0m[90m TS2693: [0m'string' only refers to a type, but is being used as a value here.
+
+[7m19[0m   renderValue: string;
+[7m  [0m [91m               ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m20[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'items'.
+
+[7m20[0m   items = [];
+[7m  [0m [91m  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m21[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'action_active'.
+
+[7m21[0m   action_active = true;
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'menu_service'.
+
+[7m22[0m   menu_service;
+[7m  [0m [91m  ~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m24[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m24[0m   @Input() value: string | number;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m24[0m:[93m19[0m - [91merror[0m[90m TS2693: [0m'string' only refers to a type, but is being used as a value here.
+
+[7m24[0m   @Input() value: string | number;
+[7m  [0m [91m                  ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m24[0m:[93m28[0m - [91merror[0m[90m TS2693: [0m'number' only refers to a type, but is being used as a value here.
+
+[7m24[0m   @Input() value: string | number;
+[7m  [0m [91m                           ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m25[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m25[0m   @Input() rowData: any;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m25[0m:[93m21[0m - [91merror[0m[90m TS2693: [0m'any' only refers to a type, but is being used as a value here.
+
+[7m25[0m   @Input() rowData: any;
+[7m  [0m [91m                    ~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m27[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'constructor'.
+
+[7m27[0m   constructor(
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m28[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m28[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m28[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m28[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m            ~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m28[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'nbMenuService'.
+
+[7m28[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m            ~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m28[0m:[93m26[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m28[0m     private nbMenuService: NbMenuService,
+[7m  [0m [91m                         ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m29[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m29[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m29[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m29[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m29[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'activatedRoute'.
+
+[7m29[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m29[0m:[93m27[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m29[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m                          ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m30[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m30[0m     private _sharedService: SharedService
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m30[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m30[0m     private _sharedService: SharedService
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m30[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name '_sharedService'.
+
+[7m30[0m     private _sharedService: SharedService
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m30[0m:[93m27[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m30[0m     private _sharedService: SharedService
+[7m  [0m [91m                          ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m31[0m   ) {
+[7m  [0m [91m    ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m32[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m32[0m     this.activatedRoute.data.subscribe(data => {
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m34[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m34[0m         this.inactive = data['inactive'];
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m39[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ngOnDestroy'.
+
+[7m39[0m   ngOnDestroy() {
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m39[0m:[93m17[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m39[0m   ngOnDestroy() {
+[7m  [0m [91m                ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m40[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m40[0m     this.menu_service.unsubscribe();
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ngOnInit'.
+
+[7m43[0m   ngOnInit() {
+[7m  [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m43[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m43[0m   ngOnInit() {
+[7m  [0m [91m             ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m44[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m44[0m     this.items = [
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m51[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m51[0m     this.renderValue = this.value == null? "":this.value.toString();
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m51[0m:[93m24[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m51[0m     this.renderValue = this.value == null? "":this.value.toString();
+[7m  [0m [91m                       ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m51[0m:[93m47[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m51[0m     this.renderValue = this.value == null? "":this.value.toString();
+[7m  [0m [91m                                              ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m52[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m52[0m     this.menu_service = this.nbMenuService.onItemClick().pipe(
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m52[0m:[93m25[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m52[0m     this.menu_service = this.nbMenuService.onItemClick().pipe(
+[7m  [0m [91m                        ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m54[0m:[93m35[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m54[0m       filter(({ tag }) => tag === this.getTag()),
+[7m  [0m [91m                                  ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m60[0m:[93m16[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m60[0m             if(this.rowData.id != ''){
+[7m  [0m [91m               ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m61[0m:[93m60[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m61[0m               window.open('/pages/visits/ticket/detail/' + this.rowData.id, '_blank');
+[7m  [0m [91m                                                           ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m71[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'getTag'.
+
+[7m71[0m   getTag(){
+[7m  [0m [91m  ~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m71[0m:[93m11[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m71[0m   getTag(){
+[7m  [0m [91m          ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m72[0m:[93m36[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m72[0m     let name_tag = 'answer-tag-' + this.rowData.id
+[7m  [0m [91m                                   ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m76[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'onPermit'.
+
+[7m76[0m   onPermit() {
+[7m  [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m76[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m76[0m   onPermit() {
+[7m  [0m [91m             ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m80[0m:[93m7[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m80[0m       this.items.push({
+[7m  [0m [91m      ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m87[0m:[93m7[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m87[0m       this.items.push({
+[7m  [0m [91m      ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m94[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'clickMenu'.
+
+[7m94[0m   clickMenu() {
+[7m  [0m [91m  ~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m94[0m:[93m15[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m94[0m   clickMenu() {
+[7m  [0m [91m              ~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m95[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m95[0m     this._sharedService.emitChange({'action': 'click', 'data': this.rowData});
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m95[0m:[93m64[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m95[0m     this._sharedService.emitChange({'action': 'click', 'data': this.rowData});
+[7m  [0m [91m                                                               ~~~~[0m
+
+
+Error: [96msrc/app/public/historial/custom.dataSource.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2459: [0mModule '"angular2-smart-table"' declares 'ServerSourceConf' locally, but it is not exported.
+
+[7m3[0m import { ServerSourceConf } from 'angular2-smart-table';
+[7m [0m [91m         ~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/angular2-smart-table/types/angular2-smart-table.d.ts[0m:[93m1382[0m:[93m15[0m
+    [7m1382[0m declare class ServerSourceConf {
+    [7m    [0m [96m              ~~~~~~~~~~~~~~~~[0m
+    'ServerSourceConf' is declared here.
+
+
+Error: [96msrc/app/public/historial/custom.dataSource.ts[0m:[93m20[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'createRequestParams' does not exist on type 'CustomDataSource'.
+
+[7m20[0m     let httpParams = this.createRequestParams();
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m19[0m:[93m42[0m - [91merror[0m[90m TS1005: [0m'{' expected.
+
+[7m19[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                         ~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m19[0m:[93m44[0m - [91merror[0m[90m TS2693: [0m'OnInit' only refers to a type, but is being used as a value here.
+
+[7m19[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                           ~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m19[0m:[93m44[0m - [91merror[0m[90m TS2695: [0mLeft side of comma operator is unused and has no side effects.
+
+[7m19[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                           ~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m19[0m:[93m52[0m - [91merror[0m[90m TS2693: [0m'OnDestroy' only refers to a type, but is being used as a value here.
+
+[7m19[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                                   ~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m19[0m:[93m62[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m19[0m export class CustomActionRenderComponent , OnInit, OnDestroy {
+[7m  [0m [91m                                                             ~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m21[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'inactive'.
+
+[7m21[0m   inactive = false;
+[7m  [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m22[0m:[93m16[0m - [91merror[0m[90m TS2693: [0m'string' only refers to a type, but is being used as a value here.
+
+[7m22[0m   renderValue: string;
+[7m  [0m [91m               ~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m23[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'items'.
+
+[7m23[0m   items = [];
+[7m  [0m [91m  ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m24[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'menu_service'.
+
+[7m24[0m   menu_service;
+[7m  [0m [91m  ~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m26[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m26[0m   @Input() value: string | number;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m26[0m:[93m19[0m - [91merror[0m[90m TS2693: [0m'string' only refers to a type, but is being used as a value here.
+
+[7m26[0m   @Input() value: string | number;
+[7m  [0m [91m                  ~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m26[0m:[93m28[0m - [91merror[0m[90m TS2693: [0m'number' only refers to a type, but is being used as a value here.
+
+[7m26[0m   @Input() value: string | number;
+[7m  [0m [91m                           ~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m27[0m:[93m11[0m - [91merror[0m[90m TS1146: [0mDeclaration expected.
+
+[7m27[0m   @Input() rowData: any;
+[7m  [0m [91m          [0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m27[0m:[93m21[0m - [91merror[0m[90m TS2693: [0m'any' only refers to a type, but is being used as a value here.
+
+[7m27[0m   @Input() rowData: any;
+[7m  [0m [91m                    ~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m29[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'constructor'.
+
+[7m29[0m   constructor(
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m30[0m:[93m5[0m - [91merror[0m[90m TS2304: [0mCannot find name 'private'.
+
+[7m30[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m    ~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m30[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m30[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m30[0m:[93m13[0m - [91merror[0m[90m TS2304: [0mCannot find name 'activatedRoute'.
+
+[7m30[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m            ~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m30[0m:[93m27[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m30[0m     private activatedRoute: ActivatedRoute,
+[7m  [0m [91m                          ~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m31[0m   ) {
+[7m  [0m [91m    ~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m32[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m32[0m     this.activatedRoute.data.subscribe(data => {
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m34[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m34[0m         this.inactive = data['inactive'];
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m39[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ngOnDestroy'.
+
+[7m39[0m   ngOnDestroy() {
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m39[0m:[93m17[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m39[0m   ngOnDestroy() {
+[7m  [0m [91m                ~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m40[0m:[93m5[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m40[0m     this.menu_service.unsubscribe();
+[7m  [0m [91m    ~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m43[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'ngOnInit'.
+
+[7m43[0m   ngOnInit() {
+[7m  [0m [91m  ~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m43[0m:[93m14[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m43[0m   ngOnInit() {
+[7m  [0m [91m             ~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m47[0m:[93m3[0m - [91merror[0m[90m TS2304: [0mCannot find name 'getTag'.
+
+[7m47[0m   getTag(){
+[7m  [0m [91m  ~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m47[0m:[93m11[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m47[0m   getTag(){
+[7m  [0m [91m          ~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m48[0m:[93m36[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m48[0m     let name_tag = 'answer-tag-' + this.rowData.id
+[7m  [0m [91m                                   ~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m49[0m:[93m9[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m49[0m     if (this.rowData.consecutive) {
+[7m  [0m [91m        ~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m52[0m:[93m23[0m - [91merror[0m[90m TS2532: [0mObject is possibly 'undefined'.
+
+[7m52[0m     name_tag += '-' + this.rowData.type
+[7m  [0m [91m                      ~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m82[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m82[0m     this.delay = 1500;
+[7m  [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m86[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m86[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m127[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m127[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m128[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m128[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/usable/custom.dataSource.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2459: [0mModule '"angular2-smart-table"' declares 'ServerSourceConf' locally, but it is not exported.
+
+[7m3[0m import { ServerSourceConf } from 'angular2-smart-table';
+[7m [0m [91m         ~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/angular2-smart-table/types/angular2-smart-table.d.ts[0m:[93m1382[0m:[93m15[0m
+    [7m1382[0m declare class ServerSourceConf {
+    [7m    [0m [96m              ~~~~~~~~~~~~~~~~[0m
+    'ServerSourceConf' is declared here.
+
+
+Error: [96msrc/app/usable/custom.dataSource.ts[0m:[93m19[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'createRequestParams' does not exist on type 'CustomDataSource'.
+
+[7m19[0m     let httpParams = this.createRequestParams();
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~[0m
+
+
+[39m[22m

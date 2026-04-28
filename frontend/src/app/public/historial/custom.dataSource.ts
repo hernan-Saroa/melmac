@@ -1,26 +1,27 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ServerDataSource } from 'angular2-smart-table';
 import { Observable } from 'rxjs-compat/Observable';
-import { HistorialComponent } from './historial.component';
-import { getHeaders } from '../../services/site.service';
-
 
 export class CustomDataSource extends ServerDataSource {
   max_page;
-  chart;
-  datas;
 
   constructor(protected http: HttpClient, conf: any = {}, private parent) {
     super(http, conf);
   }
 
-  protected requestElements(filtered?: boolean, sorted?: boolean, paginated?: boolean): Observable<any> {
+  protected requestElements(filtered: boolean = true, sorted: boolean = true, paginated: boolean = true): Observable<any> {
+    let reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Token ' + this.parent.token_link, 
+    });
+    
     let httpParams = new HttpParams();
-    if (filtered) httpParams = this.addFilterRequestParams(httpParams);
-    if (sorted) httpParams = this.addSortRequestParams(httpParams);
     if (paginated) httpParams = this.addPagerRequestParams(httpParams);
+    if (sorted) httpParams = this.addSortRequestParams(httpParams);
+    if (filtered) httpParams = this.addFilterRequestParams(httpParams);
+
     this.parent.loading = true;
-    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response', headers: getHeaders() });
+    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response', headers: reqHeader });
   }
 
   protected extractDataFromResponse(res: any): Array<any> {
@@ -45,10 +46,10 @@ export class CustomDataSource extends ServerDataSource {
   }
 
   getTotalCount(){
-    return this.lastRequestCount;
+    return (this as any).lastRequestCount;
   }
 
   getData():any[]{
-    return this.data;
+    return (this as any).data;
   }
 }

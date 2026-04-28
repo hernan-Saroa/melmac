@@ -1,0 +1,220 @@
+
+> ngx-admin@8.0.0 build
+> ng build
+
+[1m[33mWorkspace extension with invalid name (defaultProject) found.[39m[22m
+[1m[33mOne or more browsers which are configured in the project's Browserslist configuration will be ignored as ES5 output is not supported by the Angular CLI.
+Ignored browsers: ie 11, kaios 2.5, op_mini all[39m[22m
+- Generating browser application bundles (phase: setup)...
+[1m[33m    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browserslist configuration. For more information, see https://angular.dev/tools/cli/build#configuring-browser-compatibility
+    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.[39m[22m
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+[1m[33m
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 78, column 32 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:78:32:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+78 |       border-top-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 79:33  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 79, column 35 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:79:35:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+79 |       border-bottom-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 80:36  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 89, column 33 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:89:33:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+89 |         border-top-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 90:34  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 90, column 36 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:90:36:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+90 |         border-bottom-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 91:37  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 119, column 20 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:119:20:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div(100, $howManySteps) or calc(100 / $howManySteps)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+119 |     $stepName: ($i*(100 / $howManySteps));
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 120:21  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+7 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\@nebular\eva-icons\fesm2022\nebular-eva-icons.mjs depends on 'eva-icons'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'rgbcolor'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\dashboard\echarts\echarts.component.ts depends on 'html2canvas'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet-polylinedecorator'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet.markercluster'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+[39m[22m
+[1m[31m
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m174[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m174[0m     this.delay = 1500;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m219[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m219[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/form/send/send.component.ts[0m:[93m656[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m656[0m     this.delay = 1000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/traceability/traceability.component.ts[0m:[93m209[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m209[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/custom.dataSource.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2459: [0mModule '"angular2-smart-table"' declares 'ServerSourceConf' locally, but it is not exported.
+
+[7m3[0m import { ServerSourceConf } from 'angular2-smart-table';
+[7m [0m [91m         ~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/angular2-smart-table/types/angular2-smart-table.d.ts[0m:[93m1382[0m:[93m15[0m
+    [7m1382[0m declare class ServerSourceConf {
+    [7m    [0m [96m              ~~~~~~~~~~~~~~~~[0m
+    'ServerSourceConf' is declared here.
+
+
+Error: [96msrc/app/public/historial/custom.dataSource.ts[0m:[93m20[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'createRequestParams' does not exist on type 'CustomDataSource'.
+
+[7m20[0m     let httpParams = this.createRequestParams();
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m82[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m82[0m     this.delay = 1500;
+[7m  [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m127[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m127[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/usable/custom.dataSource.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2459: [0mModule '"angular2-smart-table"' declares 'ServerSourceConf' locally, but it is not exported.
+
+[7m3[0m import { ServerSourceConf } from 'angular2-smart-table';
+[7m [0m [91m         ~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/angular2-smart-table/types/angular2-smart-table.d.ts[0m:[93m1382[0m:[93m15[0m
+    [7m1382[0m declare class ServerSourceConf {
+    [7m    [0m [96m              ~~~~~~~~~~~~~~~~[0m
+    'ServerSourceConf' is declared here.
+
+
+Error: [96msrc/app/usable/custom.dataSource.ts[0m:[93m19[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'createRequestParams' does not exist on type 'CustomDataSource'.
+
+[7m19[0m     let httpParams = this.createRequestParams();
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~[0m
+
+
+[39m[22m

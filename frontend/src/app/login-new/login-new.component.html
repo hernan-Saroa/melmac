@@ -41,11 +41,11 @@
 
           <form [nbSpinner]="loading" nbSpinnerStatus="success" #form="ngForm">
             <!-- Email -->
-            <div class="form-control-group">
-              <label class="label">Email electrónico</label>
-              <input class="input-modern" nbInput fullWidth [(ngModel)]="email" name="email" pattern=".+@.+\..+"
-                     #emailModel="ngModel" placeholder="tucorreo@ejemplo.com" autocomplete="off" autofocus required="true"
+            <div class="form-control-group floating-group">
+              <input class="input-modern floating-input" nbInput [(ngModel)]="email" name="email" pattern=".+@.+\..+"
+                     #emailModel="ngModel" placeholder=" " autocomplete="off" autofocus required="true"
                      [status]="emailModel.touched ? (emailModel.invalid ? 'danger' : 'basic') : 'basic'">
+              <label class="floating-label">Email electrónico</label>
               <ng-container *ngIf="emailModel.invalid && emailModel.touched">
                   <p class="caption status-danger" *ngIf="emailModel.errors?.required" style="color: #ef4444; font-size: 0.8rem; margin-top: 5px;">¡El correo es obligatorio!</p>
                   <p class="caption status-danger" *ngIf="emailModel.errors?.pattern" style="color: #ef4444; font-size: 0.8rem; margin-top: 5px;">¡No es un correo electrónico válido!</p>
@@ -53,14 +53,14 @@
             </div>
 
             <!-- Password -->
-            <div class="form-control-group">
-              <label class="label">Contraseña</label>
-              <div style="position: relative; display: flex; align-items: center;">
-                <input class="input-modern" placeholder="Ingresa tu contraseña" nbInput [(ngModel)]="password" #passwordModel="ngModel" [type]="getInputType()"
+            <div class="form-control-group floating-group">
+              <div style="position: relative; display: flex; align-items: center; width: 100%;">
+                <input class="input-modern floating-input" placeholder=" " nbInput [(ngModel)]="password" #passwordModel="ngModel" [type]="getInputType()"
                        name="password" fullWidth
                        [status]="passwordModel.dirty ? (passwordModel.invalid  ? 'danger' : 'basic') : 'basic'"
                        required (keydown)="pulsar($event)">
-                <button nbSuffix nbButton ghost (click)="toggleShowPassword()" style="position: absolute; right: 5px; top: 5px; padding: 5px; background: transparent;" tabindex="-1">
+                <label class="floating-label">Contraseña</label>
+                <button nbSuffix nbButton ghost (click)="toggleShowPassword()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); padding: 5px; background: transparent; z-index: 3;" tabindex="-1">
                   <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'" pack="eva" style="color: #6b7280;"></nb-icon>
                 </button>
               </div>
@@ -94,37 +94,37 @@
           <!-- STEP 1 -->
           <div *ngIf="step == 1">
             <div class="row">
-              <div class="col-6 mb-3 pr-2">
-                <label class="label">Nombre</label>
-                <input class="input-modern" nbInput [(ngModel)]="name" name="name" placeholder="Tu nombre" pattern="[a-zA-Z ]+"
+              <div class="col-6 mb-3 pr-2 floating-group">
+                <input class="input-modern floating-input" nbInput [(ngModel)]="name" name="name" placeholder=" " pattern="[a-zA-Z ]+"
                        #namemodel="ngModel" [status]="namemodel.touched ? (namemodel.invalid ? 'danger' : 'basic') : 'basic'" required autocomplete="off" autofocus>
+                <label class="floating-label">Nombre</label>
               </div>
-              <div class="col-6 mb-3 pl-2">
-                <label class="label">Apellido</label>
-                <input class="input-modern" nbInput [(ngModel)]="last_name" name="last_name" placeholder="Tu apellido" pattern="[a-zA-Z ]+"
+              <div class="col-6 mb-3 pl-2 floating-group">
+                <input class="input-modern floating-input" nbInput [(ngModel)]="last_name" name="last_name" placeholder=" " pattern="[a-zA-Z ]+"
                        #lastnamemodel="ngModel" [status]="lastnamemodel.touched ? (lastnamemodel.invalid ? 'danger' : 'basic') : 'basic'" required autocomplete="off">
+                <label class="floating-label">Apellido</label>
               </div>
             </div>
 
-            <div class="form-control-group mb-3">
-              <label class="label">Email</label>
-              <input class="input-modern" nbInput [(ngModel)]="email" name="email" pattern=".+@.+\..+"
-                     #emailModel="ngModel" fullWidth placeholder="tucorreo@ejemplo.com" required autocomplete="off"
+            <div class="form-control-group mb-3 floating-group">
+              <input class="input-modern floating-input" nbInput [(ngModel)]="email" name="email" pattern=".+@.+\..+"
+                     #emailModel="ngModel" fullWidth placeholder=" " required autocomplete="off"
                      [status]="emailModel.touched ? (emailModel.invalid ? 'danger' : 'basic') : 'basic'">
+              <label class="floating-label">Email</label>
             </div>
 
             <div class="row">
-              <div class="col-6 mb-3 pr-2">
-                <label class="label">Documento</label>
-                <input class="input-modern" nbInput [(ngModel)]="document" name="document" placeholder="Cédula" pattern="[0-9]+"
+              <div class="col-6 mb-3 pr-2 floating-group">
+                <input class="input-modern floating-input" nbInput [(ngModel)]="document" name="document" placeholder=" " pattern="[0-9]+"
                        #documentmodel="ngModel" [status]="documentmodel.touched ? (documentmodel.invalid ? 'danger' : 'basic') : 'basic'"
                        minlength="7" maxlength="12" required autocomplete="off">
+                <label class="floating-label">Documento</label>
               </div>
-              <div class="col-6 mb-3 pl-2">
-                <label class="label">Celular</label>
-                <input class="input-modern" nbInput [(ngModel)]="phone" name="phone" placeholder="Celular" pattern="[0-9]+"
+              <div class="col-6 mb-3 pl-2 floating-group">
+                <input class="input-modern floating-input" nbInput [(ngModel)]="phone" name="phone" placeholder=" " pattern="[0-9]+"
                        #phonemodel="ngModel" [status]="phonemodel.touched ? (phonemodel.invalid ? 'danger' : 'basic') : 'basic'"
                        minlength="10" maxlength="10" required autocomplete="off">
+                <label class="floating-label">Celular</label>
               </div>
             </div>
 
@@ -153,17 +153,17 @@
 
           <!-- STEP 3 (NEW PASSWORD) -->
           <div *ngIf="step == 2 && (code_sent && code_valid)">
-            <div class="form-control-group mb-3">
-                <label class="label">Crea tu contraseña</label>
-                <input class="input-modern" nbInput [(ngModel)]="new_password" #password="ngModel" [type]="getInputType()"
-                       name="password" fullWidth required minlength="8" maxlength="20"
+            <div class="form-control-group mb-3 floating-group">
+                <input class="input-modern floating-input" nbInput [(ngModel)]="new_password" #password="ngModel" [type]="getInputType()"
+                       name="password" fullWidth required minlength="8" maxlength="20" placeholder=" "
                        [status]="password.dirty ? (password.invalid ? 'danger' : 'basic') : 'basic'" (keydown)="pulsar($event)">
+                <label class="floating-label">Crea tu contraseña</label>
             </div>
-            <div class="form-control-group mb-4">
-                <label class="label">Confirma tu contraseña</label>
-                <input class="input-modern" nbInput [(ngModel)]="confirmPassword" #rePass="ngModel" [type]="getInputType()"
-                       name="rePass" fullWidth required
+            <div class="form-control-group mb-4 floating-group">
+                <input class="input-modern floating-input" nbInput [(ngModel)]="confirmPassword" #rePass="ngModel" [type]="getInputType()"
+                       name="rePass" fullWidth required placeholder=" "
                        [status]="rePass.touched ? (rePass.invalid || password.value != rePass.value ? 'danger' : 'basic') : 'basic'" (keydown)="pulsar($event)">
+                <label class="floating-label">Confirma tu contraseña</label>
             </div>
             <button class="modern-button" type="button" (click)="changePassword(password.invalid)">Establecer Contraseña</button>
           </div>

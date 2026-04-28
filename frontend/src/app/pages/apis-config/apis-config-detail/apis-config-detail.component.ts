@@ -198,7 +198,7 @@ export class ApisConfigDetailComponent implements OnInit {
           for (let i = 0; i < trAll.length; i++) {
             let tdall = trAll[i].querySelectorAll('td')
             for (let j = 0; j < tdall.length; j++) {
-              let div = tdall[j].querySelectorAll('ng2-smart-table-cell > table-cell-view-mode > div > div')
+              let div = tdall[j].querySelectorAll('angular2-smart-table-cell > table-cell-view-mode > div > div')
               if (div.length > 0 && ['user_hash', 'form_hash'].includes(div[0].textContent)) {
                 let row1 = tdall[0].querySelectorAll('td > ng2-st-tbody-edit-delete')
                 if (row1.length > 0) {

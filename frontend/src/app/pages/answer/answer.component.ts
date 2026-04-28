@@ -331,6 +331,8 @@ export class CustomInputDateFilterComponentAnswer extends DefaultFilter implemen
     standalone: false
 })
 export class CustomButtonFilterComponentAnswer extends DefaultFilter implements OnChanges {
+  delay: number = 300;
+
   inputControl = new FormControl();
 
   constructor(private router: Router) {

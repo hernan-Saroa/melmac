@@ -1,0 +1,352 @@
+
+> ngx-admin@8.0.0 build
+> ng build
+
+[1m[33mWorkspace extension with invalid name (defaultProject) found.[39m[22m
+[1m[33mOne or more browsers which are configured in the project's Browserslist configuration will be ignored as ES5 output is not supported by the Angular CLI.
+Ignored browsers: ie 11, kaios 2.5, op_mini all[39m[22m
+- Generating browser application bundles (phase: setup)...
+[1m[33m    TypeScript compiler options "target" and "useDefineForClassFields" are set to "ES2022" and "false" respectively by the Angular CLI. To control ECMA version and features use the Browserslist configuration. For more information, see https://angular.dev/tools/cli/build#configuring-browser-compatibility
+    NOTE: You can set the "target" to "ES2022" in the project's tsconfig to remove this warning.[39m[22m
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+[1m[33m
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 78, column 32 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:78:32:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+78 |       border-top-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 79:33  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 79, column 35 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:79:35:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+79 |       border-bottom-right-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 80:36  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 89, column 33 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:89:33:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+89 |         border-top-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 90:34  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 90, column 36 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:90:36:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($size, 2) or calc($size / 2)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+90 |         border-bottom-left-radius: ($size/2);;
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 91:37  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+Deprecation Warning on line 119, column 20 of file:///C:/Users/Hernan_Buitrago/Documents/SuperApp%20ESAP/melmac/frontend/src/app/pages/answer/report/main-container/main-container.component.scss:119:20:
+Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div(100, $howManySteps) or calc(100 / $howManySteps)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+119 |     $stepName: ($i*(100 / $howManySteps));
+
+
+src\app\pages\answer\report\main-container\main-container.component.scss 120:21  root stylesheet
+
+
+./src/app/pages/answer/report/main-container/main-container.component.scss?ngResource - Warning: Module Warning (from ./node_modules/sass-loader/dist/cjs.js):
+7 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\@nebular\eva-icons\fesm2022\nebular-eva-icons.mjs depends on 'eva-icons'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\canvg\lib\index.es.js depends on 'rgbcolor'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet-polylinedecorator'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+Warning: C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\src\app\pages\geoportal\geoportal.component.ts depends on 'leaflet.markercluster'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.dev/tools/cli/build#configuring-commonjs-dependencies
+
+[39m[22m
+[1m[31m
+./node_modules/angular2-smart-table/fesm2022/angular2-smart-table.mjs:8:0-38 - Error: Module not found: Error: Can't resolve 'lodash-es' in 'C:\Users\Hernan_Buitrago\Documents\SuperApp ESAP\melmac\frontend\node_modules\angular2-smart-table\fesm2022'
+
+Error: [96msrc/app/pages/admin/location/location.component.ts[0m:[93m41[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentLocation'.
+
+[7m41[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/admin/parameter/parameter.component.ts[0m:[93m41[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentParameter'.
+
+[7m41[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/admin/permit/permit.component.ts[0m:[93m41[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentPermit'.
+
+[7m41[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/admin/project/project.component.ts[0m:[93m43[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentProject'.
+
+[7m43[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/admin/role/role.component.ts[0m:[93m40[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponent'.
+
+[7m40[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m15[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"angular2-smart-table"' has no exported member 'ViewCell'.
+
+[7m15[0m import { ViewCell } from 'angular2-smart-table';
+[7m  [0m [91m         ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m175[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m175[0m     this.delay = 1500;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m179[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m179[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m220[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m220[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/answer/answer.component.ts[0m:[93m221[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m221[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/contacts/contacts.component.ts[0m:[93m258[0m:[93m24[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ phoneInd: string; phoneNumber: string; }' is not assignable to parameter of type 'string'.
+
+[7m258[0m     this.cell.setValue(this.phone);
+[7m   [0m [91m                       ~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/contacts/contacts.component.ts[0m:[93m272[0m:[93m24[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ phoneInd: string; phoneNumber: string; }' is not assignable to parameter of type 'string'.
+
+[7m272[0m     this.cell.setValue(this.phone);
+[7m   [0m [91m                       ~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/device/device.component.ts[0m:[93m42[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentDevice'.
+
+[7m42[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/form/send/send.component.ts[0m:[93m8[0m:[93m27[0m - [91merror[0m[90m TS2724: [0m'"angular2-smart-table"' has no exported member named 'Ng2SmartTableComponent'. Did you mean 'Angular2SmartTableComponent'?
+
+[7m8[0m import { LocalDataSource, Ng2SmartTableComponent, DefaultFilter } from 'angular2-smart-table';
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/form/send/send.component.ts[0m:[93m656[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m656[0m     this.delay = 1000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/form/send/send.component.ts[0m:[93m657[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m657[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/route/load/load.component.ts[0m:[93m10[0m:[93m21[0m - [91merror[0m[90m TS2307: [0mCannot find module 'angular2-smart-table/lib/lib/data-set/row' or its corresponding type declarations.
+
+[7m10[0m import { Row } from 'angular2-smart-table/lib/lib/data-set/row';
+[7m  [0m [91m                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m7[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"angular2-smart-table"' has no exported member 'ViewCell'.
+
+[7m7[0m import { ViewCell } from 'angular2-smart-table';
+[7m [0m [91m         ~~~~~~~~[0m
+
+
+Error: [96msrc/app/pages/system/system.component.ts[0m:[93m294[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m294[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/traceability/traceability.component.ts[0m:[93m158[0m:[93m47[0m - [91merror[0m[90m TS2551: [0mProperty 'filters' does not exist on type 'IFilterConfig[]'. Did you mean 'filter'?
+
+[7m158[0m     let filters = this.trace_send.getFilter().filters
+[7m   [0m [91m                                              ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es5.d.ts[0m:[93m1469[0m:[93m5[0m
+    [7m1469[0m     filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[];
+    [7m    [0m [96m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    'filter' is declared here.
+
+
+Error: [96msrc/app/pages/traceability/traceability.component.ts[0m:[93m209[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m209[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/pages/traceability/traceability.component.ts[0m:[93m210[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m210[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/user/user.component.ts[0m:[93m41[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentUser'.
+
+[7m41[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/pages/visits/table/table.component.ts[0m:[93m6[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"angular2-smart-table"' has no exported member 'ViewCell'.
+
+[7m6[0m import { ViewCell } from 'angular2-smart-table';
+[7m [0m [91m         ~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/custom.dataSource.ts[0m:[93m3[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module 'angular2-smart-table/lib/lib/data-source/server/server-source.conf' or its corresponding type declarations.
+
+[7m3[0m import { ServerSourceConf } from 'angular2-smart-table/lib/lib/data-source/server/server-source.conf';
+[7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/custom.dataSource.ts[0m:[93m20[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'createRequesParams' does not exist on type 'CustomDataSource'.
+
+[7m20[0m     let httpParams = this.createRequesParams();
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m8[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"angular2-smart-table"' has no exported member 'ViewCell'.
+
+[7m8[0m import { ViewCell } from 'angular2-smart-table';
+[7m [0m [91m         ~~~~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m83[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m83[0m     this.delay = 1500;
+[7m  [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m87[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputTextFilterComponentAnswer'.
+
+[7m87[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m  [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m128[0m:[93m10[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m128[0m     this.delay = 2000;
+[7m   [0m [91m         ~~~~~[0m
+
+
+Error: [96msrc/app/public/historial/historial.component.ts[0m:[93m129[0m:[93m83[0m - [91merror[0m[90m TS2339: [0mProperty 'delay' does not exist on type 'CustomInputDateFilterComponentAnswer'.
+
+[7m129[0m     this.inputControl.valueChanges.pipe(distinctUntilChanged(), debounceTime(this.delay)).subscribe((value: string) => {
+[7m   [0m [91m                                                                                  ~~~~~[0m
+
+
+Error: [96msrc/app/usable/custom.dataSource.ts[0m:[93m3[0m:[93m34[0m - [91merror[0m[90m TS2307: [0mCannot find module 'angular2-smart-table/lib/lib/data-source/server/server-source.conf' or its corresponding type declarations.
+
+[7m3[0m import { ServerSourceConf } from 'angular2-smart-table/lib/lib/data-source/server/server-source.conf';
+[7m [0m [91m                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Error: [96msrc/app/usable/custom.dataSource.ts[0m:[93m19[0m:[93m27[0m - [91merror[0m[90m TS2339: [0mProperty 'createRequesParams' does not exist on type 'CustomDataSource'.
+
+[7m19[0m     let httpParams = this.createRequesParams();
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~[0m
+
+
+[39m[22m

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, Type, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, Type, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -7,6 +7,7 @@ import { FormService } from '../../../services/form.service';
 import { DigitalService } from '../../../services/digital.service';
 import { ToastService } from '../../../usable/toast.service';
 import { LocalDataSource } from 'angular2-smart-table';
+import { debounceTime } from 'rxjs/operators';
 
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { NbPopoverDirective, NbPosition, NbTrigger } from '@nebular/theme';
@@ -30,10 +31,14 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   // Step and views
   create_process = true;
-  form_process = false;
+  form_process: boolean = false;
+  
+  @ViewChild('stepper') stepper: any;
+  @ViewChild('next_first') next_first_btn: ElementRef;
+  @ViewChild('next_second') next_second_btn: ElementRef;
   drag_process = false;
   input_process = false;
-  pdf_process = false;
+  pdf_process: boolean = false;
   end_process = false;
   metadataCollapsed = false;
 
@@ -52,6 +57,12 @@ export class CreateComponent implements OnInit, OnDestroy {
   template_preview = 'template_1.png';
   file_source:File;
   file_name = '';
+
+  get cleanFileName(): string {
+    if (!this.file_name) return '';
+    return decodeURIComponent(this.file_name.replace(/\+/g, ' '));
+  }
+
   digital = false;
   digital_ia = false;
   process_digital_ia = false;
@@ -138,6 +149,10 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   // --- PDF ---
   src;
+  pdfBuffer: ArrayBuffer;
+  ai_preview_fields = [];
+  ai_pdf_scale = 1;
+  activeTab: string = 'fields';
   width = 0;
   height = 500;
   pages_count;
@@ -307,6 +322,13 @@ export class CreateComponent implements OnInit, OnDestroy {
       }
     });
 
+    // Sort by category to group them properly
+    this.field_types.sort((a, b) => {
+      if (a.category_id !== b.category_id) {
+        return a.category_id - b.category_id;
+      }
+      return a.label.localeCompare(b.label);
+    });
 
   }
 
@@ -342,6 +364,14 @@ export class CreateComponent implements OnInit, OnDestroy {
       );
     }
 
+    this.createForm.valueChanges.pipe(
+      debounceTime(1500)
+    ).subscribe(values => {
+      if (this.createForm.valid && this.createForm.dirty) {
+        this.onFirstSubmit(null);
+      }
+    });
+
     // this.getDataDigital();
   }
 
@@ -359,6 +389,8 @@ export class CreateComponent implements OnInit, OnDestroy {
       this.file_source = event.target.files[0];
       if (this.file_source && this.file_source.type == 'application/pdf') {
         this.file_name = this.file_source.name;
+        this.digital = true; // Auto-activar modo digital
+        this.digital_ia = false; // Reset IA state
         change_file = true;
       }
     } else if (type == 'logo') {
@@ -370,30 +402,72 @@ export class CreateComponent implements OnInit, OnDestroy {
       }
     }
 
-    if (!change_file) {
+    if (change_file) {
+      if (this.createForm.valid) {
+        this.onFirstSubmit(null);
+      }
+    } else {
       if (type == 'template') {
         this.toastService.showToast('warning', 'Documento Digital', 'El archivo no es formato PDF.');
+        this.file_source = null;
+        this.file_name = null;
+        this.digital = false;
+        this.digital_ia = false;
+        setTimeout(() => {
+          this.createForm.setValue({
+            name:  this.createForm.controls['name'].value,
+            description: this.createForm.controls['description'].value,
+            template: null,
+            template_option: this.createForm.controls['template_option'].value,
+            template_color: this.createForm.controls['template_color'].value,
+            pin_color: this.createForm.controls['pin_color'].value,
+            logo: null,
+          }, { emitEvent: false });
+          this.cd.detectChanges();
+        }, 0);
       } else if (type == 'logo') {
         this.toastService.showToast('warning', 'Documento Digital', 'El archivo no es formato Imagen.');
+        this.logo_source = null;
+        this.logo_name = null;
+        setTimeout(() => {
+          this.createForm.setValue({
+            name:  this.createForm.controls['name'].value,
+            description: this.createForm.controls['description'].value,
+            template: null,
+            template_option: this.createForm.controls['template_option'].value,
+            template_color: this.createForm.controls['template_color'].value,
+            pin_color: this.createForm.controls['pin_color'].value,
+            logo: null,
+          }, { emitEvent: false });
+          this.cd.detectChanges();
+        }, 0);
       }
-      this.logo_name = null;
-      this.file_name = null;
-      this.createForm.setValue({
-        name:  this.createForm.controls['name'].value,
-        description: this.createForm.controls['description'].value,
-        template: null,
-        template_option: this.createForm.controls['template_option'].value,
-        template_color: this.createForm.controls['template_color'].value,
-        pin_color: this.createForm.controls['pin_color'].value,
-        logo: null,
-      });
     }
   }
 
-  // Crear el formulario con la plantilla
+  removePdf() {
+    this.file_source = null;
+    this.file_name = '';
+    this.digital = false;
+    this.digital_ia = false;
+  }
+
+  // Creación del formulario. con la plantilla
   onFirstSubmit(next_first) {
+    if (this.digital_ia) {
+        if (!this.createForm.controls['name'].value) {
+            this.createForm.controls['name'].setValue("Procesando con Flo AI...");
+        }
+        if (!this.createForm.controls['description'].value) {
+            this.createForm.controls['description'].setValue("Analizando documento...");
+        }
+    }
+
     if (this.createForm.controls['name'].value != '' && this.createForm.controls['description'].value != '') {
-      this.loading = true;
+      setTimeout(() => {
+        this.loading = true;
+        this.cd.detectChanges();
+      }, 0);
 
       this.name = this.createForm.controls['name'].value;
       this.description = this.createForm.controls['description'].value;
@@ -430,30 +504,48 @@ export class CreateComponent implements OnInit, OnDestroy {
         formData.append("logo", this.logo_source);
       }
 
-      this.digitalService.create(formData).subscribe(response => {
-        if (response['status']) {
-          this.id = response['id'];
-          if (this.digital && this.digital_ia) {
-            this.getStatusIA(next_first)
+      this.digitalService.create(formData).subscribe({
+        next: (response) => {
+          if (response['status']) {
+            if (this.digital && this.digital_ia) {
+              setTimeout(() => {
+                this.id = response['id'];
+                this.cd.detectChanges();
+              }, 0);
+              this.getStatusIA(next_first)
+            } else {
+              setTimeout(() => {
+                this.id = response['id'];
+                this.loading = false;
+                // this.toastService.showToast('success', 'Documento', 'Documento guardado. Ahora puedes agregar campos.');
+                // this.metadataCollapsed = true; // Auto-collapse to give space to field builder
+                // Siguiente paso
+                if (this.consecutive) {
+                  this.create_process = true;
+                  this.form_process = false;
+                  this.drag_process = true;
+                  this.pdf_process = false;
+                } else {
+                  this.create_process = true;
+                  this.form_process = true;
+                  this.drag_process = false;
+                  this.pdf_process = false;
+                }
+                this.cd.detectChanges();
+              }, 100);
+            }
           } else {
             setTimeout(() => {
               this.loading = false;
-              this.toastService.showToast('success', 'Documento', 'Documento guardado. Ahora puedes agregar campos.');
-              this.metadataCollapsed = true; // Auto-collapse to give space to field builder
-              // Siguiente paso
-              if (this.consecutive) {
-                this.create_process = true;
-                this.form_process = false;
-                this.drag_process = true;
-                this.pdf_process = false;
-              } else {
-                this.create_process = true;
-                this.form_process = true;
-                this.drag_process = false;
-                this.pdf_process = false;
-              }
-            }, 1000);
+              this.cd.detectChanges();
+            }, 0);
           }
+        },
+        error: (err) => {
+          setTimeout(() => {
+            this.loading = false;
+            this.cd.detectChanges();
+          }, 0);
         }
       });
 
@@ -463,8 +555,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     }
   }
 
-  getFormData(){
-    this.loading = true;
+  getFormData(show_ia_toast: boolean = false){
     this.formService.get_data_form(this.id).subscribe(
       response => {
         if (response['status']){
@@ -476,72 +567,125 @@ export class CreateComponent implements OnInit, OnDestroy {
           if (response['form']['pin'] != '') {
             pin_update = response['form']['pin'];
           }
-          this.createForm.setValue({
-            name:  response['form']['name'],
-            description: response['form']['description'],
-            template: null,
-            template_option: response['form']['theme'],
-            template_color: color_update,
-            pin_color: pin_update,
-            logo: null,
-          });
-          this.template_option = response['form']['theme'];
-          this.template_color = color_update;
-          this.pin_color = pin_update;
 
-          this.digital = response['form']['digital'];
-          this.is_digital = response['form']['digital'];
+          setTimeout(() => {
+            this.createForm.setValue({
+              name:  response['form']['name'],
+              description: response['form']['description'],
+              template: null,
+              template_option: response['form']['theme'],
+              template_color: color_update,
+              pin_color: pin_update,
+              logo: null,
+            }, { emitEvent: false });
+            
+            this.cd.detectChanges();
+            
+            this.template_option = response['form']['theme'];
+            this.template_color = color_update;
+            this.pin_color = pin_update;
 
-          if (response['form']['digital']) {
-            this.file_name = 'Plantilla cargada';
-          }
-          this.version = response['form']['version']
-          this.form_field = response['form']['fields'];
-          // console.log("this.form_field:::::::::");
-          // console.log(this.form_field);
+            this.digital = response['form']['digital'];
+            this.is_digital = response['form']['digital'];
 
-          if (response['form']['digital_ia_state']) {
-            if (response['form']['digital_ia_status'] == 1) {
-              this.getStatusIA();
+            if (response['form']['digital']) {
+              this.file_name = 'Plantilla cargada';
             }
-          }
+            this.version = response['form']['version']
+            
+            if (response['form']['digital_ia_state']) {
+              if (response['form']['digital_ia_status'] == 1) {
+                this.getStatusIA();
+              }
+            }
+            
+            this.form_field_original = Object.assign([], response['form']['fields']);
+            this.form_field = response['form']['fields'].filter(item => !(item.field_type === '11' && item.label === 'Número de documento a validar biometricamente'));
+            
+            if (show_ia_toast) {
+              this.toastService.showToast('success', 'Flo AI Completada', `Flo AI extrajo ${this.form_field.length} campos exitosamente.`);
+            }
 
-          this.form_field_original = Object.assign([], response['form']['fields']);
-          this.form_field = this.form_field.filter(item => !(item.field_type === '11' && item.label === 'Número de documento a validar biometricamente'));
-          // this.form = new Object({components: response['form']['fields']});
-          // this.form_content = {components: JSON.parse(JSON.stringify(response['form']['fields']))};
-          this.loading = false;
-          this.metadataCollapsed = true; // Auto-collapse for existing docs
+            if (this.digital && response['form']['digital_ia_state'] && response['form']['digital_ia_status'] == 2) {
+              this.digitalService.getDataDigital(this.id).subscribe(
+                digital_response => {
+                  if (digital_response['status']) {
+                    this.ai_preview_fields = digital_response['data']['digital'];
+                    this.cd.detectChanges();
+                  }
+                }
+              );
+            }
+
+            setTimeout(() => {
+              this.loading = false;
+              this.process_digital_ia = false;
+              this.metadataCollapsed = true; // Auto-collapse for existing docs
+              this.cd.detectChanges();
+              
+              if (this.digital) {
+                this.digitalService.getPDF(this.id).subscribe(
+                  response => {
+                    this.pdfBuffer = response;
+                    if (this.activeTab === 'pdf') {
+                      this.src = { data: this.pdfBuffer.slice(0) };
+                    }
+                    this.cd.detectChanges();
+                  }
+                );
+              }
+            }, 0);
+          }, 0);
         }
       }
     );
   }
 
   getStatusIA(next_first = undefined){
-    this.process_digital_ia = true;
+    setTimeout(() => {
+      this.process_digital_ia = true;
+      if (this.consecutive) {
+        this.create_process = true;
+        this.form_process = false;
+        this.drag_process = true;
+        this.pdf_process = false;
+      } else {
+        this.create_process = true;
+        this.form_process = true;
+        this.drag_process = false;
+        this.pdf_process = false;
+      }
+      this.cd.detectChanges();
+    }, 0);
+    if (this.interval_ia) {
+        clearInterval(this.interval_ia);
+    }
     this.interval_ia = setInterval(() => {
-      this.loading = true;
       this.formService.get_digital_ia_state(this.id).subscribe(
         response => {
           if (response['status']){
             if (response['number_status'] != 0 && response['number_status'] != 1) {
-              this.getFormData();
-              clearInterval(this.interval_ia);
-              if (next_first != undefined) {
-                next_first.hostElement.nativeElement.click();
-              }
-              this.create_process = false;
-              this.form_process = true;
-              this.drag_process = false;
-              this.pdf_process = false;
+              if (this.interval_ia) {
+                  clearInterval(this.interval_ia);
+                  this.interval_ia = null;
+                  this.getFormData(true);
+                  
+                  setTimeout(() => {
+                    if (next_first != undefined) {
+                      next_first.hostElement.nativeElement.click();
+                    }
+                this.create_process = false;
+                this.form_process = true;
+                this.drag_process = false;
+                this.pdf_process = false;
+                this.process_digital_ia = false;
+                this.cd.detectChanges();
+              }, 0);
             }
           }
         }
       );
-      setTimeout(() => {
-        this.loading = false;
-      }, 1500);
-    }, 10000);
+    }, 5000);
   }
 
   isFieldFixed(field: any): boolean {
@@ -558,6 +702,9 @@ export class CreateComponent implements OnInit, OnDestroy {
   toggleIA() {
     if (this.digital){
       this.digital_ia = !this.digital_ia;
+      if (this.digital_ia) {
+        this.onFirstSubmit(this.next_first_btn);
+      }
     }
   }
 
@@ -586,7 +733,10 @@ export class CreateComponent implements OnInit, OnDestroy {
             template_color: color_update,
             pin_color: pin_update,
             logo: null,
-          });
+          }, { emitEvent: false });
+          
+          this.cd.detectChanges();
+          
           this.template_option = response['consecutive']['theme'];
           this.template_color = color_update;
           this.pin_color = pin_update;
@@ -995,10 +1145,16 @@ export class CreateComponent implements OnInit, OnDestroy {
     this.digitalService.getDataDigital(this.id).subscribe(
       response => {
         if (response['status']) {
-          // this.width = response['data']['width'];
-
-          this.pages_count = response['data']['pages_count'];
-          this.pages = response['data']['pages'];
+          this.width = response['data']['width'];
+          this.height = response['data']['height'];
+          this.pages_count = response['data']['pages'];
+          
+          // Build an array of page dimensions to satisfy pageChange logic
+          this.pages = Array.from({length: this.pages_count}, () => ({
+            width: this.width, 
+            height: this.height
+          }));
+          
           this.forms = response['data']['forms'];
 
           let key_field = 1;
@@ -1010,27 +1166,31 @@ export class CreateComponent implements OnInit, OnDestroy {
               }
             });
           });
-
-          this.width = this.pages[0]['width'];
-          this.height = this.pages[0]['height'];
-
           // this.fields = response['data']['form']['fields'];
           // Condicional de cuando es actualización
           this.fields_drag = response['data']['digital'];
           this.fields_drag_original = JSON.stringify(response['data']['digital']);
-          this.columns_additional = response['data']['data_additional']
+          this.columns_additional = response['data']['data_additional'] || [];
+          this.consecutive = response['consecutive'] || false;
+          this.line_check = response['data']['line'] || false;
           // Siguiente paso
 
-          this.create_process = false;
-          this.form_process = false;
-          this.pdf_process = true;
-          this.input_process = false;
-          this.end_process = false;
+          setTimeout(() => {
+            this.create_process = false;
+            this.form_process = false;
+            this.pdf_process = true;
+            this.input_process = false;
+            this.end_process = false;
+            this.cd.detectChanges();
+          }, 0);
 
           this.digitalService.getPDF(this.id).subscribe(
             response => {
-              this.src = {
-                data: response
+              this.pdfBuffer = response;
+              if (this.activeTab === 'pdf') {
+                this.src = {
+                  data: this.pdfBuffer.slice(0)
+                };
               }
               this.loading = false;
             }
@@ -1043,6 +1203,23 @@ export class CreateComponent implements OnInit, OnDestroy {
   // --- PDF ---
 
   // Cambios y actualización del elemento
+  setTab(tab: string) {
+    this.activeTab = tab;
+    if (tab === 'pdf' && this.pdfBuffer) {
+      this.src = { data: this.pdfBuffer.slice(0) };
+    }
+    this.cd.detectChanges();
+  }
+
+  onPdfPageRendered(e: CustomEvent) {
+    if (e && e['source'] && e['source']['viewport']) {
+      setTimeout(() => {
+        this.ai_pdf_scale = e['source']['viewport'].scale;
+        this.cd.detectChanges();
+      });
+    }
+  }
+
   pageChange(value) {
     this.page = value;
     this.width = this.pages[value-1]['width'];
@@ -3049,6 +3226,7 @@ export class ModalAdditionalComponent implements OnInit {
   confirm = '';
   file = false;
   loading = false;
+  file_name: string = null;
 
   columns = [];
 

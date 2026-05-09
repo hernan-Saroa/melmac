@@ -686,7 +686,7 @@ export class FieldSettingDialogComponent implements OnInit{
     if (this.data.approver){
       return 'Comprobante';
     }
-    let typesRun = types
+    let typesRun: any = types
     if(this.data.isConfig) {
       typesRun = configGeneral
     }

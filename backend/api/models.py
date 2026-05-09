@@ -409,6 +409,8 @@ class Form_Enterprise(models.Model):
     color = models.CharField(max_length=10, default='')
     pin = models.CharField(max_length=10, default='')
     state = models.BooleanField(default=True)
+    digital_ia_state = models.BooleanField(default=False)
+    digital_ia_status = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -2219,4 +2221,12 @@ class Apis_Config_Params(models.Model):
 
     def __str__(self):
         return self.param
-
+
+class AI_Knowledge_Base(models.Model):
+    keyword = models.CharField(max_length=200, unique=True)
+    field_type_id = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+    state = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.keyword

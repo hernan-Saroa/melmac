@@ -1,4 +1,4 @@
-# rest_framework
+﻿# rest_framework
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
@@ -188,18 +188,27 @@ class FormList(APIView):
                             form_val.save()
                             # actualiza el template del formulario digital
                             if 'digital' in data and data['digital'] == '1':
-                                if 'template' in files:
-                                    try:
-                                        form_digital_val = Form_Digital.objects.get(form_enterprise=form_val)
-                                        form_digital_val.template = files['template']
-                                        form_digital_val.save()
-                                    except (Form_Digital.DoesNotExist):
-                                        form_digital_val = Form_Digital()
-                                        form_digital_val.form_enterprise = form_val
-                                        form_digital_val.template = files['template']
-                                        form_digital_val.save()
+                                try:
+                                    form_digital_val = Form_Digital.objects.get(form_enterprise=form_val)
+                                except (Form_Digital.DoesNotExist):
+                                    form_digital_val = Form_Digital(form_enterprise=form_val)
 
-                                    response['digital'] = form_digital_val.id
+                                if 'template' in files:
+                                    form_digital_val.template = files['template']
+                                    form_digital_val.save()
+                                elif form_digital_val.id is None:
+                                    # Fallback if created but no template provided
+                                    form_digital_val.save()
+
+                                response['digital'] = form_digital_val.id
+                                
+                                if 'digital_ia' in data and data['digital_ia'] == '1':
+                                    form_val.digital_ia_state = True
+                                    form_val.digital_ia_status = 1
+                                    form_val.save()
+                                    from api.lib.pdf_ai_parser import parse_pdf_for_fields
+                                    Thread(target=parse_pdf_for_fields, args=(form_val.id, form_digital_val.id)).start()
+
                             form_id = form_val.id
                             # Detectar los cambios realizados
                             form_differences = lookFormDifferences(form_data, form_val)
@@ -230,6 +239,14 @@ class FormList(APIView):
                         create_traceability(log_content)
                         if 'digital' in response_form:
                             response['digital'] = response_form['digital']
+                            if 'digital_ia' in data and data['digital_ia'] == '1':
+                                form_val = Form_Enterprise.objects.get(id=form_id)
+                                form_val.digital_ia_state = True
+                                form_val.digital_ia_status = 1
+                                form_val.save()
+                                form_digital_val = Form_Digital.objects.get(id=response_form['digital'])
+                                from api.lib.pdf_ai_parser import parse_pdf_for_fields
+                                Thread(target=parse_pdf_for_fields, args=(form_val.id, form_digital_val.id)).start()
 
                     if 'fields' in data and data['fields']:
                         # Primeras validaciones para nueva versión
@@ -695,8 +712,24 @@ def delete(request, pk):
         pass
     return Response(response, status=status_response)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_digital_ia_state(request, form):
+    response = {"status": False}
+    status_response = status.HTTP_400_BAD_REQUEST
+    try:
+        user_val = User_Enterprise.objects.get(user=request.user, token=request.auth.key)
+        form_val = Form_Enterprise.objects.get(id=form, enterprise_id=user_val.enterprise_id)
+        response['status'] = True
+        response['number_status'] = form_val.digital_ia_status
+        status_response = status.HTTP_200_OK
+    except Form_Enterprise.DoesNotExist:
+        pass
+    except User_Enterprise.DoesNotExist:
+        pass
+    return Response(response, status=status_response)
+
 @api_view(['POST'])
-# @permission_classes([IsUserAdminOrHasPermission])
 @permission_classes([IsAuthenticated])
 def activate(request):
     response = {"status": False}
@@ -1354,7 +1387,9 @@ def get_data_form(request, form, consecutive=None, answer=None):
             'digital': form_val.digital,
             'public': public,
             'fields': fields_array,
-            'answer_duplicate': answer_duplicate
+            'answer_duplicate': answer_duplicate,
+            'digital_ia_state': form_val.digital_ia_state if hasattr(form_val, 'digital_ia_state') else False,
+            'digital_ia_status': form_val.digital_ia_status if hasattr(form_val, 'digital_ia_status') else 0,
         }
 
     except Answer_Form.DoesNotExist:
@@ -1459,9 +1494,9 @@ def get_field(form_id, consecutive=None, update=False, answer_form_val=None, con
 
         type_field_limit = [1, 2, 5, 6, 11, 20, 21, 22, 23, 25]
         data_field['validate'] = {}
-        data_field['valuesDocuments'] = {}
-        data_field['valuesNit'] = {}
-        data_field['optionDocuments'] = {}
+        data_field['valuesDocuments'] = []
+        data_field['valuesNit'] = []
+        data_field['optionDocuments'] = []
         # max o min and advanced
         if field_form.field_type_id in type_field_limit:
             field_parameters = Form_Field_Parameter.objects.filter(form_field_id=field_form.id, state=True)
@@ -1969,7 +2004,7 @@ def get_fields(list_field:list):
             'field_type': str(field['field_type_id']),
         }
         if field['field_type_id'] in type_option:
-            options_field = field_options_dict[field['id']]
+            options_field = field_options_dict.get(field['id'], [])
             options = get_options(options_field)
             data_field['values'] = options
 
@@ -2193,7 +2228,7 @@ def get_field_arrays(form_val:Form_Enterprise, form_digital_val, type):
                         data_field['validate']['special'] = field_parameter.value
 
             elif field_form['field_type_id'] in type_option:
-                options_field = field_options_dict[field_form['id']]
+                options_field = field_options_dict.get(field_form['id'], [])
                 options = get_options(options_field)
                 data_field['data'] = {'values': options}
             elif field_form['field_type_id'] == 17:
@@ -2276,6 +2311,13 @@ class DigitalDetail(APIView):
             pass
         except (Form_Digital.DoesNotExist):
             pass
+        except Exception as e:
+            import traceback
+            error_trace = traceback.format_exc()
+            print("DIGITAL GET ERROR:", error_trace)
+            response['error_detail'] = str(e)
+            response['trace'] = error_trace
+            status_response = status.HTTP_500_INTERNAL_SERVER_ERROR
         return Response(response, status=status_response)
 
     def post(self, request, pk, format=None):
@@ -2361,6 +2403,13 @@ class DigitalDetail(APIView):
 
                         form_digital_val.status = 1
                         form_digital_val.save()
+
+                        # AI Knowledge Base Learning Trigger
+                        try:
+                            from api.lib.pdf_ai_parser import learn_from_user_fields
+                            learn_from_user_fields(form_digital_val.id, data['fields'])
+                        except Exception as e:
+                            print(f"Error triggering AI learning: {e}")
 
                         response['status'] = True
                         response['id'] = form_val.id
@@ -2486,13 +2535,16 @@ def get_pdf(request, pk):
         form_digital_val = Form_Digital.objects.get(form_enterprise=form_val)
 
         pdf_template_file = settings.MEDIA_ROOT + '/' + str(form_digital_val.template)
-        with open(pdf_template_file, 'rb') as f:
-            file_data = f.read()
+        try:
+            with open(pdf_template_file, 'rb') as f:
+                file_data = f.read()
 
-        # sending response
-        response = HttpResponse(file_data, content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename=form.pdf'
-        return response
+            # sending response
+            response = HttpResponse(file_data, content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename=form.pdf'
+            return response
+        except FileNotFoundError:
+            pass
 
     except (Form_Enterprise.DoesNotExist):
         pass
@@ -2500,7 +2552,7 @@ def get_pdf(request, pk):
         pass
 
     response = {"status": False}
-    return Response(response)
+    return Response(response, status=404)
 
 """ Funciones """
 def create_form(user_val, data, files=None):
@@ -2538,12 +2590,12 @@ def create_form(user_val, data, files=None):
         user_form_val.form_enterprise = form_val
         user_form_val.save()
 
-    if 'digital' in data and data['digital'] == '1' or data['digital'] == True:
+    if ('digital' in data and data['digital'] == '1') or ('digital' in data and data['digital'] == True):
         form_digital_val = Form_Digital()
         form_digital_val.form_enterprise = form_val
-        if files != None:
+        if files != None and 'template' in files:
             form_digital_val.template = files['template']
-        else:
+        elif 'digital_template' in data:
             form_digital_val.template = data['digital_template']
         form_digital_val.save()
         response['digital'] = form_digital_val.id
@@ -2723,6 +2775,8 @@ def create_field_digital(fields, fields_list, form_digital, consecutive):
         digital_field_val.save()
 
 def replace_character(text):
+    if text is None:
+        return ""
     characters = [' , ', ' ,', ', ']
     special_characters = [':', "'", '"']
     while '  ' in text:

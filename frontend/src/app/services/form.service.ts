@@ -184,9 +184,9 @@ export class FormService {
       'Content-Type': 'application/json',
       'Authorization': 'Token ' + user.token
     });
-    let path = BASE_URL + 'form/data/' + form + '/';
+    let path = BASE_URL + 'form/data/' + form + '/?t=' + new Date().getTime();
     if (consecutive != '') {
-      path = BASE_URL + 'form/data/' + form + '/' + consecutive + '/';
+      path = BASE_URL + 'form/data/' + form + '/' + consecutive + '/?t=' + new Date().getTime();
     }
     return this.http.get<[]>(path, { headers: reqHeader });
   }
@@ -276,7 +276,7 @@ export class FormService {
       'Content-Type': 'application/json',
       'Authorization': 'Token ' + user.token
     });
-    let path = BASE_URL + 'form/digital/ia/status/' + form + '/';
+    let path = BASE_URL + 'form/digital/ia/status/' + form + '/?t=' + new Date().getTime();
     return this.http.get<[]>(path, { headers: reqHeader });
   }
 

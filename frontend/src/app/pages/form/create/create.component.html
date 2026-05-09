@@ -37,40 +37,30 @@
                         nbTooltip="{{ metadataCollapsed ? 'Expandir configuración avanzada' : 'Ocultar configuración avanzada' }}">
                         <nb-icon [icon]="metadataCollapsed ? 'settings-2-outline' : 'minus-outline'"></nb-icon>
                     </button>
-                    <button nbButton size="small" status="primary" class="wc-save-btn"
-                        (click)="onFirstSubmit(next_first)"
-                        [disabled]="!createForm.valid || loading"
-                        [nbSpinner]="loading" nbSpinnerStatus="control">
-                        <nb-icon icon="save-outline"></nb-icon> {{ id ? 'Actualizar' : 'Guardar' }}
-                    </button>
+                    <!-- Auto-save replaces Guardar button -->
+                    <span *ngIf="loading" style="font-size: 12px; color: gray; margin-left: 10px;">
+                      <nb-icon icon="loader-outline" [spin]="true"></nb-icon> Guardando...
+                    </span>
                 </div>
             </nb-card-header>
-            
-            <nb-card-body [hidden]="!process_digital_ia">
-              <div class="col-12 col-md-6 offset-md-3" [nbSpinner]="loading" nbSpinnerStatus="primary">
-                <div class="IA-loading">
-                  <nb-icon icon="loader-outline"></nb-icon>
-                  <div style="width: 100%;"><h1>IA</h1></div>
-                  <div style="width: 100%; padding: 10px;">Se activo la generación automática por IA</div>
-                  <div style="width: 100%; padding: 10px; font-weight: 100;">
-                    <label>¡Puedes esperar o volver luego!</label>
-                  </div>
-                </div>
-              </div>
-            </nb-card-body>
-            
-            <nb-card-body [hidden]="process_digital_ia" class="wc-meta-body">
+            <nb-card-body class="wc-meta-body">
                 <form [formGroup]="createForm" (ngSubmit)="onFirstSubmit(next_first)" class="step-container">
                     <div class="content-data wc-compact-form">
                     
                         <!-- TITLE AND DESC ALWAYS VISIBLE -->
                         <div class="wc-inline-fields">
-                            <input type="text" placeholder="Nombre de este Formulario/Documento..." class="form-control wc-title-input" formControlName="name"
-                                fullWidth maxlength="100"
-                                [ngClass]="{'form-control-danger': createForm.invalid && (createForm.dirty || createForm.touched)}">
-                            <textarea rows="1" placeholder="Añade una descripción (opcional)..." class="form-control wc-desc-input"
-                                formControlName="description" fullWidth maxlength="1000"
-                                style="resize: none;" required></textarea>
+                            <div class="premium-field-container">
+                                <label class="label premium-label">Nombre del Documento</label>
+                                <input type="text" placeholder="Ej. Formulario de Inscripción Empresarial..." class="form-control wc-title-input" formControlName="name"
+                                    fullWidth maxlength="100"
+                                    [ngClass]="{'form-control-danger': createForm.invalid && (createForm.dirty || createForm.touched)}">
+                            </div>
+                            <div class="premium-field-container">
+                                <label class="label premium-label">Descripción (Opcional)</label>
+                                <textarea rows="1" placeholder="Breve propósito o contexto de este documento..." class="form-control wc-desc-input"
+                                    formControlName="description" fullWidth maxlength="1000"
+                                    style="resize: none;" required></textarea>
+                            </div>
                         </div>
 
                         <input type="file" (change)="onFileSelected($event, 'template')"
@@ -83,11 +73,54 @@
 
                         <!-- ADVANCED OPTIONS TOOLBAR (COLLAPSIBLE) -->
                         <div class="row wc-options-toolbar" [hidden]="metadataCollapsed">
-                            <div [hidden]="is_digital" class="col-12 col-md-4">
-                                <label class="label">Plantilla</label>
+                            <div class="col-12 col-md-6">
+                                <label class="label premium-label">Documento Inteligente (PDF)</label><br>
+                                
+                                <div class="premium-actions-row" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                    <button nbButton type="button" [status]="file_name ? 'basic' : 'primary'" [outline]="!file_name" class="premium-upload-btn"
+                                        (click)="fileUpload.click()" style="flex: 1; max-width: fit-content; text-transform: none; font-weight: 600;">
+                                        <ng-container *ngIf="!file_name">
+                                            <nb-icon icon="cloud-upload"></nb-icon> Seleccionar PDF
+                                        </ng-container>
+                                        <ng-container *ngIf="file_name">
+                                            <nb-icon icon="file-text" pack="eva"></nb-icon> {{ cleanFileName }}
+                                        </ng-container>
+                                    </button>
+
+                                    <button *ngIf="file_name && !is_digital" nbButton outline status="danger" type="button" (click)="removePdf()" title="Eliminar Documento">
+                                        <nb-icon icon="trash-2-outline" pack="eva"></nb-icon>
+                                    </button>
+                                    
+                                    <button *ngIf="file_name && !process_digital_ia" [disabled]="!digital" nbButton type="button" status="success" class="premium-ia-btn" (click)="toggleIA()">
+                                        <nb-icon icon="flash" pack="eva"></nb-icon> Analizar con Flo AI
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 col-md-3">
+                                <label class="label premium-label">Establecer PIN</label><br>
+                                <nb-select fullWidth
+                                    style="margin-bottom: 15px;" class="select-form premium-select" [(ngModel)]="pin_color" [ngModelOptions]="{standalone: true}" placeholder="Seleccionar Pin">
+                                    <nb-option value="">
+                                        <div class="pin-option">
+                                            <nb-icon icon="shuffle-outline" pack="eva"></nb-icon>
+                                            <span>Aleatorio</span>
+                                        </div>
+                                    </nb-option>
+                                    <nb-option *ngFor="let pin of pines; let i=index;" [value]="pin">
+                                        <div class="pin-option">
+                                            <nb-icon icon="pin" pack="eva" [style.color]="'#' + pin"></nb-icon>
+                                            <span class="pin-hex-text">Color {{ i+1 }} (#{{ pin }})</span>
+                                        </div>
+                                    </nb-option>
+                                </nb-select>
+                            </div>
+                            
+                            <div [hidden]="is_digital" class="col-12 col-md-3">
+                                <label class="label premium-label">Plantilla Clásica</label><br>
                                 <nb-select fullWidth [disabled]="digital" [(ngModel)]="template_option" [ngModelOptions]="{standalone: true}"
-                                    style="margin-bottom: 15px;" class="select-form" placeholder="Seleccionar Plantilla">
-                                    <nb-option value="0">Plantilla Predeterminada</nb-option>
+                                    style="margin-bottom: 15px;" class="select-form premium-select" placeholder="Seleccionar Plantilla">
+                                    <nb-option value="0">Predeterminada</nb-option>
                                     <nb-option value="1">Plantilla 1</nb-option>
                                     <nb-option value="2">Plantilla 2</nb-option>
                                 </nb-select>
@@ -100,25 +133,6 @@
                                     <button nbButton size="tiny" type="button" outline status="primary" class="logo-btn"
                                         (click)="logoUpload.click()">Logo <nb-icon icon="cloud-upload"></nb-icon></button>
                                     {{ logo_name }}
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <label class="label">Establecer Pin</label><br>
-                                <nb-select fullWidth
-                                    style="margin-bottom: 15px;" class="select-form" [(ngModel)]="pin_color" [ngModelOptions]="{standalone: true}" placeholder="Seleccionar Pin">
-                                    <nb-option value="">Aleatorio</nb-option>
-                                    <nb-option *ngFor="let pin of pines; let i=index;" [value]="pin">Pin-{{ i+1 }}</nb-option>
-                                </nb-select>
-                            </div>
-                            <div class="col-12 col-md-4">
-                                <div class="file-upload">
-                                    <nb-checkbox [hidden]="is_digital" [checked]="digital" status="primary" (checkedChange)="toggle($event)">Con plantilla PDF</nb-checkbox><br>
-                                    <button [disabled]="!digital" nbButton type="button" outline status="primary" class="upload-btn"
-                                        (click)="fileUpload.click()">Plantilla PDF <nb-icon icon="cloud-upload"></nb-icon></button>
-                                    {{ file_name }}
-                                </div>
-                                <div [hidden]="id" class="IA-select mt-2" (click)="toggleIA()">
-                                    <div [class.disabled]="!digital" class="upload-btn"> IA </div>
                                 </div>
                             </div>
                         </div>
@@ -156,8 +170,8 @@
     </nb-card>
 </ng-template>
 
-<div class="col-12" *ngIf="create_process || form_process">
-    <div class="row">
+<div class="col-12">
+    <div class="row" *ngIf="create_process || form_process">
     <div class="col-xl-3 col-lg-4 col-md-4 col-12">
     <div class="col-12" *ngIf="create_process || form_process">
 </div>
@@ -168,9 +182,27 @@
                         <div cdkDropList #typeList="cdkDropList" [cdkDropListData]="field_types"
                             [cdkDropListConnectedTo]="[fieldList]" class="type-list"
                             (cdkDropListDropped)="dropField($event)">
-                            <div class="type-box" *ngFor="let item of field_types" cdkDrag>
-                                {{ item.label }}
-                            </div>
+                            <ng-container *ngFor="let item of field_types; let i = index">
+                                <!-- Category Header -->
+                                <div class="category-header" 
+                                     *ngIf="i === 0 || item.category_id !== field_types[i-1].category_id"
+                                     [style.background-color]="item.category_bg"
+                                     [style.border-left]="'4px solid ' + item.category_border">
+                                    <span class="category-title" [style.color]="item.category_border">{{ item.category_name }}</span>
+                                </div>
+                                <!-- Draggable Field -->
+                                <div class="type-box category-type-box" cdkDrag 
+                                     [ngClass]="{'premium-box': item.is_premium}"
+                                     [style.border-left]="item.is_premium ? '3px solid #ffaa00' : '3px solid ' + item.category_bg"
+                                     [style.background-color]="item.is_premium ? '#fffbf0' : '#ffffff'">
+                                    <div class="type-box-content">
+                                        <span>{{ item.label }}</span>
+                                        <span *ngIf="item.is_premium" class="premium-text-badge">
+                                            <nb-icon icon="award-outline" pack="eva"></nb-icon> $ Premium
+                                        </span>
+                                    </div>
+                                </div>
+                            </ng-container>
                         </div>
 
                     </nb-accordion-item-body>
@@ -183,7 +215,8 @@
 
                         <button nbButton size="small" status="primary"
                             (click)="onSecondSubmit(next_second)"
-                            [disabled]="form_field.length == 0 || loading"
+                            [disabled]="form_field.length == 0 || loading || !id"
+                            nbTooltip="{{ !id ? 'Debes guardar el documento primero (botón Guardar arriba)' : '' }}"
                             [nbSpinner]="loading" nbSpinnerStatus="success">
                             Siguiente
                         </button>
@@ -206,52 +239,70 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
 
-                        <div *ngIf="!id" class="wc-empty-state" style="text-align: center; padding: 50px 20px; border: 2px dashed #edf1f7; border-radius: 8px; margin-bottom: 20px;">
-                            <nb-icon icon="lock-outline" style="font-size: 3rem; color: #c5cee0;"></nb-icon>
-                            <h5 style="margin-top: 15px; color: #8f9bb3;">Guarda el documento para habilitar el constructor</h5>
+                        <div *ngIf="digital" class="builder-tabs" style="margin-bottom: 15px; border-bottom: 1px solid #edf1f7; display: flex; gap: 20px;">
+                            <button nbButton ghost [status]="activeTab === 'fields' ? 'primary' : 'basic'" (click)="setTab('fields')"
+                                    [style.border-bottom]="activeTab === 'fields' ? '3px solid #3366ff' : '3px solid transparent'"
+                                    style="border-radius: 0; padding-bottom: 10px;">
+                                Campos
+                            </button>
+                            <button nbButton ghost [status]="activeTab === 'pdf' ? 'primary' : 'basic'" (click)="setTab('pdf')"
+                                    [style.border-bottom]="activeTab === 'pdf' ? '3px solid #3366ff' : '3px solid transparent'"
+                                    style="border-radius: 0; padding-bottom: 10px;">
+                                Ver PDF Original
+                            </button>
                         </div>
-                        <div *ngIf="id" cdkDropList #fieldList="cdkDropList" [cdkDropListData]="form_field"
 
-                            [cdkDropListConnectedTo]="[typeList]" class="form-field-list"
-                            (cdkDropListDropped)="dropField($event)" id="form-field-list">
-                            <div *ngIf="form_field.length == 0" class="form-null">
-                                Arrastrar y soltar
-                            </div>
-                            <div class="form-field-box" *ngFor="let field of form_field ; let i=index;"
-                              [hidden]="field.field_type == 21 || field.field_type == 11 && field.label=='Número de documento a validar biometricamente'"
-                              cdkDrag [cdkDragDisabled]="param_visit && i <= 2">
-                                <div *ngIf="field.field_type != 21 && !(field.field_type == 11 && field.label=='Número de documento a validar biometricamente')" style="width: 100%;">
-                                    <label nbTooltip="{{ nameField(field.field_type) }}" nbTooltipStatus="primary" *ngIf="field.field_type != 14 && field.field_type != 27" for="inputField-{{ i }}" class="label name-field">{{ i + 1 }} - {{ field.label }}
-                                    <span *ngIf="field.required">*</span></label>
-                                    <button *ngIf="!field.obligatory_visit" nbTooltip="Eliminar" nbTooltipStatus="danger" (click)="onDeleteField(i)" size="small" style="float: right;" nbButton ghost status="danger"><nb-icon icon="trash-outline"></nb-icon>
-                                    </button>
-                                    <button *ngIf="!field.obligatory_visit" nbTooltip="Editar" nbTooltipStatus="warning" (click)="onEditField(i)" size="small" style="float: right;" nbButton ghost status="warning"><nb-icon icon="edit-2-outline"></nb-icon>
-                                    </button>
-                                    <button *ngIf="field.obligatory_visit" nbTooltip="No es posible realizar modificaciones y/o alterar el orden de este campo." nbTooltipStatus="warning" size="small" style="float: right;" nbButton ghost status="warning"><nb-icon icon="question-mark-circle-outline"></nb-icon>
-                                    </button>
-                                    <!-- <button size="small" style="float: right;" nbButton ghost status="primary"><nb-icon icon="edit-2-outline"></nb-icon>
-                                    </button> -->
-                                </div>
-                                <!-- Init Type -->
-                                <input
-                                    *ngIf="field.field_type == 1 || field.field_type == 2 || field.field_type == 4 || field.field_type == 5 || field.field_type == 16  || field.field_type == 24 || field.field_type == 25"
-                                    autocomplete="off" nbInput fullWidth
-                                    id="inputField-{{ i }}"
-                                    [type]="typeField(field.field_type)" />
-                                <!-- Selecionable -->
-                                <nb-select *ngIf="field.field_type == 3" fullWidth
-                                    class="select-form" placeholder="Seleccionar">
-                                    <nb-option value="">Seleccionar</nb-option>
-                                    <nb-option *ngFor="let option of field.values" [value]="option.label">
-                                        {{ option.label }}</nb-option>
-                                </nb-select>
-                                <!-- Campo de Texto -->
-                                <textarea *ngIf="field.field_type == 6" rows="4" autocomplete="off" nbInput fullWidth>
-                                </textarea>
-                                <!-- Firma -->
-                                <div style="width: 360px; height: 180px; border: 0.8px solid #e4e9f2; border-radius: 5px;"
-                                    *ngIf="field.field_type == 7"></div>
-                                <!-- Archivo y Captura -->
+                        <div [hidden]="activeTab !== 'fields'">
+                          <div cdkDropList #fieldList="cdkDropList" [cdkDropListData]="form_field"
+                              [cdkDropListConnectedTo]="[typeList]" class="form-field-list"
+                              (cdkDropListDropped)="dropField($event)" id="form-field-list">
+                              <div *ngIf="process_digital_ia" class="ia-modern-loader" style="margin: 50px auto;">
+                                 <div class="ia-loader-spinner"><nb-icon icon="loader-outline" [spin]="true"></nb-icon></div>
+                                 <div class="ia-loader-text">
+                                   <h3>La Inteligencia Artificial está analizando tu documento</h3>
+                                   <p>Extrayendo campos, validaciones y organizando secciones automáticamente. Esto tomará unos segundos...</p>
+                                 </div>
+                              </div>
+                              <div *ngIf="form_field.length == 0 && !process_digital_ia" class="wc-empty-state" style="text-align: center; padding: 50px 20px; border: 2px dashed #edf1f7; border-radius: 8px; margin-bottom: 20px;">
+                                  <nb-icon icon="move-outline" style="font-size: 3rem; color: #c5cee0;"></nb-icon>
+                                  <h5 style="margin-top: 15px; color: #8f9bb3;">Arrastra y suelta elementos aquí</h5>
+                              </div>
+                              <div class="form-field-box" *ngFor="let field of form_field ; let i=index;"
+                                [hidden]="field.field_type == 21 || field.field_type == 11 && field.label=='Número de documento a validar biometricamente'"
+                                cdkDrag [cdkDragDisabled]="param_visit && i <= 2">
+                                  <div *ngIf="field.field_type != 21 && !(field.field_type == 11 && field.label=='Número de documento a validar biometricamente')" style="width: 100%;">
+                                      <label nbTooltip="{{ nameField(field.field_type) }}" nbTooltipStatus="primary" *ngIf="field.field_type != 14 && field.field_type != 27" for="inputField-{{ i }}" class="label name-field">{{ i + 1 }} - {{ field.label }}
+                                      <span *ngIf="field.required">*</span></label>
+                                      <button *ngIf="!field.obligatory_visit" nbTooltip="Eliminar" nbTooltipStatus="danger" (click)="onDeleteField(i)" size="small" style="float: right;" nbButton ghost status="danger"><nb-icon icon="trash-outline"></nb-icon>
+                                      </button>
+                                      <button *ngIf="!field.obligatory_visit" nbTooltip="Editar" nbTooltipStatus="warning" (click)="onEditField(i)" size="small" style="float: right;" nbButton ghost status="warning"><nb-icon icon="edit-2-outline"></nb-icon>
+                                      </button>
+                                      <button *ngIf="field.obligatory_visit" nbTooltip="No es posible realizar modificaciones y/o alterar el orden de este campo." nbTooltipStatus="warning" size="small" style="float: right;" nbButton ghost status="warning"><nb-icon icon="question-mark-circle-outline"></nb-icon>
+                                      </button>
+                                      <!-- <button size="small" style="float: right;" nbButton ghost status="primary"><nb-icon icon="edit-2-outline"></nb-icon>
+                                      </button> -->
+                                  </div>
+                                  <!-- Init Type -->
+                                  <input
+                                      *ngIf="field.field_type == 1 || field.field_type == 2 || field.field_type == 4 || field.field_type == 5 || field.field_type == 16  || field.field_type == 24 || field.field_type == 25"
+                                      autocomplete="off" nbInput fullWidth
+                                      id="inputField-{{ i }}"
+                                      [type]="typeField(field.field_type)" />
+                                  <!-- Selecionable -->
+                                  <nb-select *ngIf="field.field_type == 3" fullWidth
+                                      class="select-form" placeholder="Seleccionar">
+                                      <nb-option value="">Seleccionar</nb-option>
+                                      <nb-option *ngFor="let option of field.values" [value]="option.label">
+                                          {{ option.label }}</nb-option>
+                                  </nb-select>
+                                  <!-- Campo de Texto -->
+                                  <textarea *ngIf="field.field_type == 6" rows="4" autocomplete="off" nbInput fullWidth>
+                                  </textarea>
+                                  <!-- Firma -->
+                                  <div style="width: 360px; height: 180px; border: 0.8px solid #e4e9f2; border-radius: 5px;"
+                                      *ngIf="field.field_type == 7"></div>
+                                  <!-- Archivo y Captura -->
+
                                 <div *ngIf="field.field_type == 8 || field.field_type == 9">
                                     <div class="file-upload">
                                         <button type="button" nbButton
@@ -447,11 +498,41 @@
                                     </div>
                                 </div>
                                 <!-- End Type -->
-                                <label style="width: 100%;" *ngIf="field.field_type != 14 && field.field_type != 21 && field.field_type != 27" for="inputField-{{ i }}" class="label">
+                                <label style="width: 100%;" *ngIf="field.field_type != 14 && field.field_type != 21" for="inputField-{{ i }}" class="label">
                                     <span class="span-field">{{ field.description }}</span>
                                 </label>
                             </div>
+                          </div> <!-- Close form-field-list -->
+                        </div> <!-- Close activeTab !== 'fields' -->
+
+                        <div *ngIf="activeTab === 'pdf'" class="pdf-viewer-tab-container" style="height: calc(100vh - 250px); overflow-y: auto; border: 1px solid #edf1f7; border-radius: 8px; background: #fafafa; position: relative;">
+                            
+                            <div *ngIf="src" style="position: relative; width: 100%; height: 100%;">
+                                <!-- AI Bounding Boxes Overlay -->
+                                <div *ngFor="let field of ai_preview_fields; let i = index"
+                                     class="ai-preview-box"
+                                     [style.left.px]="+field.left * ai_pdf_scale"
+                                     [style.top.px]="+field.top * ai_pdf_scale"
+                                     [style.width.px]="+field.size_image_x * ai_pdf_scale"
+                                     [style.height.px]="+field.size_image_y * ai_pdf_scale">
+                                    <div class="ai-preview-badge">{{ i + 1 }}</div>
+                                </div>
+                                
+                                <pdf-viewer 
+                                    [src]="src"
+                                    [render-text]="true"
+                                    [original-size]="false"
+                                    [autoresize]="true"
+                                    style="width: 100%; height: 100%;"
+                                    (page-rendered)="onPdfPageRendered($event)">
+                                </pdf-viewer>
+                            </div>
+                            <div *ngIf="!src" style="padding: 50px; text-align: center; color: #8f9bb3; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                                <nb-icon icon="loader-outline" [spin]="true" style="font-size: 3rem; margin-bottom: 15px; color: #3366ff;"></nb-icon>
+                                <p>Cargando PDF Original...</p>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </nb-card-body>
@@ -623,7 +704,7 @@
     <div class="col-xl-3 col-lg-4 col-md-4 col-12" *ngIf="pdf_process">
         <div class="menu-content-out" [nbSpinner]="loading" nbSpinnerStatus="primary">
             <nb-accordion multi>
-                <nb-accordion-item expanded>
+                <nb-accordion-item>
                     <nb-accordion-item-body>
                         <nb-select [ngModel]="page" (ngModelChange)="pageChange($event)"
                             name="page" class="select-form"
@@ -639,7 +720,7 @@
             </nb-accordion>
             <br>
             <nb-accordion multi>
-              <nb-accordion-item expanded>
+              <nb-accordion-item>
                   <nb-accordion-item-body class="content-field-list">
                     <!-- Campos del Formulario -->
                     <div *ngFor="let form of forms;">
@@ -703,7 +784,7 @@
             </nb-accordion>
             <br>
             <nb-accordion multi>
-                <nb-accordion-item expanded>
+                <nb-accordion-item>
                     <nb-accordion-item-body class="content-field-list">
                         <nb-select
                             [ngModel]="font"
@@ -1013,7 +1094,7 @@
             </nb-accordion>
             <br>
             <nb-accordion multi>
-                <nb-accordion-item expanded>
+                <nb-accordion-item>
                     <nb-accordion-item-body>
                         <button nbButton size="small" status="primary" fullWidth (click)="onThirdSubmit(next_third, next_fourth)">Guardar y Finalizar</button>
                     </nb-accordion-item-body>

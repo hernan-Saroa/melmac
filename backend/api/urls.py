@@ -151,6 +151,7 @@ urlpatterns = [
     # Digital
     path('form/digital/<int:pk>/', form.DigitalDetail.as_view()),
     path('form/digital/pdf/<int:pk>/', form.get_pdf),
+    path('form/digital/ia/status/<int:form>/', form.get_digital_ia_state),
     # Form Associate
     path('form/associate/<int:form>/<int:option>/', associate_form.AssociateList.as_view()),
     path('form/associate/<int:form>/<int:option>/<int:id>/', associate_form.AssociateList.as_view()),
